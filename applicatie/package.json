@@ -26,7 +26,8 @@
     "@adonisjs/lucid": "^4.0.22",
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
-    "@adonisjs/vow": "^1.0.13"
+    "@adonisjs/vow": "^1.0.13",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {},
   "autoload": {
