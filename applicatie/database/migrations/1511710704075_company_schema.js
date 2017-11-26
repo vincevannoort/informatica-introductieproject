@@ -7,7 +7,8 @@ class CompanySchema extends Schema {
     this.create('companies', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
-      table.string('name').notNullable().unique()
+      table.integer('type_id').unsigned().references('id').inTable('types')
+      table.string('name').notNullable()
       table.bool('active').notNullable()
       table.timestamps()
     })

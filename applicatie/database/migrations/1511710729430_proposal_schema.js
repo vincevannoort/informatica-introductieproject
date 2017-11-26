@@ -7,7 +7,7 @@ class ProposalSchema extends Schema {
     this.create('proposals', (table) => {
       table.increments()
       table.integer('company_id').unsigned().references('id').inTable('companies')
-      table.string('name').notNullable().unique()
+      table.string('name').notNullable()
       table.timestamps()
     })
   }

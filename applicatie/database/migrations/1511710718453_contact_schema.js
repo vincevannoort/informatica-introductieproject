@@ -6,11 +6,11 @@ class ContactSchema extends Schema {
   up () {
     this.create('contacts', (table) => {
       table.increments()
-      table.string('profession').notNullable().unique()
-      table.string('first_name').notNullable().unique()
-      table.string('last_name').notNullable().unique()
-      table.string('telephone').notNullable().unique()
-      table.string('email').notNullable().unique()
+      table.string('profession').notNullable()
+      table.string('first_name').notNullable()
+      table.string('last_name').notNullable()
+      table.string('telephone').notNullable()
+      table.string('email').notNullable()
       table.timestamps()
     })
   }
