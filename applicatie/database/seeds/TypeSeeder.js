@@ -16,7 +16,7 @@ class TypeSeeder {
   async run () {
   	await Factory
  		.model('App/Models/Type')
-  		.createMany(5)
+  		.createMany(3)
   }
 }
 

@@ -16,7 +16,7 @@ class ProposalSeeder {
   async run () {
   	await Factory
  		.model('App/Models/Proposal')
-  		.createMany(5)
+  		.createMany(100)
   }
 }
 

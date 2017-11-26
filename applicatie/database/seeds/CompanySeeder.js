@@ -14,9 +14,11 @@ const Factory = use('Factory')
 
 class CompanySeeder {
   async run () {
+  	const count = 50;
+  	const types = 3;
   	await Factory
  		.model('App/Models/Company')
-  		.createMany(5)
+  		.createMany(count)
   }
 }
 

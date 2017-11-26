@@ -22,11 +22,9 @@ Factory.blueprint('App/Models/User', async (faker) => {
   }
 })
 
-Factory.blueprint('App/Models/Company', async (faker) => {
+Factory.blueprint('App/Models/Type', async (faker) => {
   return {
-    user_id: 0,
-    name: faker.company(),
-    active: true,
+    name: faker.word(),
   }
 })
 
@@ -40,15 +38,18 @@ Factory.blueprint('App/Models/Contact', async (faker) => {
   }
 })
 
-Factory.blueprint('App/Models/Proposal', async (faker) => {
+Factory.blueprint('App/Models/Company', async (faker) => {
   return {
-    company_id: 0,
-    name: faker.sentence({words: 5})
+    user_id: faker.integer({min: 1, max: 10}),
+    type_id: faker.integer({min: 1, max: 3}),
+    name: faker.company(),
+    active: true,
   }
 })
 
-Factory.blueprint('App/Models/Type', async (faker) => {
+Factory.blueprint('App/Models/Proposal', async (faker) => {
   return {
-    name: faker.word(),
+    company_id: faker.integer({min: 1, max: 50}),
+    name: faker.sentence({words: 5})
   }
 })
