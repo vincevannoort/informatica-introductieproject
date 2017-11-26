@@ -4,8 +4,8 @@ const Model = use('Model')
 
 class Type extends Model {
 
-	company() {
-		return this.belongsToMany('App/Models/Company')
+	companies() {
+		return this.hasMany('App/Models/Company')
 	}
 	
 }
