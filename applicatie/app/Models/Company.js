@@ -9,7 +9,7 @@ class Company extends Model {
 	}
 
 	contacts() {
-		return this.hasMany('App/Models/Contact')
+		return this.belongsToMany('App/Models/Contact').pivotTable('contact_companies')
 	}
 
 	proposals() {
