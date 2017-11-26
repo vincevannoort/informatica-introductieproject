@@ -3,6 +3,11 @@
 const Model = use('Model')
 
 class User extends Model {
+
+  companies() {
+    return this.hasMany('App/Models/Company')
+  }
+
   static boot () {
     super.boot()
 
