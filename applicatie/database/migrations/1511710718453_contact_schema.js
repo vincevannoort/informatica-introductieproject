@@ -6,7 +6,7 @@ class ContactSchema extends Schema {
   up () {
     this.create('contacts', (table) => {
       table.increments()
-      table.string('function').notNullable().unique()
+      table.string('profession').notNullable().unique()
       table.string('first_name').notNullable().unique()
       table.string('last_name').notNullable().unique()
       table.string('telephone').notNullable().unique()
