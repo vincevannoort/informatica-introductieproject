@@ -29,14 +29,14 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/vow": "^1.0.13",
-    "sqlite3": "^3.1.13"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.13",
-    "browser-sync-webpack-plugin": "^1.2.0",
+    "sqlite3": "^3.1.13",
     "cross-env": "^5.1.1",
     "laravel-mix": "^1.6.1",
     "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0"
   },
   "autoload": {
     "App": "./app"
