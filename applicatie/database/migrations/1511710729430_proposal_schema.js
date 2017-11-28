@@ -8,6 +8,7 @@ class ProposalSchema extends Schema {
       table.increments()
       table.integer('company_id').unsigned().references('id').inTable('companies')
       table.string('name').notNullable()
+      table.integer('insight').unsigned().notNullable()
       table.timestamps()
     })
   }
