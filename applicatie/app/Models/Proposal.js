@@ -8,6 +8,10 @@ class Proposal extends Model {
 		return this.belongsTo('App/Models/Company')
 	}
 
+	contacts() {
+		return this.belongsToMany('App/Models/Contact').pivotTable('contact_proposals')
+	}
+
 }
 
 module.exports = Proposal
