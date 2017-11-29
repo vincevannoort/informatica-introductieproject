@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+@import url('https://fonts.googleapis.com/css?family=OpenSans');
 
 html, body {
   height: 100%;
   width: 100%;
 }
 
+#app {
+  height: 100vh;
+  width: 100vw;
+}
+
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   background-image: url("../images/splash.png");
   background-color: #220052;
@@ -49,10 +54,12 @@ section:before {
 }
 
 .title {
-  background: url("../images/title.svg") no-repeat;
-  width: 219px;
-  height: 36px;
-  background-size: 100%;
+  margin-top: -10px;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.5;
   opacity: 0;
   animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.2s forwards;
 }

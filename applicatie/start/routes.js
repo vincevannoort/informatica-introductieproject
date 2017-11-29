@@ -14,23 +14,20 @@
 */
 
 const Route = use('Route')
-const Company = use('App/Models/Company')
-const Contact = use('App/Models/Contact')
-const Type = use('App/Models/Type')
 
-Route.on('/').render('welcome')
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+*/
+Route.group(() => {
+    // Route.get('users', 'UserController.index')
+    // Route.post('users', 'UserController.store')
+}).prefix('api')
 
-Route.get('/companies', async ({ params }) => {
-  const companies = await Company.query().with('contacts').fetch()
-  return companies
-})
-
-Route.get('/contacts', async ({ params }) => {
-  const contacts = await Contact.query().with('companies').fetch()
-  return contacts
-})
-
-Route.get('/types', async ({ params }) => {
-  const types = await Type.query().with('companies').fetch()
-  return types
-})
+/*
+|--------------------------------------------------------------------------
+| SPA
+|--------------------------------------------------------------------------
+*/
+Route.any('*', ({ view }) => view.render('main'))
