@@ -15,4 +15,5 @@ mix
   .js('resources/assets/js/app.js', 'public/js')
   .sass('resources/assets/scss/app.scss', 'public/css')
   .setPublicPath('public')
-  .browserSync('localhost:3333');
+  .browserSync('localhost:3333')
+  .disableSuccessNotifications();
