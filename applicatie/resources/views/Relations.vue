@@ -1,15 +1,5 @@
 <template>
-	<section>
-		<div class="logo"></div>
-		<div class="title">Relations</div>
-		<div class="subtitle"><p>AdonisJs simplicity will make you feel confident about your code</p></div>
-	</section>
+  <main-view>
+    <main-view-title title="Relations"></main-view-title>
+  </main-view>
 </template>
-
-<script>
-  export default{
-    data(){
-        return {}
-    }
-  }
-</script>

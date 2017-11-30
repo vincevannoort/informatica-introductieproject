@@ -1,12 +1,7 @@
 <template>
-	<section>
-		<div class="logo"></div>
-		<div class="title">Dashboard</div>
-		<div class="subtitle"><p>AdonisJs simplicity will make you feel confident about your code</p></div>
-    <div style="text-align: center; padding: 2rem;">
-      <span style="display: inline-block; font-size: 0.8125rem; padding: 0.25rem; color: white; opacity: 0.3;" v-for="company in companies">{{ company.name }}</span>
-    </div>
-	</section>
+	<main-view>
+    <main-view-title title="Dashboard"></main-view-title>
+  </main-view>
 </template>
 
 <script>

@@ -22,7 +22,6 @@ export default {
     let self = this;
     axios.post(LOGIN_URL, { credentials })
     .then(function (response) {
-      console.log(response.data)
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('refresh_token', response.data.refreshToken)
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
@@ -65,8 +64,10 @@ export default {
     let jwt = localStorage.getItem('token')
     if(jwt) {
       this.user.authenticated = true
+      return jwt
     } else {
       this.user.authenticated = false      
+      return false
     }
   },
 }
