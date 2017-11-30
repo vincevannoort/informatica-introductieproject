@@ -14,6 +14,14 @@ class UserController {
     }
   }
 
+  async profile({ request, response, auth }) {
+    try {
+      return await auth.getUser()
+    } catch (error) {
+      response.send('Missing or invalid jwt token')
+    }
+  }
+
 }
 
 module.exports = UserController

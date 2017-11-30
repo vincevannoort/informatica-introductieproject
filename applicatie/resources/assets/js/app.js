@@ -79,6 +79,11 @@ router.beforeEach((to, from, next) => {
 |--------------------------------------------------------------------------
 */
 const app = new Vue({
-  data: { user: Authentication.user },
-  router
+  router,
+  data: { 
+    user: Authentication.user 
+  },
+  created() {
+    console.log('hello')
+  }
 }).$mount('#app')

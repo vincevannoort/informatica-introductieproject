@@ -3,3 +3,21 @@
     <main-view-title title="Profile"></main-view-title>
   </main-view>
 </template>
+
+<script>
+  export default{
+    data(){
+      return {}
+    },
+    activated() {
+      var self = this;
+      axios.get('/api/users/profile')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
+</script>

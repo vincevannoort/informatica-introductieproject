@@ -61,7 +61,7 @@
     align-items: center;
     justify-content: center;
     img {
-      max-width: 225px;
+      max-width: 200px;
     }
   }
 
@@ -73,9 +73,11 @@
       display: flex;
       align-items: center;
       padding: $sidebar-padding;
-      border-bottom: 1px solid $border-grey;
       font-size: 20px;
       color: $almost-black;
+      border-bottom: 1px solid $border-grey;
+      margin-top: -1px;
+      position: relative;
       transition: all 0.15s ease-in-out;
       svg {
         width: 27px;
@@ -85,8 +87,10 @@
         }
       }
       &.router-link-exact-active, &:hover {
+        z-index: 1;
         color: $red;
         background-color: transparentize($red, 0.96);
+        border-bottom: 1px solid $red;
         svg {
           path {
             fill: $red;

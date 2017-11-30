@@ -29,6 +29,7 @@ Route.group(() => {
 
 // with authentication
 Route.group(() => {
+    Route.get('users/profile', 'UserController.profile')
     Route.get('companies', 'CompanyController.index')
 }).prefix('api')
 // }).prefix('api').middleware(['auth'])

@@ -29,7 +29,7 @@
     display: inline-block;
     margin-bottom: 0;
     opacity: 0;
-    animation: fadeInLeft 1s cubic-bezier(0.19, 1, 0.30, 1) 0.2s forwards;
+    animation: fadeInLeft .65s cubic-bezier(0.19, 1, 0.30, 1) 0.2s forwards;
   }
 
   .main-breadcrumbs {
@@ -37,7 +37,7 @@
     color: $medium-grey;
     font-size: 20px;
     opacity: 0;
-    animation: fadeInLeft 1s cubic-bezier(0.19, 1, 0.30, 1) 0.4s forwards;
+    animation: fadeInLeft .65s cubic-bezier(0.19, 1, 0.30, 1) 0.4s forwards;
     span {
       color: lighten($almost-black, 40%);
     }
