@@ -9,6 +9,7 @@ import VueRouter from 'vue-router'
 */
 import DashboardComponent from '../../views/Dashboard'
 import RelationsComponent from '../../views/Relations'
+import AuthenticationComponent from '../../views/Authentication'
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,34 @@ import RelationsComponent from '../../views/Relations'
 |--------------------------------------------------------------------------
 */
 const routes = [
-  { path: '/', component: DashboardComponent },
-  { path: '/relations', component: RelationsComponent },
+  { path: '/', component: DashboardComponent, meta: { requiresAuth: true } },
+  { path: '/login', component: AuthenticationComponent },
+  { path: '/relations', component: RelationsComponent, meta: { requiresAuth: true } },
 ]
 
 const router = new VueRouter({
 	mode: 'history',
   routes
+})
+
+/*
+|--------------------------------------------------------------------------
+| Authentication
+|--------------------------------------------------------------------------
+*/
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('token')) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 /*

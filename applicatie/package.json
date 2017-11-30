@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "NODE_ENV=testing ENV_SILENT=true node ace test",
-    "development": "adonis serve --dev | cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "keywords": [

@@ -1,13 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=OpenSans');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-html, body {
+html, body, #app {
   height: 100%;
   width: 100%;
-}
-
-#app {
-  height: 100vh;
-  width: 100vw;
+  overflow: hidden;
 }
 
 body {
@@ -50,7 +46,7 @@ section:before {
   background-size: 100%;
   margin-bottom: 35px;
   opacity: 0;
-  animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 1.3s forwards;
+  animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.8s forwards;
 }
 
 .title {
@@ -71,7 +67,7 @@ section:before {
   text-align: center;
   letter-spacing: 0.5;
   opacity: 0;
-  animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.5s forwards;
+  animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.4s forwards;
 }
 
 @keyframes slideUp {

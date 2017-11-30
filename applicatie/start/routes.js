@@ -20,10 +20,17 @@ const Route = use('Route')
 | API
 |--------------------------------------------------------------------------
 */
+
+// without authentication
 Route.group(() => {
-    // Route.get('users', 'UserController.index')
-    // Route.post('users', 'UserController.store')
+    Route.post('users/login', 'UserController.login')
+    Route.post('users/register', 'UserController.register')
 }).prefix('api')
+
+// with authentication
+Route.group(() => {
+    Route.get('companies', 'CompanyController.index')
+}).prefix('api').middleware(['auth'])
 
 /*
 |--------------------------------------------------------------------------

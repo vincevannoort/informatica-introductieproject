@@ -7,12 +7,9 @@
 </template>
 
 <script>
-	export default{
-        data(){
-            return {}
-        },
-        created() {
-            console.log('a')
-        }
+  export default{
+    data(){
+        return {}
     }
+  }
 </script>

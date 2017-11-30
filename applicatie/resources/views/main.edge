@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Hello Canon</title>
+  <meta name="csrf-token" content="{{ csrfToken }}">
   {{ css('css/app') }}
 </head>
 <body>
 	<div id="app">
     <router-link to="/">Dashboard</router-link>
-		<router-link to="/relations">Relations</router-link>
+    <router-link to="/relations">Relations</router-link>
+		<router-link to="/login">Log in</router-link>
     <router-view></router-view>
 	</div>
   {{ script('js/app') }}
