@@ -3,6 +3,7 @@
 | Bulma framework
 |--------------------------------------------------------------------------
 */
+@import "./bulma-pre-overwrites";
 @import "node_modules/bulma/sass/utilities/_all";
 @import "node_modules/bulma/bulma";
 @import "node_modules/minireset.css/minireset.sass";
@@ -13,8 +14,9 @@
 | General
 |--------------------------------------------------------------------------
 */
+@import "./bulma-after-overwrites";
 @import "./typography";
 
 html { font-family: Helvetica, Sans-Serif; }
 html, body, #app { height: 100vh; min-height: 100vh; width: 100vw; min-width: 100vw; overflow: hidden; }
-.main-content-wrapper { height: 100vh; min-height: 100vh; overflow: hidden; }
+.main-content-wrapper, .authentication-content-wrapper { height: 100vh; min-height: 100vh; overflow: hidden; }

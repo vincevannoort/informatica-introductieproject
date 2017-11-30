@@ -26,3 +26,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 window.Vue = Vue
+
+/**
+ * We'll load the Chart.js for graphs
+ */
+import Chart from 'chart.js'
+import './graphs/change-bar-chart.js'
+Chart.defaults.global.responsive = true;
+Chart.defaults.global.maintainAspectRatio = false;
+Chart.defaults.global.legend.display = false;
+window.Chart = Chart
