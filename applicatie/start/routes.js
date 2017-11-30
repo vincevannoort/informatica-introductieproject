@@ -30,7 +30,8 @@ Route.group(() => {
 // with authentication
 Route.group(() => {
     Route.get('companies', 'CompanyController.index')
-}).prefix('api').middleware(['auth'])
+}).prefix('api')
+// }).prefix('api').middleware(['auth'])
 
 /*
 |--------------------------------------------------------------------------
