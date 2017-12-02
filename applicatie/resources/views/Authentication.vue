@@ -3,7 +3,7 @@
     <div class="authentication-logo">
       <img src="../assets/images/canon.svg">
     </div>
-    <div class="authentication-box">
+    <div class="box authentication-box">
       <div class="field">
         <div class="control">
           <input class="input" type="text" placeholder="Username" @keyup.enter="submit" v-model="credentials.username">
@@ -74,7 +74,8 @@
 
   .authentication-box {
     background: white;
-    min-width: 440px;
+    width: 440px;
+    max-width: 100%;
     padding: $authentication-padding;
     border: 1px solid $border-grey;
     margin-top: 55px;

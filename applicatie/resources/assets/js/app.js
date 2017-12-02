@@ -11,18 +11,24 @@ import Authentication from './authentication'
 
 // views
 import AuthenticationView from '../../views/Authentication'
+import OverviewView from '../../views/Overview'
 import DashboardView from '../../views/Dashboard'
+import RelationView from '../../views/Relation'
 import RelationsView from '../../views/Relations'
 import ProfileView from '../../views/Profile'
-import MainView from '../../views/Main'
 import NotFoundView from '../../views/NotFound'
 
 // components
 import SidebarComponent from '../../components/Sidebar'
 import TitleComponent from '../../components/Title'
-Vue.component('main-view', MainView)
+import BoxComponent from '../../components/Box'
+import BoxContactsComponent from '../../components/BoxContacts'
+import BoxCompaniesComponent from '../../components/BoxCompanies'
 Vue.component('main-view-title', TitleComponent)
 Vue.component('sidebar', SidebarComponent)
+Vue.component('box', BoxComponent)
+Vue.component('box-contacts', BoxContactsComponent)
+Vue.component('box-companies', BoxCompaniesComponent)
 
 // icons
 import dashboardIcon from '../../components/icons/dashboard'
@@ -40,11 +46,16 @@ Vue.component('icon-profile', profileIcon)
 |--------------------------------------------------------------------------
 */
 const routes = [
-  { path: '/', component: DashboardView, meta: { requiresAuth: true } },
   { path: '/login', component: AuthenticationView },
-  { path: '/relations', component: RelationsView, meta: { requiresAuth: true } },
-  { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
-  { path: '*', component: NotFoundView },
+  { path: '/', component: OverviewView, meta: { requiresAuth: true },
+    children: [
+      { path: '/', component: DashboardView, meta: { requiresAuth: true } },
+      { path: '/relations', component: RelationsView, meta: { requiresAuth: true } },
+      { path: '/relations/:id', component: RelationView, meta: { requiresAuth: true } },
+      { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
+      { path: '*', component: NotFoundView },
+    ]
+  },
 ]
 
 const router = new VueRouter({
@@ -82,8 +93,5 @@ const app = new Vue({
   router,
   data: { 
     user: Authentication.user 
-  },
-  created() {
-    console.log('hello')
   }
 }).$mount('#app')

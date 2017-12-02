@@ -5,7 +5,7 @@
         <img src="../assets/images/canon.svg">
       </div>
       <div class="sidebar-links">
-        <router-link to="/">
+        <router-link to="/" exact>
           <icon-dashboard></icon-dashboard>
           <span>Dashboard</span>
         </router-link>
@@ -86,7 +86,7 @@
           transition: all 0.15s ease-in-out;
         }
       }
-      &.router-link-exact-active, &:hover {
+      &.router-link-active, &:hover {
         z-index: 1;
         color: $red;
         background-color: transparentize($red, 0.96);

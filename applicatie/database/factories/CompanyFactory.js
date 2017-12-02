@@ -6,5 +6,6 @@ Factory.blueprint('App/Models/Company', async (faker) => {
     type_id: faker.integer({min: 1, max: 3}),
     name: faker.company(),
     active: true,
+    insight_total: faker.integer({min: 60, max: 100}),
   }
 })

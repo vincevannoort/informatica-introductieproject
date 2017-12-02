@@ -17,3 +17,22 @@
   border-radius: 100px;
   height: auto;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Box
+|--------------------------------------------------------------------------
+*/
+.box {
+  height: 100%;
+  border: 1px solid $border-grey;
+  border-radius: 0;
+  box-shadow: 0 25px 65px -20px rgba(0, 0, 0, 0.15);
+}
+
+.box-header {
+  font-size: 20px;
+  color: $almost-black;
+  margin-top: -4px;
+  margin-bottom: 12px;
+}

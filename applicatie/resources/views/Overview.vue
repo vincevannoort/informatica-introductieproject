@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <main-view-title :title="'Dashboard'"></main-view-title>
-  </div>
+    <div class="main-content-wrapper columns is-gapless">
+      <div class="column is-3 sidebar-content">
+        <sidebar></sidebar>
+      </div>
+      <div class="column is-9 main-content">
+        <div class="main-inner-content">
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>

@@ -14,8 +14,10 @@
 | General
 |--------------------------------------------------------------------------
 */
+@import "./variables/colors";
 @import "./bulma-after-overwrites";
 @import "./typography";
+@import "./transitions";
 
 html { font-family: Helvetica, Sans-Serif; }
 html, body, #app { height: 100vh; min-height: 100vh; width: 100vw; min-width: 100vw; overflow: hidden; }

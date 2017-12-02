@@ -1,7 +1,7 @@
 <template>
-  <main-view>
-    <main-view-title title="Profile"></main-view-title>
-  </main-view>
+  <div>
+    <main-view-title :title="'Profile'"></main-view-title>
+  </div>
 </template>
 
 <script>
