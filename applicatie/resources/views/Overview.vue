@@ -6,7 +6,9 @@
       <div class="column is-9 main-content">
         <div class="main-inner-content">
           <transition name="fade" mode="out-in">
-            <router-view></router-view>
+            <keep-alive exclude="relation">
+              <router-view></router-view>
+            </keep-alive>
           </transition>
         </div>
       </div>
