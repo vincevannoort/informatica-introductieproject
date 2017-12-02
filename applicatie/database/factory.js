@@ -12,45 +12,14 @@
 */
 
 const Factory = use('Factory')
-const Hash = use('Hash')
 
-Factory.blueprint('App/Models/User', async (faker) => {
-  return {
-    username: faker.first(),
-    email: faker.email({domain: 'canon.nl'}),
-    password: await Hash.make(faker.password())
-  }
-})
-
-Factory.blueprint('App/Models/Type', async (faker) => {
-  return {
-    name: faker.word(),
-  }
-})
-
-Factory.blueprint('App/Models/Contact', async (faker) => {
-  return {
-    profession: faker.profession(),
-    first_name: faker.first(),
-    last_name: faker.last(),
-    telephone: faker.phone({ formatted: false }),
-    email: faker.email({domain: 'example.nl'}),
-  }
-})
-
-Factory.blueprint('App/Models/Company', async (faker) => {
-  return {
-    user_id: faker.integer({min: 1, max: 10}),
-    type_id: faker.integer({min: 1, max: 3}),
-    name: faker.company(),
-    active: true,
-  }
-})
-
-Factory.blueprint('App/Models/Proposal', async (faker) => {
-  return {
-    company_id: faker.integer({min: 1, max: 50}),
-    name: faker.sentence({words: 5}),
-    insight: faker.integer({min: 0, max: 100}),
-  }
-})
+/*
+|--------------------------------------------------------------------------
+| Factories
+|--------------------------------------------------------------------------
+*/
+use('./factories/UserFactory')
+use('./factories/TypeFactory')
+use('./factories/ContactFactory')
+use('./factories/CompanyFactory')
+use('./factories/ProposalFactory')

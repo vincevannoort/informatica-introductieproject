@@ -14,23 +14,30 @@
 */
 
 const Route = use('Route')
-const Company = use('App/Models/Company')
-const Contact = use('App/Models/Contact')
-const Type = use('App/Models/Type')
 
-Route.on('/').render('welcome')
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+*/
 
-Route.get('/companies', async ({ params }) => {
-  const companies = await Company.query().with('contacts').fetch()
-  return companies
-})
+// without authentication
+Route.group(() => {
+    Route.post('users/login', 'UserController.login')
+    Route.post('users/register', 'UserController.register')
+}).prefix('api')
 
-Route.get('/contacts', async ({ params }) => {
-  const contacts = await Contact.query().with('companies').fetch()
-  return contacts
-})
+// with authentication
+Route.group(() => {
+    Route.get('users/profile', 'UserController.profile')
+    Route.get('companies', 'CompanyController.index')
+    Route.get('companies/:id', 'CompanyController.show')
+}).prefix('api')
+// }).prefix('api').middleware(['auth'])
 
-Route.get('/types', async ({ params }) => {
-  const types = await Type.query().with('companies').fetch()
-  return types
-})
+/*
+|--------------------------------------------------------------------------
+| SPA
+|--------------------------------------------------------------------------
+*/
+Route.any('*', ({ view }) => view.render('main'))

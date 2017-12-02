@@ -10,6 +10,7 @@ class CompanySchema extends Schema {
       table.integer('type_id').unsigned().references('id').inTable('types')
       table.string('name').notNullable()
       table.bool('active').notNullable()
+      table.integer('insight_total').unsigned().notNullable()
       table.timestamps()
     })
   }
