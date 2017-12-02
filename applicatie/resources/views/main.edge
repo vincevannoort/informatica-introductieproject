@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Canon</title>
+  <meta name="csrf-token" content="{{ csrfToken }}">
+  {{ css('css/app') }}
+</head>
+<body>
+	<div id="app">
+    <keep-alive exclude="relation">
+      <router-view></router-view>
+    </keep-alive>
+	</div>
+  {{ script('js/app') }}
+</body>
+</html>

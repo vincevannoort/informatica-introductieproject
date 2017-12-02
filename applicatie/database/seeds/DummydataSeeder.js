@@ -26,6 +26,14 @@ class DummydataSeeder {
         // attach random proposal to contact
         await contact.proposals().withTimestamps().attach([Math.floor(Math.random() * 100) + 1]);
     }
+
+    // custom users for testing
+    const User = use('App/Models/User');
+    await User.create({ username: 'vince', password: 'vince', email: 'vince@canon.nl' });
+    await User.create({ username: 'jort', password: 'jort', email: 'jort@canon.nl' });
+    await User.create({ username: 'tijmen', password: 'tijmen', email: 'tijmen@canon.nl' });
+    await User.create({ username: 'madio', password: 'madio', email: 'madio@canon.nl' });
+    await User.create({ username: 'niek', password: 'niek', email: 'niek@canon.nl' });
   }
 }
 

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "NODE_ENV=testing ENV_SILENT=true node ace test",
-    "development": "adonis serve --dev | cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "keywords": [
@@ -29,9 +29,16 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/vow": "^1.0.13",
-    "sqlite3": "^3.1.13",
+    "animate.css": "^3.5.2",
+    "axios": "^0.17.1",
+    "bulma": "^0.6.1",
+    "chart.js": "^2.7.1",
     "cross-env": "^5.1.1",
     "laravel-mix": "^1.6.1",
+    "minireset.css": "^0.0.3",
+    "sqlite3": "^3.1.13",
+    "vue": "^2.5.9",
+    "vue-router": "^3.0.1",
     "webpack": "^3.8.1"
   },
   "devDependencies": {
