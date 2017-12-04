@@ -1,6 +1,6 @@
 'use strict'
 
-import generalConfiguration from './general-configuration'
+import authenticationChartConfiguration from './authentication-chart-configuration'
 
 class AuthenticationChart {
 
@@ -16,7 +16,7 @@ class AuthenticationChart {
             backgroundColor: '#CC0000'
           }] 
         },
-        options: generalConfiguration
+        options: authenticationChartConfiguration
       }
     )
     return createdChart

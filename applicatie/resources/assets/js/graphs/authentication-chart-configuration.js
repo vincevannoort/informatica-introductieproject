@@ -1,6 +1,6 @@
 'use strict'
 
-let generalConfiguration = {
+let authenticationChartConfiguration = {
   scaleShowVerticalLines: false,
   showLines: false,
   scaleShowLabels: false,
@@ -16,4 +16,4 @@ let generalConfiguration = {
   }
 }
 
-module.exports = generalConfiguration
+module.exports = authenticationChartConfiguration
