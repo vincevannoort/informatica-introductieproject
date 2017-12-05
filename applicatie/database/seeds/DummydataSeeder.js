@@ -11,6 +11,7 @@
 */
 
 const Factory = use('Factory')
+const Database = use('Database')
 
 class DummydataSeeder {
   async run () {
@@ -34,6 +35,8 @@ class DummydataSeeder {
     await User.create({ username: 'tijmen', password: 'tijmen', email: 'tijmen@canon.nl' });
     await User.create({ username: 'madio', password: 'madio', email: 'madio@canon.nl' });
     await User.create({ username: 'niek', password: 'niek', email: 'niek@canon.nl' });
+
+    Database.close()
   }
 }
 
