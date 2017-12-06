@@ -45,3 +45,14 @@ When all the above packages are installed the installation should run fluently.
     └── routes.js     (backend routes for api)
 └── test              (files for running tests)
 ```
+
+## Documentation of used software
+- Vue [Vue Guide](https://vuejs.org/v2/guide/) [Vue Api](https://vuejs.org/v2/api/) [Vue Examples](https://vuejs.org/v2/examples/modal.html)
+- VueRouter [VueRouter documentation](https://router.vuejs.org/en/)
+
+## Application flow
+1. Enduser visits url.
+2. In ```start/routes.js``` AdonisJS checks which route is requested. Having splitup the application in frontend and backend. AdonisJS is only responsible for the backend routes starting with ```api```.  Other routes are catched with ```Route.any('*', ({ view }) => view.render('main'))``` and are rendered to the ```main.edge``` file residing in the ```resources/views``` folder.
+3. If it was not an api route, ```main.edge``` is presented to the user and the frontend router (VueRouter) takes over. Routes inside ```resources/js/app.js``` on line 48 describe the routes responsible for the frontend. (documentation: [VueRouter documentation](https://router.vuejs.org/en/)).
+4. The frontend router loads a view component. For example: if the url requested was: ```/relations``` the ```RelationsView``` is requested and found inside ```resoureces/views```, also found relative stated above: ```import RelationsView from '../../views/Relations'```.
+5. When the view is loaded Vue lifecycle hooks take over. 
