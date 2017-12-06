@@ -7,7 +7,6 @@ Before running the installation a few packages are required. These packages are 
 - AdonisCLI 3.0.17 (```npm install -g @adonisjs/cli```)
 - Pm2 2.7.2 (```npm install -g pm2```) (for windows, due to ports not closing automatically)
 
----
 
 ## Installation
 When all the above packages are installed the installation should run fluently.
@@ -19,19 +18,23 @@ When all the above packages are installed the installation should run fluently.
 6. ```adonis migration:run``` (run the migrations)
 7. ```adonis seed``` optional - (generate dummy data)
 
+
 ## Starting the application in development (after installation)
-### MacOSX / Linux
+#### MacOSX / Linux
 1. Go to your application folder inside a terminal and start the application with ```adonis serve --dev```
-2. Open another terminal and start webpack with ```npm run development```
+2. Open another terminal and start webpack with ```yarn run development``` or ```npm run development```
 
-### Windows
+
+#### Windows
 1. Go to your application folder inside a terminal and start the application with ```pm2 start server.js```
-2. Open another terminal and start webpack with ```npm run development```
+2. Open another terminal and start webpack with ```yarn run development``` or ```npm run development```
 
-## Running migrations and seeding
-Migration are needed when migration files and the database structure is changed.
 
----
+## Running migrations and seeding (after fetching commits)
+Migration are needed when migration files and the database structure is changed. 
+1. ```adonis migration:run``` (keep existing data) or ```adonis migration:refresh``` (delete existing data)
+2. ```adonis seed``` optional - (generate dummy data)
+
 
 ## Folder structure
 ```
@@ -54,11 +57,11 @@ Migration are needed when migration files and the database structure is changed.
 └── test              (files for running tests)
 ```
 
----
 
 ## Documentation of used software
 - Vue [Vue Guide](https://vuejs.org/v2/guide/) [Vue Api](https://vuejs.org/v2/api/) [Vue Examples](https://vuejs.org/v2/examples/modal.html)
 - VueRouter [VueRouter documentation](https://router.vuejs.org/en/)
+
 
 ## Application flow
 1. Enduser visits url.
@@ -66,5 +69,3 @@ Migration are needed when migration files and the database structure is changed.
 3. If it was not an api route, ```main.edge``` is presented to the user and the frontend router (VueRouter) takes over. Routes inside ```resources/js/app.js``` on line 48 describe the routes responsible for the frontend. (documentation: [VueRouter documentation](https://router.vuejs.org/en/)).
 4. The frontend router loads a view component. For example: if the url requested was: ```/relations``` the ```RelationsView``` is requested and found inside ```resoureces/views```, also found relative stated above: ```import RelationsView from '../../views/Relations'```.
 5. When the view is loaded Vue lifecycle hooks take over. 
-
----
