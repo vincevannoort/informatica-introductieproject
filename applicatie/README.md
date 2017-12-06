@@ -24,3 +24,24 @@ When all the above packages are installed the installation should run fluently.
 ### Windows
 1. Go to your application folder inside a terminal and start the application with ```pm2 start server.js```
 2. Open another terminal and start webpack with ```npm run development```
+
+## Folder structure
+```
+.
+├── app               (controllers & models)
+├── config            (configfiles, never touch them!)
+├── database          (includes database file: development.sqlite)
+    ├── factories     (blueprints of fake data)
+    ├── migrations    (generated migration files)
+    └── seeds         (generate fake data based on blueprints from factories)
+├── resources         (includes all frontend assets)
+    ├── assets        (general frontend assets)
+        ├── images    (images used in frontend)
+        ├── js        (javascript used in frontend)
+        ├── scss      (stylesheets used in frontend)
+    ├── components    (javascript components used in frontend)
+    ├── views         (javascript views used in frontend, except main.edge)
+├── start             (files for starting the server)
+    └── routes.js     (backend routes for api)
+└── test              (files for running tests)
+```
