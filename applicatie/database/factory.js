@@ -19,7 +19,6 @@ const Factory = use('Factory')
 |--------------------------------------------------------------------------
 */
 use('./factories/UserFactory')
-use('./factories/TypeFactory')
 use('./factories/ContactFactory')
 use('./factories/CompanyFactory')
 use('./factories/ProposalFactory')

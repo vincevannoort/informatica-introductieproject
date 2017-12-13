@@ -16,10 +16,6 @@ class Company extends Model {
 		return this.hasMany('App/Models/Proposal')
 	}
 
-	type() {
-		return this.belongsTo('App/Models/Type')
-	}
-
 }
 
 module.exports = Company

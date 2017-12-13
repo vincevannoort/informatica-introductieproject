@@ -16,7 +16,6 @@ const Database = use('Database')
 class DummydataSeeder {
   async run () {
     const users = await Factory.model('App/Models/User').createMany(10)
-    const types = await Factory.model('App/Models/Type').createMany(3)
     const contacts = await Factory.model('App/Models/Contact').createMany(150)
     const companies = await Factory.model('App/Models/Company').createMany(50)
     const proposals = await Factory.model('App/Models/Proposal').createMany(100)
