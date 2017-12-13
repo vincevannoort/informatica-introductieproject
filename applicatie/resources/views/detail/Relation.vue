@@ -58,7 +58,7 @@
 </script>
 
 <style lang="scss">
-  @import "../assets/scss/variables/colors";
+  @import "../../assets/scss/variables/colors";
   .relation-insight-list {
     font-size: 13px;
   }

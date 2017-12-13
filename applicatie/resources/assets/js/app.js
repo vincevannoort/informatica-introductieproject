@@ -13,10 +13,18 @@ import Authentication from './authentication'
 import AuthenticationView from '../../views/Authentication'
 import OverviewView from '../../views/Overview'
 import DashboardView from '../../views/Dashboard'
-import RelationView from '../../views/Relation'
-import RelationsView from '../../views/Relations'
 import ProfileView from '../../views/Profile'
 import NotFoundView from '../../views/NotFound'
+
+// Details & Overviews
+import RelationView from '../../views/detail/Relation'
+import RelationsView from '../../views/overview/Relations'
+import ProposalView from '../../views/detail/Proposal'
+import ProposalsView from '../../views/overview/Proposals'
+import ContactView from '../../views/detail/Contact'
+import ContactsView from '../../views/overview/Contacts'
+import UserView from '../../views/detail/User'
+import UsersView from '../../views/overview/Users'
 
 // components
 import SidebarComponent from '../../components/Sidebar'
