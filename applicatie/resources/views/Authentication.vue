@@ -73,6 +73,7 @@
   }
 
   .authentication-box {
+    height: auto;
     background: white;
     width: 440px;
     max-width: 100%;
