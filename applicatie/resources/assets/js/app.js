@@ -17,13 +17,14 @@ import ProfileView from '../../views/Profile'
 import NotFoundView from '../../views/NotFound'
 
 // Details & Overviews
-import RelationView from '../../views/detail/Relation'
-import RelationsView from '../../views/overview/Relations'
-import ProposalView from '../../views/detail/Proposal'
+import CompanyView from '../../views/single/Company'
+import CompanyCreateView from '../../views/create/Company'
+import CompaniesView from '../../views/overview/Companies'
+import ProposalView from '../../views/single/Proposal'
 import ProposalsView from '../../views/overview/Proposals'
-import ContactView from '../../views/detail/Contact'
+import ContactView from '../../views/single/Contact'
 import ContactsView from '../../views/overview/Contacts'
-import UserView from '../../views/detail/User'
+import UserView from '../../views/single/User'
 import UsersView from '../../views/overview/Users'
 
 // components
@@ -58,10 +59,21 @@ const routes = [
   { path: '/', component: OverviewView, meta: { requiresAuth: true },
     children: [
       { path: '/', component: DashboardView, meta: { requiresAuth: true } },
-      { path: '/relations', component: RelationsView, meta: { requiresAuth: true } },
-      { path: '/relations/:id', component: RelationView, meta: { requiresAuth: true } },
+
+      // users
+
+      // relations aka companies
+      { path: '/relations', name: 'relations-overview', component: CompaniesView, meta: { requiresAuth: true } },
+      { path: '/relations/create', name: 'relations-create', component: CompanyCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:id', name: 'relations-single', component: CompanyView, meta: { requiresAuth: true } },
+
+      // proposals
+
+      // contacts
+
+      // profile
       { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
-      { path: '*', component: NotFoundView, name: '404' },
+      { path: '*', name: '404', component: NotFoundView },
     ]
   },
 ]

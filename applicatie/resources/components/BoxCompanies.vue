@@ -1,5 +1,5 @@
 <template>
-  <box :title="title">
+  <box :title="title" :action="action">
     <div class="relations-table">
     <table style="width: 100%;">
       <tr>
@@ -23,7 +23,7 @@
 
 <script>
   export default{
-    props: ['title', 'companies']
+    props: ['title', 'action', 'companies']
   }
 </script>
 
