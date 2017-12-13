@@ -42,17 +42,17 @@
         company: {}
       }
     },
-    created() {
-      var self = this;
+    beforeCreate() {
+      var self = this
       axios.get(
-        `/api/companies/${this.$route.params.id}`
+        `/api/companies/${self.$route.params.id}`
       )
       .then(function (response) {
         self.company = response.data
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        if (error.response.status === 404) { self.$router.push({ name: '404' }) }
+      })
     }
   }
 </script>

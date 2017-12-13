@@ -61,7 +61,7 @@ const routes = [
       { path: '/relations', component: RelationsView, meta: { requiresAuth: true } },
       { path: '/relations/:id', component: RelationView, meta: { requiresAuth: true } },
       { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
-      { path: '*', component: NotFoundView },
+      { path: '*', component: NotFoundView, name: '404' },
     ]
   },
 ]

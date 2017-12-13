@@ -4,14 +4,12 @@
     <table style="width: 100%;">
       <tr>
         <th>Company</th>
-        <th>Type</th>
         <th>Since</th>
         <th>Insight</th>
       </tr>
       <router-link tag="tr" v-for="company in companies" :key="company.id" :to="`/relations/${ company.id }`">
         <td>{{ company.name }}</td>
-        <td>type</td>
-        <td>{{ company.created_at }}</td>
+        <td>{{ company.created_at | moment("from") }}</td>
         <td>
           <div class="relations-insight">
             <div class="relations-insight-bar" :style="{ width: company.insight_total + '%' }"></div>

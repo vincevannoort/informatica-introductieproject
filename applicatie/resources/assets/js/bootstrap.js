@@ -28,6 +28,13 @@ Vue.use(VueRouter)
 window.Vue = Vue
 
 /**
+ * We'll load the Vue.JS Moment Filters framework which allows us to easily create dates which users understand
+ */
+import VueMoment from 'vue-moment'
+Vue.use(VueMoment)
+
+
+/**
  * We'll load the Chart.js for graphs
  */
 import Chart from 'chart.js'

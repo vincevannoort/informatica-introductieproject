@@ -36,8 +36,10 @@
     "cross-env": "^5.1.1",
     "laravel-mix": "^1.6.1",
     "minireset.css": "^0.0.3",
+    "moment": "^2.19.4",
     "sqlite3": "^3.1.13",
     "vue": "^2.5.9",
+    "vue-moment": "^3.1.0",
     "vue-router": "^3.0.1",
     "webpack": "^3.8.1"
   },
