@@ -40,6 +40,10 @@ Route.group(() => {
     // proposals
 
     // contacts
+    Route.get('contacts', 'ContactController.index')
+    Route.post('contacts', 'ContactController.store')
+    Route.get('contacts/:id', 'ContactController.show')
+
 
 }).prefix('api')
 // }).prefix('api').middleware(['auth'])
