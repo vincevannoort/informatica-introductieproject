@@ -1,32 +1,37 @@
 <template>
   <box :title="title">
     <div class="relation-contacts">
-      <div class="relation-contact" v-for="contact in contacts">
-        <table>
-          <tr>
-            <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
-            <th>Need for change</th>
-            <th>Invidual influence</th>
-            <th>Social media</th>
-          </tr>
-          <tr>
-            <td>
-              <table>
-                <tr v-if="contact.telephone">
-                  <td>Telefoon:</td>
-                  <td>{{ contact.telephone }}</td>
-                </tr>
-                <tr v-if="contact.email">
-                  <td>Emailadres:</td>
-                  <td>{{ contact.email }}</td>
-                </tr>
-              </table>
-            </td>
-            <td>low</td>
-            <td>medium</td>
-            <td>social</td>
-          </tr>
-        </table>
+      <div v-if="contacts && contacts.length">
+        <div class="relation-contact" v-for="contact in contacts">
+          <table>
+            <tr>
+              <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
+              <th>Need for change</th>
+              <th>Invidual influence</th>
+              <th>Social media</th>
+            </tr>
+            <tr>
+              <td>
+                <table>
+                  <tr v-if="contact.telephone">
+                    <td>Telefoon:</td>
+                    <td>{{ contact.telephone }}</td>
+                  </tr>
+                  <tr v-if="contact.email">
+                    <td>Emailadres:</td>
+                    <td>{{ contact.email }}</td>
+                  </tr>
+                </table>
+              </td>
+              <td>low</td>
+              <td>medium</td>
+              <td>social</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div v-else>
+        No contacts added yet
       </div>
     </div>
   </box>
