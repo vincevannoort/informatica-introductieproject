@@ -1,8 +1,8 @@
 <template>
-  <box :title="title">
+  <box :title="title" :action="action">
     <div class="relation-contacts">
       <div v-if="contacts && contacts.length">
-        <div class="relation-contact" v-for="contact in contacts">
+        <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/contacts/${ contact.id }`">
           <table>
             <tr>
               <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
@@ -28,7 +28,7 @@
               <td>social</td>
             </tr>
           </table>
-        </div>
+        </router-link>
       </div>
       <div v-else>
         No contacts added yet
@@ -39,7 +39,7 @@
 
 <script>
   export default{
-    props: ['title', 'contacts']
+    props: ['title', 'action', 'contacts']
   }
 </script>
 

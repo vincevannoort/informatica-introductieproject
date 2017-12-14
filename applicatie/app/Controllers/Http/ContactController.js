@@ -1,6 +1,8 @@
 'use strict'
 
+const { validateAll } = use('Validator')
 const Contact = use('App/Models/Contact')
+const Company = use('App/Models/Company')
 
 class ContactController {
 
@@ -44,6 +46,7 @@ class ContactController {
 
     // validate given request parameters
     let contactData = request.all().contact
+    let company_id = request.all().company_id
     const validation = await validateAll(contactData, rules)
 
     // if validation fails, return a unprocessable entity proces code with the validation messages
@@ -59,6 +62,9 @@ class ContactController {
       telephone: contactData.telephone,
       email: contactData.email
     })
+
+    // attach company to created contact
+    await contact.companies().attach([company_id])
 
     // return company data
     return contact

@@ -23,6 +23,7 @@ import CompaniesView from '../../views/overview/Companies'
 import ProposalView from '../../views/single/Proposal'
 import ProposalsView from '../../views/overview/Proposals'
 import ContactView from '../../views/single/Contact'
+import ContactCreateView from '../../views/create/Contact'
 import ContactsView from '../../views/overview/Contacts'
 import UserView from '../../views/single/User'
 import UsersView from '../../views/overview/Users'
@@ -70,6 +71,8 @@ const routes = [
       // proposals
 
       // contacts
+      { path: '/relations/:id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
+      { path: '/contacts/:id', name: 'contacts-single', component: ContactView, meta: { requiresAuth: true } },
 
       // profile
       { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },

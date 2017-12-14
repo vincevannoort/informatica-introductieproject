@@ -3,7 +3,7 @@
     <main-view-title :title="company.name" :back="{ route: '/relations', name: 'relations'}"></main-view-title>
     <div class="columns">
       <div class="column is-10">
-        <box-contacts :title="'Contacts'" :contacts="company.contacts"></box-contacts>
+        <box-contacts :title="'Contacts'" :action="{ title: 'Add new contact', route: `/relations/${company.id}/contacts/create` }" :contacts="company.contacts"></box-contacts>
       </div>
       <div class="column is-2">
         <box :title="'Insight'">
