@@ -12,7 +12,7 @@
         contact: {}
       }
     },
-    beforeCreate() {
+    activated() {
       var self = this
       axios.get(
         `/api/contacts/${self.$route.params.id}`
