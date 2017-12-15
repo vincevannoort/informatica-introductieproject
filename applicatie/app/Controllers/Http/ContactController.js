@@ -38,7 +38,7 @@ class ContactController {
       first_name: 'required',
       last_name: 'required',
       telephone: 'required',
-      email: 'required'
+      email: 'required|email'
     }
 
     // get the user responsible for storing, authentication already checked by middleware

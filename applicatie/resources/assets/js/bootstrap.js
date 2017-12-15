@@ -24,7 +24,9 @@ if (token) {
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VeeValidate from 'vee-validate'
 Vue.use(VueRouter)
+Vue.use(VeeValidate)
 window.Vue = Vue
 
 /**

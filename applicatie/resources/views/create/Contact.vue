@@ -9,31 +9,31 @@
               <div class="field column is-half">
                 <label class="label">Profession</label>
                 <div class="control">
-                  <input v-model="contact.profession" class="input" type="text" placeholder="Profression">
+                  <input v-validate="'required'" v-model="contact.profession" :class="{'input': true, 'is-danger': errors.has('profession') }" type="text" name="profession" placeholder="Profession">
                 </div>
               </div>
               <div class="field column is-half">
                 <label class="label">First name</label>
                 <div class="control">
-                  <input v-model="contact.first_name" class="input" type="text" placeholder="First name">
+                  <input v-validate="'required'" v-model="contact.first_name" :class="{'input': true, 'is-danger': errors.has('first_name') }" type="text" name="first_name" placeholder="First name">
                 </div>
               </div>
               <div class="field column is-half">
                 <label class="label">Last name</label>
                 <div class="control">
-                  <input v-model="contact.last_name" class="input" type="text" placeholder="Last name">
+                  <input v-validate="'required'" v-model="contact.last_name" :class="{'input': true, 'is-danger': errors.has('last_name') }" type="text" name="last_name" placeholder="Last name">
                 </div>
               </div>
               <div class="field column is-half">
                 <label class="label">Telephone</label>
                 <div class="control">
-                  <input v-model="contact.telephone" class="input" type="text" placeholder="Telephone">
+                  <input v-validate="'required'" v-model="contact.telephone" :class="{'input': true, 'is-danger': errors.has('telephone') }" type="text" name="telephone" placeholder="Telephone">
                 </div>
               </div>
               <div class="field column is-half">
                 <label class="label">Email</label>
                 <div class="control">
-                  <input v-model="contact.email" class="input" type="text" placeholder="Email">
+                  <input v-validate="'required|email'" v-model="contact.email" :class="{'input': true, 'is-danger': errors.has('email') }" type="email" name="email" placeholder="Email">
                 </div>
               </div>
             </div>
@@ -42,10 +42,10 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" @click.prevent="storeContact">Create</button>
+                <button class="button is-link" @click.prevent="storeContact" :disabled="!fieldsValidated">Create</button>
               </div>
               <div class="control">
-                <router-link tag="button" class="button is-text" :to="'/relations'">Cancel</router-link>
+                <button class="button is-text" @click.prevent="back">Cancel</button>
               </div>
             </div>
           </form>
@@ -68,10 +68,21 @@
         }
       }
     },
+    computed: {
+      fieldsHaveValues() {
+        for (var field in this.fields) {
+          if (!this.fields[field].touched) {
+            return false
+          }
+        }
+        return true
+      },
+      fieldsValidated() {
+        return this.fieldsHaveValues && this.errors.items.length == 0
+      }
+    },
     methods: {
       storeContact() {
-        console.log('storing contact')
-
         var self = this
         axios.post(`/api/contacts/`, {
           contact: self.contact,
@@ -83,6 +94,9 @@
         .catch(function (error) {
           console.log(error.response)
         })
+      },
+      back() {
+        this.$router.go(-1)
       }
     }
   }

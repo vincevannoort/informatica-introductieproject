@@ -39,6 +39,7 @@
     "minireset.css": "^0.0.3",
     "moment": "^2.19.4",
     "sqlite3": "^3.1.13",
+    "vee-validate": "^2.0.0-rc.27",
     "vue": "^2.5.9",
     "vue-moment": "^3.1.0",
     "vue-router": "^3.0.1",
