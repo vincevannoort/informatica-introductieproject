@@ -14,25 +14,25 @@ class ContactController {
   }
 
   /*
-   * Get a single company based on the parameters passed from the get request
-   * @param id, the company id from api routes defined in routes.js
+   * Get a single contact based on the parameters passed from the get request
+   * @param id, the contact id from api routes defined in routes.js
    */
   async show({ params, response }) {
-    // try to return the company with company id from the request
+    // try to return the contact with contact id from the request
     try {
       return await Contact.query()
-      .where(Contact.primaryKey, params.id) // get company with specific id
-      .with('companies') // get contacts from previous found specific company
+      .where(Contact.primaryKey, params.id) // get contact with specific id
+      .with('companies') // get companies from previous found specific contact
       .firstOrFail()
     }
-    // if there was an error while trying to return a company, return an error
+    // if there was an error while trying to return a contact, return an error
     catch (error) {
       return response.status(404).send('Contact not found')
     }
   }
 
   async store({ auth, params, request, response }) {
-    // set rules which must be validated before storing a company
+    // set rules which must be validated before storing a contact
     const rules = {
       profession: 'required',
       first_name: 'required',
@@ -54,7 +54,7 @@ class ContactController {
       return response.status(422).send(validation.messages())
     }
 
-    // store a new company
+    // store a new contact
     let contact = await Contact.create({
       profession: contactData.profession,
       first_name: contactData.first_name,
@@ -66,7 +66,7 @@ class ContactController {
     // attach company to created contact
     await contact.companies().attach([company_id])
 
-    // return company data
+    // return contact data
     return contact
   }
 
