@@ -36,6 +36,7 @@ Route.group(() => {
     Route.get('companies', 'CompanyController.index')
     Route.post('companies', 'CompanyController.store')
     Route.get('companies/:id', 'CompanyController.show')
+    Route.delete('companies/:id', 'CompanyController.destroy')
 
     // proposals
 

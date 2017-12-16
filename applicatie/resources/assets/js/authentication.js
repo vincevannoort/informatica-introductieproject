@@ -9,6 +9,7 @@
 const API_URL = '/api/'
 const LOGIN_URL = API_URL + 'users/login'
 const SIGNUP_URL = API_URL + 'users/create'
+const PROFILE_URL = API_URL + 'users/profile'
 
 export default {
 
@@ -70,4 +71,15 @@ export default {
       return false
     }
   },
+
+  profile() {
+    let self = this
+    axios.get(PROFILE_URL)
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
 }

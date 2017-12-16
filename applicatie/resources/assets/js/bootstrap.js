@@ -45,3 +45,9 @@ Chart.defaults.global.responsive = true;
 Chart.defaults.global.maintainAspectRatio = false;
 Chart.defaults.global.legend.display = false;
 window.Chart = Chart
+
+
+/**
+ * We'll load babel polyfill for async await for the frontend
+ */
+import 'babel-polyfill'

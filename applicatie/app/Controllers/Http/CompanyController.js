@@ -40,10 +40,10 @@ class CompanyController {
     }
 
     // get the user responsible for storing, authentication already checked by middleware
-    let user = await auth.getUser()
+    const user = await auth.getUser()
 
     // validate given request parameters
-    let companyData = request.all().company
+    const companyData = request.all().company
     const validation = await validateAll(companyData, rules)
 
     // if validation fails, return a unprocessable entity proces code with the validation messages
@@ -52,13 +52,29 @@ class CompanyController {
     }
 
     // store a new company
-    let company = await Company.create({
+    const company = await Company.create({
       user_id: user.id,
       name: companyData.name
     })
 
     // return company data
     return company
+  }
+
+  /*
+   * Store a existing company
+   */
+  async destroy({ auth, params, request, response }) {
+    // try to delete the company with company id from the request
+    try {
+      console.log('hello, trying to delete!')
+      const company = await Company.find(params.id)
+      return await company.delete()
+    } 
+    // if there was an error while trying to delete a company, return an error
+    catch (error) {
+      return response.status(404).send(error)
+    }
   }
 
 }

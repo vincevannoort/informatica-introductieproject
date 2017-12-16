@@ -116,5 +116,8 @@ const app = new Vue({
   router,
   data: { 
     user: Authentication.user 
+  },
+  created () {
+    Authentication.profile()
   }
 }).$mount('#app')

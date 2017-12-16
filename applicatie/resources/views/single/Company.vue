@@ -1,9 +1,17 @@
 <template>
   <div>
-    <main-view-title :title="company.name" :back="{ route: '/relations', name: 'relations'}"></main-view-title>
+
+    <main-view-title 
+    :title="company.name" 
+    :back="{ route: '/relations', name: 'relations'}"
+    @remove="remove"></main-view-title>
+
     <div class="columns">
       <div class="column is-10">
-        <box-contacts :title="'Contacts'" :action="{ title: 'Add new contact', route: `/relations/${company.id}/contacts/create` }" :contacts="company.contacts"></box-contacts>
+        <box-contacts 
+        :title="'Contacts'" 
+        :action="{ title: 'Add new contact', route: `/relations/${company.id}/contacts/create` }" 
+        :contacts="company.contacts"></box-contacts>
       </div>
       <div class="column is-2">
         <box :title="'Insight'">
@@ -30,29 +38,43 @@
         </box>
       </div>
     </div>
-    <box :title="'Proposals'"></box>
+
+    <box :title="'Proposals'">
+      <button @click="remove">sdfijo</button>
+    </box>
+
   </div>
 </template>
 
 <script>
-  export default{
+  import Company from '../../controllers/CompanyController'
+
+  export default {
     name: 'relation',
     data(){
       return {
         company: {}
       }
     },
-    beforeCreate() {
-      var self = this
-      axios.get(
-        `/api/companies/${self.$route.params.id}`
-      )
-      .then(function (response) {
-        self.company = response.data
-      })
-      .catch(function (error) {
-        if (error.response.status === 404) { self.$router.push({ name: '404' }) }
-      })
+    async created() {
+      this.index()
+    },
+    methods: {
+      async index() {
+        try {
+          this.company = await Company.index({ id: this.$route.params.id })
+        } catch(error) {
+          console.error(error)
+        }
+      },
+      async remove() {
+        try {
+          await Company.destroy({ id: this.$route.params.id })
+          this.$router.push({ name: 'relations-overview' })
+        } catch(error) {
+          console.error(error)
+        }
+      }
     }
   }
 </script>

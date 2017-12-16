@@ -1,9 +1,27 @@
 <template>
-  <div class="main-title-inner-content">
+  <div class="main-title-inner-content" :class="{ 'with-main-back-link': hasBackButton }">
     <router-link class="main-back-link" v-if="back" :to="`${back.route}`">< back to {{ back.name }}</router-link> 
     <h1 class="main-title">
         {{ title }}
     </h1>
+    <div v-if="$listeners.edit || $listeners.remove" class="main-action-buttons field has-addons">
+      <p v-if="$listeners.edit" class="control">
+        <a @click="editEntity" class="button">
+          <span class="icon is-small">
+            <i class="fa fa-pencil-square-o"></i>
+          </span>
+          <span>Edit</span>
+        </a>
+      </p>
+      <p v-if="$listeners.remove" class="control">
+        <a @click="removeEntity" class="button">
+          <span class="icon is-small">
+            <i class="fa fa-trash-o"></i>
+          </span>
+          <span>Delete</span>
+        </a>
+      </p>
+    </div>
     <h2 class="main-breadcrumbs">
       Overzicht <span>/</span> {{ title }}
     </h2>
@@ -12,7 +30,41 @@
 
 <script>
   export default {
-    props: ['title', 'back']
+    props: {
+      title: {
+        required: true
+      },
+      back: {
+        type: Object,
+        name: {
+          type: String,
+          required: true
+        },
+        route: {
+          type: String,
+          required: true
+        }
+      },
+      edit: {
+        type: String,
+      },
+      remove: {
+        type: String,
+      }
+    },
+    computed: {
+      hasBackButton() {
+        return this.back != undefined
+      }
+    },
+    methods: {
+      editEntity() {
+        this.$emit('edit')
+      },
+      removeEntity() {
+        this.$emit('remove')
+      }
+    }
   }
 </script>
 
@@ -24,6 +76,20 @@
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 2rem;
+    position: relative;
+
+    .main-action-buttons {
+      box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.10);
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-top: 24px;
+    }
+    &.with-main-back-link {
+      .main-action-buttons {
+        margin-top: 48px;
+      }
+    }
   }
 
   .main-title {
