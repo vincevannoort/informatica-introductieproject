@@ -31,10 +31,12 @@ import UsersView from '../../views/overview/Users'
 // components
 import SidebarComponent from '../../components/Sidebar'
 import TitleComponent from '../../components/Title'
+import ProfileComponent from '../../components/Profile'
 import BoxComponent from '../../components/Box'
 import BoxContactsComponent from '../../components/BoxContacts'
 import BoxCompaniesComponent from '../../components/BoxCompanies'
 Vue.component('main-view-title', TitleComponent)
+Vue.component('profile', ProfileComponent)
 Vue.component('sidebar', SidebarComponent)
 Vue.component('box', BoxComponent)
 Vue.component('box-contacts', BoxContactsComponent)
@@ -93,7 +95,7 @@ const router = new VueRouter({
 */
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!Authentication.authenticate()) {
+    if (!Authentication.authenticated()) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -113,10 +115,4 @@ router.beforeEach((to, from, next) => {
 */
 const app = new Vue({
   router,
-  // data: { 
-  //   user: Authentication.user 
-  // },
-  created () {
-    Authentication.profile()
-  }
 }).$mount('#app')

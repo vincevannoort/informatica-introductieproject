@@ -61,7 +61,7 @@ export default {
     this.user.authenticated = false
   },
 
-  authenticate() {
+  authenticated() {
     let jwt = localStorage.getItem('token')
     if(jwt) {
       this.user.authenticated = true
@@ -73,13 +73,12 @@ export default {
   },
 
   profile() {
-    let self = this
-    axios.get(PROFILE_URL)
+    return axios.get(PROFILE_URL)
     .then(function (response) {
-      console.log(response)
+      return response.data
     })
     .catch(function (error) {
-      console.log(error)
+      return response
     })
   }
 }
