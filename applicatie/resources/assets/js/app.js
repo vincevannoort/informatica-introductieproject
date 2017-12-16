@@ -93,8 +93,7 @@ const router = new VueRouter({
 */
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // if (!Authentication.checkAuth()) {
-    if (false) {
+    if (!Authentication.authenticate()) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
@@ -114,9 +113,9 @@ router.beforeEach((to, from, next) => {
 */
 const app = new Vue({
   router,
-  data: { 
-    user: Authentication.user 
-  },
+  // data: { 
+  //   user: Authentication.user 
+  // },
   created () {
     Authentication.profile()
   }

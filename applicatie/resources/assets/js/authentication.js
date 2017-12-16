@@ -61,7 +61,7 @@ export default {
     this.user.authenticated = false
   },
 
-  checkAuth() {
+  authenticate() {
     let jwt = localStorage.getItem('token')
     if(jwt) {
       this.user.authenticated = true

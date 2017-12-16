@@ -45,13 +45,18 @@ Route.group(() => {
     Route.post('contacts', 'ContactController.store')
     Route.get('contacts/:id', 'ContactController.show')
 
+}).prefix('api').middleware(['auth'])
 
-}).prefix('api')
-// }).prefix('api').middleware(['auth'])
+/*
+|--------------------------------------------------------------------------
+| Promotion website
+|--------------------------------------------------------------------------
+*/
+Route.any('promotion', ({ view }) => view.render('promotion'))
 
 /*
 |--------------------------------------------------------------------------
 | SPA
 |--------------------------------------------------------------------------
 */
-Route.any('*', ({ view }) => view.render('main'))
+Route.any('*', ({ view }) => view.render('single-page-application'))

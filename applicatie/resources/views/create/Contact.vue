@@ -6,7 +6,7 @@
         <box :title="'Company data'">
           <form @submit.prevent="storeContact">
             <div class="columns is-multiline">
-              <div class="field column is-half">
+              <div class="field column is-full">
                 <label class="label">Profession</label>
                 <div class="control">
                   <input v-validate="'required'" v-model="contact.profession" :class="{'input': true, 'is-danger': errors.has('profession') }" type="text" name="profession" placeholder="Profession">
