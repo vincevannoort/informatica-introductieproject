@@ -1,0 +1,65 @@
+/*
+|--------------------------------------------------------------------------
+| Bulma framework
+|--------------------------------------------------------------------------
+*/
+@import "node_modules/bulma/sass/utilities/_all";
+@import "node_modules/bulma/bulma";
+@import "node_modules/minireset.css/minireset.sass";
+@import "node_modules/animate.css/animate";
+@import "./variables/colors";
+
+// $fa-font-path: "~font-awesome/fonts";
+// @import '~font-awesome/scss/font-awesome.scss';
+
+/*
+|--------------------------------------------------------------------------
+| Typography
+|--------------------------------------------------------------------------
+*/
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+html, body {
+  font-family: 'Cabin', sans-serif;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Promotion header
+|--------------------------------------------------------------------------
+*/
+.promotion-header-logo {
+  text-align: center;
+  padding: 5rem 0 4rem 0;
+  img {
+    max-width: 200px;
+  }
+}
+
+.promotion-header-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 3rem;
+  h1.title {
+    font-size: 64px;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+  }
+  h2.subtitle {
+    max-width: 800px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
+
+.promotion-examples {
+  text-align: center;
+  padding: 2rem;
+  background: $red;
+  margin-top: 300px;
+  .promotion-examples-screenshot {
+    margin-top: -300px;
+    max-width: 1200px;
+  }
+}

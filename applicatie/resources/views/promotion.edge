@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <title>Canon</title>
+  <meta name="csrf-token" content="{{ csrfToken }}">
+  {{ css('css/promotion') }}
 </head>
 <body>
-  test
+  <div class="promotion-header">
+    <div class="promotion-header-logo">
+      <img src="images/canon.svg">
+    </div>
+    <div class="promotion-header-text">
+      <div>
+        <h1 class="title">
+          Easy Link Keeper
+        </h1>
+        <h2 class="subtitle">
+          Improving relations before a proposal. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="promotion-examples">
+      <img class="promotion-examples-screenshot" src="images/screenshot.png">
+  </div>
 </body>
 </html>
