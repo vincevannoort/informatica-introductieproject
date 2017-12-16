@@ -30,7 +30,7 @@
 <style lang="scss">
   @import "../assets/scss/variables/colors";
   .relations-table {
-    border: 1px solid $border-grey; max-height: 385px; overflow: scroll;
+    border: 1px solid $border-grey;
     th { background-color: $background-grey; padding: 0.5rem 1rem;
       &:nth-of-type(4) { width: 40%; }
     }
