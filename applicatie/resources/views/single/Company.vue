@@ -40,7 +40,6 @@
     </div>
 
     <box :title="'Proposals'">
-      <button @click="remove">sdfijo</button>
     </box>
 
   </div>
