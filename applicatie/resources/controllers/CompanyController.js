@@ -2,7 +2,7 @@
 
 class Company {
 
-  static async index({ id }) {
+  static async show({ id }) {
     return axios.get(`/api/companies/${id}`)
     .then(function (response) {
       return response.data

@@ -56,12 +56,12 @@
       }
     },
     async created() {
-      this.index()
+      this.show()
     },
     methods: {
-      async index() {
+      async show() {
         try {
-          this.company = await Company.index({ id: this.$route.params.id })
+          this.company = await Company.show({ id: this.$route.params.id })
         } catch(error) {
           console.error(error)
         }
