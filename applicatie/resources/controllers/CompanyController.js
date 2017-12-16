@@ -2,6 +2,16 @@
 
 class Company {
 
+  static async index() {
+    return axios.get('/api/companies')
+    .then(function (response) {
+      return response.data
+    })
+    .catch(function (error) {
+      return error
+    })
+  }
+
   static async show({ id }) {
     return axios.get(`/api/companies/${id}`)
     .then(function (response) {

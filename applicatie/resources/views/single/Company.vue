@@ -55,7 +55,7 @@
         company: {}
       }
     },
-    async created() {
+    created() {
       this.show()
     },
     methods: {
