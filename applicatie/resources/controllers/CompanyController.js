@@ -2,6 +2,9 @@
 
 class Company {
 
+  /*
+   * Get all companies from api endpoint
+   */
   static async index() {
     return axios.get('/api/companies')
     .then(function (response) {
@@ -12,6 +15,9 @@ class Company {
     })
   }
 
+  /*
+   * Get single company from api endpoint
+   */
   static async show({ id }) {
     return axios.get(`/api/companies/${id}`)
     .then(function (response) {
@@ -22,6 +28,9 @@ class Company {
     })
   }
 
+  /*
+   * Store single company to api endpoint
+   */
   static async store({ company }) {
     return axios.post(`/api/companies/`, {
       company: company
@@ -34,6 +43,9 @@ class Company {
     })
   }
 
+  /*
+   * Destory single company to api endpoint
+   */
   static async destroy({ id }) {
     axios.delete(`/api/companies/${id}`)
     .then(function(response) {

@@ -35,12 +35,14 @@ import ProfileComponent from '../../components/Profile'
 import BoxComponent from '../../components/Box'
 import BoxContactsComponent from '../../components/BoxContacts'
 import BoxCompaniesComponent from '../../components/BoxCompanies'
+import BoxCompanyComponent from '../../components/BoxCompany'
 Vue.component('main-view-title', TitleComponent)
 Vue.component('profile', ProfileComponent)
 Vue.component('sidebar', SidebarComponent)
 Vue.component('box', BoxComponent)
 Vue.component('box-contacts', BoxContactsComponent)
 Vue.component('box-companies', BoxCompaniesComponent)
+Vue.component('box-company', BoxCompanyComponent)
 
 // icons
 import dashboardIcon from '../../components/icons/dashboard'

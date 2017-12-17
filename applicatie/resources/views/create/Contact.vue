@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-two-thirds">
         <box :title="'Company data'">
-          <form @submit.prevent="storeContact">
+          <form @submit.prevent="store">
             <div class="columns is-multiline">
               <div class="field column is-full">
                 <label class="label">Profession</label>
@@ -42,7 +42,7 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" @click.prevent="storeContact" :disabled="!fieldsValidated">Create</button>
+                <button class="button is-link" @click.prevent="store" :disabled="!fieldsValidated">Create</button>
               </div>
               <div class="control">
                 <button class="button is-text" @click.prevent="back">Cancel</button>
@@ -56,6 +56,8 @@
 </template>
 
 <script>
+  import Contact from '../../controllers/ContactController'
+
   export default{
     data(){
       return {
@@ -82,18 +84,13 @@
       }
     },
     methods: {
-      storeContact() {
-        var self = this
-        axios.post(`/api/contacts/`, {
-          contact: self.contact,
-          company_id: self.$route.params.id
-        })
-        .then(function (response) {
-          self.$router.push({ name: 'relations-single', params: { id: self.$route.params.id } })
-        })
-        .catch(function (error) {
-          console.log(error.response)
-        })
+      async store() {
+        try {
+          await Contact.store({ contact: this.contact, company_id: this.$route.params.id })
+          this.$router.push({ name: 'relations-single', params: { id: this.$route.params.id } })
+        } catch(error) {
+          console.error(error)
+        }
       },
       back() {
         this.$router.go(-1)

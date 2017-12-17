@@ -17,6 +17,10 @@
 </script>
 
 <style lang="scss">
+  .box {
+    position: relative;
+  }
+
   .box-header-wrapper {
     display: flex;
     justify-content: space-between;

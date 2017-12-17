@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import Contact from '../../controllers/ContactController'
+
   export default{
     name: 'contact',
     data(){
@@ -13,16 +15,16 @@
       }
     },
     activated() {
-      var self = this
-      axios.get(
-        `/api/contacts/${self.$route.params.id}`
-      )
-      .then(function (response) {
-        self.contact = response.data
-      })
-      .catch(function (error) {
-        if (error.response.status === 404) { self.$router.push({ name: '404' }) }
-      })
+      this.show()
+    },
+    methods: {
+      async show() {
+        try {
+          this.contact = await Contact.show({ id: this.$route.params.id })
+        } catch(error) {
+          console.error(error)
+        }
+      }
     }
   }
 </script>
