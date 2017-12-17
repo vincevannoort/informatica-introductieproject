@@ -71,6 +71,7 @@ const routes = [
       { path: '/relations', name: 'relations-overview', component: CompaniesView, meta: { requiresAuth: true } },
       { path: '/relations/create', name: 'relations-create', component: CompanyCreateView, meta: { requiresAuth: true } },
       { path: '/relations/:id', name: 'relations-single', component: CompanyView, meta: { requiresAuth: true } },
+      { path: '/relations/:id/edit', name: 'relations-edit', component: CompanyCreateView, meta: { requiresAuth: true } },
 
       // proposals
 

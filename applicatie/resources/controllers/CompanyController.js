@@ -44,10 +44,25 @@ class Company {
   }
 
   /*
+   * Update single company to api endpoint
+   */
+  static async update({ company }) {
+    return axios.patch(`/api/companies/${company.id}`, {
+      company: company
+    })
+    .then(function(response) {
+      return response
+    })
+    .catch(function(error) {
+      return error
+    })
+  } 
+
+  /*
    * Destory single company to api endpoint
    */
   static async destroy({ id }) {
-    axios.delete(`/api/companies/${id}`)
+    return axios.delete(`/api/companies/${id}`)
     .then(function(response) {
       return response
     })

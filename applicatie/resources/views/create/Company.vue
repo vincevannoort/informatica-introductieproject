@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main-view-title :title="'Create a new relation'"></main-view-title>
+    <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
         <box :title="'Company data'">
@@ -12,31 +12,14 @@
                   <input v-model="company.name" class="input" type="text" placeholder="Relation name">
                 </div>
               </div>
-              <div class="field column is-half">
-                <label class="label">Dummy field</label>
-                <div class="control">
-                  <input v-model="company.name" class="input" type="text" placeholder="Relation name">
-                </div>
-              </div>
-              <div class="field column is-half">
-                <label class="label">Dummy field</label>
-                <div class="control">
-                  <input v-model="company.name" class="input" type="text" placeholder="Relation name">
-                </div>
-              </div>
-              <div class="field column is-half">
-                <label class="label">Dummy field</label>
-                <div class="control">
-                  <input v-model="company.name" class="input" type="text" placeholder="Relation name">
-                </div>
-              </div>
             </div>
             <div class="field">
               <hr>
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" @click.prevent="store">Create</button>
+                <button v-if="createView" class="button is-link" @click.prevent="store">Create</button>
+                <button v-else-if="editView" class="button is-link" @click.prevent="update">Update</button>
               </div>
               <div class="control">
                 <router-link tag="button" class="button is-text" :to="'/relations'">Cancel</router-link>
@@ -60,11 +43,39 @@
         }
       }
     },
+    computed: {
+      createView() {
+        return this.$route.name == 'relations-create'
+      },
+      editView() {
+        return this.$route.name == 'relations-edit'
+      }
+    },
+    created() {
+      if (this.editView) {
+        this.show()
+      }
+    },
     methods: {
+      async show() {
+        try {
+          this.company = await Company.show({ id: this.$route.params.id })
+        } catch(error) {
+          console.error(error)
+        }
+      },
       async store() {
         try {
           await Company.store({ company: this.company })
           this.$router.push({ name: 'relations-overview' })
+        } catch(error) {
+          console.error(error)
+        }
+      },
+      async update() {
+        try {
+          await Company.update({ company: this.company })
+          this.$router.push({ name: 'relations-single', params: { id: this.$route.params.id } })
         } catch(error) {
           console.error(error)
         }

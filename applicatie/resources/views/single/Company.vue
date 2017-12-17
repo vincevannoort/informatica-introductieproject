@@ -4,6 +4,7 @@
     <main-view-title 
     :title="company.name" 
     :back="{ route: '/relations', name: 'relations'}"
+    @edit="edit"
     @remove="remove"></main-view-title>
 
     <div class="columns">
@@ -66,6 +67,9 @@
           console.error(error)
         }
       },
+      async edit() {
+        this.$router.push({ name: 'relations-edit', params: { id: this.$route.params.id } })
+      },
       async remove() {
         try {
           await Company.destroy({ id: this.$route.params.id })
@@ -73,7 +77,7 @@
         } catch(error) {
           console.error(error)
         }
-      }
+      },
     }
   }
 </script>

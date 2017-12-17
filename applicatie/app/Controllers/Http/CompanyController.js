@@ -62,12 +62,31 @@ class CompanyController {
   }
 
   /*
+   * Update a existing company
+   */
+  async update({ auth, params, request, response }) {
+    try {
+      // get company data from request
+      const companyData = request.all().company
+      const company = await Company.find(companyData.id)
+      // merge passed data to company object
+      company.merge({ name: companyData.name })
+      // save the merged data to database
+      await company.save()
+      return company
+    }
+    // if there was an error while trying to delete a company, return an error
+    catch (error) {
+      return response.status(404).send(error)
+    }
+  }
+
+  /*
    * Store a existing company
    */
   async destroy({ auth, params, request, response }) {
     // try to delete the company with company id from the request
     try {
-      console.log('hello, trying to delete!')
       const company = await Company.find(params.id)
       return await company.delete()
     } 
