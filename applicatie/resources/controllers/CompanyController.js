@@ -73,4 +73,4 @@ class Company {
 
 }
 
-module.exports = Company
+export default Company
