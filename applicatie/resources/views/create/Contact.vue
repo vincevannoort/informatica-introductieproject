@@ -42,7 +42,8 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link" @click.prevent="store" :disabled="!fieldsValidated">Create</button>
+                <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!fieldsValidated">Create</button>
+                <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!fieldsValidated">Update</button>
               </div>
               <div class="control">
                 <button class="button is-text" @click.prevent="back">Cancel</button>
@@ -105,6 +106,14 @@
       async store() {
         try {
           await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+        } catch(error) {
+          console.error(error)
+        }
+      },
+      async update() {
+        try {
+          await Contact.store({ contact: this.contact })
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)

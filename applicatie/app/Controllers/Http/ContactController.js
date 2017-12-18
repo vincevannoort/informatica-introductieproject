@@ -78,7 +78,13 @@ class ContactController {
       const contactData = request.all().contact
       const contact = await Contact.find(contactData.id)
       // merge passed data to contact object
-      contact.merge({ first_name: contactData.first_name })
+      contact.merge({
+        profession: contactData.profession,
+        first_name: contactData.first_name,
+        last_name: contactData.last_name,
+        telephone: contactData.telephone,
+        email: contactData.email 
+      })
       // save the merged data to database
       await contact.save()
       return contact
