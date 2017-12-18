@@ -20,5 +20,5 @@ const Factory = use('Factory')
 */
 use('./factories/UserFactory')
 use('./factories/ContactFactory')
-use('./factories/CompanyFactory')
+use('./factories/RelationFactory')
 use('./factories/ProposalFactory')

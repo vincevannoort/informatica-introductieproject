@@ -10,7 +10,7 @@
           <span>Dashboard</span>
         </router-link>
         <router-link to="/relations">
-          <icon-company></icon-company>
+          <icon-relation></icon-relation>
           <span>Relations</span>
         </router-link>
         <router-link to="/actions">

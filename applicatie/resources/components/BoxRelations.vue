@@ -3,16 +3,16 @@
     <div class="relations-table">
     <table style="width: 100%;">
       <tr>
-        <th>Company</th>
+        <th>Relation</th>
         <th>Since</th>
         <th>Insight</th>
       </tr>
-      <router-link tag="tr" v-for="company in companies" :key="company.id" :to="`/relations/${ company.id }`">
-        <td>{{ company.name }}</td>
-        <td>{{ company.created_at | moment("from") }}</td>
+      <router-link tag="tr" v-for="relation in relations" :key="relation.id" :to="`/relations/${ relation.id }`">
+        <td>{{ relation.name }}</td>
+        <td>{{ relation.created_at | moment("from") }}</td>
         <td>
           <div class="relations-insight">
-            <div class="relations-insight-bar" :style="{ width: company.insight_total + '%' }"></div>
+            <div class="relations-insight-bar" :style="{ width: relation.insight_total + '%' }"></div>
           </div>
         </td>
       </router-link>
@@ -23,7 +23,7 @@
 
 <script>
   export default{
-    props: ['title', 'action', 'companies']
+    props: ['title', 'action', 'relations']
   }
 </script>
 

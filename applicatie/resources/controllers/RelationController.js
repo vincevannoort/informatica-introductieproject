@@ -1,12 +1,12 @@
 'use strict'
 
-class Company {
+class Relation {
 
   /*
-   * Get all companies from api endpoint
+   * Get all relations from api endpoint
    */
   static async index() {
-    return axios.get('/api/companies')
+    return axios.get('/api/relations')
     .then(function (response) {
       return response.data
     })
@@ -16,10 +16,10 @@ class Company {
   }
 
   /*
-   * Get single company from api endpoint
+   * Get single relation from api endpoint
    */
   static async show({ relation_id }) {
-    return axios.get(`/api/companies/${relation_id}`)
+    return axios.get(`/api/relations/${relation_id}`)
     .then(function (response) {
       return response.data
     })
@@ -29,11 +29,11 @@ class Company {
   }
 
   /*
-   * Store single company to api endpoint
+   * Store single relation to api endpoint
    */
-  static async store({ company }) {
-    return axios.post(`/api/companies/`, {
-      company: company
+  static async store({ relation }) {
+    return axios.post(`/api/relations/`, {
+      relation: relation
     })
     .then(function (response) {
       return response.data
@@ -44,11 +44,11 @@ class Company {
   }
 
   /*
-   * Update single company to api endpoint
+   * Update single relation to api endpoint
    */
-  static async update({ company }) {
-    return axios.patch(`/api/companies/${company.id}`, {
-      company: company
+  static async update({ relation }) {
+    return axios.patch(`/api/relations/${relation.id}`, {
+      relation: relation
     })
     .then(function(response) {
       return response
@@ -59,10 +59,10 @@ class Company {
   } 
 
   /*
-   * Destory single company to api endpoint
+   * Destory single relation to api endpoint
    */
   static async destroy({ relation_id }) {
-    return axios.delete(`/api/companies/${relation_id}`)
+    return axios.delete(`/api/relations/${relation_id}`)
     .then(function(response) {
       return response
     })
@@ -73,4 +73,4 @@ class Company {
 
 }
 
-export default Company
+export default Relation

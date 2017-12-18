@@ -1,6 +1,6 @@
 const Factory = use('Factory')
 
-Factory.blueprint('App/Models/Company', async (faker) => {
+Factory.blueprint('App/Models/Relation', async (faker) => {
   return {
     user_id: faker.integer({min: 1, max: 10}),
     name: faker.company(),

@@ -2,9 +2,9 @@
 
 const Schema = use('Schema')
 
-class CompanySchema extends Schema {
+class RelationSchema extends Schema {
   up () {
-    this.create('companies', (table) => {
+    this.create('relations', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users')
       table.string('name').notNullable()
@@ -15,8 +15,8 @@ class CompanySchema extends Schema {
   }
 
   down () {
-    this.drop('companies')
+    this.drop('relations')
   }
 }
 
-module.exports = CompanySchema
+module.exports = RelationSchema

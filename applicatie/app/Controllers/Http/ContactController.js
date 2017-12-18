@@ -2,7 +2,6 @@
 
 const { validateAll } = use('Validator')
 const Contact = use('App/Models/Contact')
-const Company = use('App/Models/Company')
 
 class ContactController {
 
@@ -10,7 +9,7 @@ class ContactController {
    * Get all contacts
    */
   async index({ request }) {
-    return await Contact.query().with('companies').fetch()
+    return await Contact.query().with('relations').fetch()
   }
 
   /*
@@ -22,7 +21,7 @@ class ContactController {
     try {
       return await Contact.query()
       .where(Contact.primaryKey, params.id) // get contact with specific id
-      .with('companies') // get companies from previous found specific contact
+      .with('relations') // get relations from previous found specific contact
       .firstOrFail()
     }
     // if there was an error while trying to return a contact, return an error
@@ -63,8 +62,8 @@ class ContactController {
       email: contactData.email
     })
 
-    // attach company to created contact
-    await contact.companies().attach([relation_id])
+    // attach relation to created contact
+    await contact.relations().attach([relation_id])
 
     // return contact data
     return contact

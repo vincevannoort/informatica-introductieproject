@@ -32,12 +32,12 @@ Route.group(() => {
     // users
     Route.get('users/profile', 'UserController.profile')
 
-    // companies
-    Route.get('companies', 'CompanyController.index')
-    Route.post('companies', 'CompanyController.store')
-    Route.get('companies/:id', 'CompanyController.show')
-    Route.delete('companies/:id', 'CompanyController.destroy')
-    Route.patch('companies/:id', 'CompanyController.update')
+    // relations
+    Route.get('relations', 'RelationController.index')
+    Route.post('relations', 'RelationController.store')
+    Route.get('relations/:id', 'RelationController.show')
+    Route.delete('relations/:id', 'RelationController.destroy')
+    Route.patch('relations/:id', 'RelationController.update')
 
     // proposals
 

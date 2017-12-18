@@ -4,8 +4,8 @@ const Model = use('Model')
 
 class Contact extends Model {
 
-	companies() {
-		return this.belongsToMany('App/Models/Company').pivotTable('contact_companies')
+	relations() {
+		return this.belongsToMany('App/Models/Relation').pivotTable('contact_relations')
 	}
 
 	proposals() {

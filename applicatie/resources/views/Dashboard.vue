@@ -8,14 +8,14 @@
   export default{
     data(){
       return {
-        companies: [],
+        relations: [],
       }
     },
     created() {
       var self = this;
-      axios.get('/api/companies')
+      axios.get('/api/relations')
       .then(function (response) {
-        self.companies = response.data;
+        self.relations = response.data;
       })
       .catch(function (error) {
         console.log(error);

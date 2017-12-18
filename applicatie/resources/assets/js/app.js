@@ -17,9 +17,9 @@ import ProfileView from '../../views/Profile'
 import NotFoundView from '../../views/NotFound'
 
 // Details & Overviews
-import CompanyView from '../../views/single/Company'
-import CompanyCreateView from '../../views/create/Company'
-import CompaniesView from '../../views/overview/Companies'
+import RelationView from '../../views/single/Relation'
+import RelationCreateView from '../../views/create/Relation'
+import RelationsView from '../../views/overview/Relations'
 import ProposalView from '../../views/single/Proposal'
 import ContactView from '../../views/single/Contact'
 import ContactCreateView from '../../views/create/Contact'
@@ -32,24 +32,24 @@ import TitleComponent from '../../components/Title'
 import ProfileComponent from '../../components/Profile'
 import BoxComponent from '../../components/Box'
 import BoxContactsComponent from '../../components/BoxContacts'
-import BoxCompaniesComponent from '../../components/BoxCompanies'
-import BoxCompanyComponent from '../../components/BoxCompany'
+import BoxRelationsComponent from '../../components/BoxRelations'
+import BoxRelationComponent from '../../components/BoxRelation'
 Vue.component('main-view-title', TitleComponent)
 Vue.component('profile', ProfileComponent)
 Vue.component('sidebar', SidebarComponent)
 Vue.component('box', BoxComponent)
 Vue.component('box-contacts', BoxContactsComponent)
-Vue.component('box-companies', BoxCompaniesComponent)
-Vue.component('box-company', BoxCompanyComponent)
+Vue.component('box-relations', BoxRelationsComponent)
+Vue.component('box-relation', BoxRelationComponent)
 
 // icons
 import dashboardIcon from '../../components/icons/dashboard'
 import actionsIcon from '../../components/icons/actions'
-import companyIcon from '../../components/icons/company'
+import relationIcon from '../../components/icons/relation'
 import profileIcon from '../../components/icons/profile'
 Vue.component('icon-dashboard', dashboardIcon)
 Vue.component('icon-actions', actionsIcon)
-Vue.component('icon-company', companyIcon)
+Vue.component('icon-relation', relationIcon)
 Vue.component('icon-profile', profileIcon)
 
 /*
@@ -65,11 +65,11 @@ const routes = [
 
       // users
 
-      // relations aka companies
-      { path: '/relations', name: 'relations-overview', component: CompaniesView, meta: { requiresAuth: true } },
-      { path: '/relations/create', name: 'relations-create', component: CompanyCreateView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id', name: 'relations-single', component: CompanyView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: CompanyCreateView, meta: { requiresAuth: true } },
+      // relations
+      { path: '/relations', name: 'relations-overview', component: RelationsView, meta: { requiresAuth: true } },
+      { path: '/relations/create', name: 'relations-create', component: RelationCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id', name: 'relations-single', component: RelationView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: RelationCreateView, meta: { requiresAuth: true } },
 
       // proposals
 

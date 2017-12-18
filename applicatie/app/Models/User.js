@@ -4,8 +4,8 @@ const Model = use('Model')
 
 class User extends Model {
 
-  companies() {
-    return this.hasMany('App/Models/Company')
+  relations() {
+    return this.hasMany('App/Models/Relation')
   }
 
   static boot () {

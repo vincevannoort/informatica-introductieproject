@@ -12,8 +12,8 @@ class Proposal extends Model {
     })
   }
 
-	company() {
-		return this.belongsTo('App/Models/Company')
+	relation() {
+		return this.belongsTo('App/Models/Relation')
 	}
 
 	contacts() {

@@ -2,7 +2,7 @@
   <div>
 
     <main-view-title 
-    :title="company.name" 
+    :title="relation.name" 
     :back="{ route: '/relations', name: 'relations'}"
     @edit="edit"
     @remove="remove"></main-view-title>
@@ -11,8 +11,8 @@
       <div class="column is-10">
         <box-contacts 
         :title="'Contacts'" 
-        :action="{ title: 'Add new contact', route: `/relations/${company.id}/contacts/create` }" 
-        :contacts="company.contacts"></box-contacts>
+        :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }" 
+        :contacts="relation.contacts"></box-contacts>
       </div>
       <div class="column is-2">
         <box :title="'Insight'">
@@ -32,7 +32,7 @@
             </div>
             <div class="column">
               <div class="relation-insight">
-                <div class="relation-insight-bar" :style="{ height: company.insight_total + '%' }"></div>
+                <div class="relation-insight-bar" :style="{ height: relation.insight_total + '%' }"></div>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
     </div>
 
     <box :title="'Proposals'">
-      <router-link class="relation-proposal" tag="table" v-for="proposal in company.proposals" :key="proposal.id" :to="`tobedefined`">
+      <router-link class="relation-proposal" tag="table" v-for="proposal in relation.proposals" :key="proposal.id" :to="`tobedefined`">
         <thead>
           <tr>
             <td><span>{{ proposal.name }}</span> Name of proposal contactperson</td>
@@ -59,13 +59,13 @@
 </template>
 
 <script>
-  import Company from '../../controllers/CompanyController'
+  import Relation from '../../controllers/RelationController'
 
   export default {
     name: 'relation',
     data(){
       return {
-        company: {}
+        relation: {}
       }
     },
     created() {
@@ -74,7 +74,7 @@
     methods: {
       async show() {
         try {
-          this.company = await Company.show({ relation_id: this.$route.params.relation_id })
+          this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
         } catch(error) {
           console.error(error)
         }
@@ -84,7 +84,7 @@
       },
       async remove() {
         try {
-          await Company.destroy({ relation_id: this.$route.params.relation_id })
+          await Relation.destroy({ relation_id: this.$route.params.relation_id })
           this.$router.push({ name: 'relations-overview' })
         } catch(error) {
           console.error(error)

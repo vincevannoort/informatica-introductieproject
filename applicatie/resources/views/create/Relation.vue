@@ -3,13 +3,13 @@
     <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
-        <box :title="'Company data'">
+        <box :title="'Relation data'">
           <form @submit.prevent="store">
             <div class="columns is-multiline">
               <div class="field column is-half">
                 <label class="label">Name</label>
                 <div class="control">
-                  <input v-model="company.name" class="input" type="text" placeholder="Relation name">
+                  <input v-model="relation.name" class="input" type="text" placeholder="Relation name">
                 </div>
               </div>
             </div>
@@ -33,12 +33,12 @@
 </template>
 
 <script>
-  import Company from '../../controllers/CompanyController'
+  import Relation from '../../controllers/RelationController'
 
   export default{
     data(){
       return {
-        company: {
+        relation: {
           name: '',
         }
       }
@@ -59,14 +59,14 @@
     methods: {
       async show() {
         try {
-          this.company = await Company.show({ relation_id: this.$route.params.relation_id })
+          this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
         } catch(error) {
           console.error(error)
         }
       },
       async store() {
         try {
-          await Company.store({ company: this.company })
+          await Relation.store({ relation: this.relation })
           this.$router.push({ name: 'relations-overview' })
         } catch(error) {
           console.error(error)
@@ -74,7 +74,7 @@
       },
       async update() {
         try {
-          await Company.update({ company: this.company })
+          await Relation.update({ relation: this.relation })
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)

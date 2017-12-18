@@ -2,9 +2,9 @@
 
 const Model = use('Model')
 
-class Company extends Model {
+class Relation extends Model {
 
-  // always include contacts when fetching companies
+  // always include contacts when fetching relations
   static boot() {
     super.boot();
     this.addGlobalScope(builder => {
@@ -18,7 +18,7 @@ class Company extends Model {
 	}
 
 	contacts() {
-		return this.belongsToMany('App/Models/Contact').pivotTable('contact_companies')
+		return this.belongsToMany('App/Models/Contact').pivotTable('contact_relations')
 	}
 
 	proposals() {
@@ -27,4 +27,4 @@ class Company extends Model {
 
 }
 
-module.exports = Company
+module.exports = Relation

@@ -1,12 +1,12 @@
 <template>
-  <box class="box-company">
-    <div class="box-company-amount">
+  <box class="box-relation">
+    <div class="box-relation-amount">
       {{ amount }}
     </div>
-    <div class="box-company-category">
+    <div class="box-relation-category">
       {{ title }}
     </div>
-    <icon-company></icon-company>
+    <icon-relation></icon-relation>
   </box>
 </template>
 
@@ -28,7 +28,7 @@
 <style lang="scss">
   @import "../assets/scss/variables/colors";
 
-  .box-company {
+  .box-relation {
     height: auto;
     position: relative;
     overflow: hidden;
@@ -42,9 +42,9 @@
       opacity: 0.1;
     }
   }
-  .box-company-amount {
+  .box-relation-amount {
     font-size: 42px;
-    color: $company-amount-grey;
+    color: $relation-amount-grey;
     font-weight: 300;
   }
 </style>

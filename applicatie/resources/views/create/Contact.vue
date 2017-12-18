@@ -3,7 +3,7 @@
     <main-view-title :title="'Create a new contact'"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
-        <box :title="'Company data'">
+        <box :title="'Relation data'">
           <form @submit.prevent="store">
             <div class="columns is-multiline">
               <div class="field column is-full">
