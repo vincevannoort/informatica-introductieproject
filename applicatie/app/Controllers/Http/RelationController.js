@@ -19,7 +19,7 @@ class RelationController {
   async show({ params, response }) {
     // try to return the relation with relation id from the request
     try {
-      return await Relation.find(params.id);
+      return await Relation.find(params.id)
     }
     // if there was an error while trying to return a relation, return an error
     catch (error) {
