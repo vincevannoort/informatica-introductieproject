@@ -19,10 +19,7 @@ class CompanyController {
   async show({ params, response }) {
     // try to return the company with company id from the request
     try {
-      return await Company.query()
-      .where(Company.primaryKey, params.id) // get company with specific id
-      .with('contacts') // get contacts from previous found specific company
-      .firstOrFail()
+      return await Company.find(params.id);
     } 
     // if there was an error while trying to return a company, return an error
     catch (error) {
