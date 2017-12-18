@@ -86,8 +86,8 @@
     methods: {
       async store() {
         try {
-          await Contact.store({ contact: this.contact, company_id: this.$route.params.id })
-          this.$router.push({ name: 'relations-single', params: { id: this.$route.params.id } })
+          await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)
         }

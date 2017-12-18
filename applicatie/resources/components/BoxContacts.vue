@@ -2,7 +2,7 @@
   <box :title="title" :action="action">
     <div class="relation-contacts">
       <div v-if="contacts && contacts.length">
-        <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/contacts/${ contact.id }`">
+        <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/relations/${$route.params.relation_id}/contacts/${contact.id}`">
           <table>
             <tr>
               <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>

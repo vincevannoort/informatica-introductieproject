@@ -5,8 +5,8 @@ class Contact {
   /*
    * Get single contact from api endpoint
    */
-  static async show({ id }) {
-    return axios.get(`/api/contacts/${id}`)
+  static async show({ contact_id }) {
+    return axios.get(`/api/contacts/${contact_id}`)
     .then(function (response) {
       return response.data
     })
@@ -18,11 +18,11 @@ class Contact {
   /*
    * Store single contact to api endpoint
    */
-  static async store({ contact, company_id }) {
+  static async store({ contact, relation_id }) {
     console.log('storing contact', contact)
     return axios.post(`/api/contacts/`, {
       contact: contact,
-      company_id: company_id
+      relation_id: relation_id
     })
     .then(function (response) {
       console.log(response.data)

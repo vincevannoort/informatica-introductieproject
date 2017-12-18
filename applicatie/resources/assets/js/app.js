@@ -21,10 +21,8 @@ import CompanyView from '../../views/single/Company'
 import CompanyCreateView from '../../views/create/Company'
 import CompaniesView from '../../views/overview/Companies'
 import ProposalView from '../../views/single/Proposal'
-import ProposalsView from '../../views/overview/Proposals'
 import ContactView from '../../views/single/Contact'
 import ContactCreateView from '../../views/create/Contact'
-import ContactsView from '../../views/overview/Contacts'
 import UserView from '../../views/single/User'
 import UsersView from '../../views/overview/Users'
 
@@ -70,14 +68,14 @@ const routes = [
       // relations aka companies
       { path: '/relations', name: 'relations-overview', component: CompaniesView, meta: { requiresAuth: true } },
       { path: '/relations/create', name: 'relations-create', component: CompanyCreateView, meta: { requiresAuth: true } },
-      { path: '/relations/:id', name: 'relations-single', component: CompanyView, meta: { requiresAuth: true } },
-      { path: '/relations/:id/edit', name: 'relations-edit', component: CompanyCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id', name: 'relations-single', component: CompanyView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: CompanyCreateView, meta: { requiresAuth: true } },
 
       // proposals
 
       // contacts
-      { path: '/relations/:id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
-      { path: '/contacts/:id', name: 'contacts-single', component: ContactView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: ContactView, meta: { requiresAuth: true } },
 
       // profile
       { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },

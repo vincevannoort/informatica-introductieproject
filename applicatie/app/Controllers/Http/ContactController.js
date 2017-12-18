@@ -46,7 +46,7 @@ class ContactController {
 
     // validate given request parameters
     let contactData = request.all().contact
-    let company_id = request.all().company_id
+    let relation_id = request.all().relation_id
     const validation = await validateAll(contactData, rules)
 
     // if validation fails, return a unprocessable entity proces code with the validation messages
@@ -64,7 +64,7 @@ class ContactController {
     })
 
     // attach company to created contact
-    await contact.companies().attach([company_id])
+    await contact.companies().attach([relation_id])
 
     // return contact data
     return contact

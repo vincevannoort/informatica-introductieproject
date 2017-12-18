@@ -18,8 +18,8 @@ class Company {
   /*
    * Get single company from api endpoint
    */
-  static async show({ id }) {
-    return axios.get(`/api/companies/${id}`)
+  static async show({ relation_id }) {
+    return axios.get(`/api/companies/${relation_id}`)
     .then(function (response) {
       return response.data
     })
@@ -61,8 +61,8 @@ class Company {
   /*
    * Destory single company to api endpoint
    */
-  static async destroy({ id }) {
-    return axios.delete(`/api/companies/${id}`)
+  static async destroy({ relation_id }) {
+    return axios.delete(`/api/companies/${relation_id}`)
     .then(function(response) {
       return response
     })

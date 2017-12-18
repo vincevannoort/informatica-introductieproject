@@ -20,7 +20,7 @@
     methods: {
       async show() {
         try {
-          this.contact = await Contact.show({ id: this.$route.params.id })
+          this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
         } catch(error) {
           console.error(error)
         }

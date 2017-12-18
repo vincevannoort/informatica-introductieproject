@@ -41,6 +41,18 @@
     </div>
 
     <box :title="'Proposals'">
+      <router-link class="relation-proposal" tag="table" v-for="proposal in company.proposals" :key="proposal.id" :to="`tobedefined`">
+        <thead>
+          <tr>
+            <td><span>{{ proposal.name }}</span> Name of proposal contactperson</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+          </tr>
+        </tbody>
+      </router-link>
     </box>
 
   </div>
@@ -62,17 +74,17 @@
     methods: {
       async show() {
         try {
-          this.company = await Company.show({ id: this.$route.params.id })
+          this.company = await Company.show({ relation_id: this.$route.params.relation_id })
         } catch(error) {
           console.error(error)
         }
       },
       async edit() {
-        this.$router.push({ name: 'relations-edit', params: { id: this.$route.params.id } })
+        this.$router.push({ name: 'relations-edit', params: { relation_id: this.$route.params.relation_id } })
       },
       async remove() {
         try {
-          await Company.destroy({ id: this.$route.params.id })
+          await Company.destroy({ relation_id: this.$route.params.relation_id })
           this.$router.push({ name: 'relations-overview' })
         } catch(error) {
           console.error(error)
@@ -104,5 +116,34 @@
     width: 12px;
     border-radius: 10px;
     background: linear-gradient(to top, $red 0%,#ff0000 100%)
+  }
+
+  /*
+  * TO BE MOVED TO COMPONENT
+  */
+  .relation-proposal {
+    cursor: pointer;
+    border: 1px solid $border-grey;
+    background-color: $background-grey;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 13px;
+    thead {
+      border-bottom: 1px solid $border-grey;
+      font-weight: 500;
+      span {
+        color: $red;
+        text-transform: uppercase;
+        &:after {
+          content: '-';
+          color: $almost-black;
+          padding-left: 0.8rem;
+          padding-right: 0.8rem;
+        }
+      }
+    }
+    td {
+      padding: 0.5rem 1rem;
+    }
   }
 </style>

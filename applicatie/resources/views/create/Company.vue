@@ -59,7 +59,7 @@
     methods: {
       async show() {
         try {
-          this.company = await Company.show({ id: this.$route.params.id })
+          this.company = await Company.show({ relation_id: this.$route.params.relation_id })
         } catch(error) {
           console.error(error)
         }
@@ -75,7 +75,7 @@
       async update() {
         try {
           await Company.update({ company: this.company })
-          this.$router.push({ name: 'relations-single', params: { id: this.$route.params.id } })
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)
         }
