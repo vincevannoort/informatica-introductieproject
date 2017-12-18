@@ -45,6 +45,7 @@ Route.group(() => {
     Route.get('contacts', 'ContactController.index')
     Route.post('contacts', 'ContactController.store')
     Route.get('contacts/:id', 'ContactController.show')
+    Route.patch('contacts/:id', 'ContactController.update')
 
 }).prefix('api').middleware(['auth'])
 

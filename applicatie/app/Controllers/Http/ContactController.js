@@ -69,6 +69,26 @@ class ContactController {
     return contact
   }
 
+  /*
+   * Update a existing relation
+   */
+  async update({ auth, params, request, response }) {
+    try {
+      // get contact data from request
+      const contactData = request.all().contact
+      const contact = await Contact.find(contactData.id)
+      // merge passed data to contact object
+      contact.merge({ first_name: contactData.first_name })
+      // save the merged data to database
+      await contact.save()
+      return contact
+    }
+    // if there was an error while trying to delete a contact, return an error
+    catch (error) {
+      return response.status(404).send(error)
+    }
+  }
+
 }
 
 module.exports = ContactController

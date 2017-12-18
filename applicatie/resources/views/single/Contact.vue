@@ -1,6 +1,10 @@
 <template>
   <div>
-    <main-view-title :title="contact.first_name + ' ' + contact.last_name" :back="{ route: '/contacts', name: 'contacts'}"></main-view-title>
+    <main-view-title
+    :title="contact.first_name + ' ' + contact.last_name"
+    :back="{ route: '/contacts', name: 'contacts'}"
+    @edit="edit"
+    ></main-view-title>
   </div>
 </template>
 
@@ -24,6 +28,9 @@
         } catch(error) {
           console.error(error)
         }
+      },
+      async edit() {
+        this.$router.push({ name: 'contacts-edit', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
       }
     }
   }

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <main-view-title :title="'Create a new contact'"></main-view-title>
+    <main-view-title :title="(createView) ? `Create a new contact` : `Edit existing contact`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
-        <box :title="'Relation data'">
+        <box :title="'Contact data'">
           <form @submit.prevent="store">
             <div class="columns is-multiline">
               <div class="field column is-full">
@@ -81,9 +81,27 @@
       },
       fieldsValidated() {
         return this.fieldsHaveValues && this.errors.items.length == 0
+      },
+      createView() {
+        return this.$route.name == 'contacts-create'
+      },
+      editView() {
+        return this.$route.name == 'contacts-edit'
+      }
+    },
+    created() {
+      if (this.editView) {
+        this.show()
       }
     },
     methods: {
+      async show() {
+        try {
+          this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
+        } catch(error) {
+          console.error(error)
+        }
+      },
       async store() {
         try {
           await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })

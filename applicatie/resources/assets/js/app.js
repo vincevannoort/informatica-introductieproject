@@ -76,6 +76,8 @@ const routes = [
       // contacts
       { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
       { path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: ContactView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/:contact_id/edit', name: 'contacts-edit', component: ContactCreateView, meta: { requiresAuth: true } },
+
 
       // profile
       { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },

@@ -33,6 +33,21 @@ class Contact {
     })
   }
 
+  /*
+   * Update single contact to api endpoint
+   */
+  static async update({ contact }) {
+    return axios.patch(`/api/contacts/${contact.id}`, {
+      contact: contact
+    })
+    .then(function(response) {
+      return response
+    })
+    .catch(function(error) {
+      return error
+    })
+  }
+
 }
 
 export default Contact
