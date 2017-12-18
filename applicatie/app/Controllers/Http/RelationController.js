@@ -12,15 +12,15 @@ class RelationController {
     return await Relation.query().with('contacts').fetch()
   }
 
-  /* 
+  /*
    * Get a single relation based on the parameters passed from the get request
-   * @param id, the relation id from api routes defined in routes.js 
+   * @param id, the relation id from api routes defined in routes.js
    */
   async show({ params, response }) {
     // try to return the relation with relation id from the request
     try {
       return await Relation.find(params.id);
-    } 
+    }
     // if there was an error while trying to return a relation, return an error
     catch (error) {
       return response.status(404).send('Relation not found')
@@ -79,14 +79,14 @@ class RelationController {
   }
 
   /*
-   * Store a existing relation
+   * Destroy an existing relation
    */
   async destroy({ auth, params, request, response }) {
     // try to delete the relation with relation id from the request
     try {
       const relation = await Relation.find(params.id)
       return await relation.delete()
-    } 
+    }
     // if there was an error while trying to delete a relation, return an error
     catch (error) {
       return response.status(404).send(error)

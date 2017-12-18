@@ -1,17 +1,18 @@
 <template>
   <div>
 
-    <main-view-title 
-    :title="relation.name" 
+    <main-view-title
+    :title="relation.name"
     :back="{ route: '/relations', name: 'relations'}"
     @edit="edit"
-    @remove="remove"></main-view-title>
+    @remove="remove"
+    ></main-view-title>
 
     <div class="columns">
       <div class="column is-10">
-        <box-contacts 
-        :title="'Contacts'" 
-        :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }" 
+        <box-contacts
+        :title="'Contacts'"
+        :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
         :contacts="relation.contacts"></box-contacts>
       </div>
       <div class="column is-2">

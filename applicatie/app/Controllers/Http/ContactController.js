@@ -83,11 +83,26 @@ class ContactController {
         first_name: contactData.first_name,
         last_name: contactData.last_name,
         telephone: contactData.telephone,
-        email: contactData.email 
+        email: contactData.email
       })
       // save the merged data to database
       await contact.save()
       return contact
+    }
+    // if there was an error while trying to delete a contact, return an error
+    catch (error) {
+      return response.status(404).send(error)
+    }
+  }
+
+  /*
+   * Destroy an existing contact
+   */
+  async destroy({ auth, params, request, response }) {
+    // try to delete the contact with contact id from the request
+    try {
+      const contact = await Contact.find(params.id)
+      return await contact.delete()
     }
     // if there was an error while trying to delete a contact, return an error
     catch (error) {

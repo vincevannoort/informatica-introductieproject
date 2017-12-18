@@ -46,6 +46,19 @@ class Contact {
     })
   }
 
+  /*
+   * Destroy single contact to api endpoint
+   */
+  static async destroy({ contact_id }) {
+    return axios.delete(`/api/contacts/${contact_id}`)
+    .then(function(response) {
+      return response
+    })
+    .catch(function(error) {
+      return error
+    })
+  }
+
 }
 
 export default Contact

@@ -56,10 +56,10 @@ class Relation {
     .catch(function(error) {
       return error
     })
-  } 
+  }
 
   /*
-   * Destory single relation to api endpoint
+   * Destroy single relation to api endpoint
    */
   static async destroy({ relation_id }) {
     return axios.delete(`/api/relations/${relation_id}`)
