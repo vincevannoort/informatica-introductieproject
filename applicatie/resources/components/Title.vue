@@ -1,6 +1,6 @@
 <template>
-  <div class="main-title-inner-content" :class="{ 'with-main-back-link': hasBackButton }">
-    <router-link class="main-back-link" v-if="back" :to="`${back.route}`">< back to {{ back.name }}</router-link> 
+  <div class="main-title-inner-content" :class="{ 'with-main-back-link': $listeners.back }">
+    <div class="main-back-link" v-if="$listeners.back" @click="backEntity">< {{ back }}</div> 
     <h1 class="main-title">
         {{ title }}
     </h1>
@@ -52,17 +52,15 @@
         type: String,
       }
     },
-    computed: {
-      hasBackButton() {
-        return this.back != undefined
-      }
-    },
     methods: {
       editEntity() {
         this.$emit('edit')
       },
       removeEntity() {
         this.$emit('remove')
+      },
+      backEntity() {
+        this.$emit('back')
       }
     }
   }
@@ -109,5 +107,6 @@
 
   .main-back-link {
     color: $medium-grey;
+    cursor: pointer;
   }
 </style>

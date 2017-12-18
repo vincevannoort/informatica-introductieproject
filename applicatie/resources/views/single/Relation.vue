@@ -3,7 +3,8 @@
 
     <main-view-title
     :title="relation.name"
-    :back="{ route: '/relations', name: 'relations'}"
+    :back="'back to relations'"
+    @back="back"
     @edit="edit"
     @remove="remove"
     ></main-view-title>
@@ -73,6 +74,9 @@
       this.show()
     },
     methods: {
+      back() {
+        this.$router.push({ name: 'relations-overview' })
+      },
       async show() {
         try {
           this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
