@@ -113,7 +113,7 @@
       },
       async update() {
         try {
-          await Contact.store({ contact: this.contact })
+          await Contact.update({ contact: this.contact })
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)
