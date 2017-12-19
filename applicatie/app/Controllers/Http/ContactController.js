@@ -3,6 +3,15 @@
 const { validateAll } = use('Validator')
 const Contact = use('App/Models/Contact')
 
+// set rules which must be validated before storing/updating a contact
+const rules = {
+  profession: 'required',
+  first_name: 'required',
+  last_name: 'required',
+  telephone: 'required',
+  email: 'required|email'
+}
+
 class ContactController {
 
   /*
@@ -31,21 +40,14 @@ class ContactController {
   }
 
   async store({ auth, params, request, response }) {
-    // set rules which must be validated before storing a contact
-    const rules = {
-      profession: 'required',
-      first_name: 'required',
-      last_name: 'required',
-      telephone: 'required',
-      email: 'required|email'
-    }
-
     // get the user responsible for storing, authentication already checked by middleware
     let user = await auth.getUser()
 
     // validate given request parameters
     let contactData = request.all().contact
     let relation_id = request.all().relation_id
+
+    // validate given request parameters
     const validation = await validateAll(contactData, rules)
 
     // if validation fails, return a unprocessable entity proces code with the validation messages
@@ -76,8 +78,17 @@ class ContactController {
     try {
       // get contact data from request
       const contactData = request.all().contact
-      const contact = await Contact.find(contactData.id)
+      
+      // validate given request parameters
+      const validation = await validateAll(contactData, rules)
+
+      // if validation fails, return a unprocessable entity proces code with the validation messages
+      if (validation.fails()) {
+        return response.status(422).send(validation.messages())
+      }
+
       // merge passed data to contact object
+      const contact = await Contact.find(contactData.id)
       contact.merge({
         profession: contactData.profession,
         first_name: contactData.first_name,

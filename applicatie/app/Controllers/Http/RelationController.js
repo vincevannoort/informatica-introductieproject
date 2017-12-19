@@ -3,6 +3,11 @@
 const { validateAll } = use('Validator')
 const Relation = use('App/Models/Relation')
 
+// set rules which must be validated before storing/updating a relation
+const rules = {
+  name: 'required',
+}
+
 class RelationController {
 
   /*
@@ -31,11 +36,6 @@ class RelationController {
    * Store a new relation
    */
   async store({ auth, params, request, response }) {
-    // set rules which must be validated before storing a relation
-    const rules = {
-      name: 'required',
-    }
-
     // get the user responsible for storing, authentication already checked by middleware
     const user = await auth.getUser()
 
@@ -65,8 +65,17 @@ class RelationController {
     try {
       // get relation data from request
       const relationData = request.all().relation
-      const relation = await Relation.find(relationData.id)
+
+      // validate given request parameters
+      const validation = await validateAll(relationData, rules)
+
+      // if validation fails, return a unprocessable entity proces code with the validation messages
+      if (validation.fails()) {
+        return response.status(422).send(validation.messages())
+      }
+    
       // merge passed data to relation object
+      const relation = await Relation.find(relationData.id)
       relation.merge({ name: relationData.name })
       // save the merged data to database
       await relation.save()
