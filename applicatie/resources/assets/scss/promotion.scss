@@ -3,11 +3,13 @@
 | Bulma framework
 |--------------------------------------------------------------------------
 */
+@import "./variables/colors";
+$red: #ff2b46;
+$primary: $red;
 @import "node_modules/bulma/sass/utilities/_all";
 @import "node_modules/bulma/bulma";
 @import "node_modules/minireset.css/minireset.sass";
 @import "node_modules/animate.css/animate";
-@import "./variables/colors";
 
 // $fa-font-path: "~font-awesome/fonts";
 // @import '~font-awesome/scss/font-awesome.scss';
@@ -27,39 +29,82 @@ html, body {
 | Promotion header
 |--------------------------------------------------------------------------
 */
-.promotion-header-logo {
-  text-align: center;
-  padding: 5rem 0 4rem 0;
-  img {
-    max-width: 200px;
+.promotion-header {
+  padding: 60px  0;
+  > .columns {
+    justify-content: space-between;
+    
+  }
+  .promotion-header-logo {
+    // max-width: 250px;
+    font-size: 44px;
+    font-weight: bold;
+    color: $red;
+  }
+  .promotion-header-links {
+    display: flex;
+    justify-content: flex-end;
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-left: 2rem;
+        a {
+          font-size: 18px;
+          color: darken($medium-grey, 10%);
+          &.button.is-primary {
+            color: white;
+          }
+        }
+      }
+    }
   }
 }
 
-.promotion-header-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 3rem;
-  h1.title {
-    font-size: 64px;
+/*
+|--------------------------------------------------------------------------
+| Promotion content
+|--------------------------------------------------------------------------
+*/
+.promotion-call-to-action {
+  margin-top: 2.5rem;
+  position: relative;
+  .title {
+    font-size: 50px;
+    font-weight: bold;
     margin-bottom: 3rem;
-    letter-spacing: 3px;
   }
-  h2.subtitle {
-    max-width: 800px;
-    font-size: 18px;
+  .subtitle {
+    color: darken($medium-grey, 10%);
     line-height: 1.5;
   }
+  &:after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 140vw;
+    height: 50vh;
+    background: $red;
+    transform: rotate(-4deg) translateY(-200px) translateX(-50%);
+    top: 100%;
+    left: 50%;
+    z-index: -1;
+  }
 }
 
-.promotion-examples {
-  text-align: center;
-  padding: 2rem;
+.promotion-features {
+  padding: 3rem 0;
   background: $red;
-  margin-top: 300px;
-  .promotion-examples-screenshot {
-    margin-top: -300px;
-    max-width: 1200px;
+  color: white;
+  h3 {
+    font-size: 28px;
+  }
+  img {
+    width: 70px;
+  }
+  .promotion-features-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
