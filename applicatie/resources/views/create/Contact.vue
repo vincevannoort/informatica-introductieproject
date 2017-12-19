@@ -90,7 +90,7 @@
         return this.$route.name == 'contacts-edit'
       }
     },
-    created() {
+    activated() {
       if (this.editView) {
         this.show()
       }
@@ -129,7 +129,7 @@
       showCreatedSuccess: {
         title: 'Created contact',
         message: 'Created contact successfully',
-        type: 'success'
+        type: 'error'
       },
       showEditedSuccess: {
         title: 'Edited contact',

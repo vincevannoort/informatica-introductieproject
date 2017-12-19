@@ -44,7 +44,7 @@ import Noty from 'noty'
 
 function noty_notification({title, message, type, timeout, cb}) {
   if (type === VueNotifications.types.warn) type = 'warning'
-  return new Noty({text: message, timeout, type}).show()
+  return new Noty({text: message, theme: 'sunset', timeout, type}).show()
 }
 
 const options = {

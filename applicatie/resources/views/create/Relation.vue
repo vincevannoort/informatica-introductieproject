@@ -51,7 +51,7 @@
         return this.$route.name == 'relations-edit'
       }
     },
-    created() {
+    activated() {
       if (this.editView) {
         this.show()
       }
