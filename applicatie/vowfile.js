@@ -11,7 +11,8 @@
 */
 
 // Uncomment when want to run migrations
-// const ace = require('@adonisjs/ace')
+const ace = require('@adonisjs/ace')
+const User = use('App/Models/User')
 
 module.exports = (cli, runner) => {
   runner.before(async () => {
@@ -34,7 +35,8 @@ module.exports = (cli, runner) => {
     | Migrate the database before starting the tests.
     |
     */
-    // await ace.call('migration:run')
+    await ace.call('migration:run')
+    await User.create({ profession: 'Tester', first_name: 'test', last_name: 'tester', username: 'test', password: 'test', email: 'test@tester.nl' })
   })
 
   runner.after(async () => {
@@ -57,6 +59,6 @@ module.exports = (cli, runner) => {
     | original state
     |
     */
-    // await ace.call('migration:reset')
+    await ace.call('migration:reset')
   })
 }
