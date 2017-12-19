@@ -15,26 +15,6 @@
     </div>
 </template>
 
-<script>
-  export default{
-    data(){
-      return {
-        relations: [],
-      }
-    },
-    created() {
-      var self = this;
-      axios.get('/api/relations')
-      .then(function (response) {
-        self.relations = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
-</script>
-
 <style lang="scss">
   $main-padding: 60px;
 
