@@ -121,7 +121,7 @@ test('Validate a existing relation', async ({ client, assert }) => {
 
 test('Attach a contact to an relation', async ({ assert }) => { assert.isTrue(false) })
 
-test('Add a new proposal', async ({ assert }) => { assert.isTrue(false) })
+test('Attach a proposal to an relation', async ({ assert }) => { assert.isTrue(false) })
 
 test('Calculate total insight based on proposals', async ({ assert }) => { assert.isTrue(false) })
 
