@@ -35,20 +35,6 @@
         required: true
       },
       back: {
-        type: Object,
-        name: {
-          type: String,
-          required: true
-        },
-        route: {
-          type: String,
-          required: true
-        }
-      },
-      edit: {
-        type: String,
-      },
-      remove: {
         type: String,
       }
     },
