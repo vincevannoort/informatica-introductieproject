@@ -42,11 +42,12 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!fieldsValidated">Create</button>
-                <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!fieldsValidated">Update</button>
+                <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!fieldsValidatedCreate">Create</button>
+                <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!fieldsValidatedUpdate">Update</button>
               </div>
               <div class="control">
-                <button class="button is-text" @click.prevent="back">Cancel</button>
+                <button v-if="createView" class="button is-text" @click.prevent="backcreate">Cancel</button>
+                <button v-else-if="editView" class="button is-text" @click.prevent="backupdate">Cancel</button>
               </div>
             </div>
           </form>
@@ -72,7 +73,7 @@
       }
     },
     computed: {
-      fieldsHaveValues() {
+      fieldsHaveValuesCreate() {
         for (var field in this.fields) {
           if (!this.fields[field].touched) {
             return false
@@ -80,8 +81,19 @@
         }
         return true
       },
-      fieldsValidated() {
-        return this.fieldsHaveValues && this.errors.items.length == 0
+      fieldsHaveValuesUpdate() {
+        for (var field in this.fields) {
+          if (!this.fields[field] == null) {
+            return false
+          }
+        }
+        return true
+      },
+      fieldsValidatedCreate() {
+        return this.fieldsHaveValuesCreate && this.errors.items.length == 0
+      },
+      fieldsValidatedUpdate() {
+        return this.fieldsHaveValuesUpdate && this.errors.items.length == 0
       },
       createView() {
         return this.$route.name == 'contacts-create'
@@ -116,14 +128,17 @@
         try {
           await Contact.update({ contact: this.contact })
           this.showEditedSuccess()
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+          this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
         } catch(error) {
           console.error(error)
         }
       },
-      back() {
-        this.$router.go(-1)
-      }
+      backcreate() {
+        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+      },
+      backupdate() {
+        this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
+      },
     },
     notifications: {
       showCreatedSuccess: {
