@@ -37,6 +37,7 @@ Route.group(() => {
     Route.resource('relations', 'RelationController').apiOnly()
 
     // proposals
+    Route.resource('proposals', 'ProposalController').apiOnly()
 
     // contacts
     Route.resource('contacts', 'ContactController').apiOnly()

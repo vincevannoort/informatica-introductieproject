@@ -43,7 +43,7 @@
     </div>
 
     <box :title="'Proposals'">
-      <router-link class="relation-proposal" tag="table" v-for="proposal in relation.proposals" :key="proposal.id" :to="`tobedefined`">
+      <router-link class="relation-proposal" tag="table" v-for="proposal in relation.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
         <thead>
           <tr>
             <td><span>{{ proposal.name }}</span> Name of proposal contactperson</td>

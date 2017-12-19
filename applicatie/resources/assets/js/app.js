@@ -72,6 +72,9 @@ const routes = [
       { path: '/relations/:relation_id/edit', name: 'relations-edit', component: RelationCreateView, meta: { requiresAuth: true } },
 
       // proposals
+      // { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: ProposalCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: ProposalView, meta: { requiresAuth: true } },
+      // { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: ProposalCreateView, meta: { requiresAuth: true } },
 
       // contacts
       { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
