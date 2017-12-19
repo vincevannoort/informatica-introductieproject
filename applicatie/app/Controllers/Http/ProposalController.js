@@ -18,10 +18,9 @@ class ProposalController {
   async show({ params, response }) {
     // try to return the proposal with proposal id from the request
     try {
-      return await Proposal.query()
-      .where(Proposal.primaryKey, params.id) // get proposal with specific id
-      .with('relation') // get relatoin from previous found specific proposal
-      .firstOrFail()
+      const proposal = await Proposal.find(params.id)
+      await proposal.load('relation') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      return proposal
     }
     // if there was an error while trying to return a proposal, return an error
     catch (error) {

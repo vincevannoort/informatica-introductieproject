@@ -28,10 +28,9 @@ class ContactController {
   async show({ params, response }) {
     // try to return the contact with contact id from the request
     try {
-      return await Contact.query()
-      .where(Contact.primaryKey, params.id) // get contact with specific id
-      .with('relations') // get relations from previous found specific contact
-      .firstOrFail()
+      const contact = await Contact.find(params.id)
+      await contact.load('relations') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      return contact
     }
     // if there was an error while trying to return a contact, return an error
     catch (error) {
