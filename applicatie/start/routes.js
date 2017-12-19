@@ -28,25 +28,18 @@ Route.group(() => {
 }).prefix('api')
 
 // with authentication
+// route resources, see: https://adonisjs.com/docs/4.0/routing#_route_resources
 Route.group(() => {
     // users
     Route.get('users/profile', 'UserController.profile')
 
     // relations
-    Route.get('relations', 'RelationController.index')
-    Route.post('relations', 'RelationController.store')
-    Route.get('relations/:id', 'RelationController.show')
-    Route.delete('relations/:id', 'RelationController.destroy')
-    Route.patch('relations/:id', 'RelationController.update')
+    Route.resource('relations', 'RelationController').apiOnly()
 
     // proposals
 
     // contacts
-    Route.get('contacts', 'ContactController.index')
-    Route.post('contacts', 'ContactController.store')
-    Route.get('contacts/:id', 'ContactController.show')
-    Route.delete('contacts/:id', 'ContactController.destroy')
-    Route.patch('contacts/:id', 'ContactController.update')
+    Route.resource('contacts', 'ContactController').apiOnly()
 
 }).prefix('api').middleware(['auth'])
 
