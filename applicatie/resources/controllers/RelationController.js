@@ -11,7 +11,7 @@ class Relation {
       return response.data
     })
     .catch(function (error) {
-      return error
+      throw error
     })
   }
 
@@ -24,7 +24,7 @@ class Relation {
       return response.data
     })
     .catch(function (error) {
-      return error
+      throw error
     })
   }
 
@@ -39,7 +39,7 @@ class Relation {
       return response.data
     })
     .catch(function (error) {
-      return error
+      throw error
     })
   }
 
@@ -54,7 +54,7 @@ class Relation {
       return response
     })
     .catch(function(error) {
-      return error
+      throw error
     })
   }
 
@@ -67,7 +67,7 @@ class Relation {
       return response
     })
     .catch(function(error) {
-      return error
+      throw error
     })
   }
 

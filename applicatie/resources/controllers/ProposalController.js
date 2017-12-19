@@ -11,7 +11,7 @@ class Proposal {
       return response.data
     })
     .catch(function (error) {
-      return error
+      throw error
     })
   }
 
@@ -27,7 +27,7 @@ class Proposal {
       return response.data
     })
     .catch(function (error) {
-      return error
+      throw error
     })
   }
 
@@ -42,7 +42,7 @@ class Proposal {
       return response
     })
     .catch(function(error) {
-      return error
+      throw error
     })
   }
 
@@ -55,7 +55,7 @@ class Proposal {
       return response
     })
     .catch(function(error) {
-      return error
+      throw error
     })
   }
 

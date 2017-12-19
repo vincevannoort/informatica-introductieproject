@@ -46,10 +46,24 @@
       async remove() {
         try {
           await Contact.destroy({ contact_id: this.$route.params.contact_id })
+          this.showDeletedSuccess()
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
+          this.showDeletedError()
           console.error(error)
         }
+      }
+    },
+    notifications: {
+      showDeletedSuccess: {
+        title: 'Deleted contact',
+        message: 'Deleted contact successfully',
+        type: 'success'
+      },
+      showDeletedError: {
+        title: 'Deleted contact',
+        message: 'Not able to delete contact',
+        type: 'error'
       }
     }
   }
