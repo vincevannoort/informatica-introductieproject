@@ -12,7 +12,7 @@ package-lock.json
 yarn.lock
 
 # The development sqlite file
-database/development.sqlite
+*.sqlite
 
 # Mac OSX file
 .DS_Store
