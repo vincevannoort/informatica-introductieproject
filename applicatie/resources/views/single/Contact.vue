@@ -1,8 +1,8 @@
 <template>
   <div>
     <main-view-title
-    :title="contact.first_name + ' ' + contact.last_name"
-    :back="'back to relation'"
+    :title="`${contact.first_name} ${contact.last_name}`"
+    :back="`back to ${currentRelationName.name}`"
     @back="back"
     @edit="edit"
     @remove="remove"
@@ -18,6 +18,12 @@
     data(){
       return {
         contact: {}
+      }
+    },
+    computed: {
+      currentRelationName() {
+        let self = this
+        return this.contact.relations.find((relation) => { return relation.id == self.$route.params.relation_id })
       }
     },
     activated() {
