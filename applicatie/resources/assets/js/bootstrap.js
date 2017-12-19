@@ -35,6 +35,26 @@ window.Vue = Vue
 import VueMoment from 'vue-moment'
 Vue.use(VueMoment)
 
+/**
+ * We'll load the Vue.JS Notification framework which allows us to easily notify users
+ */
+
+import VueNotifications from 'vue-notifications'
+import Noty from 'noty'
+
+function noty_notification({title, message, type, timeout, cb}) {
+  if (type === VueNotifications.types.warn) type = 'warning'
+  return new Noty({text: message, timeout, type}).show()
+}
+
+const options = {
+  success: noty_notification,
+  error: noty_notification,
+  info: noty_notification,
+  warn: noty_notification
+}
+
+Vue.use(VueNotifications, options)
 
 /**
  * We'll load the Chart.js for graphs

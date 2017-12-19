@@ -106,6 +106,7 @@
       async store() {
         try {
           await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })
+          this.showCreatedSuccess()
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)
@@ -114,6 +115,7 @@
       async update() {
         try {
           await Contact.update({ contact: this.contact })
+          this.showEditedSuccess()
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)
@@ -121,6 +123,18 @@
       },
       back() {
         this.$router.go(-1)
+      }
+    },
+    notifications: {
+      showCreatedSuccess: {
+        title: 'Created contact',
+        message: 'Created contact successfully',
+        type: 'success'
+      },
+      showEditedSuccess: {
+        title: 'Edited contact',
+        message: 'Edited contact successfully',
+        type: 'success'
       }
     }
   }
