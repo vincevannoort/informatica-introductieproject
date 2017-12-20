@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <box :title="'Proposals'">
+    <box :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }">
       <router-link class="relation-proposal" tag="table" v-for="proposal in relation.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
         <thead>
           <tr>

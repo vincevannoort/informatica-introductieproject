@@ -21,6 +21,7 @@ import RelationView from '../../views/single/Relation'
 import RelationCreateView from '../../views/create/Relation'
 import RelationsView from '../../views/overview/Relations'
 import ProposalView from '../../views/single/Proposal'
+import ProposalCreateView from '../../views/create/Proposal'
 import ContactView from '../../views/single/Contact'
 import ContactCreateView from '../../views/create/Contact'
 import UserView from '../../views/single/User'
@@ -74,7 +75,7 @@ const routes = [
       { path: '/relations/:relation_id/edit', name: 'relations-edit', component: RelationCreateView, meta: { requiresAuth: true } },
 
       // proposals
-      // { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: ProposalCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: ProposalCreateView, meta: { requiresAuth: true } },
       { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: ProposalView, meta: { requiresAuth: true } },
       // { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: ProposalCreateView, meta: { requiresAuth: true } },
 
