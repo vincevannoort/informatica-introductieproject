@@ -34,6 +34,7 @@ import BoxComponent from '../../components/Box'
 import BoxContactsComponent from '../../components/BoxContacts'
 import BoxRelationsComponent from '../../components/BoxRelations'
 import BoxRelationComponent from '../../components/BoxRelation'
+import SocialMediaComponent from '../../components/SocialMedia'
 Vue.component('main-view-title', TitleComponent)
 Vue.component('profile', ProfileComponent)
 Vue.component('sidebar', SidebarComponent)
@@ -41,6 +42,7 @@ Vue.component('box', BoxComponent)
 Vue.component('box-contacts', BoxContactsComponent)
 Vue.component('box-relations', BoxRelationsComponent)
 Vue.component('box-relation', BoxRelationComponent)
+Vue.component('social-media', SocialMediaComponent)
 
 // icons
 import dashboardIcon from '../../components/icons/dashboard'

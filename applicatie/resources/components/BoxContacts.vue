@@ -25,7 +25,9 @@
               </td>
               <td>low</td>
               <td>medium</td>
-              <td>social</td>
+              <td>
+                <social-media></social-media>
+              </td>
             </tr>
           </table>
         </router-link>
