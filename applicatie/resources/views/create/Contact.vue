@@ -105,6 +105,10 @@
     activated() {
       if (this.editView) {
         this.show()
+      } else if (this.createView) {
+        for (var field in this.contact) {
+          this.contact[field] = ''
+        }
       }
     },
     methods: {
