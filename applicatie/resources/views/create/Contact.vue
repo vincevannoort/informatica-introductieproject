@@ -106,12 +106,18 @@
       if (this.editView) {
         this.show()
       } else if (this.createView) {
-        for (var field in this.contact) {
-          this.contact[field] = ''
-        }
+        this.clearFields()
       }
     },
     methods: {
+      clearFields() {
+        for (var field in this.contact) {
+          this.contact[field] = ''
+        }
+        this.$nextTick().then(() => {
+          this.$validator.reset()
+        })
+      },
       async show() {
         try {
           this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
