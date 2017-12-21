@@ -1,6 +1,6 @@
 'use strict'
 
-const { before, test, trait } = use('Test/Suite')('Relations')
+const { skip, before, test, trait } = use('Test/Suite')('Relations')
 const Database = use('Database')
 const User = use('App/Models/User')
 const Relation = use('App/Models/Relation')
@@ -153,8 +153,8 @@ test('Attach a contact to an relation', async ({ client, assert }) => {
   response.assertJSONSubset({ user_id: testUser.id, name: 'Google', contacts: [{ profession: 'Tester', first_name: 'John', last_name: 'Doe', telephone: '0652144206', email: 'test@canon.nl' }]})
 })
 
-test('Attach a proposal to an relation', async ({ assert }) => { assert.isTrue(true) })
+skip('Attach a proposal to an relation', async ({ assert }) => {})
 
-test('Calculate total insight based on proposals', async ({ assert }) => { assert.isTrue(true) })
+skip('Calculate total insight based on proposals', async ({ assert }) => {})
 
-test('Seperate relations in 3 groups', async ({ assert }) => { assert.isTrue(true) })
+skip('Seperate relations in 3 groups', async ({ assert }) => {})
