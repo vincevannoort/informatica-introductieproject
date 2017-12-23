@@ -26,7 +26,7 @@
   import Relation from '../../controllers/RelationController'
 
   export default{
-    data(){
+    data() {
       return {
         relations: [],
       }
