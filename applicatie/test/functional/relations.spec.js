@@ -158,3 +158,5 @@ skip('Attach a proposal to an relation', async ({ assert }) => {})
 skip('Calculate total insight based on proposals', async ({ assert }) => {})
 
 skip('Seperate relations in 3 groups', async ({ assert }) => {})
+
+skip('Delete a existing relation', async ({ assert }) => {})

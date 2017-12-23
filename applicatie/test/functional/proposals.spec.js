@@ -19,3 +19,5 @@ skip('Attach multiple contacts to an proposal', async ({ assert }) => {})
 skip('Calculate insight after adding a new contact to an proposal', async ({ assert }) => {})
 
 skip('Calculate insight after changing contact information of an contact attached to an proposal', async ({ assert }) => {})
+
+skip('Delete a existing proposal', async ({ assert }) => {})
