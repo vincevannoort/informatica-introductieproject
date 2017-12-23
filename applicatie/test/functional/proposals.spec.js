@@ -2,9 +2,9 @@
 
 const { skip, test, before, beforeEach, after, afterEach } = use('Test/Suite')('Proposals')
 
-skip('Get all proposals', async ({ assert }) => {})
-
 skip('Add a new proposal', async ({ assert }) => {})
+
+skip('Get all proposals', async ({ assert }) => {})
 
 skip('Edit a existing proposal', async ({ assert }) => {})
 

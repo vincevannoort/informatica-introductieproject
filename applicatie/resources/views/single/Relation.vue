@@ -16,11 +16,11 @@
         :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
         :contacts="relation.contacts"></box-contacts>
       </div>
-      <div class="column is-2">
+      <div class="relation-insight-sidebox column is-2">
         <box :title="'Insight'">
           <div class="columns">
-            <div class="column">
-              <ul class="relation-insight-list">
+            <div class="relation-insight-sidebox-list column">
+              <ul>
                 <li>Strongly supportive</li>
                 <li>Supportive</li>
                 <li>Interested</li>
@@ -32,7 +32,7 @@
                 <li>Very negative</li>
               </ul>
             </div>
-            <div class="column">
+            <div class="relation-insight-sidebox-bar column">
               <div class="relation-insight">
                 <div class="relation-insight-bar" :style="{ height: relation.insight_total + '%' }"></div>
               </div>
@@ -42,20 +42,7 @@
       </div>
     </div>
 
-    <box :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }">
-      <router-link class="relation-proposal" tag="table" v-for="proposal in relation.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
-        <thead>
-          <tr>
-            <td><span>{{ proposal.name }}</span> Name of proposal contactperson</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>a</td>
-          </tr>
-        </tbody>
-      </router-link>
-    </box>
+    <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals"></box-proposals>
 
   </div>
 </template>
@@ -101,9 +88,6 @@
 
 <style lang="scss">
   @import "../../assets/scss/variables/colors";
-  .relation-insight-list {
-    font-size: 13px;
-  }
 
   .relation-insight {
     display: inline-block;
@@ -133,6 +117,8 @@
     width: 100%;
     margin-bottom: 20px;
     font-size: 13px;
+    transition: all 0.15s ease-in-out;
+
     thead {
       border-bottom: 1px solid $border-grey;
       font-weight: 500;
@@ -149,6 +135,42 @@
     }
     td {
       padding: 0.5rem 1rem;
+    }
+    
+    &:hover {
+      border: 1px solid $red;
+      background-color: transparentize($red, 0.96);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25);
+    }
+  }
+
+  .relation-insight-sidebox {
+    > .box {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        flex: 1 1 auto;
+      }
+      > .box-header-wrapper {
+        flex: 0 1 auto;
+      }
+    }
+  }
+
+  .relation-insight-sidebox-bar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .relation-insight-sidebox-list {
+    display: flex;
+    font-size: 13px;
+    > ul {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 </style>

@@ -20,6 +20,7 @@ class ProposalController {
     try {
       const proposal = await Proposal.find(params.id)
       await proposal.load('relation') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await proposal.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return proposal
     }
     // if there was an error while trying to return a proposal, return an error

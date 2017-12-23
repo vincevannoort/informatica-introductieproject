@@ -26,7 +26,7 @@ class RelationController {
     try {
       const relation  = await Relation.find(params.id)
       await relation.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
-      await relation.load('proposals') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await relation.load('proposals.contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return relation
     }
     // if there was an error while trying to return a relation, return an error
