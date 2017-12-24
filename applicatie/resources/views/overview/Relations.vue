@@ -3,7 +3,7 @@
     <main-view-title :title="'Relations'"></main-view-title>
     <div>
       <div class="columns">
-        <div class="column is-one-third">
+        <div class="relations-boxes column is-one-third">
           <box-relation :amount="firstCategoryRelations" :title="'Relation insight 75% - 100%'"></box-relation>
           <box-relation :amount="secondCategoryRelations" :title="'Relation insight 50% - 74%'"></box-relation>
           <box-relation :amount="thirdCategoryRelations" :title="'Relation insight 0% - 49%'"></box-relation>
@@ -59,3 +59,11 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .relations-boxes {
+    .box {
+      height: auto;
+    }
+  }
+</style>

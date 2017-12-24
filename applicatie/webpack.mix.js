@@ -18,4 +18,5 @@ mix
   .setPublicPath('public')
   .copyDirectory('resources/assets/images', 'public/images')
   .browserSync('localhost:3333')
+  .options({ extractVueStyles: true })
   .disableSuccessNotifications();

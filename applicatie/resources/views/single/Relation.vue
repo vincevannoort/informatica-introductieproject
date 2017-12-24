@@ -107,43 +107,6 @@
     background: linear-gradient(to top, $red 0%,#ff0000 100%)
   }
 
-  /*
-  * TO BE MOVED TO COMPONENT
-  */
-  .relation-proposal {
-    cursor: pointer;
-    border: 1px solid $border-grey;
-    background-color: $background-grey;
-    width: 100%;
-    margin-bottom: 20px;
-    font-size: 13px;
-    transition: all 0.15s ease-in-out;
-
-    thead {
-      border-bottom: 1px solid $border-grey;
-      font-weight: 500;
-      span {
-        color: $red;
-        text-transform: uppercase;
-        &:after {
-          content: '-';
-          color: $almost-black;
-          padding-left: 0.8rem;
-          padding-right: 0.8rem;
-        }
-      }
-    }
-    td {
-      padding: 0.5rem 1rem;
-    }
-    
-    &:hover {
-      border: 1px solid $red;
-      background-color: transparentize($red, 0.96);
-      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25);
-    }
-  }
-
   .relation-insight-sidebox {
     > .box {
       display: flex;
