@@ -2,18 +2,21 @@
 
 const Proposal = use('App/Models/Proposal')
 
+/** ProposalController */
 class ProposalController {
 
-  /*
+  /***
    * Get all proposals
+   * @returns {object} - all proposals
    */
   async index({ request }) {
     return await Proposal.all()
   }
 
-  /*
+  /***
    * Get a single proposal based on the parameters passed from the get request
-   * @param id, the proposal id from api routes defined in routes.js
+   * @param {integer} id - the proposal id from api routes defined in routes.js
+   * @returns {object} - single proposal
    */
   async show({ params, response }) {
     // try to return the proposal with proposal id from the request
@@ -29,8 +32,11 @@ class ProposalController {
     }
   }
 
-  /*
+  /**
    * Destroy an existing proposal
+   * @param {integer} id - the proposal id from api routes defined in routes.js
+   * @returns {response} - 404, if proposal does not exist
+   * @returns {response} - 200, if deleted successful
    */
   async destroy({ auth, params, request, response }) {
     // try to delete the proposal with proposal id from the request

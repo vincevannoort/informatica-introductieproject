@@ -12,18 +12,21 @@ const rules = {
   email: 'required|email'
 }
 
+/** ContactController */
 class ContactController {
 
-  /*
+  /**
    * Get all contacts
+   * @returns {object} - all contacts
    */
   async index({ request }) {
     return await Contact.query().with('relations').fetch()
   }
 
-  /*
+  /**
    * Get a single contact based on the parameters passed from the get request
-   * @param id, the contact id from api routes defined in routes.js
+   * @param {integer} id - the contact id from api routes defined in routes.js
+   * @returns {object} - single contact
    */
   async show({ params, response }) {
     // try to return the contact with contact id from the request
@@ -38,6 +41,13 @@ class ContactController {
     }
   }
 
+  /**
+   * Store a single contact based on the parameters passed from the get request
+   * @param {object} contact - all contact data (profession, first_name, last_name, telephone, email)
+   * @param {integer} id - the relation id from api routes defined in routes.js
+   * @returns {response} - 422, if validation fails
+   * @returns {object} - single contact
+   */
   async store({ auth, params, request, response }) {
     // get the user responsible for storing, authentication already checked by middleware
     let user = await auth.getUser()
@@ -70,8 +80,11 @@ class ContactController {
     return contact
   }
 
-  /*
+  /**
    * Update a existing relation
+   * @param {object} contact - all contact data (id, profession, first_name, last_name, telephone, email)
+   * @returns {response} - 422, if validation fails
+   * @returns {object} - single contact
    */
   async update({ auth, params, request, response }) {
     try {
@@ -105,8 +118,11 @@ class ContactController {
     }
   }
 
-  /*
+  /**
    * Destroy an existing contact
+   * @param {integer} id - the contact id from api routes defined in routes.js
+   * @returns {response} - 404, if contact does not exist
+   * @returns {response} - 200, if deleted successful
    */
   async destroy({ auth, params, request, response }) {
     // try to delete the contact with contact id from the request

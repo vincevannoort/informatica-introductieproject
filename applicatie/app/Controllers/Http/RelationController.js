@@ -8,18 +8,21 @@ const rules = {
   name: 'required',
 }
 
+/** RelationController */
 class RelationController {
 
-  /*
+  /**
    * Get all relations, with their contacts
+   * @returns {object} - all relations with contacts
    */
 	async index({ request }) {
     return await Relation.query().with('contacts').fetch()
   }
 
-  /*
+  /**
    * Get a single relation based on the parameters passed from the get request
-   * @param id, the relation id from api routes defined in routes.js
+   * @param {integer} id - the relation id from api routes defined in routes.js
+   * @returns {object} - single relation
    */
   async show({ params, response }) {
     // try to return the relation with relation id from the request
@@ -35,8 +38,11 @@ class RelationController {
     }
   }
 
-  /*
+  /**
    * Store a new relation
+   * @param {object} contact - all relation data (name)
+   * @returns {response} - 422, if validation fails
+   * @returns {object} - single relation
    */
   async store({ auth, params, request, response }) {
     // get the user responsible for storing, authentication already checked by middleware
@@ -61,8 +67,11 @@ class RelationController {
     return relation
   }
 
-  /*
+  /**
    * Update a existing relation
+   * @param {object} relation - all contact data (name)
+   * @returns {response} - 422, if validation fails
+   * @returns {object} - single relation
    */
   async update({ auth, params, request, response }) {
     try {
@@ -90,8 +99,11 @@ class RelationController {
     }
   }
 
-  /*
+  /**
    * Destroy an existing relation
+   * @param {integer} id - the relation id from api routes defined in routes.js
+   * @returns {response} - 404, if relation does not exist
+   * @returns {response} - 200, if deleted successful
    */
   async destroy({ auth, params, request, response }) {
     // try to delete the relation with relation id from the request
