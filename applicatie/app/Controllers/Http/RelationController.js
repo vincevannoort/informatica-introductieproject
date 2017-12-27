@@ -14,8 +14,14 @@ class RelationController {
   /**
    * Calculate insight based on all proposals
    */
-  async calculateTotalInsight({ request }) {
+  async calculateTotalInsight({ params }) {
     console.log('Start calculating total insight (calculate for each proposal)')
+    const relation = await Relation.find(params.id)
+    const proposals = await relation.proposals().with('contacts').fetch()
+    for (let proposal of proposals.rows) {
+      await proposal.calculateInsight()
+    }
+    return proposals
   }
 
   /**
@@ -34,7 +40,7 @@ class RelationController {
   async show({ params, response }) {
     // try to return the relation with relation id from the request
     try {
-      const relation  = await Relation.find(params.id)
+      const relation = await Relation.find(params.id)
       await relation.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       await relation.load('proposals.contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return relation

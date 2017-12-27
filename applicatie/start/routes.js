@@ -34,6 +34,7 @@ Route.group(() => {
     Route.get('users/profile', 'UserController.profile')
 
     // relations
+    Route.get('relations/:id/calculate', 'RelationController.calculateTotalInsight')
     Route.resource('relations', 'RelationController').apiOnly()
 
     // proposals
