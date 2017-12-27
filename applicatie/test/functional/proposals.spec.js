@@ -21,3 +21,5 @@ skip('Calculate insight after adding a new contact to an proposal', async ({ ass
 skip('Calculate insight after changing contact information of an contact attached to an proposal', async ({ assert }) => {})
 
 skip('Delete a existing proposal', async ({ assert }) => {})
+
+skip('Check authentication for proposals', async ({ assert }) => {})

@@ -1,5 +1,7 @@
 'use strict'
 
+const Env = use('Env')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -43,7 +45,7 @@ Route.group(() => {
     // contacts
     Route.resource('contacts', 'ContactController').apiOnly()
 
-}).prefix('api').middleware(['auth'])
+}).prefix('api').middleware((process.env.NODE_ENV !== 'development') ? ['auth'] : [])
 
 /*
 |--------------------------------------------------------------------------

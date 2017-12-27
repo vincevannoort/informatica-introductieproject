@@ -160,3 +160,15 @@ skip('Calculate total insight based on proposals', async ({ assert }) => {})
 skip('Seperate relations in 3 groups', async ({ assert }) => {})
 
 skip('Delete a existing relation', async ({ assert }) => {})
+
+test('Check authentication for relations', async ({ client, assert }) => {
+  // try create a relation without login
+  const response = await client
+    .post('/api/relations')
+    .send({ relation: { name: 'Another company' } })
+    .end()
+
+  // check if unauthenticated
+  response.assertStatus(401)
+  assert.equal(response.error.text, 'InvalidJwtToken: E_INVALID_JWT_TOKEN: jwt must be provided')
+})
