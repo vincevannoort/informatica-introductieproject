@@ -12,6 +12,13 @@ const rules = {
 class RelationController {
 
   /**
+   * Calculate insight based on all proposals
+   */
+  async calculateTotalInsight({ request }) {
+    console.log('Start calculating total insight (calculate for each proposal)')
+  }
+
+  /**
    * Get all relations, with their contacts
    * @returns {object} - all relations with contacts
    */
