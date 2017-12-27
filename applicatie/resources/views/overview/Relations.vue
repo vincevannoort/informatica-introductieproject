@@ -10,7 +10,7 @@
         </div>
         <div class="column is-two-third">
           <box :title="'Statistics'">
-            todo: display statistics here
+            <relations-graph :relations="relations"></relations-graph>
           </box>
         </div>
       </div>
@@ -24,8 +24,12 @@
 
 <script>
   import Relation from '../../controllers/RelationController'
+  import RelationsGraphComponent from '../../components/graphs/RelationsGraph'
 
-  export default{
+  export default {
+    components: {
+      'relations-graph': RelationsGraphComponent
+    },
     data() {
       return {
         relations: [],

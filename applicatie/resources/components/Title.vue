@@ -61,6 +61,7 @@
     align-items: flex-start;
     margin-bottom: 2rem;
     position: relative;
+    min-height: 115px;
 
     .main-action-buttons {
       box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.10);
