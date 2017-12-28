@@ -36,7 +36,7 @@ module.exports = (cli, runner) => {
     |
     */
     await ace.call('migration:run')
-    await User.create({ profession: 'Tester', first_name: 'test', last_name: 'tester', username: 'test', password: 'test', email: 'test@tester.nl' })
+    await User.create({ profession: 'Tester', first_name: 'Test', last_name: 'Tester', username: 'test', password: 'test', email: 'test@tester.nl' })
   })
 
   runner.after(async () => {

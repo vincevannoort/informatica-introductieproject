@@ -6,12 +6,12 @@
     <div class="box authentication-box">
       <div class="field">
         <div class="control">
-          <input class="input" type="text" placeholder="Username" @keyup.enter="submit" v-model="credentials.username">
+          <input class="input" type="text" name="username" placeholder="Username" @keyup.enter="submit" v-model="credentials.username">
         </div>
       </div>
       <div class="field">
         <div class="control">
-          <input class="input" type="password" placeholder="Password" @keyup.enter="submit" v-model="credentials.password">
+          <input class="input" type="password" name="password" placeholder="Password" @keyup.enter="submit" v-model="credentials.password">
         </div>
       </div>
       <div class="field">
@@ -73,7 +73,7 @@
   }
 
   .authentication-box {
-    height: auto;
+    height: auto !important;
     background: white;
     width: 440px;
     max-width: 100%;

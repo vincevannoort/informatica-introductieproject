@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-relation-create-edit">
     <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
@@ -9,7 +9,7 @@
               <div class="field column is-half">
                 <label class="label">Name</label>
                 <div class="control">
-                  <input v-model="relation.name" class="input" type="text" placeholder="Relation name">
+                  <input v-model="relation.name" name="name" class="input" type="text" placeholder="Relation name">
                 </div>
               </div>
             </div>
