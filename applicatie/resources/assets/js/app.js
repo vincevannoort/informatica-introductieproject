@@ -84,6 +84,6 @@ router.beforeEach((to, from, next) => {
 | Vue
 |--------------------------------------------------------------------------
 */
-const app = new Vue({
+window.app = new Vue({
   router,
 }).$mount('#app')

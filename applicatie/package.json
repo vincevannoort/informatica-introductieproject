@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/validator": "^4.0.8",
     "@adonisjs/vow": "^1.0.13",
+    "@adonisjs/vow-browser": "^1.0.5",
     "animate.css": "^3.5.2",
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
