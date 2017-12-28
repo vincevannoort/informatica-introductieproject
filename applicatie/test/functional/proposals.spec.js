@@ -14,11 +14,13 @@ skip('Validate a existing proposal', async ({ assert }) => {})
 
 skip('Attach a contact to an proposal', async ({ assert }) => {})
 
+skip('Attach a contact to multiple proposals', async ({ assert }) => {})
+
 skip('Attach multiple contacts to an proposal', async ({ assert }) => {})
 
-skip('Calculate insight after adding a new contact to an proposal', async ({ assert }) => {})
+skip('Recalculate insight after adding a new contact to an proposal', async ({ assert }) => {})
 
-skip('Calculate insight after changing contact information of an contact attached to an proposal', async ({ assert }) => {})
+skip('Recalculate insight after changing contact information of an contact attached to an proposal', async ({ assert }) => {})
 
 skip('Delete a existing proposal', async ({ assert }) => {})
 
