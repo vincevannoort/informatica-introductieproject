@@ -2,7 +2,7 @@
   <div class="box">
     <div class="box-header-wrapper">
       <div class="box-header" v-if="title">{{ title }}</div>
-      <router-link class="box-header-link button is-small" v-if="action" :to="`${ action.route }`">
+      <router-link class="box-header-link button is-small" :title="action.title" v-if="action" :to="`${ action.route }`">
         {{ action.title }}
       </router-link>
     </div>

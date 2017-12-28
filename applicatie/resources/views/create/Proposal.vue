@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-proposal-create-edit">
     <main-view-title :title="(createView) ? `Create a new proposal` : `Edit existing proposal`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">

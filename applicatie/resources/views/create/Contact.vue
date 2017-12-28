@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-contact-create-edit">
     <main-view-title :title="(createView) ? `Create a new contact` : `Edit existing contact`"></main-view-title>
     <div class="columns">
       <div class="column is-two-thirds">
