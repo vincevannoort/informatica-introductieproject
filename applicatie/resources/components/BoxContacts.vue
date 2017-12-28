@@ -40,8 +40,13 @@
 </template>
 
 <script>
-  export default{
-    props: ['title', 'action', 'contacts']
+  import SocialMediaComponent from './SocialMedia'
+
+  export default {
+    props: ['title', 'action', 'contacts'],
+    components: {
+      'social-media': SocialMediaComponent
+    }
   }
 </script>
 

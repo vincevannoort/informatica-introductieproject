@@ -23,12 +23,16 @@
 </template>
 
 <script>
-  import Relation from '../../controllers/RelationController'
+  import BoxRelationsComponent from '../../components/BoxRelations'
+  import BoxRelationComponent from '../../components/BoxRelation'
   import RelationsGraphComponent from '../../components/graphs/RelationsGraph'
+  import Relation from '../../controllers/RelationController'
 
   export default {
     components: {
-      'relations-graph': RelationsGraphComponent
+      'relations-graph': RelationsGraphComponent,
+      'box-relations': BoxRelationsComponent,
+      'box-relation': BoxRelationComponent,
     },
     data() {
       return {

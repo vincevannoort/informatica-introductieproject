@@ -5,57 +5,17 @@ import Authentication from './authentication'
 
 /*
 |--------------------------------------------------------------------------
-| Views & Components
+| Global Components
 |--------------------------------------------------------------------------
 */
 
-// views
-import AuthenticationView from '../../views/Authentication'
-import OverviewView from '../../views/Overview'
-import DashboardView from '../../views/Dashboard'
-import ProfileView from '../../views/Profile'
-import NotFoundView from '../../views/NotFound'
-
-// Details & Overviews
-import RelationView from '../../views/single/Relation'
-import RelationCreateView from '../../views/create/Relation'
-import RelationsView from '../../views/overview/Relations'
-import ProposalView from '../../views/single/Proposal'
-import ProposalCreateView from '../../views/create/Proposal'
-import ContactView from '../../views/single/Contact'
-import ContactCreateView from '../../views/create/Contact'
-import UserView from '../../views/single/User'
-import UsersView from '../../views/overview/Users'
-
 // components
-import SidebarComponent from '../../components/Sidebar'
-import TitleComponent from '../../components/Title'
-import ProfileComponent from '../../components/Profile'
-import BoxComponent from '../../components/Box'
-import BoxContactsComponent from '../../components/BoxContacts'
-import BoxRelationsComponent from '../../components/BoxRelations'
-import BoxProposalsComponent from '../../components/BoxProposals'
-import BoxRelationComponent from '../../components/BoxRelation'
-import SocialMediaComponent from '../../components/SocialMedia'
-Vue.component('main-view-title', TitleComponent)
-Vue.component('profile', ProfileComponent)
-Vue.component('sidebar', SidebarComponent)
-Vue.component('box', BoxComponent)
-Vue.component('box-contacts', BoxContactsComponent)
-Vue.component('box-relations', BoxRelationsComponent)
-Vue.component('box-proposals', BoxProposalsComponent)
-Vue.component('box-relation', BoxRelationComponent)
-Vue.component('social-media', SocialMediaComponent)
-
-// icons
-import dashboardIcon from '../../components/icons/dashboard'
-import actionsIcon from '../../components/icons/actions'
-import relationIcon from '../../components/icons/relation'
-import profileIcon from '../../components/icons/profile'
-Vue.component('icon-dashboard', dashboardIcon)
-Vue.component('icon-actions', actionsIcon)
-Vue.component('icon-relation', relationIcon)
-Vue.component('icon-profile', profileIcon)
+Vue.component('main-view-title', require('../../components/Title'))
+Vue.component('box', require('../../components/Box'))
+Vue.component('icon-dashboard', require('../../components/icons/dashboard'))
+Vue.component('icon-actions', require('../../components/icons/actions'))
+Vue.component('icon-relation', require('../../components/icons/relation'))
+Vue.component('icon-profile', require('../../components/icons/profile'))
 
 /*
 |--------------------------------------------------------------------------
@@ -63,33 +23,33 @@ Vue.component('icon-profile', profileIcon)
 |--------------------------------------------------------------------------
 */
 const routes = [
-  { path: '/login', component: AuthenticationView },
-  { path: '/', component: OverviewView, meta: { requiresAuth: true },
+  { path: '/login', component: require('../../views/Authentication') },
+  { path: '/', component: require('../../views/Overview'), meta: { requiresAuth: true },
     children: [
-      { path: '/', component: DashboardView, meta: { requiresAuth: true } },
+      { path: '/', component: require('../../views/Dashboard'), meta: { requiresAuth: true } },
 
       // users
 
       // relations
-      { path: '/relations', name: 'relations-overview', component: RelationsView, meta: { requiresAuth: true } },
-      { path: '/relations/create', name: 'relations-create', component: RelationCreateView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id', name: 'relations-single', component: RelationView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: RelationCreateView, meta: { requiresAuth: true } },
+      { path: '/relations', name: 'relations-overview', component: require('../../views/overview/Relations'), meta: { requiresAuth: true } },
+      { path: '/relations/create', name: 'relations-create', component: require('../../views/create/Relation'), meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id', name: 'relations-single', component: require('../../views/single/Relation'), meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: require('../../views/create/Relation'), meta: { requiresAuth: true } },
 
       // proposals
-      { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: ProposalCreateView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: ProposalView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true } },
       // { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: ProposalCreateView, meta: { requiresAuth: true } },
 
       // contacts
-      { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: ContactCreateView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: ContactView, meta: { requiresAuth: true } },
-      { path: '/relations/:relation_id/contacts/:contact_id/edit', name: 'contacts-edit', component: ContactCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: require('../../views/create/Contact'), meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: require('../../views/single/Contact'), meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/contacts/:contact_id/edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true } },
 
 
       // profile
-      { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
-      { path: '*', name: '404', component: NotFoundView },
+      { path: '/profile', component: require('../../views/Profile'), meta: { requiresAuth: true } },
+      { path: '*', name: '404', component: require('../../views/NotFound') },
     ]
   },
 ]

@@ -23,6 +23,15 @@
   </div>
 </template>
 
+<script>
+  import ProfileComponent from '../components/Profile'
+  export default {
+    components: {
+      'profile': ProfileComponent
+    }
+  }
+</script>
+
 <style lang="scss">
   @import "../assets/scss/variables/colors";
 

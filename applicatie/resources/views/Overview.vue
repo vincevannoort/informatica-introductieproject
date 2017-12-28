@@ -15,6 +15,15 @@
     </div>
 </template>
 
+<script>
+  import SidebarComponent from '../components/Sidebar'
+  export default {
+    components: { 
+      'sidebar': SidebarComponent
+    },
+  }
+</script>
+
 <style lang="scss">
   $main-padding: 60px;
 

@@ -48,10 +48,16 @@
 </template>
 
 <script>
+  import BoxContactsComponent from '../../components/BoxContacts'
+  import BoxProposalsComponent from '../../components/BoxProposals'
   import Relation from '../../controllers/RelationController'
 
   export default {
     name: 'relation',
+    components: { 
+      'box-contacts': BoxContactsComponent,
+      'box-proposals': BoxProposalsComponent
+    },
     data(){
       return {
         relation: {}
