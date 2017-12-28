@@ -9,7 +9,6 @@ tmp
 
 # Lock files
 package-lock.json
-yarn.lock
 
 # The development sqlite file
 *.sqlite
