@@ -17,11 +17,7 @@ class RelationController {
   async calculateTotalInsight({ params }) {
     console.log('Start calculating total insight (calculate for each proposal)')
     const relation = await Relation.find(params.id)
-    const proposals = await relation.proposals().with('contacts').fetch()
-    for (let proposal of proposals.rows) {
-      await proposal.calculateInsight()
-    }
-    return proposals
+    return await relation.calculateInsightForEveryProposal()
   }
 
   /**

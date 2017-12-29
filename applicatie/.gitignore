@@ -24,3 +24,6 @@ v8-compile-cache-0
 
 # Screenshots folder
 screenshots
+
+# VSCODE folder
+.vscode

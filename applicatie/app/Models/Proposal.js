@@ -13,12 +13,15 @@ class Proposal extends Model {
 		return this.belongsToMany('App/Models/Contact').pivotTable('contact_proposals')
 	}
 
+  /**
+   * Calculate insight, this is where the magic happens
+   */
   async calculateInsight() {
-    console.log(chalk.green.underline(`Start calculating insight for '${this.name}'`))
+    console.log(chalk.green.underline(`Start calculating insight for: '${this.name}', with insight of: ${this.insight}.`))
     const contacts = await this.contacts().fetch()
     const relation = await this.relation().fetch()
-    console.info(`amount of contacts: ${contacts.rows.length}`)
-    console.info(`with a relation: ${relation.name}`)
+    const insight = this.insight
+    return insight
   }
 
 }
