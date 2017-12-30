@@ -41,6 +41,7 @@
     "laravel-mix": "^1.6.1",
     "minireset.css": "^0.0.3",
     "moment": "^2.19.4",
+    "node-schedule": "^1.2.5",
     "noty": "^3.1.4",
     "sqlite3": "^3.1.13",
     "vee-validate": "^2.0.0-rc.27",
