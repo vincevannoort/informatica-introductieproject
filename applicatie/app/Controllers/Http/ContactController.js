@@ -2,6 +2,7 @@
 
 const { validateAll } = use('Validator')
 const Contact = use('App/Models/Contact')
+const Relation = use('App/Models/Relation')
 
 // set rules which must be validated before storing/updating a contact
 const rules = {
@@ -90,7 +91,7 @@ class ContactController {
     try {
       // get contact data from request
       const contactData = request.all().contact
-      
+
       // validate given request parameters
       const validation = await validateAll(contactData, rules)
 
@@ -128,7 +129,14 @@ class ContactController {
     // try to delete the contact with contact id from the request
     try {
       const contact = await Contact.find(params.id)
-      return await contact.delete()
+      const relations = await contact.relations().fetch()
+
+      // calculate insight for the relations attached to the contact
+      await Relation.calculateInsightForEveryProposalByRelations(relations.rows)
+
+      // delete the contact
+      await contact.delete()
+      return response.status(200).send('Contact deleted')
     }
     // if there was an error while trying to delete a contact, return an error
     catch (error) {

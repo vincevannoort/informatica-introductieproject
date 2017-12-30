@@ -57,9 +57,9 @@ class Proposal extends Model {
     (insight_offering_and_competitor_analysis_amount * insight_offering_and_competitor_analysis_score) +
     (insight_effects_of_the_changes_amount * insight_effects_of_the_changes_score)
 
-    console.log(calculated_insight_score)
-
-    return this.insight
+    // TEMPORARY RANDOM FOR TESTING
+    let temporaryRandomInsight = Math.floor(Math.random() * 100) + 1
+    return temporaryRandomInsight
   }
 
 }

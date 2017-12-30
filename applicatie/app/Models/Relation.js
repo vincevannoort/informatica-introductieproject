@@ -15,7 +15,14 @@ class Relation extends Model {
 
 	proposals() {
 		return this.hasMany('App/Models/Proposal')
-	}
+  }
+
+  static async calculateInsightForEveryProposalByRelations(relations) {
+    relations = [].concat(relations || [])
+    relations.map(async function(relation) {
+      await relation.calculateInsightForEveryProposal()
+    })
+  }
 
   /**
    * Calculate insight for every proposals
