@@ -3,7 +3,7 @@
     <template v-if="proposals && proposals.length">
       <router-link class="relation-proposal" tag="div" v-for="proposal in this.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
         <div class="relation-proposal-header">
-          {{ proposal.name }}
+          <span>€{{ proposal.value }}</span>{{ proposal.name }}
         </div>
         <div class="relation-proposal-body">
           <table>
@@ -75,6 +75,16 @@
       border-bottom: 1px solid $border-grey;
       font-weight: 500;
       color: $almost-black;
+      span {
+        color: $red;
+        text-transform: uppercase;
+        &:after {
+          content: '-';
+          color: $almost-black;
+          padding-left: 0.8rem;
+          padding-right: 0.8rem;
+        }
+      }
     }
 
     .relation-proposal-body {

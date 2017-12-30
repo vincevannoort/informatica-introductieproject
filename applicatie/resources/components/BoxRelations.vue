@@ -13,8 +13,10 @@
                   <div class="control">
                     <div class="select">
                       <select v-model="directionFilter">
-                        <option value="desc">Most insight</option>
-                        <option value="asc">Least insight</option>
+                        <option value="insight_total-desc">Most insight</option>
+                        <option value="insight_total-asc">Least insight</option>
+                        <option value="value_total-desc">Highest value</option>
+                        <option value="value_total-asc">Lowest value</option>
                       </select>
                     </div>
                   </div>
@@ -60,12 +62,14 @@
       <table style="width: 100%;">
         <tr>
           <th>Relation</th>
+          <th>Value</th>
           <th>Since</th>
           <th>Insight</th>
         </tr>
         <template v-if="sortedRelations && sortedRelations.length">
           <router-link tag="tr" v-for="relation in sortedRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
             <td>{{ relation.name }}</td>
+            <td>€{{ relation.value_total }}</td>
             <td>{{ relation.created_at | moment("from") }}</td>
             <td>
               <div class="relations-insight">
@@ -80,11 +84,13 @@
               <td>No relations found for '{{ relationFilter }}'.</td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
           </template>
           <template v-else>
             <tr>
               <td>No relations added yet.</td>
+              <td></td>
               <td></td>
               <td></td>
             </tr>
@@ -103,7 +109,7 @@
     data() {
       return {
         relationFilter: '',
-        directionFilter: 'desc',
+        directionFilter: 'insight_total-desc',
         sortedFilter: { min: 0, max: 100 },
         sortedFilterData: [
           { min: 0, max: 100 },
@@ -131,14 +137,17 @@
         let self = this
         if (this.relationFilter) {
           return this.filteredAmountRelations.filter(function(item) {
-            return item['name'].toLowerCase().includes(self.filteredAmountRelations.toLowerCase())
+            return item['name'].toLowerCase().includes(self.relationFilter.toLowerCase())
           })
         } else {
           return this.filteredAmountRelations
         }
       },
       sortedRelations() {
-        return orderBy(this.filteredAmountRelations, ['insight_total'], [this.directionFilter])
+        let filter = this.directionFilter.split('-')
+        let column = filter[0]
+        let direction = filter[1]
+        return orderBy(this.filteredNameRelations, [column], [direction])
       }
     }
   }

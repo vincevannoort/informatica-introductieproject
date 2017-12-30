@@ -54,7 +54,21 @@ class Relation extends Model {
     this.merge({ insight_total: totalInsightCalculated })
     await this.save()
 
+    // calculate value
+    await this.calculateValue()
+
     return totalInsightCalculated.toString()
+  }
+
+  /**
+   * Calculate value for every proposals and set own value_total as its value
+   */
+  async calculateValue() {
+    const proposals = await this.proposals().fetch()
+    const values = proposals.rows.map((proposal) => proposal.value)
+    const totalValue = values.reduce((a, b) => a + b, 0)
+    this.merge({ value_total: totalValue })
+    await this.save()
   }
 
 }

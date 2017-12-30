@@ -12,15 +12,6 @@ const rules = {
 class RelationController {
 
   /**
-   * Calculate insight based on all proposals
-   */
-  async calculateTotalInsight({ params }) {
-    console.log('Start calculating total insight (calculate for each proposal)')
-    const relation = await Relation.find(params.id)
-    return await relation.calculateInsightForEveryProposal()
-  }
-
-  /**
    * Get all relations, with their contacts
    * @returns {object} - all relations with contacts
    */
@@ -94,7 +85,7 @@ class RelationController {
       if (validation.fails()) {
         return response.status(422).send(validation.messages())
       }
-    
+
       // merge passed data to relation object
       const relation = await Relation.find(relationData.id)
       relation.merge({ name: relationData.name })

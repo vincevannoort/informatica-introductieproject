@@ -6,5 +6,6 @@ Factory.blueprint('App/Models/Relation', async (faker) => {
     name: faker.company(),
     active: true,
     insight_total: faker.integer({min: 60, max: 100}),
+    value_total: faker.integer({min: 5000, max: 100000}),
   }
 })
