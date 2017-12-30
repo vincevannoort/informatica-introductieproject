@@ -56,6 +56,7 @@ class ContactController {
     // validate given request parameters
     let contactData = request.all().contact
     let relation_id = request.all().relation_id
+    const relation = await Relation.find(relation_id)
 
     // validate given request parameters
     const validation = await validateAll(contactData, rules)
@@ -76,6 +77,9 @@ class ContactController {
 
     // attach relation to created contact
     await contact.relations().attach([relation_id])
+
+    // calculate insight for the relation attached to the contact
+    await Relation.calculateInsightForEveryProposalByRelations(relation)
 
     // return contact data
     return contact
@@ -102,6 +106,7 @@ class ContactController {
 
       // merge passed data to contact object
       const contact = await Contact.find(contactData.id)
+      const relations = await contact.relations().fetch()
       contact.merge({
         profession: contactData.profession,
         first_name: contactData.first_name,
@@ -111,6 +116,10 @@ class ContactController {
       })
       // save the merged data to database
       await contact.save()
+
+      // calculate insight after contact has been updated for the relations attached to the updated contact
+      if (relations.rows && relations.rows.length) { await Relation.calculateInsightForEveryProposalByRelations(relations.rows) }
+
       return contact
     }
     // if there was an error while trying to delete a contact, return an error
@@ -131,11 +140,12 @@ class ContactController {
       const contact = await Contact.find(params.id)
       const relations = await contact.relations().fetch()
 
-      // calculate insight for the relations attached to the contact
-      await Relation.calculateInsightForEveryProposalByRelations(relations.rows)
-
       // delete the contact
       await contact.delete()
+
+      // calculate insight after contact has been deleted for the relations attached to the deleted contact
+      if (relations.rows && relations.rows.length) { await Relation.calculateInsightForEveryProposalByRelations(relations.rows) }
+
       return response.status(200).send('Contact deleted')
     }
     // if there was an error while trying to delete a contact, return an error

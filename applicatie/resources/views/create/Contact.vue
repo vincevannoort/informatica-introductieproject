@@ -154,7 +154,7 @@
       showCreatedSuccess: {
         title: 'Created contact',
         message: 'Created contact successfully',
-        type: 'error'
+        type: 'success'
       },
       showEditedSuccess: {
         title: 'Edited contact',

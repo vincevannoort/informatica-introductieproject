@@ -17,6 +17,10 @@ class Relation extends Model {
 		return this.hasMany('App/Models/Proposal')
   }
 
+  /**
+   * Calculate insight for every proposals when relations are passed, can be used for an relations array
+   * @param {(Relation|Relation[])} relations - a relation type or relations array
+   */
   static async calculateInsightForEveryProposalByRelations(relations) {
     relations = [].concat(relations || [])
     relations.map(async function(relation) {
