@@ -7,6 +7,37 @@
     @edit="edit"
     @remove="remove"
     ></main-view-title>
+    <div class="columns">
+      <div class="column">
+        <box :title="'Contact information'">
+          information
+        </box>
+        <div class="columns">
+          <div class="column">
+            <box :title="'Notes'">
+              information
+            </box>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <box :title="'Influence'">
+              information
+            </box>
+          </div>
+          <div class="column">
+            <box :title="'Need for change'">
+              information
+            </box>
+          </div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <box :title="'Social profile'">
+          information
+        </box>
+      </div>
+    </div>
   </div>
 </template>
 
