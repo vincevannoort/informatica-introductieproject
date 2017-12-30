@@ -1,49 +1,54 @@
 <template>
   <box :title="title" :action="action">
-    <router-link class="relation-proposal" tag="div" v-for="proposal in this.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
-      <div class="relation-proposal-header">
-        {{ proposal.name }}
-      </div>
-      <div class="relation-proposal-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Involved contacts</th>
-              <th>Last updated</th>
-              <th>Other information</th>
-              <th>Insight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="relation-proposal-contacts" v-if="proposal.contacts && proposal.contacts.length">
-                  <div>
-                    <div v-for="contact in proposal.contacts" :key="contact.id">
-                      <span>{{ contact.profession }}</span> - {{ contact.first_name }} {{ contact.last_name }}
+    <template v-if="proposals && proposals.length">
+      <router-link class="relation-proposal" tag="div" v-for="proposal in this.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
+        <div class="relation-proposal-header">
+          {{ proposal.name }}
+        </div>
+        <div class="relation-proposal-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Involved contacts</th>
+                <th>Last updated</th>
+                <th>Other information</th>
+                <th>Insight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="relation-proposal-contacts" v-if="proposal.contacts && proposal.contacts.length">
+                    <div>
+                      <div v-for="contact in proposal.contacts" :key="contact.id">
+                        <span>{{ contact.profession }}</span> - {{ contact.first_name }} {{ contact.last_name }}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div v-else>
-                  No contacts added yet
-                </div>
-              </td>
-              <td class="relation-proposal-dates">
-                <div>
-                  <div>{{ proposal.updated_at | moment("from") }}</div>
-                </div>
-              </td>
-              <td>information</td>
-              <td>
-                <div class="relations-insight">
-                  <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }"></div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </router-link>
+                  <div v-else>
+                    No contacts added yet
+                  </div>
+                </td>
+                <td class="relation-proposal-dates">
+                  <div>
+                    <div>{{ proposal.updated_at | moment("from") }}</div>
+                  </div>
+                </td>
+                <td>information</td>
+                <td>
+                  <div class="relations-insight">
+                    <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </router-link>
+    </template>
+    <template v-else>
+      No proposals added yet
+    </template>
   </box>
 </template>
 
@@ -71,7 +76,7 @@
       font-weight: 500;
       color: $almost-black;
     }
-    
+
     .relation-proposal-body {
       table {
         width: 100%;
@@ -96,7 +101,7 @@
     th, td {
       padding: 0.5rem 1rem;
     }
-    
+
     &:hover {
       border: 1px solid $red;
       background-color: transparentize($red, 0.96);
