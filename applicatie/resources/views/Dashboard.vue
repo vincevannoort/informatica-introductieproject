@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default{
+  export default {
     data(){
       return {
         relations: [],
@@ -27,13 +27,13 @@
 <style lang="scss">
   $main-padding: 60px;
 
-  .main-content { 
-    height: 100vh; 
-    min-height: 100vh; 
+  .main-content {
+    height: 100vh;
+    min-height: 100vh;
     overflow: auto;
   }
 
   .main-inner-content {
-    padding: $main-padding; 
+    padding: $main-padding;
   }
 </style>

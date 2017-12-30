@@ -30,7 +30,7 @@
   import authentication from '../assets/js/authentication'
   import authenticationChart from '../assets/js/graphs/authentication-chart'
 
-  export default{
+  export default {
     data(){
       return {
         user: authentication.user,

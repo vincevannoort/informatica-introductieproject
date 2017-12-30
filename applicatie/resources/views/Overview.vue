@@ -18,7 +18,7 @@
 <script>
   import SidebarComponent from '../components/Sidebar'
   export default {
-    components: { 
+    components: {
       'sidebar': SidebarComponent
     },
   }
@@ -27,13 +27,13 @@
 <style lang="scss">
   $main-padding: 60px;
 
-  .main-content { 
-    height: 100vh; 
-    min-height: 100vh; 
+  .main-content {
+    height: 100vh;
+    min-height: 100vh;
     overflow: auto;
   }
 
   .main-inner-content {
-    padding: $main-padding; 
+    padding: $main-padding;
   }
 </style>

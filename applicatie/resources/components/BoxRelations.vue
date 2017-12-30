@@ -106,7 +106,7 @@
 </template>
 
 <script>
-  export default{
+  export default {
     props: ['title', 'action', 'relations'],
     data() {
       return {
@@ -115,7 +115,7 @@
     },
     computed: {
       filteredRelations() {
-        var self = this;
+        var self = this
         // if there is a filter typed
         if (this.relationFilter) {
           return this.relations.filter(function(item) {
@@ -142,9 +142,9 @@
       &:not(:first-child):nth-of-type(odd) { background-color: $background-grey; border: 1px solid $background-grey; }
       &:not(:first-child):nth-of-type(even) { background-color: darken($background-grey, 2%); border: 1px solid $background-grey; }
       border-right: 1px solid $border-grey;
-      &:not(:first-child):nth-of-type(2) { border-top: 1px solid $border-grey; } 
-      &:not(:first-child):hover { box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25); border: 1px solid $red; 
-        td { background-color: transparentize($red, 0.96); border-top: 1px solid $red; } 
+      &:not(:first-child):nth-of-type(2) { border-top: 1px solid $border-grey; }
+      &:not(:first-child):hover { box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25); border: 1px solid $red;
+        td { background-color: transparentize($red, 0.96); border-top: 1px solid $red; }
       }
     }
   }

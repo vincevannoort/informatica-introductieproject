@@ -13,7 +13,7 @@
 <script>
   import Proposal from '../../controllers/ProposalController'
 
-  export default{
+  export default {
     name: 'proposal',
     data(){
       return {

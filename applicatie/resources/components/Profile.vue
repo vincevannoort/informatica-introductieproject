@@ -16,7 +16,7 @@
 <script>
   import Authentication from '../assets/js/authentication'
 
-  export default{
+  export default {
     data(){
       return {
         user: {}

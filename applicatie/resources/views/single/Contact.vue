@@ -13,7 +13,7 @@
 <script>
   import Contact from '../../controllers/ContactController'
 
-  export default{
+  export default {
     name: 'contact',
     data(){
       return {

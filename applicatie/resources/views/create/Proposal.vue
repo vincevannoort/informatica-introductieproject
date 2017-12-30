@@ -56,7 +56,7 @@
 <script>
   import Relation from '../../controllers/RelationController'
 
-  export default{
+  export default {
     data(){
       return {
         proposal: {
