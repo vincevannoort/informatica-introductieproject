@@ -4,7 +4,10 @@ let count = 0
 const hideBrowser = true
 
 const { before, skip, failing, test, trait } = use('Test/Suite')('Browser')
-trait('Test/Browser', { headless: hideBrowser ? true : false })
+trait('Test/Browser', { 
+  headless: hideBrowser ? true : false, 
+  args: ['--no-sandbox', '--disable-setuid-sandbox'] // for continious integration, has some security issues but should not matter due to running own application
+})
 trait('DatabaseTransactions')
 
 // wait for https://github.com/adonisjs/vow-browser/pull/3
