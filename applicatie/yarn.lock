@@ -390,9 +390,9 @@ array-unique@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.2.1.tgz#a1d97ccafcbc2625cc70fadceb36a50c58b01a53"
 
-arraybuffer.slice@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/arraybuffer.slice/-/arraybuffer.slice-0.0.6.tgz#f33b2159f0532a3f3107a272c0ccfbd1ad2979ca"
+arraybuffer.slice@~0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/arraybuffer.slice/-/arraybuffer.slice-0.0.7.tgz#3bbc4275dd584cc1b10809b89d4e8b63a69e7675"
 
 asn1.js@^4.0.0:
   version "4.9.2"
@@ -1221,8 +1221,8 @@ browser-sync-webpack-plugin@^1.2.0:
     lodash "^4"
 
 browser-sync@^2.18.13:
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.22.0.tgz#2793c19620ee95a372045caca3f76c15509e0e72"
+  version "2.23.1"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.23.1.tgz#d3ed798bce5c67bc6b65bbe4d31e83f6f7314ca7"
   dependencies:
     browser-sync-ui v1.0.1
     bs-recipes "1.3.4"
@@ -2506,11 +2506,11 @@ engine.io-client@~3.1.0:
     yeast "0.1.2"
 
 engine.io-parser@~2.1.0, engine.io-parser@~2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-2.1.1.tgz#e0fb3f0e0462f7f58bb77c1a52e9f5a7e26e4668"
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-2.1.2.tgz#4c0f4cff79aaeecbbdcfdea66a823c6085409196"
   dependencies:
     after "0.8.2"
-    arraybuffer.slice "0.0.6"
+    arraybuffer.slice "~0.0.7"
     base64-arraybuffer "0.1.5"
     blob "0.0.4"
     has-binary2 "~1.0.2"
