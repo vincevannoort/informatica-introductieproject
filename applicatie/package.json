@@ -39,6 +39,7 @@
     "cross-env": "^5.1.1",
     "font-awesome": "^4.7.0",
     "laravel-mix": "^1.6.1",
+    "lodash.orderby": "^4.6.0",
     "minireset.css": "^0.0.3",
     "moment": "^2.19.4",
     "node-schedule": "^1.2.5",

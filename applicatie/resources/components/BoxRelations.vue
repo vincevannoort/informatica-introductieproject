@@ -12,9 +12,9 @@
                 <div class="field-body">
                   <div class="control">
                     <div class="select">
-                      <select>
-                        <option>Most insight</option>
-                        <option>Least insight</option>
+                      <select v-model="directionFilter">
+                        <option value="desc">Most insight</option>
+                        <option value="asc">Least insight</option>
                       </select>
                     </div>
                   </div>
@@ -29,18 +29,8 @@
                 <div class="field-body">
                   <div class="control">
                     <div class="select">
-                      <select>
-                        <option>insight: 0% - 100%</option>
-                        <option>insight: 0% - 9%</option>
-                        <option>insight: 10% - 19%</option>
-                        <option>insight: 20% - 29%</option>
-                        <option>insight: 30% - 39%</option>
-                        <option>insight: 40% - 49%</option>
-                        <option>insight: 50% - 59%</option>
-                        <option>insight: 60% - 69%</option>
-                        <option>insight: 70% - 79%</option>
-                        <option>insight: 80% - 89%</option>
-                        <option>insight: 90% - 100%</option>
+                      <select v-model="sortedFilter">
+                        <option v-for="filter in sortedFilterData" :key="`${filter.min}-${filter.max}`" :value="filter">insight: {{ filter.min }}% - {{ filter.max }}%</option>
                       </select>
                     </div>
                   </div>
@@ -52,7 +42,7 @@
         <div class="column">
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <strong>categorie: </strong>
+              <strong>search: </strong>
             </div>
             <div class="field-body">
               <div class="control has-icons-right">
@@ -73,8 +63,8 @@
           <th>Since</th>
           <th>Insight</th>
         </tr>
-        <template v-if="filteredRelations && filteredRelations.length">
-          <router-link tag="tr" v-for="relation in filteredRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
+        <template v-if="sortedRelations && sortedRelations.length">
+          <router-link tag="tr" v-for="relation in sortedRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
             <td>{{ relation.name }}</td>
             <td>{{ relation.created_at | moment("from") }}</td>
             <td>
@@ -106,24 +96,49 @@
 </template>
 
 <script>
+ import orderBy from 'lodash.orderby'
+
   export default {
     props: ['title', 'action', 'relations'],
     data() {
       return {
         relationFilter: '',
+        directionFilter: 'desc',
+        sortedFilter: { min: 0, max: 100 },
+        sortedFilterData: [
+          { min: 0, max: 100 },
+          { min: 0, max: 9 },
+          { min: 10, max: 19 },
+          { min: 20, max: 29 },
+          { min: 30, max: 39 },
+          { min: 40, max: 49 },
+          { min: 50, max: 59 },
+          { min: 60, max: 69 },
+          { min: 70, max: 79 },
+          { min: 80, max: 89 },
+          { min: 90, max: 100 }
+        ]
       }
     },
     computed: {
-      filteredRelations() {
-        var self = this
-        // if there is a filter typed
+      filteredAmountRelations() {
+        let self = this
+        return this.relations.filter(function(item) {
+          return item['insight_total'] >= self.sortedFilter.min && item['insight_total'] <= self.sortedFilter.max
+        })
+      },
+      filteredNameRelations() {
+        let self = this
         if (this.relationFilter) {
-          return this.relations.filter(function(item) {
-            return item['name'].toLowerCase().includes(self.relationFilter.toLowerCase())
+          return this.filteredAmountRelations.filter(function(item) {
+            return item['name'].toLowerCase().includes(self.filteredAmountRelations.toLowerCase())
           })
         } else {
-          return this.relations
+          return this.filteredAmountRelations
         }
+      },
+      sortedRelations() {
+        return orderBy(this.filteredAmountRelations, ['insight_total'], [this.directionFilter])
       }
     }
   }
