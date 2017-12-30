@@ -17,27 +17,24 @@
         :contacts="relation.contacts"></box-contacts>
       </div>
       <div class="relation-insight-sidebox column is-2">
-        <box :title="'Insight'">
-          <div class="columns">
-            <div class="relation-insight-sidebox-list column">
-              <ul>
-                <li>Strongly supportive</li>
-                <li>Supportive</li>
-                <li>Interested</li>
-                <li>Will go along</li>
-                <li>Neutral</li>
-                <li>Probably won't resist</li>
-                <li>Uninterested</li>
-                <li>Negative</li>
-                <li>Very negative</li>
-              </ul>
-            </div>
-            <div class="relation-insight-sidebox-bar column">
-              <div class="relation-insight">
-                <div class="relation-insight-bar" :style="{ height: relation.insight_total + '%' }"></div>
-              </div>
-            </div>
-          </div>
+        <insight-bar :insight="relation.insight_total"></insight-bar>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <box :title="'Relation information'">
+          information (total financial value, offerings)
+        </box>
+      </div>
+      <div class="column">
+        <box :title="'The customer business window'">
+          information (objectives, product market service, philosophy, organisation)
+        </box>
+      </div>
+      <div class="column">
+        <box :title="'Strengths and Weaknesses'">
+          information (leverage strengths, eliminate weaknesses)
         </box>
       </div>
     </div>
@@ -50,13 +47,15 @@
 <script>
   import BoxContactsComponent from '../../components/BoxContacts'
   import BoxProposalsComponent from '../../components/BoxProposals'
+  import InsightBarComponent from '../../components/InsightBar'
   import Relation from '../../controllers/RelationController'
 
   export default {
     name: 'relation',
-    components: { 
+    components: {
       'box-contacts': BoxContactsComponent,
-      'box-proposals': BoxProposalsComponent
+      'box-proposals': BoxProposalsComponent,
+      'insight-bar': InsightBarComponent
     },
     data(){
       return {
@@ -124,23 +123,6 @@
       > .box-header-wrapper {
         flex: 0 1 auto;
       }
-    }
-  }
-
-  .relation-insight-sidebox-bar {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .relation-insight-sidebox-list {
-    display: flex;
-    font-size: 13px;
-    > ul {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
     }
   }
 </style>
