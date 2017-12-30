@@ -24,6 +24,11 @@ class Relation extends Model {
     console.log(chalk.blue.underline(`Start calculating total insight for '${this.name}'`))
     const proposals = await this.proposals().with('contacts').fetch()
 
+    // return if no proposals exist
+    if (!proposals.rows.length > 0) {
+      return 'no proposals found'
+    }
+
     // start calculating insight for each proposal
     const insights = proposals.rows.map(async function(proposal) {
       return await proposal.calculateInsight()
