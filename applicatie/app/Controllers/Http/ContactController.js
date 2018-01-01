@@ -106,7 +106,6 @@ class ContactController {
 
       // merge passed data to contact object
       const contact = await Contact.find(contactData.id)
-      const relations = await contact.relations().fetch()
       contact.merge({
         profession: contactData.profession,
         first_name: contactData.first_name,
@@ -118,6 +117,7 @@ class ContactController {
       await contact.save()
 
       // calculate insight after contact has been updated for the relations attached to the updated contact
+      const relations = await contact.relations().fetch()
       if (relations.rows && relations.rows.length) { await Relation.calculateInsightForEveryProposalByRelations(relations.rows) }
 
       return contact
