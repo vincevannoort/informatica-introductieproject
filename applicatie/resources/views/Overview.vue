@@ -1,27 +1,23 @@
 <template>
-    <div class="main-content-wrapper columns is-gapless">
-      <div class="column is-3 sidebar-content">
-        <sidebar></sidebar>
-      </div>
-      <div class="column is-9 main-content">
-        <div class="main-inner-content">
-          <transition name="fade" mode="out-in">
-            <keep-alive exclude="relation">
-              <router-view></router-view>
-            </keep-alive>
-          </transition>
-        </div>
+  <div class="main-content-wrapper columns is-gapless">
+    <div class="column is-3 sidebar-content">
+      <sidebar />
+    </div>
+    <div class="column is-9 main-content">
+      <div class="main-inner-content">
+        <transition name="fade" mode="out-in">
+          <keep-alive exclude="relation">
+            <router-view />
+          </keep-alive>
+        </transition>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
   import SidebarComponent from '../components/Sidebar'
-  export default {
-    components: {
-      'sidebar': SidebarComponent
-    },
-  }
+  export default { components: { 'sidebar': SidebarComponent } }
 </script>
 
 <style lang="scss">

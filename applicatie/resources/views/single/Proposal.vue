@@ -1,12 +1,11 @@
 <template>
   <div>
     <main-view-title
-    :title="`${proposal.name}`"
-    :back="`back to ${proposal.relation.name}`"
-    @back="back"
-    @edit="edit"
-    @remove="remove"
-    ></main-view-title>
+      :title="`${proposal.name}`"
+      :back="`back to ${proposal.relation.name}`"
+      @back="back"
+      @edit="edit"
+      @remove="remove"/>
     <div class="columns">
       <div class="column">
         <box :title="'Internal power and sources'">
@@ -14,7 +13,7 @@
         </box>
       </div>
       <div class="column is-2">
-        <insight-bar :insight="proposal.insight"></insight-bar>
+        <insight-bar :insight="proposal.insight" />
       </div>
     </div>
     <div class="columns">
@@ -61,14 +60,10 @@
   import Proposal from '../../controllers/ProposalController'
 
   export default {
-    name: 'proposal',
-    components: {
-      'insight-bar': InsightBarComponent
-    },
-    data(){
-      return {
-        proposal: {}
-      }
+    name: 'Proposal',
+    components: { 'insight-bar': InsightBarComponent },
+    data() {
+      return { proposal: {} }
     },
     activated() {
       this.show()

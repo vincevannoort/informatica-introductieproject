@@ -1,15 +1,20 @@
 {
-    "extends": "airbnb-base",
-    "rules": {
-      "semi": [  "error", "never" ],
-      "class-methods-use-this": [ "off" ],
-      "max-len": [ "off" ],
-      "padded-blocks": [ "error", { "classes": "always" } ],
-      "comma-dangle": [ "warn", "never" ],
-      "strict": [ "warn", "never" ],
-      "no-restricted-syntax": [ "warn", "never" ],
-      "no-plusplus": [ "off" ],
-      "object-curly-newline": [ "warn", { "multiline": true } ]
-    },
-    "globals": { "use": false, "document": false }
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "extends": [ "plugin:vue/recommended" ],
+  "rules": {
+    "max-len": "off",
+    "no-plusplus": "off",
+    "vue/max-attributes-per-line": "off",
+    "semi": [  "error", "never" ],
+    "class-methods-use-this": [ "off" ],
+    "padded-blocks": [ "error", { "classes": "always" } ],
+    "comma-dangle": [ "warn", "never" ],
+    "strict": [ "warn", "never" ],
+    "no-restricted-syntax": [ "warn", "never" ],
+    "object-curly-newline": [ "warn", { "multiline": true } ],
+    "space-before-blocks": [ "error", "always" ]
+  },
+  "globals": { "use": false, "document": false }
 }

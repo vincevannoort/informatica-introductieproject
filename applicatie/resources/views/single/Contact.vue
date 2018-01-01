@@ -1,12 +1,11 @@
 <template>
   <div>
     <main-view-title
-    :title="`${contact.first_name} ${contact.last_name}`"
-    :back="`back to ${currentRelationName.name}`"
-    @back="back"
-    @edit="edit"
-    @remove="remove"
-    ></main-view-title>
+      :title="`${contact.first_name} ${contact.last_name}`"
+      :back="`back to ${currentRelationName.name}`"
+      @back="back"
+      @edit="edit"
+      @remove="remove" />
     <div class="columns">
       <div class="column">
         <box :title="'Contact information'">
@@ -45,11 +44,9 @@
   import Contact from '../../controllers/ContactController'
 
   export default {
-    name: 'contact',
-    data(){
-      return {
-        contact: {}
-      }
+    name: 'Contact',
+    data() {
+      return { contact: {} }
     },
     computed: {
       currentRelationName() {

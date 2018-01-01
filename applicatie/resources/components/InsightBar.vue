@@ -16,7 +16,7 @@
       </div>
       <div class="relation-insight-sidebox-bar column">
         <div class="relation-insight">
-          <div class="relation-insight-bar" :style="{ height: insight + '%' }"></div>
+          <div class="relation-insight-bar" :style="{ height: insight + '%' }" />
         </div>
       </div>
     </div>
@@ -26,7 +26,10 @@
 <script>
 export default {
   props: {
-    insight: Number
+    insight: {
+      type: Number,
+      default: 0
+    }
   }
 }
 </script>

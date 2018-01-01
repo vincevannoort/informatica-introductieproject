@@ -1,23 +1,23 @@
 <template>
   <div>
-    <main-view-title :title="'Relations'"></main-view-title>
+    <main-view-title :title="'Relations'" />
     <div>
       <div class="columns">
         <div class="relations-boxes column is-one-third">
-          <box-relation :amount="firstCategoryRelations" :title="'Relation insight 75% - 100%'"></box-relation>
-          <box-relation :amount="secondCategoryRelations" :title="'Relation insight 50% - 74%'"></box-relation>
-          <box-relation :amount="thirdCategoryRelations" :title="'Relation insight 0% - 49%'"></box-relation>
+          <box-relation :amount="firstCategoryRelations" :title="'Relation insight 75% - 100%'" />
+          <box-relation :amount="secondCategoryRelations" :title="'Relation insight 50% - 74%'" />
+          <box-relation :amount="thirdCategoryRelations" :title="'Relation insight 0% - 49%'" />
         </div>
         <div class="column is-two-third">
           <box :title="'Statistics'">
-            <relations-graph :relations="relations"></relations-graph>
+            <relations-graph :relations="relations" />
           </box>
         </div>
       </div>
-      <box-relations 
-      :title="'Relations'" 
-      :action="{ title: 'Add new relation', route: '/relations/create' }" 
-      :relations="sortedRelations"></box-relations>
+      <box-relations
+        :title="'Relations'"
+        :action="{ title: 'Add new relation', route: '/relations/create' }"
+        :relations="sortedRelations" />
     </div>
   </div>
 </template>
@@ -32,16 +32,14 @@
     components: {
       'relations-graph': RelationsGraphComponent,
       'box-relations': BoxRelationsComponent,
-      'box-relation': BoxRelationComponent,
+      'box-relation': BoxRelationComponent
     },
     data() {
-      return {
-        relations: [],
-      }
+      return { relations: [] }
     },
     computed: {
       sortedRelations: function() {
-        return this.relations.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        return this.relations.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // eslint-disable-line vue/no-side-effects-in-computed-properties
       },
       firstCategoryRelations: function() {
         return this.relations.filter((relation) => relation.insight_total > 75 && relation.insight_total <= 100).length
@@ -51,7 +49,7 @@
       },
       thirdCategoryRelations: function() {
         return this.relations.filter((relation) => relation.insight_total >= 0 && relation.insight_total < 50).length
-      },
+      }
     },
     activated() {
       this.index()

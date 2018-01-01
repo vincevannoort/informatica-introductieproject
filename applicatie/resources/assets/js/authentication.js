@@ -14,13 +14,11 @@ const PROFILE_URL = API_URL + 'users/profile'
 export default {
 
   // User object will let us check authentication status
-  user: {
-    authenticated: false
-  },
+  user: { authenticated: false },
 
   // Send a request to the login URL and save the returned JWT
   login(context, credentials, redirect) {
-    let self = this;
+    let self = this
     axios.post(LOGIN_URL, { credentials })
     .then(function (response) {
       localStorage.setItem('token', response.data.token)
@@ -32,13 +30,13 @@ export default {
       }
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     })
   },
 
   // Send a request to the singup URL and save the returned JWT
   signup(context, credentials, redirect) {
-    let self = this;
+    let self = this
     axios.post(SIGNUP_URL, { credentials })
     .then(function (response) {
       localStorage.setItem('token', response.data.token)
@@ -50,7 +48,7 @@ export default {
       }
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     })
   },
 
@@ -67,7 +65,7 @@ export default {
       this.user.authenticated = true
       return jwt
     } else {
-      this.user.authenticated = false      
+      this.user.authenticated = false
       return false
     }
   },

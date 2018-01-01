@@ -1,5 +1,3 @@
-'use strict'
-
 class Proposal {
 
   /*
@@ -35,9 +33,7 @@ class Proposal {
    * Update single proposal to api endpoint
    */
   static async update({ proposal }) {
-    return axios.patch(`/api/proposals/${proposal.id}`, {
-      proposal: proposal
-    })
+    return axios.patch(`/api/proposals/${proposal.id}`, { proposal: proposal })
     .then(function(response) {
       return response
     })

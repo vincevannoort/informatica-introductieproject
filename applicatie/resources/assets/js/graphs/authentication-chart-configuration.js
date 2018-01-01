@@ -1,5 +1,3 @@
-'use strict'
-
 let authenticationChartConfiguration = {
   scaleShowVerticalLines: false,
   showLines: false,
@@ -12,7 +10,7 @@ let authenticationChartConfiguration = {
     yAxes: [{
       display: false,
       ticks: { beginAtZero: true }
-    }],
+    }]
   }
 }
 

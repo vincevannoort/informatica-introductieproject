@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="authentication-graph-wrapper">
-      <canvas id="authentication-graph"></canvas>
+      <canvas id="authentication-graph"/>
     </div>
   </div>
 </template>
@@ -31,12 +31,12 @@
   import authenticationChart from '../assets/js/graphs/authentication-chart'
 
   export default {
-    data(){
+    data() {
       return {
         user: authentication.user,
         credentials: {
           username: '',
-          password: '',
+          password: ''
         }
       }
     },

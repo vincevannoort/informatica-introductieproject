@@ -1,6 +1,6 @@
 <template>
   <div class="relations-graph-canvas-container">
-    <canvas id="relations-graph-canvas"></canvas>
+    <canvas id="relations-graph-canvas" />
   </div>
 </template>
 
@@ -18,38 +18,53 @@
       yAxes: [{
         gridLines: { drawBorder: false },
         ticks: { beginAtZero: true }
-      }],
+      }]
     }
   }
 
   export default {
     props: {
-      relations: Array,
+      relations: {
+        type: Array,
+        required: true,
+        default: () => []
+      }
+    },
+    data() {
+      return {
+        labels: ['0%', '5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%', '85%', '90%', '95%', '100%'],
+        datasets: [{
+          data: [30, 34, 36, 38, 34, 45, 46, 55, 50, 60, 63, 64, 66, 66, 70, 68, 66, 69, 72, 74, 76, 78],
+          backgroundColor: '#CC0000',
+          borderWidth: 1,
+          showLine: true
+        }]
+      }
     },
     computed: {
       relationsDataSet() {
         let relationsLabels = {
-          '0%': 0, 
-          '5%': 0, 
-          '10%': 0, 
-          '15%': 0, 
-          '20%': 0, 
-          '25%': 0, 
-          '30%': 0, 
-          '35%': 0, 
-          '40%': 0, 
-          '45%': 0, 
-          '50%': 0, 
-          '55%': 0, 
-          '60%': 0, 
-          '65%': 0, 
-          '70%': 0, 
-          '75%': 0, 
-          '80%': 0, 
-          '85%': 0, 
-          '90%': 0, 
-          '95%': 0, 
-          '100%': 0,
+          '0%': 0,
+          '5%': 0,
+          '10%': 0,
+          '15%': 0,
+          '20%': 0,
+          '25%': 0,
+          '30%': 0,
+          '35%': 0,
+          '40%': 0,
+          '45%': 0,
+          '50%': 0,
+          '55%': 0,
+          '60%': 0,
+          '65%': 0,
+          '70%': 0,
+          '75%': 0,
+          '80%': 0,
+          '85%': 0,
+          '90%': 0,
+          '95%': 0,
+          '100%': 0
         }
 
         this.relations.forEach((relation) => {
@@ -59,21 +74,10 @@
         return relationsLabels
       }
     },
-    data() {
-      return {
-        labels: ['0%', '5%', '10%', '15%', '20%', '25%', '30%', '35%', '40%', '45%', '50%', '55%', '60%', '65%', '70%', '75%', '80%', '85%', '90%', '95%', '100%'],
-        datasets: [{ 
-          data: [30, 34, 36, 38, 34, 45, 46, 55, 50, 60, 63, 64, 66, 66, 70, 68, 66, 69, 72, 74, 76, 78],
-          backgroundColor: '#CC0000',
-          borderWidth: 1,
-          showLine: true,
-        }]
-      }
-    },
     mounted() {
       let ctx = document.getElementById('relations-graph-canvas').getContext('2d')
       let gradient = ctx.createLinearGradient(0, 0, 0, 320)
-      gradient.addColorStop(0, 'rgba(204, 3, 0, 1)')   
+      gradient.addColorStop(0, 'rgba(204, 3, 0, 1)')
       gradient.addColorStop(1, 'rgba(204, 3, 0, 0)')
 
       let self = this

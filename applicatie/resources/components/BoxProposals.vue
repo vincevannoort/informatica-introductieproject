@@ -1,7 +1,7 @@
 <template>
   <box :title="title" :action="action">
     <template v-if="proposals && proposals.length">
-      <router-link class="relation-proposal" tag="div" v-for="proposal in this.proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
+      <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
         <div class="relation-proposal-header">
           <span>€{{ proposal.value }}</span>{{ proposal.name }}
         </div>
@@ -37,7 +37,7 @@
                 <td>information</td>
                 <td>
                   <div class="relations-insight">
-                    <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }"></div>
+                    <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
                   </div>
                 </td>
               </tr>
@@ -54,7 +54,21 @@
 
 <script>
   export default{
-    props: ['title', 'action', 'proposals']
+    props: {
+      title: {
+        type: String,
+        default: 'Define a title for this box'
+      },
+      action: {
+        type: Object,
+        required: false,
+        default: () => ({ title: 'Define a title for this box', route: 'Define a route for this action' })
+      },
+      proposals: {
+        type: Object,
+        default: () => {}
+      }
+    }
   }
 </script>
 

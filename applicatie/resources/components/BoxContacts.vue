@@ -26,7 +26,7 @@
               <td>low</td>
               <td>medium</td>
               <td>
-                <social-media></social-media>
+                <social-media />
               </td>
             </tr>
           </table>
@@ -43,9 +43,21 @@
   import SocialMediaComponent from './SocialMedia'
 
   export default {
-    props: ['title', 'action', 'contacts'],
-    components: {
-      'social-media': SocialMediaComponent
+    components: { 'social-media': SocialMediaComponent },
+    props: {
+      title: {
+        type: String,
+        default: ''
+      },
+      action: {
+        type: Object,
+        required: false,
+        default: () => ({ title: '', route: '' })
+      },
+      contacts: {
+        type: Object,
+        default: () => {}
+      }
     }
   }
 </script>
@@ -78,11 +90,11 @@
         td:first-child, th:first-child { border-left: 0; }
         td:last-child, th:last-child { border-right: 0; }
       }
-      
+
       th {
         &:nth-of-type(1) { width: 40%; }
       }
-      
+
       width: 100%;
       th, td { padding: 0.5rem 1rem; }
       th {

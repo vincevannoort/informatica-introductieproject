@@ -24,7 +24,8 @@ Vue.component('icon-profile', require('../../components/icons/profile'))
 */
 const routes = [
   { path: '/login', component: require('../../views/Authentication') },
-  { path: '/', component: require('../../views/Overview'), meta: { requiresAuth: true },
+  {
+    path: '/', component: require('../../views/Overview'), meta: { requiresAuth: true },
     children: [
       { path: '/', component: require('../../views/Dashboard'), meta: { requiresAuth: true } },
 
@@ -49,9 +50,9 @@ const routes = [
 
       // profile
       { path: '/profile', component: require('../../views/Profile'), meta: { requiresAuth: true } },
-      { path: '*', name: '404', component: require('../../views/NotFound') },
+      { path: '*', name: '404', component: require('../../views/NotFound') }
     ]
-  },
+  }
 ]
 
 const router = new VueRouter({
@@ -84,6 +85,4 @@ router.beforeEach((to, from, next) => {
 | Vue
 |--------------------------------------------------------------------------
 */
-window.app = new Vue({
-  router,
-}).$mount('#app')
+window.app = new Vue({ router }).$mount('#app')

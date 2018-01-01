@@ -1,25 +1,23 @@
 <template>
   <div>
-    <main-view-title :title="'Dashboard'"></main-view-title>
+    <main-view-title :title="'Dashboard'" />
   </div>
 </template>
 
 <script>
   export default {
-    data(){
-      return {
-        relations: [],
-      }
+    data() {
+      return { relations: [] }
     },
     created() {
-      var self = this;
+      var self = this
       axios.get('/api/relations')
       .then(function (response) {
-        self.relations = response.data;
+        self.relations = response.data
       })
       .catch(function (error) {
-        console.log(error);
-      });
+        console.log(error)
+      })
     }
   }
 </script>
