@@ -1,5 +1,3 @@
-'use strict'
-
 const Model = use('Model')
 
 class User extends Model {
@@ -8,7 +6,7 @@ class User extends Model {
     return this.hasMany('App/Models/Relation')
   }
 
-  static boot () {
+  static boot() {
     super.boot()
 
     /**
@@ -31,9 +29,10 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
+  tokens() {
     return this.hasMany('App/Models/Token')
   }
+
 }
 
 module.exports = User

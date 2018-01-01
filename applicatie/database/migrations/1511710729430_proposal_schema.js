@@ -1,9 +1,8 @@
-'use strict'
-
 const Schema = use('Schema')
 
 class ProposalSchema extends Schema {
-  up () {
+
+  up() {
     this.create('proposals', (table) => {
       table.increments()
       table.integer('relation_id').unsigned().references('id').inTable('relations')
@@ -16,9 +15,10 @@ class ProposalSchema extends Schema {
     })
   }
 
-  down () {
+  down() {
     this.drop('proposals')
   }
+
 }
 
 module.exports = ProposalSchema

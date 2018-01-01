@@ -1,0 +1,15 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+      "semi": [  "error", "never" ],
+      "class-methods-use-this": [ "off" ],
+      "max-len": [ "off" ],
+      "padded-blocks": [ "error", { "classes": "always" } ],
+      "comma-dangle": [ "warn", "never" ],
+      "strict": [ "warn", "never" ],
+      "no-restricted-syntax": [ "warn", "never" ],
+      "no-plusplus": [ "off" ],
+      "object-curly-newline": [ "warn", { "multiline": true } ]
+    },
+    "globals": { "use": false, "document": false }
+}

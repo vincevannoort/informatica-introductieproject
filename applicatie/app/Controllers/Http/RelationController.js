@@ -1,12 +1,8 @@
-'use strict'
-
 const { validateAll } = use('Validator')
 const Relation = use('App/Models/Relation')
 
 // set rules which must be validated before storing/updating a relation
-const rules = {
-  name: 'required',
-}
+const rules = { name: 'required' }
 
 /** RelationController */
 class RelationController {
@@ -15,8 +11,8 @@ class RelationController {
    * Get all relations, with their contacts
    * @returns {object} - all relations with contacts
    */
-	async index({ request }) {
-    return await Relation.query().with('contacts').fetch()
+  async index() {
+    return Relation.query().with('contacts').fetch()
   }
 
   /**
@@ -31,9 +27,7 @@ class RelationController {
       await relation.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       await relation.load('proposals.contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return relation
-    }
-    // if there was an error while trying to return a relation, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send('Relation not found')
     }
   }
@@ -44,7 +38,7 @@ class RelationController {
    * @returns {response} - 422, if validation fails
    * @returns {object} - single relation
    */
-  async store({ auth, params, request, response }) {
+  async store({ auth, request, response }) {
     // get the user responsible for storing, authentication already checked by middleware
     const user = await auth.getUser()
 
@@ -73,7 +67,7 @@ class RelationController {
    * @returns {response} - 422, if validation fails
    * @returns {object} - single relation
    */
-  async update({ auth, params, request, response }) {
+  async update({ request, response }) {
     try {
       // get relation data from request
       const relationData = request.all().relation
@@ -92,9 +86,7 @@ class RelationController {
       // save the merged data to database
       await relation.save()
       return relation
-    }
-    // if there was an error while trying to delete a relation, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send(error)
     }
   }
@@ -105,14 +97,12 @@ class RelationController {
    * @returns {response} - 404, if relation does not exist
    * @returns {response} - 200, if deleted successful
    */
-  async destroy({ auth, params, request, response }) {
+  async destroy({ params, response }) {
     // try to delete the relation with relation id from the request
     try {
       const relation = await Relation.find(params.id)
       return await relation.delete()
-    }
-    // if there was an error while trying to delete a relation, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send(error)
     }
   }

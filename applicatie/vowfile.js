@@ -1,5 +1,3 @@
-'use strict'
-
 /*
 |--------------------------------------------------------------------------
 | Vow file
@@ -11,7 +9,7 @@
 */
 
 // Uncomment when want to run migrations
-const ace = require('@adonisjs/ace')
+const ace = require('@adonisjs/ace') // eslint-disable-line import/newline-after-import
 const User = use('App/Models/User')
 
 module.exports = (cli, runner) => {
