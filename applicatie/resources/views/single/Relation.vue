@@ -2,22 +2,21 @@
   <div>
 
     <main-view-title
-    :title="relation.name"
-    :back="'back to relations'"
-    @back="back"
-    @edit="edit"
-    @remove="remove"
-    ></main-view-title>
+      :title="relation.name"
+      :back="'back to relations'"
+      @back="back"
+      @edit="edit"
+      @remove="remove" />
 
     <div class="columns">
       <div class="column is-10">
         <box-contacts
-        :title="'Contacts'"
-        :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
-        :contacts="relation.contacts"></box-contacts>
+          :title="'Contacts'"
+          :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
+          :contacts="relation.contacts" />
       </div>
       <div class="relation-insight-sidebox column is-2">
-        <insight-bar :insight="relation.insight_total"></insight-bar>
+        <insight-bar :insight="relation.insight_total" />
       </div>
     </div>
 
@@ -39,7 +38,7 @@
       </div>
     </div>
 
-    <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals"></box-proposals>
+    <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals" />
 
   </div>
 </template>
@@ -51,16 +50,14 @@
   import Relation from '../../controllers/RelationController'
 
   export default {
-    name: 'relation',
+    name: 'Relation',
     components: {
       'box-contacts': BoxContactsComponent,
       'box-proposals': BoxProposalsComponent,
       'insight-bar': InsightBarComponent
     },
-    data(){
-      return {
-        relation: {}
-      }
+    data() {
+      return { relation: {} }
     },
     created() {
       this.show()
@@ -86,7 +83,7 @@
         } catch(error) {
           console.error(error)
         }
-      },
+      }
     }
   }
 </script>
@@ -105,7 +102,6 @@
   }
 
   .relation-insight-bar {
-    display: inline-block;
     float: left;
     width: 12px;
     border-radius: 10px;

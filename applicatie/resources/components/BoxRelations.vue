@@ -50,7 +50,7 @@
               <div class="control has-icons-right">
                 <input class="relations-table-filter-input input" v-model="relationFilter" type="text" placeholder="Search for relation">
                 <span class="icon is-right">
-                  <i class="fa fa-search"></i>
+                  <i class="fa fa-search" />
                 </span>
               </div>
             </div>
@@ -73,7 +73,7 @@
             <td>{{ relation.created_at | moment("from") }}</td>
             <td>
               <div class="relations-insight">
-                <div class="relations-insight-bar" :style="{ width: relation.insight_total + '%' }"></div>
+                <div class="relations-insight-bar" :style="{ width: relation.insight_total + '%' }" />
               </div>
             </td>
           </router-link>
@@ -82,17 +82,17 @@
           <template v-if="relations && relations.length">
             <tr>
               <td>No relations found for '{{ relationFilter }}'.</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
             </tr>
           </template>
           <template v-else>
             <tr>
               <td>No relations added yet.</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
             </tr>
           </template>
         </template>
@@ -105,7 +105,21 @@
  import orderBy from 'lodash.orderby'
 
   export default {
-    props: ['title', 'action', 'relations'],
+    props: {
+      title: {
+        type: String,
+        default: ''
+      },
+      action: {
+        type: Object,
+        required: false,
+        default: () => ({ title: '', route: '' })
+      },
+      relations: {
+        type: Object,
+        default: () => {}
+      }
+    },
     data() {
       return {
         relationFilter: '',
@@ -182,7 +196,6 @@
   }
 
   .relations-insight-bar {
-    display: inline-block;
     float: left;
     height: 10px;
     border-radius: 10px;

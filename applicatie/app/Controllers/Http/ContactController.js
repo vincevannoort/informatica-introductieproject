@@ -1,5 +1,3 @@
-'use strict'
-
 const { validateAll } = use('Validator')
 const Contact = use('App/Models/Contact')
 const Relation = use('App/Models/Relation')
@@ -20,8 +18,8 @@ class ContactController {
    * Get all contacts
    * @returns {object} - all contacts
    */
-  async index({ request }) {
-    return await Contact.query().with('relations').fetch()
+  async index() {
+    return Contact.query().with('relations').fetch()
   }
 
   /**
@@ -35,9 +33,7 @@ class ContactController {
       const contact = await Contact.find(params.id)
       await contact.load('relations') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return contact
-    }
-    // if there was an error while trying to return a contact, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send('Contact not found')
     }
   }
@@ -49,14 +45,11 @@ class ContactController {
    * @returns {response} - 422, if validation fails
    * @returns {object} - single contact
    */
-  async store({ auth, params, request, response }) {
-    // get the user responsible for storing, authentication already checked by middleware
-    let user = await auth.getUser()
-
+  async store({ request, response }) {
     // validate given request parameters
-    let contactData = request.all().contact
-    let relation_id = request.all().relation_id
-    const relation = await Relation.find(relation_id)
+    const contactData = request.all().contact
+    const relationId = request.all().relation_id
+    const relation = await Relation.find(relationId)
 
     // validate given request parameters
     const validation = await validateAll(contactData, rules)
@@ -67,7 +60,7 @@ class ContactController {
     }
 
     // store a new contact
-    let contact = await Contact.create({
+    const contact = await Contact.create({
       profession: contactData.profession,
       first_name: contactData.first_name,
       last_name: contactData.last_name,
@@ -76,7 +69,7 @@ class ContactController {
     })
 
     // attach relation to created contact
-    await contact.relations().attach([relation_id])
+    await contact.relations().attach([relationId])
 
     // calculate insight for the relation attached to the contact
     await Relation.calculateInsightForEveryProposalByRelations(relation)
@@ -91,7 +84,7 @@ class ContactController {
    * @returns {response} - 422, if validation fails
    * @returns {object} - single contact
    */
-  async update({ auth, params, request, response }) {
+  async update({ request, response }) {
     try {
       // get contact data from request
       const contactData = request.all().contact
@@ -118,12 +111,12 @@ class ContactController {
 
       // calculate insight after contact has been updated for the relations attached to the updated contact
       const relations = await contact.relations().fetch()
-      if (relations.rows && relations.rows.length) { await Relation.calculateInsightForEveryProposalByRelations(relations.rows) }
+      if (relations.rows && relations.rows.length) {
+        await Relation.calculateInsightForEveryProposalByRelations(relations.rows)
+      }
 
       return contact
-    }
-    // if there was an error while trying to delete a contact, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send(error)
     }
   }
@@ -134,7 +127,7 @@ class ContactController {
    * @returns {response} - 404, if contact does not exist
    * @returns {response} - 200, if deleted successful
    */
-  async destroy({ auth, params, request, response }) {
+  async destroy({ params, response }) {
     // try to delete the contact with contact id from the request
     try {
       const contact = await Contact.find(params.id)
@@ -144,12 +137,12 @@ class ContactController {
       await contact.delete()
 
       // calculate insight after contact has been deleted for the relations attached to the deleted contact
-      if (relations.rows && relations.rows.length) { await Relation.calculateInsightForEveryProposalByRelations(relations.rows) }
+      if (relations.rows && relations.rows.length) {
+        await Relation.calculateInsightForEveryProposalByRelations(relations.rows)
+      }
 
       return response.status(200).send('Contact deleted')
-    }
-    // if there was an error while trying to delete a contact, return an error
-    catch (error) {
+    } catch (error) {
       return response.status(404).send(error)
     }
   }

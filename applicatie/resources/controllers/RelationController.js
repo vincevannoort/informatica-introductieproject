@@ -1,5 +1,3 @@
-'use strict'
-
 class Relation {
 
   /*
@@ -32,9 +30,7 @@ class Relation {
    * Store single relation to api endpoint
    */
   static async store({ relation }) {
-    return axios.post(`/api/relations/`, {
-      relation: relation
-    })
+    return axios.post(`/api/relations/`, { relation: relation })
     .then(function (response) {
       return response.data
     })
@@ -47,9 +43,7 @@ class Relation {
    * Update single relation to api endpoint
    */
   static async update({ relation }) {
-    return axios.patch(`/api/relations/${relation.id}`, {
-      relation: relation
-    })
+    return axios.patch(`/api/relations/${relation.id}`, { relation: relation })
     .then(function(response) {
       return response
     })

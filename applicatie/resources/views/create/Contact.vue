@@ -1,6 +1,6 @@
 <template>
   <div class="form-contact-create-edit">
-    <main-view-title :title="(createView) ? `Create a new contact` : `Edit existing contact`"></main-view-title>
+    <main-view-title :title="(createView) ? `Create a new contact` : `Edit existing contact`" />
     <div class="columns">
       <div class="column is-two-thirds">
         <box :title="'Contact data'">
@@ -61,14 +61,14 @@
   import Contact from '../../controllers/ContactController'
 
   export default {
-    data(){
+    data() {
       return {
         contact: {
           profession: '',
           first_name: '',
           last_name: '',
           telephone: '',
-          email: '',
+          email: ''
         }
       }
     },
@@ -148,7 +148,7 @@
       },
       backupdate() {
         this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
-      },
+      }
     },
     notifications: {
       showCreatedSuccess: {

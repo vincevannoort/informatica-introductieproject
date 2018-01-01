@@ -1,14 +1,12 @@
 <template>
   <div class="main-title-inner-content" :class="{ 'with-main-back-link': $listeners.back }">
-    <div class="main-back-link" v-if="$listeners.back" @click="backEntity">< {{ back }}</div> 
-    <h1 class="main-title">
-        {{ title }}
-    </h1>
+    <div class="main-back-link" v-if="$listeners.back" @click="backEntity">&lt; {{ back }}</div>
+    <h1 class="main-title">{{ title }}</h1>
     <div v-if="$listeners.edit || $listeners.remove" class="main-action-buttons field has-addons">
       <p v-if="$listeners.edit" class="control">
         <a @click="editEntity" class="button">
           <span class="icon is-small">
-            <i class="fa fa-pencil-square-o"></i>
+            <i class="fa fa-pencil-square-o" />
           </span>
           <span>Edit</span>
         </a>
@@ -16,7 +14,7 @@
       <p v-if="$listeners.remove" class="control">
         <a @click="removeEntity" class="button">
           <span class="icon is-small">
-            <i class="fa fa-trash-o"></i>
+            <i class="fa fa-trash-o" />
           </span>
           <span>Delete</span>
         </a>
@@ -32,10 +30,14 @@
   export default {
     props: {
       title: {
-        required: true
+        type: String,
+        required: true,
+        default: ''
       },
       back: {
         type: String,
+        required: false,
+        default: ''
       }
     },
     methods: {

@@ -1,5 +1,3 @@
-'use strict'
-
 const Env = use('Env')
 const Helpers = use('Helpers')
 
@@ -28,9 +26,7 @@ module.exports = {
   */
   sqlite: {
     client: 'sqlite3',
-    connection: {
-      filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'adonis')}.sqlite`)
-    },
+    connection: { filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'adonis')}.sqlite`) },
     useNullAsDefault: true
   },
 

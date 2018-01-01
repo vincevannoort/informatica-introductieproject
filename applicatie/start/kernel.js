@@ -1,5 +1,3 @@
-'use strict'
-
 const Server = use('Server')
 
 /*
@@ -35,9 +33,7 @@ const globalMiddleware = [
 | Route.get().middleware('auth')
 |
 */
-const namedMiddleware = {
-  auth: 'Adonis/Middleware/Auth'
-}
+const namedMiddleware = { auth: 'Adonis/Middleware/Auth' }
 
 /*
 |--------------------------------------------------------------------------

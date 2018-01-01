@@ -1,20 +1,18 @@
-'use strict'
-
 const Model = use('Model')
 const chalk = require('chalk')
 
 class Relation extends Model {
 
-	user() {
-		return this.belongsTo('App/Models/User')
-	}
+  user() {
+    return this.belongsTo('App/Models/User')
+  }
 
-	contacts() {
-		return this.belongsToMany('App/Models/Contact').pivotTable('contact_relations')
-	}
+  contacts() {
+    return this.belongsToMany('App/Models/Contact').pivotTable('contact_relations')
+  }
 
-	proposals() {
-		return this.hasMany('App/Models/Proposal')
+  proposals() {
+    return this.hasMany('App/Models/Proposal')
   }
 
   /**
@@ -22,17 +20,19 @@ class Relation extends Model {
    * @param {(Relation|Relation[])} relations - a relation type or relations array
    */
   static async calculateInsightForEveryProposalByRelations(relations) {
-    relations = [].concat(relations || [])
-    relations.map(async function(relation) {
-      await relation.calculateInsightForEveryProposal()
-    })
+    const relationsArray = [].concat(relations || [])
+    const promises = []
+    for (const relation of relationsArray) {
+      promises.push(relation.calculateInsightForEveryProposal())
+    }
+    await Promise.all(promises)
   }
 
   /**
    * Calculate insight for every proposals
    */
   async calculateInsightForEveryProposal() {
-    console.log(chalk.blue.underline(`Start calculating total insight for '${this.name}'`))
+    console.log(chalk.blue.underline(`Start calculating total insight for '${this.name}'`)) // eslint-disable-line no-console
     const proposals = await this.proposals().with('contacts').fetch()
 
     // return if no proposals exist
@@ -41,15 +41,13 @@ class Relation extends Model {
     }
 
     // start calculating insight for each proposal
-    const insights = proposals.rows.map(async function(proposal) {
-      return await proposal.calculateInsight()
-    })
+    const promises = []
+    for (const proposal of proposals.rows) {
+      promises.push(proposal.calculateInsight())
+    }
 
     // when calculating insights of all proposals is done
-    const totalInsightCalculated = await Promise.all(insights)
-    .then((insightScores) => {
-      return insightScores.reduce(function(a, b) { return a + b; }) / insightScores.length
-    })
+    const totalInsightCalculated = await Promise.all(promises).then(insightScores => insightScores.reduce((a, b) => a + b) / insightScores.length)
 
     this.merge({ insight_total: totalInsightCalculated })
     await this.save()
@@ -65,7 +63,7 @@ class Relation extends Model {
    */
   async calculateValue() {
     const proposals = await this.proposals().fetch()
-    const values = proposals.rows.map((proposal) => proposal.value)
+    const values = proposals.rows.map(proposal => proposal.value)
     const totalValue = values.reduce((a, b) => a + b, 0)
     this.merge({ value_total: totalValue })
     await this.save()

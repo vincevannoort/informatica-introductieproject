@@ -1,10 +1,6 @@
-'use strict'
-
-const User = use('App/Models/User')
-
 class UserController {
 
-  async login ({ request, response, auth }) {
+  async login({ request, response, auth }) {
     const { email, password } = request.all().credentials
     try {
       const token = await auth.withRefreshToken().attempt(email, password)
@@ -14,11 +10,11 @@ class UserController {
     }
   }
 
-  async profile({ request, response, auth }) {
+  async profile({ response, auth }) {
     try {
       return await auth.getUser()
     } catch (error) {
-      response.send('Missing or invalid jwt token')
+      return response.send('Missing or invalid jwt token')
     }
   }
 

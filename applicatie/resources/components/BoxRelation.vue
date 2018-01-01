@@ -6,20 +6,21 @@
     <div class="box-relation-category">
       {{ title }}
     </div>
-    <icon-relation></icon-relation>
+    <icon-relation />
   </box>
 </template>
 
 <script>
   export default {
     props: {
-      amount: {
-        required: true,
-        type: Number
-      },
       title: {
-        required: true,
-        type: String
+        type: String,
+        default: 'Pass a title'
+      },
+      amount: {
+        type: Number,
+        required: false,
+        default: 0
       }
     }
   }

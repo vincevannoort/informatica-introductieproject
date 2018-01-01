@@ -35,8 +35,12 @@
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "bulma": "^0.6.1",
+    "chalk": "^2.3.0",
     "chart.js": "^2.7.1",
     "cross-env": "^5.1.1",
+    "eslint": "^4.14.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-vue": "^4.0.0",
     "font-awesome": "^4.7.0",
     "laravel-mix": "^1.6.1",
     "lodash.orderby": "^4.6.0",
@@ -54,7 +58,9 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
-    "browser-sync-webpack-plugin": "^1.2.0"
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   },
   "autoload": {
     "App": "./app"

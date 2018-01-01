@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -27,8 +25,7 @@ module.exports = {
     | }
     |
     */
-    directives: {
-    },
+    directives: { },
     /*
     |--------------------------------------------------------------------------
     | Report only
@@ -132,7 +129,7 @@ module.exports = {
   |
   */
   csrf: {
-    enable: (process.env.NODE_ENV == 'testing') ? false : true,
+    enable: process.env.NODE_ENV !== 'testing',
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [],
     cookieOptions: {

@@ -1,18 +1,29 @@
 <template>
   <div class="box">
     <div class="box-header-wrapper">
-      <div class="box-header" v-if="title">{{ title }}</div>
-      <router-link class="box-header-link button is-small" :title="action.title" v-if="action" :to="`${ action.route }`">
+      <div v-if="title" class="box-header">{{ title }}</div>
+      <router-link v-if="action.title && action.route" class="box-header-link button is-small" :title="action.title" :to="`${ action.route }`">
         {{ action.title }}
       </router-link>
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script>
   export default {
-    props: ['title', 'action']
+    props: {
+      title: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      action: {
+        type: Object,
+        required: false,
+        default: () => ({ title: '', route: '' })
+      }
+    }
   }
 </script>
 

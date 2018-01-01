@@ -1,6 +1,6 @@
 <template>
   <div class="form-relation-create-edit">
-    <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`"></main-view-title>
+    <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`" />
     <div class="columns">
       <div class="column is-two-thirds">
         <box :title="'Relation data'">
@@ -36,12 +36,8 @@
   import Relation from '../../controllers/RelationController'
 
   export default {
-    data(){
-      return {
-        relation: {
-          name: '',
-        }
-      }
+    data() {
+      return { relation: { name: '' } }
     },
     computed: {
       createView() {

@@ -61,9 +61,9 @@ Vue.use(VueNotifications, options)
  */
 import Chart from 'chart.js'
 import './graphs/change-bar-chart.js'
-Chart.defaults.global.responsive = true;
-Chart.defaults.global.maintainAspectRatio = false;
-Chart.defaults.global.legend.display = false;
+Chart.defaults.global.responsive = true
+Chart.defaults.global.maintainAspectRatio = false
+Chart.defaults.global.legend.display = false
 window.Chart = Chart
 
 

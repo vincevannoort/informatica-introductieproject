@@ -1,6 +1,6 @@
 <template>
   <div class="form-proposal-create-edit">
-    <main-view-title :title="(createView) ? `Create a new proposal` : `Edit existing proposal`"></main-view-title>
+    <main-view-title :title="(createView) ? `Create a new proposal` : `Edit existing proposal`" />
     <div class="columns">
       <div class="column is-two-thirds">
         <box :title="'Proposal data'">
@@ -57,11 +57,9 @@
   import Relation from '../../controllers/RelationController'
 
   export default {
-    data(){
+    data() {
       return {
-        proposal: {
-          name: ''
-        },
+        proposal: { name: '' },
         relation: {},
         selectedContacts: []
       }
@@ -91,9 +89,6 @@
 
 <style lang="scss">
   @import "../../assets/scss/variables/colors";
-  .proposal-responsible-contacts {
-
-  }
   .proposal-responsible-contact {
     padding-bottom: 0;
     input {

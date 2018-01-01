@@ -6,30 +6,26 @@
       </div>
       <div class="sidebar-links">
         <router-link to="/" exact>
-          <icon-dashboard></icon-dashboard>
+          <icon-dashboard />
           <span>Dashboard</span>
         </router-link>
         <router-link to="/relations">
-          <icon-relation></icon-relation>
+          <icon-relation />
           <span>Relations</span>
         </router-link>
         <router-link to="/actions">
-          <icon-actions></icon-actions>
+          <icon-actions />
           <span>Actions</span>
         </router-link>
       </div>
     </div>
-    <profile></profile>
+    <profile />
   </div>
 </template>
 
 <script>
   import ProfileComponent from '../components/Profile'
-  export default {
-    components: {
-      'profile': ProfileComponent
-    }
-  }
+  export default { components: { 'profile': ProfileComponent } }
 </script>
 
 <style lang="scss">
@@ -41,10 +37,10 @@
     border-right: 1px solid $border-grey;
   }
 
-  .sidebar-content, .sidebar-inner-content { 
-    height: 100vh; 
-    min-height: 100vh; 
-    overflow: hidden; 
+  .sidebar-content, .sidebar-inner-content {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
   }
 
   .sidebar-inner-content {

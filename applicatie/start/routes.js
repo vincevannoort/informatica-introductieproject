@@ -1,7 +1,3 @@
-'use strict'
-
-const Env = use('Env')
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -25,25 +21,25 @@ const Route = use('Route')
 
 // without authentication
 Route.group(() => {
-    Route.post('users/login', 'UserController.login')
-    Route.post('users/register', 'UserController.register')
+  Route.post('users/login', 'UserController.login')
+  Route.post('users/register', 'UserController.register')
 }).prefix('api')
 
 // with authentication
 // route resources, see: https://adonisjs.com/docs/4.0/routing#_route_resources
 Route.group(() => {
-    // users
-    Route.get('users/profile', 'UserController.profile')
+  // users
+  Route.get('users/profile', 'UserController.profile')
 
-    // relations
-    Route.get('relations/:id/calculate', 'RelationController.calculateTotalInsight')
-    Route.resource('relations', 'RelationController').apiOnly()
+  // relations
+  Route.get('relations/:id/calculate', 'RelationController.calculateTotalInsight')
+  Route.resource('relations', 'RelationController').apiOnly()
 
-    // proposals
-    Route.resource('proposals', 'ProposalController').apiOnly()
+  // proposals
+  Route.resource('proposals', 'ProposalController').apiOnly()
 
-    // contacts
-    Route.resource('contacts', 'ContactController').apiOnly()
+  // contacts
+  Route.resource('contacts', 'ContactController').apiOnly()
 
 }).prefix('api').middleware((process.env.NODE_ENV !== 'development') ? ['auth'] : [])
 
