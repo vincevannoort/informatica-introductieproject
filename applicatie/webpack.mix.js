@@ -1,4 +1,5 @@
 const mix = require('laravel-mix')
+const webpack = require('webpack')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +12,22 @@ const mix = require('laravel-mix')
  |
  */
 
+if (process.env.NODE_ENV === 'development') {
+  mix.webpackConfig({
+    plugins: [
+      new webpack.LoaderOptionsPlugin({options: {eslint: {configFile: path.join(__dirname, '.eslintrc')}}})
+    ],
+    module: {
+      rules: [{
+        test: /\.(js|vue)$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: [{loader: 'eslint-loader'}]
+      }]
+    }
+  })
+}
+
 mix
   .js('resources/assets/js/app.js', 'public/js')
   .sass('resources/assets/scss/single-page-application.scss', 'public/css')
@@ -18,5 +35,4 @@ mix
   .setPublicPath('public')
   .copyDirectory('resources/assets/images', 'public/images')
   .browserSync('localhost:3333')
-  .options({ extractVueStyles: true })
   .disableSuccessNotifications()
