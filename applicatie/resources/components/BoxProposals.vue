@@ -65,7 +65,7 @@
         default: () => ({ title: 'Define a title for this box', route: 'Define a route for this action' })
       },
       proposals: {
-        type: Object,
+        type: Array,
         default: () => {}
       }
     }

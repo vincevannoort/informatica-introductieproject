@@ -116,7 +116,7 @@
         default: () => ({ title: '', route: '' })
       },
       relations: {
-        type: Object,
+        type: Array,
         default: () => {}
       }
     },

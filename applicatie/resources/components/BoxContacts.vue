@@ -55,7 +55,7 @@
         default: () => ({ title: '', route: '' })
       },
       contacts: {
-        type: Object,
+        type: Array,
         default: () => {}
       }
     }
