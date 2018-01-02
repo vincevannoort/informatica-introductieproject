@@ -2,7 +2,7 @@
   <div>
     <main-view-title
       :title="`${contact.first_name} ${contact.last_name}`"
-      :back="`back to ${currentRelationName.name}`"
+      :back="`back to ${currentRelationName}`"
       @back="back"
       @edit="edit"
       @remove="remove" />
@@ -51,7 +51,9 @@
     computed: {
       currentRelationName() {
         let self = this
-        return this.contact.relations.find((relation) => { return relation.id == self.$route.params.relation_id })
+        if (this.contact.relations && this.contact.relations.length) {
+          return this.contact.relations.find((relation) => { return relation.id == self.$route.params.relation_id }).name
+        } else { return 'loading...' }
       }
     },
     activated() {
