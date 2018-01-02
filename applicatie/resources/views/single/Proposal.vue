@@ -2,7 +2,7 @@
   <div>
     <main-view-title
       :title="`${proposal.name}`"
-      :back="`back to ${proposal.relation.name}`"
+      :back="`back to ${currentRelationName}`"
       @back="back"
       @edit="edit"
       @remove="remove"/>
@@ -64,6 +64,14 @@
     components: { 'insight-bar': InsightBarComponent },
     data() {
       return { proposal: {} }
+    },
+    computed: {
+      currentRelationName() {
+        let self = this
+        if (this.proposal.relation) {
+          return this.proposal.relation.name
+        } else { return 'loading...' }
+      }
     },
     activated() {
       this.show()
