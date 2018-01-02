@@ -22,12 +22,8 @@ class DummydataSeeder {
     const proposals = await Factory.model('App/Models/Proposal').createMany(100)
     /* eslint-enable no-unused-vars */
 
-    const promises = []
-    for (const contact of contacts) {
-      // attach random relation to contact
-      promises.push(contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]))
-    }
-    await Promise.all(promises)
+    const contactPromises = contacts.map((contact) => contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]))
+    await Promise.all(contactPromises)
 
     // custom users for testing
     const newUsers = [
@@ -37,11 +33,10 @@ class DummydataSeeder {
       { profession: 'Software Engineer', first_name: 'Madio', last_name: 'Seck', username: 'madio', password: 'madio', email: 'madio@canon.nl' },
       { profession: 'Software Engineer', first_name: 'Niek', last_name: 'Geijtenbeek', username: 'niek', password: 'niek', email: 'niek@canon.nl' }
     ]
-    const createUserPromises = []
-    for (const newUser of newUsers) {
-      createUserPromises.push(User.create({ profession: newUser.profession, first_name: newUser.first_name, last_name: newUser.last_name, username: newUser.username, password: newUser.password, email: newUser.email }))
-    }
+    const createUserPromises = newUsers.map((newUser) => User.create({ profession: newUser.profession, first_name: newUser.first_name, last_name: newUser.last_name, username: newUser.username, password: newUser.password, email: newUser.email }))
     await Promise.all(createUserPromises)
+    const updateRelationPromises = relations.map((relation) => relation.calculateInsightForEveryProposal())
+    await Promise.all(updateRelationPromises)
 
     Database.close()
   }
