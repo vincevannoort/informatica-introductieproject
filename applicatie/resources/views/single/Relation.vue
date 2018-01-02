@@ -59,7 +59,7 @@
     data() {
       return { relation: {} }
     },
-    created() {
+    activated() {
       this.show()
     },
     methods: {
