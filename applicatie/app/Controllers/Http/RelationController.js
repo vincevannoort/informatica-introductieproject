@@ -85,6 +85,10 @@ class RelationController {
       relation.merge({ name: relationData.name })
       // save the merged data to database
       await relation.save()
+
+      // calculate insight for the relation after the updates have been made
+      await Relation.calculateInsightForEveryProposalByRelations(relation)
+
       return relation
     } catch (error) {
       return response.status(404).send(error)
