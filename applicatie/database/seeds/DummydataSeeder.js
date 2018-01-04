@@ -19,11 +19,13 @@ class DummydataSeeder {
     const users = await Factory.model('App/Models/User').createMany(10)
     const contacts = await Factory.model('App/Models/Contact').createMany(150)
     const relations = await Factory.model('App/Models/Relation').createMany(50)
-    const proposals = await Factory.model('App/Models/Proposal').createMany(100)
+    const proposals = await Factory.model('App/Models/Proposal').createMany(150)
     /* eslint-enable no-unused-vars */
 
     const contactPromises = contacts.map((contact) => contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]))
     await Promise.all(contactPromises)
+    const proposalsPromises = proposals.map((contact) => contact.contacts().withTimestamps().attach([Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]))
+    await Promise.all(proposalsPromises)
 
     // custom users for testing
     const newUsers = [

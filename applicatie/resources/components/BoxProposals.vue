@@ -11,7 +11,8 @@
               <tr>
                 <th>Involved contacts</th>
                 <th>Last updated</th>
-                <th>Other information</th>
+                <th>Start</th>
+                <th>Close</th>
                 <th>Insight</th>
               </tr>
             </thead>
@@ -34,7 +35,8 @@
                     <div>{{ proposal.updated_at | moment("from") }}</div>
                   </div>
                 </td>
-                <td>information</td>
+                <td>{{ proposal.start | moment("from") }}</td>
+                <td>{{ proposal.close | moment("from") }}</td>
                 <td>
                   <div class="relations-insight">
                     <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
@@ -114,7 +116,7 @@
           td:last-child, th:last-child { border-right: 0; }
 
           td:nth-of-type(1) { width: 35%; }
-          td:nth-of-type(4) { width: 25%; }
+          td:nth-of-type(5) { width: 25%; }
         }
         th, td {
           border: 1px solid $border-inside-grey;

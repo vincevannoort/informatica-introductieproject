@@ -16,10 +16,11 @@ class Proposal {
   /*
    * Store single proposal to api endpoint
    */
-  static async store({ proposal, relation_id }) {
+  static async store({ proposal, relation_id, contact_ids }) {
     return axios.post(`/api/proposals/`, {
       proposal: proposal,
-      relation_id: relation_id
+      relation_id: relation_id,
+      contact_ids: contact_ids
     })
     .then(function (response) {
       return response.data

@@ -36,3 +36,4 @@ mix
   .copyDirectory('resources/assets/images', 'public/images')
   .browserSync('localhost:3333')
   .disableSuccessNotifications()
+  .options({ extractVueStyles: true })

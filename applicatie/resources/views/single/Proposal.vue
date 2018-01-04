@@ -82,7 +82,6 @@
       },
       async show() {
         try {
-          console.log('here!')
           this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
         } catch(error) {
           console.error(error)

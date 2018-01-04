@@ -1,4 +1,14 @@
+const { validateAll } = use('Validator')
 const Proposal = use('App/Models/Proposal')
+const Relation = use('App/Models/Relation')
+
+// set rules which must be validated before storing/updating a proposal
+const rules = {
+  name: 'required',
+  value: 'required',
+  start: 'required',
+  close: 'required'
+}
 
 /** ProposalController */
 class ProposalController {
@@ -26,6 +36,42 @@ class ProposalController {
     } catch (error) {
       return response.status(404).send('Proposal not found')
     }
+  }
+
+  /**
+   * Store a new proposal
+   * @param {object} proposal - all proposal data (name)
+   * @param {integer} relation_id - relation id which the proposal belongs to
+   * @param {[integer]} contact_ids - ids of contacts that should be added to the proposal
+   * @returns {response} - 422, if validation fails
+   * @returns {object} - single proposal
+   */
+  async store({ response, request }) {
+    const params = await request.all()
+    const relation = await Relation.find(params.relation_id)
+    const proposalData = params.proposal
+
+    // validate given request parameters
+    const validation = await validateAll(proposalData, rules)
+    if (validation.fails()) {
+      return response.status(422).send(validation.messages())
+    }
+
+    const proposal = await Proposal.create({
+      relation_id: relation.id,
+      name: proposalData.name,
+      value: proposalData.value,
+      start: proposalData.start,
+      close: proposalData.close,
+      insight: Math.floor(Math.random() * 100)
+    })
+
+    proposal.contacts().attach(params.contact_ids)
+
+    // calculate insight for the relation attached to the contact
+    await Relation.calculateInsightForEveryProposalByRelations(relation)
+
+    return proposal
   }
 
   /**

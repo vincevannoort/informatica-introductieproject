@@ -40,7 +40,7 @@ const routes = [
       // proposals
       { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Create/Update' } },
       { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' } },
-      // { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: ProposalCreateView, meta: { requiresAuth: true } },
+      { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Edit' } },
 
       // contacts
       { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: require('../../views/create/Contact'), meta: { requiresAuth: true, title: 'Contacts Create/Update' } },
