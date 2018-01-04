@@ -23,7 +23,20 @@
     <div class="columns">
       <div class="column">
         <box :title="'Relation information'">
-          information (total financial value, offerings)
+          <table class="table-relation-information">
+            <tr>
+              <td>Total value: </td>
+              <td>{{ totalValue }}</td>
+            </tr>
+            <tr>
+              <td>Average value: </td>
+              <td>{{ averageValue }}</td>
+            </tr>
+            <tr>
+              <td>Average insight: </td>
+              <td>{{ averageInsight }}</td>
+            </tr>
+          </table>
         </box>
       </div>
       <div class="column">
@@ -58,6 +71,20 @@
     },
     data() {
       return { relation: {} }
+    },
+    computed: {
+      proposalsLoaded() {
+        return this.relation.proposals && this.relation.proposals.length
+      },
+      totalValue() {
+        return (this.proposalsLoaded) ? this.relation.proposals.reduce((total, proposal) => total + proposal.value, 0) : 0
+      },
+      averageValue() {
+        return  (this.proposalsLoaded) ? Math.floor(this.totalValue / this.relation.proposals.length) : 0
+      },
+      averageInsight() {
+        return (this.proposalsLoaded) ? this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length : 0
+      }
     },
     activated() {
       this.show()
@@ -118,6 +145,24 @@
       }
       > .box-header-wrapper {
         flex: 0 1 auto;
+      }
+    }
+  }
+
+  .table-relation-information {
+    width: 100%;
+    tr {
+      td {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        text-align: right;
+        border-bottom: 1px solid $border-grey;
+      }
+      &:last-of-type { td { border-bottom: none; } }
+      td:first-of-type {
+        text-align: left;
+        padding-right: 1rem;
+        font-weight: 500;
       }
     }
   }
