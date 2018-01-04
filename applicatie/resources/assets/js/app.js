@@ -23,7 +23,7 @@ Vue.component('icon-profile', require('../../components/icons/profile'))
 |--------------------------------------------------------------------------
 */
 const routes = [
-  { path: '/login', component: require('../../views/Authentication'), meta: { requiresAuth: true, title: 'login' } },
+  { path: '/login', component: require('../../views/Authentication'), meta: { title: 'login' } },
   {
     path: '/', component: require('../../views/Overview'), meta: { requiresAuth: true },
     children: [
