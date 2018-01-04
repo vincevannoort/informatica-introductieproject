@@ -26,11 +26,11 @@
           <table class="table-relation-information">
             <tr>
               <td>Total value: </td>
-              <td>{{ totalValue }}</td>
+              <td>&euro;{{ totalValue }}</td>
             </tr>
             <tr>
               <td>Average value: </td>
-              <td>{{ averageValue }}</td>
+              <td>&euro;{{ averageValue }}</td>
             </tr>
             <tr>
               <td>Average insight: </td>
