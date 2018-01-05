@@ -141,27 +141,14 @@
       }
     },
     computed: {
-      filteredAmountRelations() {
-        let self = this
-        return this.relations.filter(function(item) {
-          return item['insight_total'] >= self.sortedFilter.min && item['insight_total'] <= self.sortedFilter.max
-        })
-      },
-      filteredNameRelations() {
-        let self = this
-        if (this.relationFilter) {
-          return this.filteredAmountRelations.filter(function(item) {
-            return item['name'].toLowerCase().includes(self.relationFilter.toLowerCase())
-          })
-        } else {
-          return this.filteredAmountRelations
-        }
-      },
       sortedRelations() {
+        if (!(this.relations && this.relations.length)) { return [] }
+        let filteredAmountRelations = this.relations.filter((item) => item['insight_total'] >= this.sortedFilter.min && item['insight_total'] <= this.sortedFilter.max )
+        let filteredNameRelations = (this.relationFilter) ? filteredAmountRelations.filter((item) =>item['name'].toLowerCase().includes(self.relationFilter.toLowerCase())) : filteredAmountRelations
         let filter = this.directionFilter.split('-')
         let column = filter[0]
         let direction = filter[1]
-        return orderBy(this.filteredNameRelations, [column], [direction])
+        return orderBy(filteredNameRelations, column, direction)
       }
     }
   }

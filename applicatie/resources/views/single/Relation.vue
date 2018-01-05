@@ -53,6 +53,9 @@
 
     <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals" />
 
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -83,11 +86,21 @@
         return  (this.proposalsLoaded) ? Math.floor(this.totalValue / this.relation.proposals.length) : 0
       },
       averageInsight() {
-        return (this.proposalsLoaded) ? this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length : 0
+        return (this.proposalsLoaded) ? Math.floor(this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length) : 0
       }
     },
     activated() {
+      console.log('activated')
       this.show()
+    },
+    mounted() {
+      console.log('mounted')
+    },
+    created() {
+      console.log('created')
+    },
+    updated() {
+      console.log('updated')
     },
     methods: {
       back() {
@@ -136,6 +149,7 @@
   }
 
   .relation-insight-sidebox {
+    max-height: 600px;
     > .box {
       display: flex;
       flex-direction: column;

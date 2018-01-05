@@ -54,10 +54,15 @@ class RelationController {
     // store a new relation
     const relation = await Relation.create({
       user_id: user.id,
-      name: relationData.name
+      name: relationData.name,
+      active: true,
+      value_total: 0,
+      insight_total: 0
     })
 
     // return relation data
+    await relation.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+    await relation.load('proposals.contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
     return relation
   }
 

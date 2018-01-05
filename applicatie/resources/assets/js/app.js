@@ -12,6 +12,7 @@ import Authentication from './authentication'
 // components
 Vue.component('main-view-title', require('../../components/Title'))
 Vue.component('box', require('../../components/Box'))
+Vue.component('modal', require('../../components/Modal'))
 Vue.component('icon-dashboard', require('../../components/icons/dashboard'))
 Vue.component('icon-actions', require('../../components/icons/actions'))
 Vue.component('icon-relation', require('../../components/icons/relation'))
@@ -32,20 +33,36 @@ const routes = [
       // users
 
       // relations
-      { path: '/relations', name: 'relations-overview', component: require('../../views/overview/Relations'), meta: { requiresAuth: true, title: 'Relations Overview' } },
-      { path: '/relations/create', name: 'relations-create', component: require('../../views/create/Relation'), meta: { requiresAuth: true, title: 'Relation Create/Update' } },
-      { path: '/relations/:relation_id', name: 'relations-single', component: require('../../views/single/Relation'), meta: { requiresAuth: true, title: 'Relation Single' } },
-      { path: '/relations/:relation_id/edit', name: 'relations-edit', component: require('../../views/create/Relation'), meta: { requiresAuth: true, title: 'Relation Edit' } },
+      {
+        path: '/relations', name: 'relations-overview', component: require('../../views/overview/Relations'), meta: { requiresAuth: true, title: 'Relations Overview' },
+        children: [
+          { path: 'create', name: 'relations-create', component: require('../../views/create/Relation'), meta: { requiresAuth: true, title: 'Relation Create/Update' } }
+        ]
+      },
+      {
+        path: '/relations/:relation_id', name: 'relations-single', component: require('../../views/single/Relation'), meta: { requiresAuth: true, title: 'Relation Single' },
+        children: [
+          { path: 'edit', name: 'relations-edit', component: require('../../views/create/Relation'), meta: { requiresAuth: true, title: 'Relation Edit' } },
+          { path: 'contacts/create', name: 'contacts-create', component: require('../../views/create/Contact'), meta: { requiresAuth: true, title: 'Contacts Create/Update' } },
+          { path: 'proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Create/Update' } }
+        ]
+      },
 
       // proposals
-      { path: '/relations/:relation_id/proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Create/Update' } },
-      { path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' } },
-      { path: '/relations/:relation_id/proposals/:proposal_id/edit', name: 'proposals-edit', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Edit' } },
+      {
+        path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' },
+        children: [
+          { path: 'edit', name: 'proposals-edit', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, title: 'Proposal Edit' } }
+        ]
+      },
 
       // contacts
-      { path: '/relations/:relation_id/contacts/create', name: 'contacts-create', component: require('../../views/create/Contact'), meta: { requiresAuth: true, title: 'Contacts Create/Update' } },
-      { path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: require('../../views/single/Contact'), meta: { requiresAuth: true, title: 'Contact Single' } },
-      { path: '/relations/:relation_id/contacts/:contact_id/edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, title: 'Contact Edit' } },
+      {
+        path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: require('../../views/single/Contact'), meta: { requiresAuth: true, title: 'Contact Single' },
+        children: [
+          { path: 'edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, title: 'Contact Edit' } }
+        ]
+      },
 
 
       // profile

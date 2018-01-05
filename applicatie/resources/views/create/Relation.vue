@@ -1,35 +1,34 @@
 <template>
-  <div class="form-relation-create-edit">
-    <main-view-title :title="(createView) ? `Create a new relation` : `Edit existing relation`" />
-    <div class="columns">
-      <div class="column is-two-thirds">
-        <box :title="'Relation data'">
-          <form @submit.prevent="store">
-            <div class="columns is-multiline">
-              <div class="field column is-half">
-                <label class="label">Name</label>
-                <div class="control">
-                  <input v-model="relation.name" name="name" class="input" type="text" placeholder="Relation name">
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <hr>
-            </div>
-            <div class="field is-grouped">
+  <modal class="is-active">
+    <h2>{{ (createView) ? `Create a new relation` : `Edit existing relation` }}</h2>
+    <box>
+      <div class="form-relation-create-edit">
+        <form @submit.prevent="store">
+          <div class="columns is-multiline">
+            <div class="field column is-half">
+              <label class="label">Name</label>
               <div class="control">
-                <button v-if="createView" class="button is-link" @click.prevent="store">Create</button>
-                <button v-else-if="editView" class="button is-link" @click.prevent="update">Update</button>
-              </div>
-              <div class="control">
-                <router-link tag="button" class="button is-text" :to="'/relations'">Cancel</router-link>
+                <input v-model="relation.name" name="name" class="input" type="text" placeholder="Relation name">
               </div>
             </div>
-          </form>
-        </box>
+          </div>
+          <div class="field">
+            <hr>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button v-if="createView" class="button is-link" @click.prevent="store">Create</button>
+              <button v-else-if="editView" class="button is-link" @click.prevent="update">Update</button>
+            </div>
+            <div class="control">
+              <button v-if="createView" class="button is-text" @click.prevent="backcreate">Cancel</button>
+              <button v-else-if="editView" class="button is-text" @click.prevent="backupdate">Cancel</button>
+            </div>
+          </div>
+        </form>
       </div>
-    </div>
-  </div>
+    </box>
+  </modal>
 </template>
 
 <script>
@@ -47,7 +46,7 @@
         return this.$route.name == 'relations-edit'
       }
     },
-    activated() {
+    mounted() {
       if (this.editView) {
         this.show()
       }
@@ -62,7 +61,8 @@
       },
       async store() {
         try {
-          await Relation.store({ relation: this.relation })
+          const relation = await Relation.store({ relation: this.relation })
+          this.$emit('created-relation', relation)
           this.$router.push({ name: 'relations-overview' })
         } catch(error) {
           console.error(error)
@@ -75,6 +75,12 @@
         } catch(error) {
           console.error(error)
         }
+      },
+      backcreate() {
+        this.$router.push({ name: 'relations-overview' })
+      },
+      backupdate() {
+        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
       }
     }
   }
