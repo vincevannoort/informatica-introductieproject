@@ -83,7 +83,7 @@
         return  (this.proposalsLoaded) ? Math.floor(this.totalValue / this.relation.proposals.length) : 0
       },
       averageInsight() {
-        return (this.proposalsLoaded) ? this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length : 0
+        return (this.proposalsLoaded) ? Math.floor(this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length) : 0
       }
     },
     activated() {
@@ -136,6 +136,7 @@
   }
 
   .relation-insight-sidebox {
+    max-height: 600px;
     > .box {
       display: flex;
       flex-direction: column;
