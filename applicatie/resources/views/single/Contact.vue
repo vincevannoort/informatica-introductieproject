@@ -37,6 +37,9 @@
         </box>
       </div>
     </div>
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -82,18 +85,6 @@
           this.showDeletedError()
           console.error(error)
         }
-      }
-    },
-    notifications: {
-      showDeletedSuccess: {
-        title: 'Deleted contact',
-        message: 'Deleted contact successfully',
-        type: 'success'
-      },
-      showDeletedError: {
-        title: 'Deleted contact',
-        message: 'Not able to delete contact',
-        type: 'error'
       }
     }
   }

@@ -19,6 +19,11 @@
         :action="{ title: 'Add new relation', route: '/relations/create' }"
         :relations="sortedRelations" />
     </div>
+    <transition name="fade" mode="out-in">
+      <router-view
+        @created-relation="addRelation"
+      />
+    </transition>
   </div>
 </template>
 
@@ -61,6 +66,11 @@
         } catch(error) {
           console.log(error)
         }
+      },
+      addRelation(relation) {
+        console.log('push the relation')
+        console.log(relation)
+        this.relations.push(relation)
       }
     }
   }

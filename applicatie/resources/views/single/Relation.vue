@@ -53,6 +53,9 @@
 
     <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals" />
 
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -87,7 +90,17 @@
       }
     },
     activated() {
+      console.log('activated')
       this.show()
+    },
+    mounted() {
+      console.log('mounted')
+    },
+    created() {
+      console.log('created')
+    },
+    updated() {
+      console.log('updated')
     },
     methods: {
       back() {
