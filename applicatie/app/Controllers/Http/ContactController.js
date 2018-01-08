@@ -115,6 +115,7 @@ class ContactController {
         await Relation.calculateInsightForEveryProposalByRelations(relations.rows)
       }
 
+      await contact.load('relations') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return contact
     } catch (error) {
       return response.status(404).send(error)

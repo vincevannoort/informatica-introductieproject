@@ -15,8 +15,6 @@ class Proposal extends Model {
    * Calculate insight, this is where the magic happens
    */
   async calculateInsight() {
-    console.log(chalk.green.underline(`Start calculating insight for: '${this.name}', with insight of: ${this.insight}.`)) // eslint-disable-line no-console
-
     // fetch data to be used
     // const contacts = await this.contacts().fetch()
     // const relation = await this.relation().fetch()

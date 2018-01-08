@@ -94,6 +94,8 @@ class RelationController {
       // calculate insight for the relation after the updates have been made
       await Relation.calculateInsightForEveryProposalByRelations(relation)
 
+      await relation.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await relation.load('proposals.contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return relation
     } catch (error) {
       return response.status(404).send(error)

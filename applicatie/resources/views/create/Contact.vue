@@ -134,8 +134,8 @@
       },
       async update() {
         try {
-          await Contact.update({ contact: this.contact })
-          this.showEditedSuccess()
+          const contact = await Contact.update({ contact: this.contact })
+          this.$emit('updated-contact', contact.data)
           this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
         } catch(error) {
           console.error(error)

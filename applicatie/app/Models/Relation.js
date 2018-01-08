@@ -32,7 +32,6 @@ class Relation extends Model {
    * Calculate insight for every proposals
    */
   async calculateInsightForEveryProposal() {
-    console.log(chalk.blue.underline(`Start calculating total insight for '${this.name}'`)) // eslint-disable-line no-console
     const proposals = await this.proposals().with('contacts').fetch()
 
     // return if no proposals exist

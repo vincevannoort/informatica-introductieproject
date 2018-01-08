@@ -70,7 +70,8 @@
       },
       async update() {
         try {
-          await Relation.update({ relation: this.relation })
+          const relation = await Relation.update({ relation: this.relation })
+          this.$emit('updated-relation', relation.data)
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } catch(error) {
           console.error(error)

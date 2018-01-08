@@ -38,7 +38,9 @@
       </div>
     </div>
     <transition name="fade" mode="out-in">
-      <router-view />
+      <router-view
+        @updated-contact="updateContact"
+      />
     </transition>
   </div>
 </template>
@@ -85,6 +87,9 @@
           this.showDeletedError()
           console.error(error)
         }
+      },
+      updateContact(contact) {
+        this.contact = contact
       }
     }
   }
