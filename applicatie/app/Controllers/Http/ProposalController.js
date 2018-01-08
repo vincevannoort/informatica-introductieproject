@@ -71,6 +71,8 @@ class ProposalController {
     // calculate insight for the relation attached to the contact
     await Relation.calculateInsightForEveryProposalByRelations(relation)
 
+    await proposal.load('relation') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+    await proposal.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
     return proposal
   }
 
