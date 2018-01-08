@@ -47,11 +47,10 @@
           <div class="field is-grouped">
             <div class="control">
               <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!fieldsValidatedCreate">Create</button>
-              <button v-else-if="editView" class="button is-link" @click.prevent="update">Update</button>
+              <button v-else-if="editView" class="button is-link" disabled> TODO: Update</button>
             </div>
             <div class="control">
-              <button v-if="createView" class="button is-text" @click.prevent="backcreate">Cancel</button>
-              <button v-else-if="editView" class="button is-text" @click.prevent="backupdate">Cancel</button>
+              <button class="button is-text" @click.prevent="back">Cancel</button>
             </div>
           </div>
         </form>
@@ -90,10 +89,10 @@
         return this.fieldsHaveValuesCreate && this.errors.items.length == 0
       },
       createView() {
-        return this.$route.name == 'proposals-create'
+        return this.$route.meta.type === 'create'
       },
       editView() {
-        return this.$route.name == 'proposals-edit'
+        return this.$route.meta.type === 'edit'
       }
     },
     mounted() {
@@ -121,16 +120,17 @@
         try {
           const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id, contact_ids: this.selectedContacts })
           this.$emit('created-proposal', proposal)
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+          this.back()
         } catch(error) {
           console.error()
         }
       },
-      backcreate() {
-        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-      },
-      backupdate() {
-        this.$router.push({ name: 'proposals-single', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
+      back() {
+        if (this.createView || this.$route.name === 'proposals-edit-from-relation') {
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+        } else if (this.editView) {
+          this.$router.push({ name: 'proposals-single', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
+        }
       }
     }
   }

@@ -21,8 +21,7 @@
               <button v-else-if="editView" class="button is-link" @click.prevent="update">Update</button>
             </div>
             <div class="control">
-              <button v-if="createView" class="button is-text" @click.prevent="backcreate">Cancel</button>
-              <button v-else-if="editView" class="button is-text" @click.prevent="backupdate">Cancel</button>
+              <button class="button is-text" @click.prevent="back">Cancel</button>
             </div>
           </div>
         </form>
@@ -40,10 +39,10 @@
     },
     computed: {
       createView() {
-        return this.$route.name == 'relations-create'
+        return this.$route.meta.type === 'create'
       },
       editView() {
-        return this.$route.name == 'relations-edit'
+        return this.$route.meta.type === 'edit'
       }
     },
     mounted() {
@@ -63,7 +62,7 @@
         try {
           const relation = await Relation.store({ relation: this.relation })
           this.$emit('created-relation', relation)
-          this.$router.push({ name: 'relations-overview' })
+          this.back()
         } catch(error) {
           console.error(error)
         }
@@ -72,16 +71,17 @@
         try {
           const relation = await Relation.update({ relation: this.relation })
           this.$emit('updated-relation', relation.data)
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+          this.back()
         } catch(error) {
           console.error(error)
         }
       },
-      backcreate() {
-        this.$router.push({ name: 'relations-overview' })
-      },
-      backupdate() {
-        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+      back() {
+        if (this.createView) {
+          this.$router.push({ name: 'relations-overview' })
+        } else if (this.editView) {
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+        }
       }
     }
   }

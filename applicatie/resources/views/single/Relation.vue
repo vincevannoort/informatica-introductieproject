@@ -13,7 +13,9 @@
         <box-contacts
           :title="'Contacts'"
           :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
-          :contacts="relation.contacts" />
+          :contacts="relation.contacts"
+          @edit-contact="editContact"
+          @remove-contact="removeContact" />
       </div>
       <div class="relation-insight-sidebox column is-2">
         <insight-bar :insight="relation.insight_total" />
@@ -51,7 +53,12 @@
       </div>
     </div>
 
-    <box-proposals :title="'Proposals'" :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }" :proposals="relation.proposals" />
+    <box-proposals
+      :title="'Proposals'"
+      :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }"
+      :proposals="relation.proposals"
+      @edit-proposal="editProposal"
+      @remove-proposal="removeProposal" />
 
     <transition name="fade" mode="out-in">
       <router-view
@@ -68,6 +75,8 @@
   import BoxProposalsComponent from '../../components/BoxProposals'
   import InsightBarComponent from '../../components/InsightBar'
   import Relation from '../../controllers/RelationController'
+  import Contact from '../../controllers/ContactController'
+  import Proposal from '../../controllers/ProposalController'
 
   export default {
     name: 'Relation',
@@ -124,8 +133,32 @@
       addContact(contact) {
         this.relation.contacts.push(contact)
       },
+      editContact(contact) {
+        this.$router.push({ name: 'contacts-edit-from-relation', params: { relation_id: this.$route.params.relation_id, contact_id: contact.id } })
+      },
+      async removeContact(contact) {
+        try {
+          await Contact.destroy({ contact_id: contact.id })
+          const index = this.relation.contacts.indexOf(contact)
+          this.relation.contacts.splice(index, 1)
+        } catch(error) {
+          console.error(error)
+        }
+      },
       addProposal(proposal) {
         this.relation.proposals.push(proposal)
+      },
+      editProposal(proposal) {
+        this.$router.push({ name: 'proposals-edit-from-relation', params: { relation_id: this.$route.params.relation_id, proposal_id: proposal.id } })
+      },
+      async removeProposal(proposal) {
+        try {
+          await Proposal.destroy({ proposal_id: proposal.id })
+          const index = this.relation.proposals.indexOf(proposal)
+          this.relation.proposals.splice(index, 1)
+        } catch(error) {
+          console.error(error)
+        }
       }
     }
   }

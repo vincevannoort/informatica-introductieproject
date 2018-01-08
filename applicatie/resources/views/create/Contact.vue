@@ -45,8 +45,7 @@
               <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!fieldsValidatedUpdate">Update</button>
             </div>
             <div class="control">
-              <button v-if="createView" class="button is-text" @click.prevent="backcreate">Cancel</button>
-              <button v-else-if="editView" class="button is-text" @click.prevent="backupdate">Cancel</button>
+              <button class="button is-text" @click.prevent="back">Cancel</button>
             </div>
           </div>
         </form>
@@ -94,10 +93,10 @@
         return this.fieldsHaveValuesUpdate && this.errors.items.length == 0
       },
       createView() {
-        return this.$route.name == 'contacts-create'
+        return this.$route.meta.type === 'create'
       },
       editView() {
-        return this.$route.name == 'contacts-edit'
+        return this.$route.meta.type === 'edit'
       }
     },
     mounted() {
@@ -127,7 +126,7 @@
         try {
           const contact = await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })
           this.$emit('created-contact', contact)
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+          this.back()
         } catch(error) {
           console.error(error)
         }
@@ -136,16 +135,17 @@
         try {
           const contact = await Contact.update({ contact: this.contact })
           this.$emit('updated-contact', contact.data)
-          this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
+          this.back()
         } catch(error) {
           console.error(error)
         }
       },
-      backcreate() {
-        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-      },
-      backupdate() {
-        this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
+      back() {
+        if (this.createView || this.$route.name === 'contacts-edit-from-relation') {
+          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+        } else if (this.editView) {
+          this.$router.push({ name: 'contacts-single', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
+        }
       }
     }
   }

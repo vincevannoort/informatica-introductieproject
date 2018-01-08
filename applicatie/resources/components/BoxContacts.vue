@@ -9,6 +9,7 @@
               <th>Need for change</th>
               <th>Invidual influence</th>
               <th>Social media</th>
+              <th>Actions</th>
             </tr>
             <tr>
               <td>
@@ -27,6 +28,12 @@
               <td>medium</td>
               <td>
                 <social-media />
+              </td>
+              <td>
+                <buttons-edit-remove
+                  @edit-button-pressed="editContact(contact)"
+                  @remove-button-pressed="removeContact(contact)"
+                />
               </td>
             </tr>
           </table>
@@ -57,6 +64,14 @@
       contacts: {
         type: Array,
         default: () => {}
+      }
+    },
+    methods: {
+      editContact(contact) {
+        this.$emit('edit-contact', contact)
+      },
+      removeContact(contact) {
+        this.$emit('remove-contact', contact)
       }
     }
   }
@@ -93,6 +108,7 @@
 
       th {
         &:nth-of-type(1) { width: 40%; }
+        &:last-of-type { text-align: right; }
       }
 
       width: 100%;

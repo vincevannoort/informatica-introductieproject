@@ -14,6 +14,7 @@
                 <th>Start</th>
                 <th>Close</th>
                 <th>Insight</th>
+                <th class="table-actions">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -42,6 +43,12 @@
                     <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
                   </div>
                 </td>
+                <td>
+                  <buttons-edit-remove
+                    @edit-button-pressed="editProposal(proposal)"
+                    @remove-button-pressed="removeProposal(proposal)"
+                  />
+                </td>
               </tr>
             </tbody>
           </table>
@@ -69,6 +76,14 @@
       proposals: {
         type: Array,
         default: () => {}
+      }
+    },
+    methods: {
+      editProposal(proposal) {
+        this.$emit('edit-proposal', proposal)
+      },
+      removeProposal(proposal) {
+        this.$emit('remove-proposal', proposal)
       }
     }
   }
@@ -150,5 +165,9 @@
     span {
       color: #757575;
     }
+  }
+
+  .table-actions {
+    text-align: right;
   }
 </style>
