@@ -1,3 +1,6 @@
+/*
+ * Fade normal
+ */
 .fade-enter-active, .fade-leave-active {
   transition: all .2s ease-in-out;
 }
@@ -10,6 +13,37 @@
   transform: translateX(10px);
 }
 
-.fade-enter, .fade-leave-to {
+/*
+ * Fade up
+ */
+.fade-up-enter-active, .fade-up-leave-active {
+  transition: all .35s ease-in-out;
+}
+
+.fade-up-enter, .fade-up-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+/*
+ * Fade slow
+ */
+.fade-slow-enter, .fade-slow-leave-to {
+  opacity: 0
+}
+
+.fade-slow-enter-active, .fade-slow-leave-active {
+  transition: all .3s ease-in-out;
+}
+
+.fade-slow-enter {
+  transform: translateY(-10px);
+}
+
+.fade-slow-leave-to {
+  transform: translateY(-10px);
+}
+
+.fade-slow-enter, .fade-slow-leave-to {
   opacity: 0
 }

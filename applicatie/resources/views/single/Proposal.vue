@@ -52,7 +52,7 @@
         </box>
       </div>
     </div>
-    <transition name="fade" mode="out-in">
+    <transition name="fade-up" mode="out-in">
       <router-view />
     </transition>
   </div>

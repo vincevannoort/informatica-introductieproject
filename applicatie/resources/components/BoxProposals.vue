@@ -1,59 +1,61 @@
 <template>
   <box :title="title" :action="action">
     <template v-if="proposals && proposals.length">
-      <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
-        <div class="relation-proposal-header">
-          <span>€{{ proposal.value }}</span>{{ proposal.name }}
-        </div>
-        <div class="relation-proposal-body">
-          <table>
-            <thead>
-              <tr>
-                <th>Involved contacts</th>
-                <th>Last updated</th>
-                <th>Start</th>
-                <th>Close</th>
-                <th>Insight</th>
-                <th class="table-actions">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="relation-proposal-contacts" v-if="proposal.contacts && proposal.contacts.length">
-                    <div>
-                      <div v-for="contact in proposal.contacts" :key="contact.id">
-                        <span>{{ contact.profession }}</span> - {{ contact.first_name }} {{ contact.last_name }}
+      <transition-group name="fade-slow" mode="out-in">
+        <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
+          <div class="relation-proposal-header">
+            <span>€{{ proposal.value }}</span>{{ proposal.name }}
+          </div>
+          <div class="relation-proposal-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Involved contacts</th>
+                  <th>Last updated</th>
+                  <th>Start</th>
+                  <th>Close</th>
+                  <th>Insight</th>
+                  <th class="table-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="relation-proposal-contacts" v-if="proposal.contacts && proposal.contacts.length">
+                      <div>
+                        <div v-for="contact in proposal.contacts" :key="contact.id">
+                          <span>{{ contact.profession }}</span> - {{ contact.first_name }} {{ contact.last_name }}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div v-else>
-                    No contacts added yet
-                  </div>
-                </td>
-                <td class="relation-proposal-dates">
-                  <div>
-                    <div>{{ proposal.updated_at | moment("from") }}</div>
-                  </div>
-                </td>
-                <td>{{ proposal.start | moment("from") }}</td>
-                <td>{{ proposal.close | moment("from") }}</td>
-                <td>
-                  <div class="relations-insight">
-                    <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
-                  </div>
-                </td>
-                <td>
-                  <buttons-edit-remove
-                    @edit-button-pressed="editProposal(proposal)"
-                    @remove-button-pressed="removeProposal(proposal)"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </router-link>
+                    <div v-else>
+                      No contacts added yet
+                    </div>
+                  </td>
+                  <td class="relation-proposal-dates">
+                    <div>
+                      <div>{{ proposal.updated_at | moment("from") }}</div>
+                    </div>
+                  </td>
+                  <td>{{ proposal.start | moment("from") }}</td>
+                  <td>{{ proposal.close | moment("from") }}</td>
+                  <td>
+                    <div class="relations-insight">
+                      <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
+                    </div>
+                  </td>
+                  <td>
+                    <buttons-edit-remove
+                      @edit-button-pressed="editProposal(proposal)"
+                      @remove-button-pressed="removeProposal(proposal)"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </router-link>
+      </transition-group>
     </template>
     <template v-else>
       No proposals added yet

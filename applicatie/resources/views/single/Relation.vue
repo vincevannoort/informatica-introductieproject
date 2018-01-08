@@ -60,7 +60,7 @@
       @edit-proposal="editProposal"
       @remove-proposal="removeProposal" />
 
-    <transition name="fade" mode="out-in">
+    <transition name="fade-up" mode="out-in">
       <router-view
         @created-contact="addContact"
         @created-proposal="addProposal"

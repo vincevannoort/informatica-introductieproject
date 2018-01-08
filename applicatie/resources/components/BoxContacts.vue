@@ -2,42 +2,44 @@
   <box :title="title" :action="action">
     <div class="relation-contacts">
       <div v-if="contacts && contacts.length">
-        <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/relations/${$route.params.relation_id}/contacts/${contact.id}`">
-          <table>
-            <tr>
-              <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
-              <th>Need for change</th>
-              <th>Invidual influence</th>
-              <th>Social media</th>
-              <th>Actions</th>
-            </tr>
-            <tr>
-              <td>
-                <table>
-                  <tr v-if="contact.telephone">
-                    <td>Telefoon:</td>
-                    <td>{{ contact.telephone }}</td>
-                  </tr>
-                  <tr v-if="contact.email">
-                    <td>Emailadres:</td>
-                    <td>{{ contact.email }}</td>
-                  </tr>
-                </table>
-              </td>
-              <td>low</td>
-              <td>medium</td>
-              <td>
-                <social-media />
-              </td>
-              <td>
-                <buttons-edit-remove
-                  @edit-button-pressed="editContact(contact)"
-                  @remove-button-pressed="removeContact(contact)"
-                />
-              </td>
-            </tr>
-          </table>
-        </router-link>
+        <transition-group name="fade-slow" mode="out-in">
+          <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/relations/${$route.params.relation_id}/contacts/${contact.id}`">
+            <table>
+              <tr>
+                <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
+                <th>Need for change</th>
+                <th>Invidual influence</th>
+                <th>Social media</th>
+                <th>Actions</th>
+              </tr>
+              <tr>
+                <td>
+                  <table>
+                    <tr v-if="contact.telephone">
+                      <td>Telefoon:</td>
+                      <td>{{ contact.telephone }}</td>
+                    </tr>
+                    <tr v-if="contact.email">
+                      <td>Emailadres:</td>
+                      <td>{{ contact.email }}</td>
+                    </tr>
+                  </table>
+                </td>
+                <td>low</td>
+                <td>medium</td>
+                <td>
+                  <social-media />
+                </td>
+                <td>
+                  <buttons-edit-remove
+                    @edit-button-pressed="editContact(contact)"
+                    @remove-button-pressed="removeContact(contact)"
+                  />
+                </td>
+              </tr>
+            </table>
+          </router-link>
+        </transition-group>
       </div>
       <div v-else>
         No contacts added yet
