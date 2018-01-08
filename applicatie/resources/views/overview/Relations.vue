@@ -19,7 +19,7 @@
         :action="{ title: 'Add new relation', route: '/relations/create' }"
         :relations="sortedRelations" />
     </div>
-    <transition name="fade" mode="out-in">
+    <transition name="fade-up" mode="out-in">
       <router-view
         @created-relation="addRelation"
       />
