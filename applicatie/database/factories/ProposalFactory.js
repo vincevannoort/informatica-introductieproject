@@ -7,6 +7,6 @@ Factory.blueprint('App/Models/Proposal', async faker => ({
   name: faker.sentence({ words: 5 }),
   value: faker.integer({ min: 5000, max: 100000 }),
   start: moment().format(DATE_FORMAT),
-  close: moment().add(Math.floor(Math.random() * 356), 'days').format(DATE_FORMAT),
+  close: moment().add(Math.floor(Math.random() * 365), 'days').format(DATE_FORMAT),
   insight: faker.integer({ min: 0, max: 100 })
 }))

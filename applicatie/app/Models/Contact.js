@@ -10,6 +10,10 @@ class Contact extends Model {
     return this.belongsToMany('App/Models/Proposal').pivotTable('contact_proposals')
   }
 
+  notes() {
+    return this.belongsToMany('App/Models/Note').pivotTable('note_contact')
+  }
+
 }
 
 module.exports = Contact

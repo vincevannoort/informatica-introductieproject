@@ -27,3 +27,6 @@ screenshots
 
 # VSCODE folder
 .vscode
+
+# Log files
+.log

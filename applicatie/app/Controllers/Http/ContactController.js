@@ -32,6 +32,7 @@ class ContactController {
     try {
       const contact = await Contact.find(params.id)
       await contact.load('relations') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await contact.load('notes.user') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return contact
     } catch (error) {
       return response.status(404).send('Contact not found')

@@ -9,12 +9,40 @@
     <div class="columns">
       <div class="column">
         <box :title="'Contact information'">
-          information
+          <table class="table-contact-information">
+            <tr>
+              <td>Profession: </td>
+              <td>{{ contact.profession }}</td>
+            </tr>
+            <tr>
+              <td>Telephone: </td>
+              <td>{{ contact.telephone }}</td>
+            </tr>
+            <tr>
+              <td>Emailaddress: </td>
+              <td>{{ contact.email }}</td>
+            </tr>
+          </table>
         </box>
         <div class="columns">
           <div class="column">
             <box :title="'Notes'">
-              information
+              <div class="notes-tables">
+                <table class="table-contact-information" v-for="note in contact.notes" :key="note.id">
+                  <tr>
+                    <td>Description: </td>
+                    <td>{{ note.description }}</td>
+                  </tr>
+                  <tr>
+                    <td>Date: </td>
+                    <td>{{ note.date }}</td>
+                  </tr>
+                  <tr>
+                    <td>Name: </td>
+                    <td>{{ note.user.first_name }} {{ note.user.last_name }}</td>
+                  </tr>
+                </table>
+              </div>
             </box>
           </div>
         </div>
@@ -92,3 +120,34 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import "../../assets/scss/variables/colors";
+
+  .table-contact-information {
+    width: 100%;
+    background-color: $border-inside-grey;
+    border: 1px solid $border-grey;
+    tr {
+      td {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem;
+        white-space: nowrap;
+        &:last-of-type {
+          padding-left: 2rem;
+          text-align: left;
+          padding-right: 0.5rem;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .notes-tables {
+    border-bottom: 1px solid $border-grey;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+</style>
