@@ -31,7 +31,12 @@ class ProposalController {
     try {
       const proposal = await Proposal.find(params.id)
       await proposal.load('relation') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
-      await proposal.load('contacts') // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await proposal.loadMany({
+        proposalcontacts: (builder) => {
+          builder.with('contact')
+          builder.with('roles')
+        }
+      }) // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return proposal
     } catch (error) {
       return response.status(404).send('Proposal not found')

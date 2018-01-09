@@ -11,6 +11,10 @@ class Proposal extends Model {
     return this.belongsToMany('App/Models/Contact').pivotTable('contact_proposals')
   }
 
+  proposalcontacts() {
+    return this.hasMany('App/Models/Connections/ProposalContact')
+  }
+
   /**
    * Calculate insight, this is where the magic happens
    */

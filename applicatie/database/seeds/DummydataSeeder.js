@@ -11,6 +11,8 @@
 const Factory = use('Factory')
 const Database = use('Database')
 const User = use('App/Models/User')
+const Role = use('App/Models/Role')
+const ProposalContact = use('App/Models/Connections/ProposalContact')
 
 class DummydataSeeder {
 
@@ -29,6 +31,17 @@ class DummydataSeeder {
     await Promise.all(proposalsPromises)
     const notesPromises = notes.map((note) => note.contact().withTimestamps().attach(Math.floor(Math.random() * 150) + 1))
     await Promise.all(notesPromises)
+
+    const availableTypes = ['chief', 'user', 'expert', 'ambassador']
+    const proposalContacts = await ProposalContact.all()
+    const proposalContactsRolesPromises = proposalContacts.rows.map(async (proposalcontact) => {
+      const role1 = new Role()
+      role1.type = availableTypes[Math.floor(Math.random() * availableTypes.length)]
+      const role2 = new Role()
+      role2.type = availableTypes[Math.floor(Math.random() * availableTypes.length)]
+     return proposalcontact.roles().saveMany([role1, role2])
+    })
+    await Promise.all(proposalContactsRolesPromises)
 
     // custom users for testing
     const newUsers = [

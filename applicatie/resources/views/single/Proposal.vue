@@ -9,7 +9,16 @@
     <div class="columns">
       <div class="column">
         <box :title="'Internal power and sources'">
-          information (contacts and their influences)
+          <div class="relation-contact" v-for="proposalcontact in proposal.proposalcontacts" :key="proposalcontact.id">
+            <table>
+              <tr>
+                <th><span class="proposal-contact-type" v-for="role in proposalcontact.roles" :key="role.id">{{ role.type }}</span> <span>{{ proposalcontact.contact.profession }}</span> {{ proposalcontact.contact.first_name }} {{ proposalcontact.contact.last_name }}</th>
+              </tr>
+              <tr>
+                <td>information</td>
+              </tr>
+            </table>
+          </div>
         </box>
       </div>
       <div class="column is-2">
@@ -104,3 +113,8 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import "../../assets/scss/variables/colors";
+</style>
+
