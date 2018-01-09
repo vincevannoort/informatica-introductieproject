@@ -17,6 +17,7 @@ Vue.component('icon-dashboard', require('../../components/icons/dashboard'))
 Vue.component('icon-actions', require('../../components/icons/actions'))
 Vue.component('icon-relation', require('../../components/icons/relation'))
 Vue.component('icon-profile', require('../../components/icons/profile'))
+Vue.component('icon-users', require('../../components/icons/users'))
 Vue.component('buttons-edit-remove', require('../../components/ButtonsEditRemove'))
 
 /*
@@ -32,6 +33,7 @@ const routes = [
       { path: '/', component: require('../../views/Dashboard'), meta: { requiresAuth: true, title: 'Dashboard' } },
 
       // users
+      { path: '/users', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
 
       // relations
       {
@@ -86,7 +88,7 @@ const router = new VueRouter({
 |--------------------------------------------------------------------------
 */
 router.beforeEach((to, from, next) => {
-  document.title = `Canon - ${to.meta.title}`
+  document.title = `Easy Link Keeper - ${to.meta.title}`
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!Authentication.authenticated()) {
       next({

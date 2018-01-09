@@ -163,7 +163,7 @@
     }
     tr {
       cursor: pointer;
-      td { padding: 0.75rem 1rem; }
+      td { padding: 0.75rem 1rem; vertical-align: middle; }
       &:not(:first-child):nth-of-type(odd) { background-color: $background-grey; border: 1px solid $background-grey; }
       &:not(:first-child):nth-of-type(even) { background-color: darken($background-grey, 2%); border: 1px solid $background-grey; }
       border-right: 1px solid $border-grey;
