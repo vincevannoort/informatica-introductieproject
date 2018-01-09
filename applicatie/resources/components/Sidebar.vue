@@ -13,6 +13,10 @@
           <icon-relation />
           <span>Relations</span>
         </router-link>
+        <router-link to="/users">
+          <icon-relation />
+          <span>Users</span>
+        </router-link>
         <router-link to="/actions">
           <icon-actions />
           <span>Actions</span>
@@ -50,12 +54,13 @@
   }
 
   .sidebar-logo {
-    padding: $sidebar-padding*2.4 $sidebar-padding;
+    padding: $sidebar-padding*2.4 $sidebar-padding*2;
     display: flex;
     align-items: center;
     justify-content: center;
     img {
       max-width: 300px;
+      width: 100%;
     }
   }
 
