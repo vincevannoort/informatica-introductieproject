@@ -186,7 +186,7 @@
     float: left;
     height: 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, $red 0%,#ff0000 100%)
+    background: linear-gradient(to right, lighten($red, 20%) 0%, $red 100%);
   }
 
   .relations-table-filter {
