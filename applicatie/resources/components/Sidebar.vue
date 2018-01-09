@@ -2,7 +2,7 @@
   <div class="sidebar-inner-content">
     <div class="sidebar-logo-and-links">
       <div class="sidebar-logo">
-        <img src="../assets/images/canon.svg">
+        <img src="../assets/images/easy-link-keeper-side.svg">
       </div>
       <div class="sidebar-links">
         <router-link to="/" exact>
@@ -55,7 +55,7 @@
     align-items: center;
     justify-content: center;
     img {
-      max-width: 200px;
+      max-width: 300px;
     }
   }
 

@@ -181,7 +181,7 @@
     float: left;
     width: 12px;
     border-radius: 10px;
-    background: linear-gradient(to top, $red 0%,#ff0000 100%)
+    background: linear-gradient(to top, lighten($red, 20%) 0%, $red 100%)
   }
 
   .relation-insight-sidebox {
