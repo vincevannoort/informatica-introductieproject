@@ -112,6 +112,7 @@
       async show() {
         try {
           this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
+          this.proposal.contacts.map(contact => this.selectedContacts.push(contact.id))
         } catch(error) {
           console.error(error)
         }

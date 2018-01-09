@@ -10,7 +10,7 @@
 <style lang="scss">
   .modal {
     .modal-background {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.875);
     }
     .modal-content {
       overflow: visible;
