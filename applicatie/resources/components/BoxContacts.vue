@@ -108,6 +108,7 @@
 
       th {
         &:nth-of-type(1) { width: 40%; }
+        &:first-of-type { white-space: nowrap; }
         &:last-of-type { text-align: right; }
       }
 
@@ -119,12 +120,11 @@
         padding: 0.5rem 1rem;
         span {
           color: $red;
-          text-transform: uppercase;
           &:after {
             content: '-';
             color: $almost-black;
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
           }
         }
       }

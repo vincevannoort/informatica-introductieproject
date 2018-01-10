@@ -12,10 +12,16 @@
           <div class="relation-contact" v-for="proposalcontact in proposal.proposalcontacts" :key="proposalcontact.id">
             <table>
               <tr>
-                <th><span class="proposal-contact-type" v-for="role in proposalcontact.roles" :key="role.id">{{ role.type }}</span> <span>{{ proposalcontact.contact.profession }}</span> {{ proposalcontact.contact.first_name }} {{ proposalcontact.contact.last_name }}</th>
+                <th>
+                  <i class="proposal-contact-type" v-for="role in proposalcontact.roles" :key="role.id">{{ role.type }}</i>
+                  <span class="proposal-contact-profession">{{ proposalcontact.contact.profession }}</span>
+                  {{ proposalcontact.contact.first_name }} {{ proposalcontact.contact.last_name }}
+                </th>
+                <th>actions</th>
               </tr>
               <tr>
                 <td>information</td>
+                <td>lorem ipsum</td>
               </tr>
             </table>
           </div>
@@ -116,5 +122,20 @@
 
 <style lang="scss">
   @import "../../assets/scss/variables/colors";
+
+  .proposal-contact-type {
+    color: $red;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+    font-size: 12px;
+    border: 1px solid $red;
+  }
+
+  .proposal-contact-profession {
+    color: $subtle-grey !important;
+    margin-left: 0.25rem;
+  }
+
 </style>
 

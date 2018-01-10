@@ -2,6 +2,14 @@ const Model = use('Model')
 
 class ProposalContact extends Model {
 
+  static boot() {
+    super.boot()
+    this.addGlobalScope(builder => {
+      builder.with('contact')
+      builder.with('roles')
+    })
+  }
+
   static get table() {
     return 'contact_proposals'
   }
