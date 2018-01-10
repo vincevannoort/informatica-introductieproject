@@ -143,8 +143,8 @@
     computed: {
       sortedRelations() {
         if (!(this.relations && this.relations.length)) { return [] }
-        let filteredAmountRelations = this.relations.filter((item) => item['insight_total'] >= this.sortedFilter.min && item['insight_total'] <= this.sortedFilter.max )
-        let filteredNameRelations = (this.relationFilter) ? filteredAmountRelations.filter((item) =>item['name'].toLowerCase().includes(self.relationFilter.toLowerCase())) : filteredAmountRelations
+        let filteredAmountRelations = this.relations.filter( item => item['insight_total'] >= this.sortedFilter.min && item['insight_total'] <= this.sortedFilter.max )
+        let filteredNameRelations = (this.relationFilter) ? filteredAmountRelations.filter( item => item['name'].toLowerCase().includes(this.relationFilter.toLowerCase())) : filteredAmountRelations
         let filter = this.directionFilter.split('-')
         let column = filter[0]
         let direction = filter[1]
