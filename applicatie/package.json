@@ -9,7 +9,8 @@
     "start": "node server.js",
     "test": "NODE_ENV=testing ENV_SILENT=true node ace test",
     "development": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "history": "git --no-pager log --pretty=format:\"%h | %an - %ad - %s\" --date=local"
   },
   "keywords": [
     "adonisjs",
