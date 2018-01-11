@@ -27,7 +27,13 @@ class DummydataSeeder {
 
     const contactsPromises = contacts.map((contact) => contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]))
     await Promise.all(contactsPromises)
-    const proposalsPromises = proposals.map((proposal) => proposal.contacts().withTimestamps().attach([Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]))
+    const proposalsPromises = proposals.map(async (proposal) => {
+      // the relation of a proposal has contacts
+      const relation = await proposal.relation().fetch()
+      const contacts = await relation.contacts().fetch()
+      // attach each contact to each proposal
+      return contacts.rows.map(async contact => contact.proposals().attach(proposal.id))
+    })
     await Promise.all(proposalsPromises)
     const notesPromises = notes.map((note) => note.contact().withTimestamps().attach(Math.floor(Math.random() * 150) + 1))
     await Promise.all(notesPromises)

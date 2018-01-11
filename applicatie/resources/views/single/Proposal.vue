@@ -9,13 +9,13 @@
     <div class="columns">
       <div class="column">
         <box :title="'Internal power and sources'">
-          <div class="relation-contact" v-for="proposalcontact in proposal.proposalcontacts" :key="proposalcontact.id">
+          <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
             <table>
               <tr>
                 <th>
-                  <i class="proposal-contact-type" v-for="role in proposalcontact.roles" :key="role.id">{{ role.type }}</i>
-                  <span class="proposal-contact-profession">{{ proposalcontact.contact.profession }}</span>
-                  {{ proposalcontact.contact.first_name }} {{ proposalcontact.contact.last_name }}
+                  <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
+                  <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
+                  {{ contact.information.first_name }} {{ contact.information.last_name }}
                 </th>
                 <th>actions</th>
               </tr>
