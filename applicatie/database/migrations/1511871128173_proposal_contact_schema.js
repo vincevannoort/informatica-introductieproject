@@ -3,7 +3,7 @@ const Schema = use('Schema')
 class ContactProposalSchema extends Schema {
 
   up() {
-    this.create('contact_proposals', (table) => {
+    this.create('proposal_contacts', (table) => {
       table.increments()
       table.integer('contact_id').unsigned().references('id').inTable('contacts')
       table.integer('proposal_id').unsigned().references('id').inTable('proposals')
@@ -12,7 +12,7 @@ class ContactProposalSchema extends Schema {
   }
 
   down() {
-    this.drop('contact_proposals')
+    this.drop('proposal_contacts')
   }
 
 }

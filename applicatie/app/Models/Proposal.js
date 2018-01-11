@@ -8,7 +8,7 @@ class Proposal extends Model {
   }
 
   contacts() {
-    return this.belongsToMany('App/Models/Contact').pivotTable('contact_proposals')
+    return this.belongsToMany('App/Models/Contact').pivotTable('proposals_contact')
   }
 
   proposalcontacts() {
