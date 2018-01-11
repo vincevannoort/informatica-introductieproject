@@ -1,6 +1,7 @@
 const Factory = use('Factory')
 
+const availableSocialMedias = ['linkdin', 'facebook', 'twitter']
 Factory.blueprint('App/Models/Informations/SocialMedia', async faker => ({
-  contact_id: faker.integer({ min: 1, max: 150 }),
+  type: availableSocialMedias[Math.floor(Math.random() * availableSocialMedias.length)],
   url: faker.string()
 }))

@@ -24,7 +24,7 @@ class ProposalContact extends Model {
   }
 
   roles() {
-    return this.hasMany('App/Models/Role')
+    return this.hasMany('App/Models/Informations/Role')
   }
 
   influences() {

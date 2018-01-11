@@ -11,7 +11,7 @@
 const Factory = use('Factory')
 const Database = use('Database')
 const User = use('App/Models/User')
-const Role = use('App/Models/Role')
+const Role = use('App/Models/Informations/Role')
 const ProposalContact = use('App/Models/Connections/ProposalContact')
 
 class DummydataSeeder {
@@ -32,7 +32,13 @@ class DummydataSeeder {
     /*
     * Attach contacts to relations
     */
-    const contactsPromises = contacts.map((contact) => contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]))
+    const contactsPromises = contacts.map(async(contact) =>  {
+      const socialMedias = await Factory.model('App/Models/Informations/SocialMedia').makeMany(2)
+      return Promise.all([
+        contact.relations().withTimestamps().attach([Math.floor(Math.random() * 50) + 1]),
+        contact.socialmedias().createMany(socialMedias.map(socialMedia => socialMedia.$attributes))
+      ])
+    })
     await Promise.all(contactsPromises)
 
     /*
@@ -87,11 +93,8 @@ class DummydataSeeder {
     const availableTypes = ['chief', 'user', 'expert', 'ambassador']
     const proposalContacts = await ProposalContact.all()
     const proposalContactsRolesPromises = proposalContacts.rows.map(async (proposalcontact) => {
-      const role1 = new Role()
-      role1.type = availableTypes[Math.floor(Math.random() * availableTypes.length)]
-      const role2 = new Role()
-      role2.type = availableTypes[Math.floor(Math.random() * availableTypes.length)]
-     return proposalcontact.roles().saveMany([role1, role2])
+      const roles = await Factory.model('App/Models/Informations/Role').makeMany(Math.floor(Math.random() * 3))
+      return proposalcontact.roles().createMany(roles.map(role => role.$attributes))
     })
     await Promise.all(proposalContactsRolesPromises)
 
