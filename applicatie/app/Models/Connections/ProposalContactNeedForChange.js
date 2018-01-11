@@ -7,7 +7,7 @@ class ProposalContactInfluence extends Model {
   }
 
   proposalcontact() {
-    return this.belongsTo('App/Models/Connection/ProposalContact')
+    return this.belongsTo('App/Models/Connections/ProposalContact')
   }
 
   influence() {

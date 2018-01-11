@@ -80,6 +80,11 @@ class DummydataSeeder {
     /*
     * Influences for contacts of proposals
     */
+    const proposalcontactInfluences = proposalContacts.rows.map(async proposalcontact => {
+      const influence = await Factory.model('App/Models/Informations/Influence').make()
+      return proposalcontact.influences().create(influence.$attributes)
+    })
+    Promise.all(proposalcontactInfluences)
 
     /*
     * Own users for testing

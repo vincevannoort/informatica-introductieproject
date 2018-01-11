@@ -28,11 +28,11 @@ class ProposalContact extends Model {
   }
 
   influences() {
-    return this.belongsToMany('App/Models/Information/Influences').pivotTable('proposal_contact_influences')
+    return this.belongsToMany('App/Models/Informations/Influence').pivotTable('proposal_contact_influences')
   }
 
   needforchanges() {
-    return this.belongsToMany('App/Models/Information/NeedForChanges').pivotTable('proposal_contact_need_for_changes')
+    return this.belongsToMany('App/Models/Informations/NeedForChange').pivotTable('proposal_contact_need_for_changes')
   }
 
 }
