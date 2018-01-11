@@ -66,7 +66,8 @@ class ProposalController {
       insight: Math.floor(Math.random() * 100)
     })
 
-    proposal.contacts().attach(params.contact_ids)
+    // Todo: fix attaching contacts when storing
+    // proposal.contacts().attach(params.contact_ids)
 
     // calculate insight for the relation attached to the contact
     await Relation.calculateInsightForEveryProposalByRelations(relation)
