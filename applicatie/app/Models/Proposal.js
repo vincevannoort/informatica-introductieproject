@@ -8,10 +8,6 @@ class Proposal extends Model {
   }
 
   contacts() {
-    return this.belongsToMany('App/Models/Contact').pivotTable('proposals_contact')
-  }
-
-  proposalcontacts() {
     return this.hasMany('App/Models/Connections/ProposalContact')
   }
 

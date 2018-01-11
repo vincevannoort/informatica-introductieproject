@@ -5,7 +5,7 @@ class ProposalContact extends Model {
   static boot() {
     super.boot()
     this.addGlobalScope(builder => {
-      builder.with('contact')
+      builder.with('information')
       builder.with('roles')
     })
   }
@@ -18,7 +18,8 @@ class ProposalContact extends Model {
     return this.belongsTo('App/Models/Proposal')
   }
 
-  contact() {
+  // data of a contact
+  information() {
     return this.belongsTo('App/Models/Contact')
   }
 

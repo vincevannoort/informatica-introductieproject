@@ -20,11 +20,11 @@
             <tbody>
               <tr>
                 <td>
-                  <div class="relation-proposal-contacts" v-if="proposal.proposalcontacts && proposal.proposalcontacts.length">
-                    <div v-for="proposalcontact in proposal.proposalcontacts" :key="proposalcontact.id">
-                      <i class="proposal-contact-type" v-for="role in proposalcontact.roles" :key="role.id">{{ role.type }}</i>
-                      <span>{{ proposalcontact.contact.profession }}</span>
-                      - {{ proposalcontact.contact.first_name }} {{ proposalcontact.contact.last_name }}
+                  <div class="relation-proposal-contacts" v-if="proposal.contacts && proposal.contacts.length">
+                    <div v-for="contact in proposal.contacts" :key="contact.id">
+                      <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
+                      <span>{{ contact.information.profession }}</span>
+                      - {{ contact.information.first_name }} {{ contact.information.last_name }}
                     </div>
                   </div>
                   <div v-else>
