@@ -36,14 +36,41 @@ class DummydataSeeder {
     await Promise.all(contactsPromises)
 
     /*
-    * Attach contacts from a relation to a proposal
+    * Attach strengthandweaknesses to relations
     */
-    const proposalsPromises = proposals.map(async (proposal) => {
+    const relationsPromises = relations.map(async relation => {
+      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(2)
+      const businesswindow = await Factory.model('App/Models/Informations/BusinessWindow').make()
+      return Promise.all([
+        relation.strengthandweaknesses().createMany(strengthandweaknesses.map(strengthandweakness => strengthandweakness.$attributes)),
+        relation.businesswindow().create(businesswindow.$attributes)
+      ])
+    })
+    await Promise.all(relationsPromises)
+
+    /*
+    * Attach contacts to a proposal
+    * Attach grow to a proposal
+    * Attach actions to a proposal
+    * Attach competitions to a proposal
+    * Attach strengthandweaknesses to a proposal
+    */
+    const proposalsPromises = proposals.map(async proposal => {
       // the relation of a proposal has contacts
       const relation = await proposal.relation().fetch()
       const contacts = await relation.contacts().fetch()
-      // attach each contact to each proposal
-      return contacts.rows.map(async contact => contact.proposals().attach(proposal.id))
+      const grow = await Factory.model('App/Models/Informations/Grow').make()
+      const actions = await Factory.model('App/Models/Informations/Action').makeMany(2)
+      const competitions = await Factory.model('App/Models/Informations/Competition').makeMany(3)
+      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(2)
+
+      return Promise.all([
+        contacts.rows.map(async contact => contact.proposals().attach(proposal.id)),
+        proposal.grow().create(grow.$attributes),
+        proposal.actions().createMany(actions.map(action => action.$attributes)),
+        proposal.competitions().createMany(competitions.map(competition => competition.$attributes)),
+        proposal.strengthandweaknesses().createMany(strengthandweaknesses.map(strengthandweakness => strengthandweakness.$attributes))
+      ])
     })
     await Promise.all(proposalsPromises)
 
@@ -69,11 +96,15 @@ class DummydataSeeder {
     await Promise.all(proposalContactsRolesPromises)
 
     /*
-    * Influences for contacts
+    * Influences & Needforchanges for contacts
     */
     const contactInfluences = contacts.map(async contact => {
       const influence = await Factory.model('App/Models/Informations/Influence').make()
-      return contact.influences().create(influence.$attributes)
+      const needforchange = await Factory.model('App/Models/Informations/NeedForChange').make()
+      return Promise.all([
+        contact.influences().withTimestamps().create(influence.$attributes),
+        contact.needforchanges().withTimestamps().create(needforchange.$attributes)
+      ])
     })
     Promise.all(contactInfluences)
 
@@ -82,7 +113,11 @@ class DummydataSeeder {
     */
     const proposalcontactInfluences = proposalContacts.rows.map(async proposalcontact => {
       const influence = await Factory.model('App/Models/Informations/Influence').make()
-      return proposalcontact.influences().create(influence.$attributes)
+      const needforchange = await Factory.model('App/Models/Informations/NeedForChange').make()
+      return Promise.all([
+        proposalcontact.influences().withTimestamps().create(influence.$attributes),
+        proposalcontact.needforchanges().withTimestamps().create(needforchange.$attributes)
+      ])
     })
     Promise.all(proposalcontactInfluences)
 

@@ -19,8 +19,12 @@ class Proposal extends Model {
     return this.hasMany('App/Models/Informations/Action')
   }
 
-  grows() {
-    return this.hasMany('App/Models/Informations/Grow')
+  grow() {
+    return this.hasOne('App/Models/Informations/Grow')
+  }
+
+  strengthandweaknesses() {
+    return this.belongsToMany('App/Models/Informations/StrengthAndWeakness').pivotTable('proposal_strength_and_weaknesses')
   }
 
   /**

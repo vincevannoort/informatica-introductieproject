@@ -15,6 +15,14 @@ class Relation extends Model {
     return this.hasMany('App/Models/Proposal')
   }
 
+  strengthandweaknesses() {
+    return this.belongsToMany('App/Models/Informations/StrengthAndWeakness').pivotTable('relation_strength_and_weaknesses')
+  }
+
+  businesswindow() {
+    return this.hasOne('App/Models/Informations/BusinessWindow')
+  }
+
   /**
    * Calculate insight for every proposals when relations are passed, can be used for an relations array
    * @param {(Relation|Relation[])} relations - a relation type or relations array
