@@ -7,8 +7,8 @@
       @edit="edit"
       @remove="remove" />
     <div class="columns">
-      <div class="column">
-        <box :title="'Contact information'">
+      <div class="column is-9">
+        <box :title="'Contact information'" class="contact-information">
           <table class="table-contact-information">
             <tr>
               <td>Profession: </td>
@@ -49,7 +49,15 @@
         <div class="columns">
           <div class="column">
             <box :title="'Influence'">
-              information
+              <div class="influence-value">
+                influence value
+              </div>
+              <div class="box-header box-header-sub">
+                Clarification
+              </div>
+              <div class="influence-clarification">
+                Hello
+              </div>
             </box>
           </div>
           <div class="column">
@@ -60,7 +68,7 @@
         </div>
       </div>
       <div class="column is-3">
-        <box :title="'Social profile'">
+        <box :title="'Social profile'" class="social-profile">
           information
         </box>
       </div>
@@ -124,10 +132,15 @@
 <style lang="scss">
   @import "../../assets/scss/variables/colors";
 
+  .contact-information {
+    height: auto !important;
+  }
+
   .table-contact-information {
     width: 100%;
     background-color: $border-inside-grey;
     border: 1px solid $border-grey;
+    margin-bottom: 1rem;
     tr {
       td {
         padding-top: 0.5rem;
@@ -139,6 +152,7 @@
           text-align: left;
           padding-right: 0.5rem;
           width: 100%;
+          white-space: normal;
         }
       }
     }
@@ -149,5 +163,31 @@
     &:last-of-type {
       border-bottom: none;
     }
+  }
+
+  .influence-value {
+    border: 1px solid $border-grey;
+    background-color: $border-inside-grey;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    color: $red;
+  }
+
+  .box-header.box-header-sub {
+    margin-top: 1rem;
+  }
+
+  .influence-clarification {
+    border: 1px solid $border-grey;
+    background-color: $border-inside-grey;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .social-profile {
+    height: auto !important;
   }
 </style>
