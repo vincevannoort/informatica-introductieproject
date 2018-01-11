@@ -8,7 +8,7 @@ class Proposal extends Model {
   }
 
   contacts() {
-    return this.hasMany('App/Models/Connections/ProposalContact', 'contact_id')
+    return this.hasMany('App/Models/Connections/ProposalContact')
   }
 
   /**
