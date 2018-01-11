@@ -55,6 +55,7 @@ class DummydataSeeder {
 
     /*
     * Roles
+    * TODO: ROLE AS FACTORY
     */
     const availableTypes = ['chief', 'user', 'expert', 'ambassador']
     const proposalContacts = await ProposalContact.all()
@@ -70,8 +71,15 @@ class DummydataSeeder {
     /*
     * Influences for contacts
     */
-    // contacts.map()
+    const contactInfluences = contacts.map(async contact => {
+      const influence = await Factory.model('App/Models/Informations/Influence').make()
+      return contact.influences().create(influence.$attributes)
+    })
+    Promise.all(contactInfluences)
 
+    /*
+    * Influences for contacts of proposals
+    */
 
     /*
     * Own users for testing

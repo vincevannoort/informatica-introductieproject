@@ -12,15 +12,15 @@ class Proposal extends Model {
   }
 
   competitions() {
-    return this.hasMany('App/Models/Information/Competition')
+    return this.hasMany('App/Models/Informations/Competition')
   }
 
   actions() {
-    return this.hasMany('App/Models/Information/Action')
+    return this.hasMany('App/Models/Informations/Action')
   }
 
   grows() {
-    return this.hasMany('App/Models/Information/Grow')
+    return this.hasMany('App/Models/Informations/Grow')
   }
 
   /**

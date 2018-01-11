@@ -15,15 +15,15 @@ class Contact extends Model {
   }
 
   socialmedias() {
-    return this.hasMany('App/Models/Information/SocialMedia')
+    return this.hasMany('App/Models/Informations/SocialMedia')
   }
 
   influences() {
-    return this.belongsToMany('App/Models/Information/Influences').pivotTable('contact_influences')
+    return this.belongsToMany('App/Models/Informations/Influence').pivotTable('contact_influences')
   }
 
   needforchanges() {
-    return this.belongsToMany('App/Models/Information/NeedForChanges').pivotTable('contact_need_for_changes')
+    return this.belongsToMany('App/Models/Informations/NeedForChange').pivotTable('contact_need_for_changes')
   }
 
 }
