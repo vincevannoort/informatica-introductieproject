@@ -3,7 +3,7 @@ const Model = use('Model')
 class Note extends Model {
 
   contact() {
-    return this.belongsToMany('App/Models/Contact').pivotTable('note_contact')
+    return this.belongsToMany('App/Models/Contact').pivotTable('contact_notes')
   }
 
   user() {

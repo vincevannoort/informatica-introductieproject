@@ -11,6 +11,18 @@ class Proposal extends Model {
     return this.hasMany('App/Models/Connections/ProposalContact')
   }
 
+  competitions() {
+    return this.hasMany('App/Models/Information/Competition')
+  }
+
+  actions() {
+    return this.hasMany('App/Models/Information/Action')
+  }
+
+  grows() {
+    return this.hasMany('App/Models/Information/Grow')
+  }
+
   /**
    * Calculate insight, this is where the magic happens
    */

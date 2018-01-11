@@ -11,7 +11,7 @@ class ProposalContact extends Model {
   }
 
   static get table() {
-    return 'contact_proposals'
+    return 'proposal_contacts'
   }
 
   proposal() {
@@ -25,6 +25,14 @@ class ProposalContact extends Model {
 
   roles() {
     return this.hasMany('App/Models/Role')
+  }
+
+  influences() {
+    return this.belongsToMany('App/Models/Information/Influences').pivotTable('proposal_contact_influences')
+  }
+
+  needforchanges() {
+    return this.belongsToMany('App/Models/Information/NeedForChanges').pivotTable('proposal_contact_need_for_changes')
   }
 
 }

@@ -1,9 +1,9 @@
 const Schema = use('Schema')
 
-class NoteContactSchema extends Schema {
+class ContactNoteSchema extends Schema {
 
   up () {
-    this.create('note_contact', (table) => {
+    this.create('contact_notes', (table) => {
       table.increments()
       table.integer('note_id').unsigned().references('id').inTable('notes')
       table.integer('contact_id').unsigned().references('id').inTable('contacts')
@@ -12,9 +12,9 @@ class NoteContactSchema extends Schema {
   }
 
   down () {
-    this.drop('note_contact')
+    this.drop('contact_notes')
   }
 
 }
 
-module.exports = NoteContactSchema
+module.exports = ContactNoteSchema

@@ -11,7 +11,19 @@ class Contact extends Model {
   }
 
   notes() {
-    return this.belongsToMany('App/Models/Note').pivotTable('note_contact')
+    return this.belongsToMany('App/Models/Note').pivotTable('contact_notes')
+  }
+
+  socialmedias() {
+    return this.hasMany('App/Models/Information/SocialMedia')
+  }
+
+  influences() {
+    return this.belongsToMany('App/Models/Information/Influences').pivotTable('contact_influences')
+  }
+
+  needforchanges() {
+    return this.belongsToMany('App/Models/Information/NeedForChanges').pivotTable('contact_need_for_changes')
   }
 
 }
