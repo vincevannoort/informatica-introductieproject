@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: center;
     img {
-      max-width: 300px;
+      max-width: 270px;
       width: 100%;
     }
   }
