@@ -45,7 +45,7 @@ class DummydataSeeder {
     * Attach strengthandweaknesses to relations
     */
     const relationsPromises = relations.map(async relation => {
-      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(2)
+      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(5)
       const businesswindow = await Factory.model('App/Models/Informations/BusinessWindow').make()
       return Promise.all([
         relation.strengthandweaknesses().createMany(strengthandweaknesses.map(strengthandweakness => strengthandweakness.$attributes)),
@@ -68,7 +68,7 @@ class DummydataSeeder {
       const grow = await Factory.model('App/Models/Informations/Grow').make()
       const actions = await Factory.model('App/Models/Informations/Action').makeMany(2)
       const competitions = await Factory.model('App/Models/Informations/Competition').makeMany(3)
-      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(2)
+      const strengthandweaknesses = await Factory.model('App/Models/Informations/StrengthAndWeakness').makeMany(5)
 
       return Promise.all([
         contacts.rows.map(async contact => contact.proposals().attach(proposal.id)),

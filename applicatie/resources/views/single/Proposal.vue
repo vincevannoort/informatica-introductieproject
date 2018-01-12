@@ -33,36 +33,90 @@
     </div>
     <div class="columns">
       <div class="column">
-        <box :title="'Position and competition'">
-          information
+        <box
+          :title="'Position and competition'"
+          :action="{ title: 'Add new counter proposal', route: `TODO` }" >
+          <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
+            <div class="proposal-competition-company">{{ competition.company }}</div>
+            <div class="columns">
+              <div class="column proposal-competition-company-counter">
+                <div><strong>Counter proposal</strong></div>
+                <div>{{ competition.counter_proposal }}</div>
+              </div>
+              <div class="column proposal-competition-company-position">
+                <div><strong>Position</strong></div>
+                <div>{{ competition.position }}</div>
+              </div>
+            </div>
+          </div>
         </box>
       </div>
       <div class="column">
         <box :title="'Effects of the changes'">
-          information
+          Eventueel verwijderen
         </box>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        <box :title="'SMART actions'">
-          information (describes SMART actions)
+        <box
+          :title="'SMART actions'"
+          :action="{ title: 'Add new SMART action', route: `TODO` }" >
+          <div class="proposal-smart-action" v-for="action in proposal.actions" :key="action.id">
+            <div class="columns">
+              <div class="column">
+                <div><strong>Action</strong></div>
+                <div class="proposal-smart-action-text">{{ action.smart_action }}</div>
+              </div>
+              <div class="column is-3 has-text-right">
+                <div><strong>Date added</strong></div>
+                <div class="proposal-smart-action-date">{{ action.created_at | moment("from") }}</div>
+              </div>
+            </div>
+          </div>
         </box>
       </div>
       <div class="column">
         <box :title="'Strengths and Weaknesses'">
-          information (leverage strengths, eliminate weaknesses)
+          <div class="columns">
+            <div class="column proposal-strengths">
+              <div><strong>Strengths</strong></div>
+              <div v-for="strength in strengths" :key="strength.id">
+                - {{ strength.description }}
+              </div>
+            </div>
+            <div class="column proposal-weaknesses">
+              <div><strong>Weaknesses</strong></div>
+              <div v-for="weakness in weaknesses" :key="weakness.id">
+                - {{ weakness.description }}
+              </div>
+            </div>
+          </div>
         </box>
       </div>
     </div>
     <div class="columns">
       <div class="column">
         <box :title="'GROW information'">
-          <div class="columns">
-            <div class="column">goal</div>
-            <div class="column">reality</div>
-            <div class="column">opportunities</div>
-            <div class="column">will</div>
+          <div class="grow-information" v-if="proposal.grow">
+            <div class="columns">
+              <div class="column grow-information-goal">
+                <div><strong>Goal</strong></div>
+                {{ proposal.grow.goal }}
+              </div>
+              <div class="column grow-information-reality">
+                <div><strong>Reality</strong></div>
+                {{ proposal.grow.reality }}
+              </div>
+              <div class="column grow-information-opportunities">
+                <div><strong>Opportunity</strong></div>
+                {{ proposal.grow.opportunity }}
+              </div>
+              <div class="column grow-information-will">
+                <div><strong>Will</strong></div>
+                {{ proposal.grow.will }}
+              </div>
+            </div>
           </div>
         </box>
       </div>
@@ -89,6 +143,12 @@
         if (this.proposal.relation) {
           return this.proposal.relation.name
         } else { return 'loading...' }
+      },
+      strengths() {
+        return this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength')
+      },
+      weaknesses() {
+        return this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness')
       }
     },
     activated() {
@@ -135,6 +195,23 @@
   .proposal-contact-profession {
     color: $subtle-grey !important;
     margin-left: 0.25rem;
+  }
+
+  .proposal-competition, .proposal-smart-action, .grow-information {
+    margin-bottom: 1rem;
+    border: 1px solid $border-grey;
+    background-color: $background-grey;
+    padding: 0.8rem 1rem;
+    font-size: 13px;
+    .proposal-competition-company {
+      margin-bottom: 0.65rem;
+      font-weight: bold;
+      border-bottom: 1px solid $border-grey;
+      padding-bottom: 0.5rem;
+    }
+    strong {
+      font-weight: 500;
+    }
   }
 
 </style>
