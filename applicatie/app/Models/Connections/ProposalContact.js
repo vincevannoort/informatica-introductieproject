@@ -7,6 +7,8 @@ class ProposalContact extends Model {
     this.addGlobalScope(builder => {
       builder.with('information')
       builder.with('roles')
+      builder.with('influences')
+      builder.with('needforchanges')
     })
   }
 
