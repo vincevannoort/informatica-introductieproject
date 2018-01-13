@@ -48,28 +48,36 @@
         </div>
         <div class="columns">
           <div class="column">
-            <box :title="'Influence'">
+            <box :title="'Influence'" v-for="influence in contact.influences" :key="influence.id">
               <div class="influence-value">
-                influence value
+                {{ influence.value }}
               </div>
               <div class="box-header box-header-sub">
                 Clarification
               </div>
               <div class="influence-clarification">
-                Hello
+                {{ influence.clarification }}
               </div>
             </box>
           </div>
           <div class="column">
-            <box :title="'Need for change'">
-              information
+            <box :title="'Need for change'" v-for="needforchange in contact.needforchanges" :key="needforchange.id">
+              <div class="needforchange-value">
+                {{ needforchange.value }}
+              </div>
+              <div class="box-header box-header-sub">
+                Clarification
+              </div>
+              <div class="needforchange-clarification">
+                {{ needforchange.clarification }}
+              </div>
             </box>
           </div>
         </div>
       </div>
       <div class="column is-3">
         <box :title="'Social profile'" class="social-profile">
-          information
+          <social-media />
         </box>
       </div>
     </div>
@@ -83,9 +91,11 @@
 
 <script>
   import Contact from '../../controllers/ContactController'
+  import SocialMediaComponent from '../../components/SocialMedia'
 
   export default {
     name: 'Contact',
+    components: { 'social-media': SocialMediaComponent },
     data() {
       return { contact: {} }
     },
@@ -174,11 +184,29 @@
     color: $red;
   }
 
+  .needforchange-value {
+    border: 1px solid $border-grey;
+    background-color: $border-inside-grey;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    color: $red;
+  }
+
   .box-header.box-header-sub {
     margin-top: 1rem;
   }
 
   .influence-clarification {
+    border: 1px solid $border-grey;
+    background-color: $border-inside-grey;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .needforchange-clarification {
     border: 1px solid $border-grey;
     background-color: $border-inside-grey;
     padding-left: 0.5rem;
