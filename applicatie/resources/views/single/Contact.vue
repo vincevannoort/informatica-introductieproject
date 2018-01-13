@@ -122,7 +122,6 @@
       async show() {
         try {
           this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
-          console.log(this.contact)
         } catch(error) {
           console.error(error)
         }

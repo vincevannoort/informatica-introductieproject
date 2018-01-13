@@ -47,8 +47,23 @@
         </box>
       </div>
       <div class="column">
-        <box :title="'Strengths and Weaknesses'">
-          information (leverage strengths, eliminate weaknesses)
+        <box
+          :title="'Strengths and Weaknesses'"
+          :action="{ title: 'Add new strength or weakness', route: `TODO` }" >
+          <div class="columns">
+            <div class="column sow-overview">
+              <div><strong>Strengths</strong></div>
+              <div class="sow-item" v-for="strength in strengths" :key="strength.id">
+                <span class="sow-strength">+</span> {{ strength.description }}
+              </div>
+            </div>
+            <div class="column sow-overview">
+              <div><strong>Weaknesses</strong></div>
+              <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
+                <span class="sow-weakness">-</span> {{ weakness.description }}
+              </div>
+            </div>
+          </div>
         </box>
       </div>
     </div>
@@ -100,6 +115,12 @@
       },
       averageInsight() {
         return (this.proposalsLoaded) ? Math.floor(this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length) : 0
+      },
+      strengths() {
+        return this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength')
+      },
+      weaknesses() {
+        return this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness')
       }
     },
     activated() {

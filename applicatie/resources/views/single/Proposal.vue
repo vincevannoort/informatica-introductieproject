@@ -81,16 +81,16 @@
           :title="'Strengths and Weaknesses'"
           :action="{ title: 'Add new strength or weakness', route: `TODO` }" >
           <div class="columns">
-            <div class="column proposal-strengths">
+            <div class="column sow-overview">
               <div><strong>Strengths</strong></div>
-              <div class="proposal-strength-or-weakness" v-for="strength in strengths" :key="strength.id">
-                <span class="strength">+</span> {{ strength.description }}
+              <div class="sow-item" v-for="strength in strengths" :key="strength.id">
+                <span class="sow-strength">+</span> {{ strength.description }}
               </div>
             </div>
-            <div class="column proposal-weaknesses">
+            <div class="column sow-overview">
               <div><strong>Weaknesses</strong></div>
-              <div class="proposal-strength-or-weakness" v-for="weakness in weaknesses" :key="weakness.id">
-                <span class="weakness">-</span> {{ weakness.description }}
+              <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
+                <span class="sow-weakness">-</span> {{ weakness.description }}
               </div>
             </div>
           </div>
@@ -218,7 +218,7 @@
     }
   }
 
-  .proposal-strength-or-weakness {
+  .sow-item {
     padding: 0.5rem 1rem;
     border: 1px solid $border-grey;
     background-color: $background-grey;
@@ -226,16 +226,16 @@
     span {
       margin-right: 0.5rem;
       display: inline-block;
-      &.strength {
+      &.sow-strength {
         color: $positive-green;
       }
-      &.weakness {
+      &.sow-weakness {
         color: $red;
       }
     }
   }
 
-  .proposal-strengths, .proposal-weaknesses {
+  .sow-overview {
     strong {
       display: inline-block;
       margin-bottom: 1rem;
