@@ -36,6 +36,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    align-self: flex-start;
   }
 
   .box-header {

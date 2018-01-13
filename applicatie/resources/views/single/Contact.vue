@@ -49,26 +49,26 @@
         <div class="columns">
           <div class="column">
             <box :title="'Influence'" v-for="influence in contact.influences" :key="influence.id">
-              <div class="influence-value">
+              <div class="contact-impact-value">
                 {{ influence.value }}
               </div>
               <div class="box-header box-header-sub">
                 Clarification
               </div>
-              <div class="influence-clarification">
+              <div class="contact-clarification">
                 {{ influence.clarification }}
               </div>
             </box>
           </div>
           <div class="column">
             <box :title="'Need for change'" v-for="needforchange in contact.needforchanges" :key="needforchange.id">
-              <div class="needforchange-value">
+              <div class="contact-impact-value">
                 {{ needforchange.value }}
               </div>
               <div class="box-header box-header-sub">
                 Clarification
               </div>
-              <div class="needforchange-clarification">
+              <div class="contact-clarification">
                 {{ needforchange.clarification }}
               </div>
             </box>
@@ -78,7 +78,7 @@
       <div class="column is-3">
         <box :title="'Social profile'" class="social-profile">
           <div class="profile-picture">
-            <img src="../../assets/images/user.svg">
+            <icon-relation />
           </div>
           <div class="social-media">
             <social-media />
@@ -122,6 +122,7 @@
       async show() {
         try {
           this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
+          console.log(this.contact)
         } catch(error) {
           console.error(error)
         }
@@ -153,83 +154,71 @@
 
   .table-contact-information {
     width: 100%;
-    background-color: $border-inside-grey;
     border: 1px solid $border-grey;
+    background-color: $background-grey;
     margin-bottom: 1rem;
     tr {
       td {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 0.5rem;
+        padding: 0.5rem 1rem;
         white-space: nowrap;
+        border-bottom: 1px solid lighten($border-grey, 5%);
+        &:first-of-type {
+          opacity: 0.7;
+        }
         &:last-of-type {
-          padding-left: 2rem;
-          text-align: left;
-          padding-right: 0.5rem;
+          padding: auto 0.5rem auto 1.5rem;
           width: 100%;
-          white-space: normal;
         }
       }
     }
-  }
-
-  .notes-tables {
-    border-bottom: 1px solid $border-grey;
-    &:last-of-type {
-      border-bottom: none;
-    }
-  }
-
-  .influence-value {
-    border: 1px solid $border-grey;
-    background-color: $border-inside-grey;
-    padding-left: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    color: $red;
-  }
-
-  .needforchange-value {
-    border: 1px solid $border-grey;
-    background-color: $border-inside-grey;
-    padding-left: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    color: $red;
   }
 
   .box-header.box-header-sub {
     margin-top: 1rem;
   }
 
-  .influence-clarification {
+  .contact-impact-value {
     border: 1px solid $border-grey;
-    background-color: $border-inside-grey;
-    padding: 0.5rem;
+    background-color: $background-grey;
+    padding: 0.5rem 1rem;
+    color: $red;
   }
 
-  .needforchange-clarification {
+  .contact-clarification {
     border: 1px solid $border-grey;
-    background-color: $border-inside-grey;
-    padding: 0.5rem;
+    background-color: $background-grey;
+    padding: 0.5rem 1rem;
   }
 
   .social-profile {
     height: auto !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
   }
 
   .profile-picture {
-    padding: 0.5rem;
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    border: 1px solid $border-grey;
+    background-color: $background-grey;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    img {
-      max-width: 270px;
-      width: 100%;
+    svg {
+      height: 70px;
+      width: 70px;
+      * {
+        fill: darken($border-grey, 30%);
+      }
     }
   }
 
   .social-media {
+    display: flex;
+    justify-content: center;
     padding-top: 1.5rem;
   }
 </style>
