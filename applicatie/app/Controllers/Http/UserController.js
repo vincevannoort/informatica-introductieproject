@@ -28,6 +28,16 @@ class UserController {
     }
   }
 
+  async show({ params, response }) {
+    // try to return the user with user id from the request
+    try {
+      const user = await User.find(params.id)
+      return user
+    } catch (error) {
+      return response.status(404).send('User not found')
+    }
+  }
+
 }
 
 module.exports = UserController

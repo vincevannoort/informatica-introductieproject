@@ -33,8 +33,8 @@ const routes = [
       { path: '/', component: require('../../views/Dashboard'), meta: { requiresAuth: true, title: 'Dashboard' } },
 
       // users
-      { path: '/users', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
-
+      { path: '/users', name: 'users-overview', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
+      { path: '/users/:user_id', name: 'users-single', component: require('../../views/single/User'), meta: { requiresAuth: true, title: 'User Single' } },
       // relations
       {
         path: '/relations', name: 'relations-overview', component: require('../../views/overview/Relations'), meta: { requiresAuth: true, title: 'Relations Overview' },
