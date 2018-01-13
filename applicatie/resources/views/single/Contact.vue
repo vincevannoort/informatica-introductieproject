@@ -77,7 +77,12 @@
       </div>
       <div class="column is-3">
         <box :title="'Social profile'" class="social-profile">
-          <social-media />
+          <div class="profile-picture">
+            <img src="../../assets/images/user.svg">
+          </div>
+          <div class="social-media">
+            <social-media />
+          </div>
         </box>
       </div>
     </div>
@@ -200,22 +205,31 @@
   .influence-clarification {
     border: 1px solid $border-grey;
     background-color: $border-inside-grey;
-    padding-left: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.5rem;
   }
 
   .needforchange-clarification {
     border: 1px solid $border-grey;
     background-color: $border-inside-grey;
-    padding-left: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.5rem;
   }
 
   .social-profile {
     height: auto !important;
+  }
+
+  .profile-picture {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 270px;
+      width: 100%;
+    }
+  }
+
+  .social-media {
+    padding-top: 1.5rem;
   }
 </style>
