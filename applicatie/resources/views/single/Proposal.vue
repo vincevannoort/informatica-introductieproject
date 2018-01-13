@@ -77,18 +77,20 @@
         </box>
       </div>
       <div class="column">
-        <box :title="'Strengths and Weaknesses'">
+        <box
+          :title="'Strengths and Weaknesses'"
+          :action="{ title: 'Add new strength or weakness', route: `TODO` }" >
           <div class="columns">
             <div class="column proposal-strengths">
               <div><strong>Strengths</strong></div>
-              <div v-for="strength in strengths" :key="strength.id">
-                - {{ strength.description }}
+              <div class="proposal-strength-or-weakness" v-for="strength in strengths" :key="strength.id">
+                <span class="strength">+</span> {{ strength.description }}
               </div>
             </div>
             <div class="column proposal-weaknesses">
               <div><strong>Weaknesses</strong></div>
-              <div v-for="weakness in weaknesses" :key="weakness.id">
-                - {{ weakness.description }}
+              <div class="proposal-strength-or-weakness" v-for="weakness in weaknesses" :key="weakness.id">
+                <span class="weakness">-</span> {{ weakness.description }}
               </div>
             </div>
           </div>
@@ -97,7 +99,9 @@
     </div>
     <div class="columns">
       <div class="column">
-        <box :title="'GROW information'">
+        <box
+          :title="'GROW information'"
+          :action="{ title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow', route: (!proposal.grow) ? `TODO: to create` : `TODO: to edit` }" >
           <div class="grow-information" v-if="proposal.grow">
             <div class="columns">
               <div class="column grow-information-goal">
@@ -211,6 +215,30 @@
     }
     strong {
       font-weight: 500;
+    }
+  }
+
+  .proposal-strength-or-weakness {
+    padding: 0.5rem 1rem;
+    border: 1px solid $border-grey;
+    background-color: $background-grey;
+    margin-bottom: 1rem;
+    span {
+      margin-right: 0.5rem;
+      display: inline-block;
+      &.strength {
+        color: $positive-green;
+      }
+      &.weakness {
+        color: $red;
+      }
+    }
+  }
+
+  .proposal-strengths, .proposal-weaknesses {
+    strong {
+      display: inline-block;
+      margin-bottom: 1rem;
     }
   }
 
