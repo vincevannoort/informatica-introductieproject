@@ -1,6 +1,6 @@
 <template>
   <modal-create-edit
-    :entity="relation"
+    :entity="'relation'"
     @init-edit="show"
     @store="store"
     @update="update"
