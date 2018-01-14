@@ -67,7 +67,8 @@ const routes = [
       {
         path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: require('../../views/single/Contact'), meta: { requiresAuth: true, title: 'Contact Single' },
         children: [
-          { path: 'edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } }
+          { path: 'edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
+          { path: 'notes/create', name: 'contacts-notes-create', component: require('../../views/create/Note'), meta: { requiresAuth: true, type: 'create', title: 'Contact Note Create' } }
         ]
       },
 

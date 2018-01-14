@@ -33,7 +33,7 @@ Route.group(() => {
   Route.resource('users', 'UserController').apiOnly()
 
   // relations
-  Route.get('relations/:id/calculate', 'RelationController.calculateTotalInsight')
+  Route.get('relations/:relation_id/calculate', 'RelationController.calculateTotalInsight')
   Route.resource('relations', 'RelationController').apiOnly()
 
   // proposals
@@ -41,6 +41,7 @@ Route.group(() => {
 
   // contacts
   Route.resource('contacts', 'ContactController').apiOnly()
+  Route.post('relations/:relation_id/contacts/:contact_id/notes', 'ContactController.storeNote')
 
 }).prefix('api').middleware((process.env.NODE_ENV !== 'development') ? ['auth'] : [])
 

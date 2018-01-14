@@ -61,8 +61,11 @@ export default {
       this.$emit('update')
     },
     back() {
-      console.log('back emitted')
-      this.$emit('back')
+      if (this.$listeners.back) {
+        this.$emit('back')
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }

@@ -26,7 +26,9 @@
         </box>
         <div class="columns">
           <div class="column">
-            <box :title="'Notes'">
+            <box
+              :title="'Notes'"
+              :action="{ title: 'Add new note', route: `/relations/${this.$route.params.relation_id}/contacts/${this.$route.params.contact_id}/notes/create` }" >
               <div class="notes-tables">
                 <table class="table-contact-information" v-for="note in contact.notes" :key="note.id">
                   <tr>

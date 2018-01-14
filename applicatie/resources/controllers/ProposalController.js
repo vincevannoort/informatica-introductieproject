@@ -5,12 +5,7 @@ class Proposal {
    */
   static async show({ proposal_id }) {
     return axios.get(`/api/proposals/${proposal_id}`)
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -22,12 +17,7 @@ class Proposal {
       relation_id: relation_id,
       contact_ids: contact_ids
     })
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -35,12 +25,6 @@ class Proposal {
    */
   static async update({ proposal }) {
     return axios.patch(`/api/proposals/${proposal.id}`, { proposal: proposal })
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
   }
 
   /*
@@ -48,12 +32,6 @@ class Proposal {
    */
   static async destroy({ proposal_id }) {
     return axios.delete(`/api/proposals/${proposal_id}`)
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
   }
 
 }

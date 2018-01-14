@@ -4,7 +4,7 @@
     <div class="control">
       <input
         v-validate="validation"
-        :value="model"
+        :value="value"
         @input="$emit('input', $event.target.value)"
 
         :class="{'input': true, 'is-danger': errors.has(name) }"
@@ -17,12 +17,8 @@
 
 <script>
 export default {
-  model: {
-    prop: 'model',
-    event: 'change'
-  },
   props: {
-    model: {
+    value: {
       default: () => {},
       type: String
     },

@@ -152,6 +152,15 @@ class ContactController {
     }
   }
 
+  /*
+  * Store a note attached to contact
+  */
+  async storeNote({ request, params }) {
+    const contact = await Contact.find(params.contact_id)
+    const noteData = request.all().note
+    return contact.notes().withTimestamps().create(noteData)
+  }
+
 }
 
 module.exports = ContactController

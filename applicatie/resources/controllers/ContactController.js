@@ -5,12 +5,7 @@ class Contact {
    */
   static async show({ contact_id }) {
     return axios.get(`/api/contacts/${contact_id}`)
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -21,12 +16,7 @@ class Contact {
       contact: contact,
       relation_id: relation_id
     })
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -34,12 +24,6 @@ class Contact {
    */
   static async update({ contact }) {
     return axios.patch(`/api/contacts/${contact.id}`, { contact: contact })
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
   }
 
   /*
@@ -47,12 +31,11 @@ class Contact {
    */
   static async destroy({ contact_id }) {
     return axios.delete(`/api/contacts/${contact_id}`)
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
+  }
+
+  static async storeNote({ note, relation_id, contact_id }) {
+    return axios.post(`/api/relations/${relation_id}/contacts/${contact_id}/notes`, { note })
+    .then((response) => response.data)
   }
 
 }

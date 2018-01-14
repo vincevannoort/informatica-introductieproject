@@ -5,12 +5,7 @@ class Relation {
    */
   static async index() {
     return axios.get('/api/relations')
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -18,12 +13,7 @@ class Relation {
    */
   static async show({ relation_id }) {
     return axios.get(`/api/relations/${relation_id}`)
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -31,12 +21,7 @@ class Relation {
    */
   static async store({ relation }) {
     return axios.post(`/api/relations/`, { relation: relation })
-    .then(function (response) {
-      return response.data
-    })
-    .catch(function (error) {
-      throw error
-    })
+    .then((response) => response.data)
   }
 
   /*
@@ -44,12 +29,6 @@ class Relation {
    */
   static async update({ relation }) {
     return axios.patch(`/api/relations/${relation.id}`, { relation: relation })
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
   }
 
   /*
@@ -57,12 +36,6 @@ class Relation {
    */
   static async destroy({ relation_id }) {
     return axios.delete(`/api/relations/${relation_id}`)
-    .then(function(response) {
-      return response
-    })
-    .catch(function(error) {
-      throw error
-    })
   }
 
 }

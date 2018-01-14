@@ -5,7 +5,7 @@
     @store="store"
     @update="update"
     @back="back">
-    <field :model="relation.name" :name="'Name'" :size="'full'" :validation="'required'" />
+    <field v-model="relation.name" :name="'Name'" :size="'full'" :validation="'required'" />
   </modal-create-edit>
 </template>
 

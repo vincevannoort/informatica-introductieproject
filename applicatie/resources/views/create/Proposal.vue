@@ -5,10 +5,10 @@
     @store="store"
     @update="update"
     @back="back">
-    <field :model="proposal.name" :name="'Name'" :size="'full'" :validation="'required'" />
-    <field :model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" />
-    <field :model="proposal.start" :name="'Start'" :size="'half'" :validation="'required|date'" :field-type="'date'" />
-    <field :model="proposal.close" :name="'Close'" :size="'half'" :validation="'required'" :field-type="'date'"/>
+    <field v-model="proposal.name" :name="'Name'" :size="'full'" :validation="'required'" />
+    <field v-model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" />
+    <field v-model="proposal.start" :name="'Start'" :size="'half'" :validation="'required|date'" :field-type="'date'" />
+    <field v-model="proposal.close" :name="'Close'" :size="'half'" :validation="'required'" :field-type="'date'"/>
     <div class="proposal-responsible-contacts field column is-full">
       <label class="label">Responsible contacts</label>
       <div class="columns is-multiline">
