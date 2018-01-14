@@ -1,5 +1,6 @@
 <template>
   <modal-create-edit
+    :entity="proposal"
     @init-edit="show"
     @store="store"
     @update="update"
