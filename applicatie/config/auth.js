@@ -1,3 +1,5 @@
+const Env = use('Env')
+
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -66,6 +68,6 @@ module.exports = {
     scheme: 'jwt',
     uid: 'email',
     password: 'password',
-    options: { secret: 'self::app.appKey' }
+    options: { secret: Env.get('APP_KEY') }
   }
 }
