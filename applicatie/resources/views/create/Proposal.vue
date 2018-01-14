@@ -1,62 +1,22 @@
 <template>
-  <modal class="is-active">
-    <h2>{{ (createView) ? `Create a new proposal` : `Edit existing proposal` }}</h2>
-    <box>
-      <div class="form-proposal-create-edit">
-        <form @submit.prevent="store">
-          <div class="columns is-multiline">
-            <div class="field column is-full">
-              <label class="label">Name</label>
-              <div class="control">
-                <input v-validate="'required'" v-model="proposal.name" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" name="name" placeholder="Name">
-              </div>
-            </div>
-            <div class="field column is-full">
-              <label class="label">Value</label>
-              <div class="control has-icons-left">
-                <input v-validate="'required'" v-model="proposal.value" :class="{'input': true, 'is-danger': errors.has('value') }" type="number" name="value" placeholder="Value">
-                <span class="icon is-left">
-                  <i class="fa fa-eur" />
-                </span>
-              </div>
-            </div>
-            <div class="field column is-half">
-              <label class="label">Start</label>
-              <div class="control">
-                <input v-validate="'required'" v-model="proposal.start" :class="{'input': true, 'is-danger': errors.has('start') }" type="date" name="start" placeholder="Start date">
-              </div>
-            </div>
-            <div class="field column is-half">
-              <label class="label">Close</label>
-              <div class="control">
-                <input v-validate="'required'" v-model="proposal.close" :class="{'input': true, 'is-danger': errors.has('start') }" type="date" name="close" placeholder="Close date">
-              </div>
-            </div>
-            <div class="proposal-responsible-contacts field column is-full">
-              <label class="label">Responsible contacts</label>
-              <div class="columns is-multiline">
-                <div class="proposal-responsible-contact column is-half control" v-for="contact in relation.contacts" :key="contact.id">
-                  <label class="checkbox"><input type="checkbox" v-model="selectedContacts" :value="contact.id"><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <hr>
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!fieldsValidatedCreate">Create</button>
-              <button v-else-if="editView" class="button is-link" disabled> TODO: Update</button>
-            </div>
-            <div class="control">
-              <button class="button is-text" @click.prevent="back">Cancel</button>
-            </div>
-          </div>
-        </form>
+  <modal-create-edit
+    @init-edit="show"
+    @store="store"
+    @update="update"
+    @back="back">
+    <field :model="proposal.name" :name="'Name'" :size="'full'" :validation="'required'" />
+    <field :model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" />
+    <field :model="proposal.start" :name="'Start'" :size="'half'" :validation="'required|date'" :field-type="'date'" />
+    <field :model="proposal.close" :name="'Close'" :size="'half'" :validation="'required'" :field-type="'date'"/>
+    <div class="proposal-responsible-contacts field column is-full">
+      <label class="label">Responsible contacts</label>
+      <div class="columns is-multiline">
+        <div class="proposal-responsible-contact column is-half control" v-for="contact in relation.contacts" :key="contact.id">
+          <label class="checkbox"><input type="checkbox" v-model="selectedContacts" :value="contact.id"><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</label>
+        </div>
       </div>
-    </box>
-  </modal>
+    </div>
+  </modal-create-edit>
 </template>
 
 <script>
