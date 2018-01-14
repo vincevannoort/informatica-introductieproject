@@ -27,7 +27,8 @@ class RelationController {
       await relation.loadMany([
         'contacts',
         'proposals.contacts',
-        'strengthandweaknesses'
+        'strengthandweaknesses',
+        'businesswindow'
       ]) // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
       return relation
     } catch (error) {

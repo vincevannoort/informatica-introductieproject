@@ -43,9 +43,30 @@
       </div>
       <div class="column">
         <box :title="'The customer business window'">
-          information (objectives, product market service, philosophy, organisation)
+          <div class="relation-grow" v-if="relation.businesswindow">
+            <div class="columns is-multiline">
+              <div class="column is-6">
+                <div><strong>Objectives</strong></div>
+                <div>{{ relation.businesswindow.objectives }}</div>
+              </div>
+              <div class="column is-6">
+                <div><strong>Organisation</strong></div>
+                <div>{{ relation.businesswindow.organisation }}</div>
+              </div>
+              <div class="column is-6">
+                <div><strong>Philosophy</strong></div>
+                <div>{{ relation.businesswindow.philosophy }}</div>
+              </div>
+              <div class="column is-6">
+                <div><strong>Products</strong></div>
+                <div>{{ relation.businesswindow.products }}</div>
+              </div>
+            </div>
+          </div>
         </box>
       </div>
+    </div>
+    <div class="columns">
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
@@ -117,10 +138,10 @@
         return (this.proposalsLoaded) ? Math.floor(this.relation.proposals.reduce((total, proposal) => total + proposal.insight, 0) /  this.relation.proposals.length) : 0
       },
       strengths() {
-        return this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength')
+        return (this.relation.strengthandweaknesses) ? this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength') : []
       },
       weaknesses() {
-        return this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness')
+        return (this.relation.strengthandweaknesses) ? this.relation.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness') : []
       }
     },
     activated() {
