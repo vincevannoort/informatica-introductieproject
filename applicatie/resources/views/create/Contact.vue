@@ -6,11 +6,11 @@
     @store="store"
     @update="update"
     @back="back">
-    <field :model="contact.profession" :name="'Profession'" :size="'full'" :validation="'required'" />
-    <field :model="contact.first_name" :name="'First name'" :size="'half'" :validation="'required'" />
-    <field :model="contact.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
-    <field :model="contact.telephone" :name="'Telephone'" :size="'half'" :validation="'required'" />
-    <field :model="contact.email" :name="'Email'" :size="'half'" :validation="'required|email'" />
+    <field v-model="contact.profession" :name="'Profession'" :size="'full'" :validation="'required'" />
+    <field v-model="contact.first_name" :name="'First name'" :size="'half'" :validation="'required'" />
+    <field v-model="contact.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
+    <field v-model="contact.telephone" :name="'Telephone'" :size="'half'" :validation="'required'" />
+    <field v-model="contact.email" :name="'Email'" :size="'half'" :validation="'required'" />
   </modal-create-edit>
 </template>
 
