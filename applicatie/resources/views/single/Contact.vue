@@ -167,6 +167,7 @@
         &:last-of-type {
           padding: auto 0.5rem auto 1.5rem;
           width: 100%;
+          white-space: normal;
         }
       }
     }
