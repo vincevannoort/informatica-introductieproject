@@ -2,7 +2,7 @@
   <div class="field column" :class="`is-${size}`">
     <label class="label">{{ name }}</label>
     <div class="control">
-      <input :v-validate="validation" v-model="model" :class="{'input': true, 'is-danger': errors.has(name) }" :type="`${fieldType}`" :name="`${name}`" :placeholder="`${name}`">
+      <input v-validate="validation" v-model="model" :class="{'input': true, 'is-danger': errors.has(name) }" :type="`${fieldType}`" :name="`${name}`" :placeholder="`${name}`">
     </div>
   </div>
 </template>

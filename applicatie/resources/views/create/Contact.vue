@@ -1,5 +1,6 @@
 <template>
   <modal-create-edit
+    :validated="validated"
     @init-create="clearFields"
     @init-edit="show"
     @store="store"
@@ -30,22 +31,7 @@
     },
     computed: {
       validated() {
-        console.log('start validating')
         return false
-        // this.fields.forEach((field) => this.fields[field].touched)
-        // for (var field in this.fields) {
-        //   if (!this.fields[field].touched) {
-        //     return false
-        //   }
-        // }
-        // for (var field in this.fields) {
-        //   if (!this.fields[field] == null) {
-        //     return false
-        //   }
-        // }
-        // return true
-        // return this.fieldsHaveValuesCreate && this.errors.items.length == 0
-        // return this.fieldsHaveValuesUpdate && this.errors.items.length == 0
       }
     },
     methods: {
