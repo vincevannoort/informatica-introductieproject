@@ -12,7 +12,9 @@ import Authentication from './authentication'
 // components
 Vue.component('main-view-title', require('../../components/Title'))
 Vue.component('box', require('../../components/Box'))
+Vue.component('field', require('../../components/Field'))
 Vue.component('modal', require('../../components/Modal'))
+Vue.component('modal-create-edit', require('../../components/ModalCreateEdit'))
 Vue.component('icon-dashboard', require('../../components/icons/dashboard'))
 Vue.component('icon-actions', require('../../components/icons/actions'))
 Vue.component('icon-relation', require('../../components/icons/relation'))
