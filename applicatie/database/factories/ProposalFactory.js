@@ -8,5 +8,5 @@ Factory.blueprint('App/Models/Proposal', async faker => ({
   value: faker.integer({ min: 5000, max: 100000 }),
   start: moment().format(DATE_FORMAT),
   close: moment().add(Math.floor(Math.random() * 365), 'days').format(DATE_FORMAT),
-  insight: faker.integer({ min: 0, max: 100 })
+  insight: 0
 }))
