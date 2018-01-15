@@ -31,9 +31,7 @@ class Proposal extends Model {
    * Calculate insight, this is where the magic happens
    */
   async calculateInsight() {
-    // fetch data to be used
-    // const contacts = await this.contacts().fetch()
-    // const relation = await this.relation().fetch()
+    console.log(`Start calculating insight for: ${this.relation_id}, proposal name: ${this.name} `)
 
     /**
     * Calculate: Overall business window score
@@ -60,7 +58,7 @@ class Proposal extends Model {
      * Calculate: Effects of the changes
      * @amount - 15%
      */
-    const insightEffectsOfTheChangesAmount = 0.15
+    const insightEffectsOfTheChangesAmount = 0.25
     const insightEffectsOfTheChangesScore = this.calculateInsightEffectsOfTheChangesScore()
 
     const calculatedInsightScore =
@@ -77,7 +75,14 @@ class Proposal extends Model {
   /**
    * Calculate score for business window
    */
-  calculateInsightOverallBusinessWindowScore() {
+  async calculateInsightOverallBusinessWindowScore() {
+    const relation = await this.relation().fetch()
+    const businessWindow = await relation.businesswindow().fetch()
+
+    const objectives = businessWindow.objectives
+    const philosophy = businessWindow.philosophy
+    const organisation = businessWindow.organisation
+    const products = businessWindow.products
     return 0
   }
 

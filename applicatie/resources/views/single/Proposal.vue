@@ -4,8 +4,9 @@
       :title="`${proposal.name}`"
       :back="`back to ${currentRelationName}`"
       @back="back"
+      @calculate="calculate"
       @edit="edit"
-      @remove="remove"/>
+      @remove="remove" />
     <div class="columns">
       <div class="column">
         <box :title="'Internal power and sources'">
@@ -168,6 +169,9 @@
         } catch(error) {
           console.error(error)
         }
+      },
+      async calculate() {
+        await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
       },
       async edit() {
         this.$router.push({ name: 'proposals-edit', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })

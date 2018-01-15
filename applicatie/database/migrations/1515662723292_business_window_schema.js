@@ -7,10 +7,10 @@ class BusinessWindowSchema extends Schema {
     this.create('business_windows', (table) => {
       table.increments()
       table.integer('relation_id').unsigned().references('id').inTable('relations')
-      table.string('objectives').notNullable()
-      table.string('products').notNullable()
-      table.string('philosophy').notNullable()
-      table.string('organisation').notNullable()
+      table.string('objectives')
+      table.string('products')
+      table.string('philosophy')
+      table.string('organisation')
       table.timestamps()
     })
   }

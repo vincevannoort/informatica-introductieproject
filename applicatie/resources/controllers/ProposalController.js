@@ -34,6 +34,10 @@ class Proposal {
     return axios.delete(`/api/proposals/${proposal_id}`)
   }
 
+  static async calculate({ proposal_id }) {
+    return axios.post(`/api/proposals/${proposal_id}/calculate`)
+  }
+
 }
 
 export default Proposal

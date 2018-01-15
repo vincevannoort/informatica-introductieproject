@@ -3,6 +3,14 @@
     <div class="main-back-link" v-if="$listeners.back" @click="backEntity">&lt; {{ back }}</div>
     <h1 class="main-title">{{ title }}</h1>
     <div v-if="$listeners.edit || $listeners.remove" class="main-action-buttons field has-addons">
+      <p v-if="$listeners.calculate" class="control">
+        <a @click="calculateEntity" class="button">
+          <span class="icon is-small">
+            <i class="fa fa-calculator" />
+          </span>
+          <span>Calculate insight</span>
+        </a>
+      </p>
       <p v-if="$listeners.edit" class="control">
         <a @click="editEntity" class="button">
           <span class="icon is-small">
@@ -49,6 +57,9 @@
       },
       backEntity() {
         this.$emit('back')
+      },
+      calculateEntity() {
+        this.$emit('calculate')
       }
     }
   }

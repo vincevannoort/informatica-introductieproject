@@ -38,6 +38,7 @@ Route.group(() => {
 
   // proposals
   Route.resource('proposals', 'ProposalController').apiOnly()
+  Route.post('proposals/:proposal_id/calculate', 'ProposalController.calculateInsight')
 
   // contacts
   Route.resource('contacts', 'ContactController').apiOnly()

@@ -99,6 +99,11 @@ class ProposalController {
     }
   }
 
+  async calculateInsight({ params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    return proposal.calculateInsight()
+  }
+
 }
 
 module.exports = ProposalController
