@@ -40,28 +40,28 @@ class Proposal extends Model {
     * @amount - 20%
     */
     const insightOverallBusinessWindowAmount = 0.20
-    const insightOverallBusinessWindowScore = 0
+    const insightOverallBusinessWindowScore = this.calculateInsightOverallBusinessWindowScore()
 
     /**
     * Calculate: Internal power and sources score
     * @amount - 40%
     */
     const insightPowerAndSourcesAmount = 0.40
-    const insightPowerAndSourcesScore = 0
+    const insightPowerAndSourcesScore = this.calculateInsightPowerAndSourcesScore()
 
     /**
      * Calculate: Offering and Competitor analysis score
      * @amount - 15%
      */
     const insightOfferingAndCompetitorAnalysisAmount = 0.15
-    const insightOfferingAndCompetitorAnalysisScore = 0
+    const insightOfferingAndCompetitorAnalysisScore = this.calculateInsightOfferingAndCompetitorAnalysisScore()
 
     /**
      * Calculate: Effects of the changes
      * @amount - 15%
      */
     const insightEffectsOfTheChangesAmount = 0.15
-    const insightEffectsOfTheChangesScore = 0
+    const insightEffectsOfTheChangesScore = this.calculateInsightEffectsOfTheChangesScore()
 
     const calculatedInsightScore =
     (insightOverallBusinessWindowAmount * insightOverallBusinessWindowScore) +
@@ -72,6 +72,34 @@ class Proposal extends Model {
     // TEMPORARY RANDOM FOR TESTING
     const temporaryRandomInsight = Math.floor(Math.random() * 100) + 1
     return temporaryRandomInsight + calculatedInsightScore
+  }
+
+  /**
+   * Calculate score for business window
+   */
+  calculateInsightOverallBusinessWindowScore() {
+    return 0
+  }
+
+  /**
+   * Calculate score for business window
+   */
+  calculateInsightPowerAndSourcesScore() {
+    return 0
+  }
+
+  /**
+   * Calculate score for business window
+   */
+  calculateInsightOfferingAndCompetitorAnalysisScore() {
+    return 0
+  }
+
+  /**
+   * Calculate score for business window
+   */
+  calculateInsightEffectsOfTheChangesScore() {
+    return 0
   }
 
 }
