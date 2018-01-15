@@ -40,7 +40,7 @@
                 <td>{{ proposal.close | moment("from") }}</td>
                 <td>
                   <div class="relations-insight">
-                    <div class="relations-insight-bar" :style="{ width: proposal.insight + '%' }" />
+                    <div class="relations-insight-bar" :style="{ width: (proposal.insight / 10) + '%' }" />
                   </div>
                 </td>
                 <td>
