@@ -83,7 +83,14 @@ class Proposal extends Model {
     const philosophy = businessWindow.philosophy
     const organisation = businessWindow.organisation
     const products = businessWindow.products
-    return 0
+
+    // for each of the 4 businesswindow informations, you get 25%
+    let score = 0
+    score += (objectives) ? 250 : 0
+    score += (philosophy) ? 250 : 0
+    score += (organisation) ? 250 : 0
+    score += (products) ? 250 : 0
+    return score
   }
 
   /**
