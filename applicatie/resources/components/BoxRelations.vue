@@ -73,7 +73,7 @@
             <td>{{ relation.created_at | moment("from") }}</td>
             <td>
               <div class="relations-insight">
-                <div class="relations-insight-bar" :style="{ width: relation.insight_total + '%' }" />
+                <div class="relations-insight-bar" :style="{ width: (relation.insight_total/10) + '%' }" />
               </div>
             </td>
           </router-link>
@@ -124,19 +124,19 @@
       return {
         relationFilter: '',
         directionFilter: 'insight_total-desc',
-        sortedFilter: { min: 0, max: 100 },
+        sortedFilter: { min: 0, max: 1000 },
         sortedFilterData: [
-          { min: 0, max: 100 },
-          { min: 0, max: 9 },
-          { min: 10, max: 19 },
-          { min: 20, max: 29 },
-          { min: 30, max: 39 },
-          { min: 40, max: 49 },
-          { min: 50, max: 59 },
-          { min: 60, max: 69 },
-          { min: 70, max: 79 },
-          { min: 80, max: 89 },
-          { min: 90, max: 100 }
+          { min: 0, max: 1000 },
+          { min: 0, max: 99 },
+          { min: 100, max: 199 },
+          { min: 200, max: 299 },
+          { min: 300, max: 399 },
+          { min: 400, max: 499 },
+          { min: 500, max: 599 },
+          { min: 600, max: 699 },
+          { min: 700, max: 799 },
+          { min: 800, max: 899 },
+          { min: 900, max: 1000 }
         ]
       }
     },
@@ -180,6 +180,7 @@
     border-radius: 10px;
     width: 100%;
     background-color: darken($background-grey, 6%);
+    overflow: hidden;
   }
 
   .relations-insight-bar {

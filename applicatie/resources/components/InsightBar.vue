@@ -16,7 +16,7 @@
       </div>
       <div class="relation-insight-sidebox-bar column">
         <div class="relation-insight">
-          <div class="relation-insight-bar" :style="{ height: insight + '%' }" />
+          <div class="relation-insight-bar" :style="{ height: (insight/10) + '%' }" />
         </div>
       </div>
     </div>

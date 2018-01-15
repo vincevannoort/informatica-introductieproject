@@ -71,8 +71,12 @@ class Proposal extends Model {
     (insightOfferingAndCompetitorAnalysisAmount * insightOfferingAndCompetitorAnalysisScore) +
     (insightEffectsOfTheChangesAmount * insightEffectsOfTheChangesScore)
 
-    // TEMPORARY RANDOM FOR TESTING
     console.log(chalk.green(`calculatedInsightScore: ${calculatedInsightScore}`))
+
+    // Save the new insight score
+    this.merge({ insight: calculatedInsightScore })
+    await this.save()
+
     return calculatedInsightScore
   }
 

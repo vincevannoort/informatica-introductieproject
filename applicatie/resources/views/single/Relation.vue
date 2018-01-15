@@ -217,6 +217,7 @@
     background-color: darken($background-grey, 6%);
     display: flex;
     align-items: flex-end;
+    overflow: hidden;
   }
 
   .relation-insight-bar {
