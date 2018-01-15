@@ -31,35 +31,39 @@ class Proposal extends Model {
    * Calculate insight, this is where the magic happens
    */
   async calculateInsight() {
-    console.log(`Start calculating insight for: ${this.relation_id}, proposal name: ${this.name} `)
+    console.log(chalk.yellow(`Start calculating insight for: ${this.relation_id}, proposal name: ${this.name} `))
 
     /**
     * Calculate: Overall business window score
     * @amount - 20%
     */
     const insightOverallBusinessWindowAmount = 0.20
-    const insightOverallBusinessWindowScore = this.calculateInsightOverallBusinessWindowScore()
+    const insightOverallBusinessWindowScore = await this.calculateInsightOverallBusinessWindowScore()
+    console.log(chalk.blue(`insightOverallBusinessWindowScore: ${insightOverallBusinessWindowScore}`))
 
     /**
-    * Calculate: Internal power and sources score
-    * @amount - 40%
-    */
+     * Calculate: Internal power and sources score
+     * @amount - 40%
+     */
     const insightPowerAndSourcesAmount = 0.40
-    const insightPowerAndSourcesScore = this.calculateInsightPowerAndSourcesScore()
+    const insightPowerAndSourcesScore = await this.calculateInsightPowerAndSourcesScore()
+    console.log(chalk.blue(`insightPowerAndSourcesScore: ${insightPowerAndSourcesScore}`))
 
     /**
      * Calculate: Offering and Competitor analysis score
      * @amount - 15%
      */
     const insightOfferingAndCompetitorAnalysisAmount = 0.15
-    const insightOfferingAndCompetitorAnalysisScore = this.calculateInsightOfferingAndCompetitorAnalysisScore()
+    const insightOfferingAndCompetitorAnalysisScore = await this.calculateInsightOfferingAndCompetitorAnalysisScore()
+    console.log(chalk.blue(`insightOfferingAndCompetitorAnalysisScore: ${insightOfferingAndCompetitorAnalysisScore}`))
 
     /**
      * Calculate: Effects of the changes
      * @amount - 15%
      */
     const insightEffectsOfTheChangesAmount = 0.25
-    const insightEffectsOfTheChangesScore = this.calculateInsightEffectsOfTheChangesScore()
+    const insightEffectsOfTheChangesScore = await this.calculateInsightEffectsOfTheChangesScore()
+    console.log(chalk.blue(`insightEffectsOfTheChangesScore: ${insightEffectsOfTheChangesScore}`))
 
     const calculatedInsightScore =
     (insightOverallBusinessWindowAmount * insightOverallBusinessWindowScore) +
@@ -109,8 +113,6 @@ class Proposal extends Model {
     score += await this.calculateInsightNeedForChanges(contactsNeedForChanges)
     score += await this.calculateInsightInfluence(contactsInfluences)
     score += await this.calculateInsightFeeling(contactsFeelings)
-
-    console.log(score)
 
     return score
   }
@@ -192,7 +194,7 @@ class Proposal extends Model {
 
     return 300
   }
-  
+
 }
 
 module.exports = Proposal
