@@ -38,7 +38,7 @@
           :title="'Position and competition'"
           :action="{ title: 'Add new counter proposal', route: `TODO` }" >
           <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
-            <div class="proposal-competition-company">{{ competition.company }}</div>
+            <div class="proposal-competition-company"><span>{{ competition.grading }}</span> {{ competition.company }}</div>
             <div class="columns">
               <div class="column proposal-competition-company-counter">
                 <div><strong>Counter proposal</strong></div>
@@ -216,6 +216,15 @@
       font-weight: bold;
       border-bottom: 1px solid $border-grey;
       padding-bottom: 0.5rem;
+      span {
+        color: $red;
+        &:after {
+          content: '-';
+          color: $almost-black;
+          padding-left: 0.6rem;
+          padding-right: 0.6rem;
+        }
+      }
     }
     strong {
       font-weight: 500;

@@ -103,8 +103,11 @@ class Proposal extends Model {
   /**
    * Calculate score for business window
    */
-  calculateInsightOfferingAndCompetitorAnalysisScore() {
-    return 0
+  async calculateInsightOfferingAndCompetitorAnalysisScore() {
+    const competitions = await this.competitions().fetch()
+    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+    let score = Math.floor((average_grading / 10) * 1000)
+    return score
   }
 
   /**
