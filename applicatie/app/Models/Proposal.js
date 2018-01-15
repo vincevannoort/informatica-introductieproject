@@ -89,21 +89,88 @@ class Proposal extends Model {
   /**
    * Calculate score for business window
    */
-  calculateInsightPowerAndSourcesScore() {
+  async calculateInsightPowerAndSourcesScore() {
+    let score = 0
+    const proposal = this
+    const contacts = await proposal.contacts().fetch()
+    const contactsRoles = await Promise.all(contacts.rows.map(async contact => contact.roles().fetch()))
+    const contactsNeedForChanges = await Promise.all(contacts.rows.map(async contact => contact.needforchanges().fetch()))
+    const contactsInfluences = await Promise.all(contacts.rows.map(async contact => contact.influences().fetch()))
+    const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feelings().fetch()))
+
+    score += await this.calculateInsightRoles(contactsRoles)
+    score += await this.calculateInsightNeedForChanges(contactsNeedForChanges)
+    score += await this.calculateInsightInfluence(contactsInfluences)
+    score += await this.calculateInsightFeeling(contactsFeelings)
+
+    console.log(score)
+
+    return 0
+  }
+
+  async calculateInsightRoles(contactsRoles) {
+    const rolesPresent = new Set()
+    // goes through every contactRoles in contactsRoles
+    contactsRoles.forEach(contactRoles => {
+      contactRoles.rows.forEach(role => {
+        rolesPresent.add(role.type)
+      })
+    })
+    // checks if rolesPresent has every possible role.
+    if(rolesPresent.has('ambassador', 'chief', 'user', 'expert')) {
+      return 100
+    }
+    return 0
+  }
+
+  async calculateInsightNeedForChanges(contactsNeedForChanges) {
+    contactsNeedForChanges.forEach(contactNeedForChanges => {
+      contactNeedForChanges.rows.forEach(needforchange => {
+        if(needforchange == null) {
+          return 0
+        }
+      })
+    })
+
+    return 200
+  }
+
+  async calculateInsightInfluence(contactsInfluences) {
+    contactsInfluences.forEach(contactInfluences => {
+      contactInfluences.rows.forEach(influence => {
+        if(influence == null) {
+          return 0
+        }
+      })
+    })
+
+    return 400
+  }
+
+  async calculateInsightFeeling(contactsFeelings) {
+    contactsFeelings.forEach(contactFeelings => {
+      contactFeelings.rows.forEach(feeling => {
+        if(feeling == null) {
+          return 0
+        }
+      })
+    })
+
+    return 300
+  }
+
+
+  /**
+   * Calculate score for business window
+   */
+  async calculateInsightOfferingAndCompetitorAnalysisScore() {
     return 0
   }
 
   /**
    * Calculate score for business window
    */
-  calculateInsightOfferingAndCompetitorAnalysisScore() {
-    return 0
-  }
-
-  /**
-   * Calculate score for business window
-   */
-  calculateInsightEffectsOfTheChangesScore() {
+  async calculateInsightEffectsOfTheChangesScore() {
     return 0
   }
 
