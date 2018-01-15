@@ -192,7 +192,7 @@ class Proposal extends Model {
 
     return 300
   }
-
+  
 }
 
 module.exports = Proposal
