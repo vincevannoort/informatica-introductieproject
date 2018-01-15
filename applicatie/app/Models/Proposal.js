@@ -83,7 +83,14 @@ class Proposal extends Model {
     const philosophy = businessWindow.philosophy
     const organisation = businessWindow.organisation
     const products = businessWindow.products
-    return 0
+
+    // for each of the 4 businesswindow informations, you get 25%
+    let score = 0
+    score += (objectives) ? 250 : 0
+    score += (philosophy) ? 250 : 0
+    score += (organisation) ? 250 : 0
+    score += (products) ? 250 : 0
+    return score
   }
 
   /**
@@ -162,9 +169,19 @@ class Proposal extends Model {
 
   /**
    * Calculate score for business window
+   * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
+   * score  our proposal  their proposal
+   * 1      much worse    much better
+   * 2      worse         better
+   * 3      equal         equal
+   * 4      better        worse
+   * 5      much better   much worse
    */
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
-    return 0
+    const competitions = await this.competitions().fetch()
+    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+    let score = Math.floor((average_grading / 5) * 1000)
+    return score
   }
 
   /**

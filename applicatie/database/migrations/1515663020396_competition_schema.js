@@ -3,6 +3,7 @@
 const Schema = use('Schema')
 
 class CompetitionSchema extends Schema {
+
   up () {
     this.create('competitions', (table) => {
       table.increments()
@@ -10,6 +11,7 @@ class CompetitionSchema extends Schema {
       table.string('company').notNullable()
       table.string('counter_proposal').notNullable()
       table.string('position').notNullable()
+      table.integer('grading').notNullable()
       table.timestamps()
     })
   }
@@ -17,6 +19,7 @@ class CompetitionSchema extends Schema {
   down () {
     this.drop('competitions')
   }
+
 }
 
 module.exports = CompetitionSchema
