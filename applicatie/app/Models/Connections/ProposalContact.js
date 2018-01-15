@@ -37,6 +37,10 @@ class ProposalContact extends Model {
     return this.belongsToMany('App/Models/Informations/NeedForChange').pivotTable('proposal_contact_need_for_changes')
   }
 
+  feeling() {
+    return this.hasOne('App/Models/Informations/Feeling')
+  }
+
 }
 
 module.exports = ProposalContact

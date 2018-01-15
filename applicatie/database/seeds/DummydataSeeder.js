@@ -92,11 +92,15 @@ class DummydataSeeder {
     */
     const availableTypes = ['chief', 'user', 'expert', 'ambassador']
     const proposalContacts = await ProposalContact.all()
-    const proposalContactsRolesPromises = proposalContacts.rows.map(async (proposalcontact) => {
+    const proposalContactsPromises = proposalContacts.rows.map(async (proposalcontact) => {
       const roles = await Factory.model('App/Models/Informations/Role').makeMany(Math.floor(Math.random() * 3))
-      return proposalcontact.roles().createMany(roles.map(role => role.$attributes))
+      const feeling = await Factory.model('App/Models/Informations/Feeling').make()
+      return Promise.all([
+        proposalcontact.feeling().create(feeling.$attributes),
+        proposalcontact.roles().createMany(roles.map(role => role.$attributes))
+      ])
     })
-    await Promise.all(proposalContactsRolesPromises)
+    await Promise.all(proposalContactsPromises)
 
     /*
     * Influences & Needforchanges for contacts
