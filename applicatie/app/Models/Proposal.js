@@ -72,8 +72,8 @@ class Proposal extends Model {
     (insightEffectsOfTheChangesAmount * insightEffectsOfTheChangesScore)
 
     // TEMPORARY RANDOM FOR TESTING
-    const temporaryRandomInsight = Math.floor(Math.random() * 100) + 1
-    return temporaryRandomInsight + calculatedInsightScore
+    console.log(chalk.green(`calculatedInsightScore: ${calculatedInsightScore}`))
+    return calculatedInsightScore
   }
 
   /**
