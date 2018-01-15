@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  inject: ['$validator'],
   props: {
     value: {
       default: () => {},

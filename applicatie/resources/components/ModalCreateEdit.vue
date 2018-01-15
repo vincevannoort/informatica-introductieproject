@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  inject: ['$validator'],
   props: {
     entity: {
       default: 'type',

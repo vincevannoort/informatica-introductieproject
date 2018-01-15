@@ -7,6 +7,11 @@
   </div>
 </template>
 
+<script>
+export default { inject: ['$validator'] }
+</script>
+
+
 <style lang="scss">
   .modal {
     .modal-background {
