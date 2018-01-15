@@ -102,11 +102,18 @@ class Proposal extends Model {
 
   /**
    * Calculate score for business window
+   * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
+   * score  our proposal  their proposal
+   * 1      much worse    much better
+   * 2      worse         better
+   * 3      equal         equal
+   * 4      better        worse
+   * 5      much better   much worse
    */
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
     const competitions = await this.competitions().fetch()
     const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
-    let score = Math.floor((average_grading / 10) * 1000)
+    let score = Math.floor((average_grading / 5) * 1000)
     return score
   }
 

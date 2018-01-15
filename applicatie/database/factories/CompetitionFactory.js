@@ -4,5 +4,5 @@ Factory.blueprint('App/Models/Informations/Competition', async faker => ({
   company: faker.company(),
   counter_proposal: faker.sentence({ words: 5 }),
   position: faker.sentence({ words: 5 }),
-  grading: faker.integer({ min: 1, max: 10 })
+  grading: faker.integer({ min: 1, max: 5 })
 }))
