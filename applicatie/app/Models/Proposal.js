@@ -103,7 +103,7 @@ class Proposal extends Model {
     const contactsRoles = await Promise.all(contacts.rows.map(async contact => contact.roles().fetch()))
     const contactsNeedForChanges = await Promise.all(contacts.rows.map(async contact => contact.needforchanges().fetch()))
     const contactsInfluences = await Promise.all(contacts.rows.map(async contact => contact.influences().fetch()))
-    const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feelings().fetch()))
+    const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
 
     score += await this.calculateInsightRoles(contactsRoles)
     score += await this.calculateInsightNeedForChanges(contactsNeedForChanges)
@@ -112,6 +112,30 @@ class Proposal extends Model {
 
     console.log(score)
 
+    return score
+  }
+
+  /**
+   * Calculate score for business window
+   * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
+   * score  our proposal  their proposal
+   * 1      much worse    much better
+   * 2      worse         better
+   * 3      equal         equal
+   * 4      better        worse
+   * 5      much better   much worse
+   */
+  async calculateInsightOfferingAndCompetitorAnalysisScore() {
+    const competitions = await this.competitions().fetch()
+    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+    let score = Math.floor((average_grading / 5) * 1000)
+    return score
+  }
+
+  /**
+   * Calculate score for business window
+   */
+  async calculateInsightEffectsOfTheChangesScore() {
     return 0
   }
 
@@ -124,7 +148,12 @@ class Proposal extends Model {
       })
     })
     // checks if rolesPresent has every possible role.
-    if(rolesPresent.has('ambassador', 'chief', 'user', 'expert')) {
+    if(
+      rolesPresent.has('ambassador') &&
+      rolesPresent.has('chief') &&
+      rolesPresent.has('user') &&
+      rolesPresent.has('expert')
+    ) {
       return 100
     }
     return 0
@@ -155,40 +184,13 @@ class Proposal extends Model {
   }
 
   async calculateInsightFeeling(contactsFeelings) {
-    contactsFeelings.forEach(contactFeelings => {
-      contactFeelings.rows.forEach(feeling => {
-        if(feeling == null) {
-          return 0
-        }
-      })
+    contactsFeelings.forEach(contactFeeling => {
+      if(contactFeeling == null) {
+        return 0
+      }
     })
 
     return 300
-  }
-
-
-  /**
-   * Calculate score for business window
-   * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
-   * score  our proposal  their proposal
-   * 1      much worse    much better
-   * 2      worse         better
-   * 3      equal         equal
-   * 4      better        worse
-   * 5      much better   much worse
-   */
-  async calculateInsightOfferingAndCompetitorAnalysisScore() {
-    const competitions = await this.competitions().fetch()
-    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
-    let score = Math.floor((average_grading / 5) * 1000)
-    return score
-  }
-
-  /**
-   * Calculate score for business window
-   */
-  async calculateInsightEffectsOfTheChangesScore() {
-    return 0
   }
 
 }
