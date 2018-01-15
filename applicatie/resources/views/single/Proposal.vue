@@ -186,19 +186,19 @@
       },
       gradingAsText(grade) {
         switch(grade) {
-          case 1:
+          case 0:
             return 'much better'
             break
-          case 2:
+          case 1:
             return 'better'
             break
-          case 3:
+          case 2:
             return 'equal'
             break
-          case 4:
+          case 3:
             return 'worse'
             break
-          case 5:
+          case 4:
             return 'much worse'
             break
         }
