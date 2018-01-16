@@ -88,7 +88,6 @@ class DummydataSeeder {
 
     /*
     * Roles
-    * TODO: ROLE AS FACTORY
     */
     const availableTypes = ['chief', 'user', 'expert', 'ambassador']
     const proposalContacts = await ProposalContact.all()
