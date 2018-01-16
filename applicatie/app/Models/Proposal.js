@@ -47,6 +47,7 @@ class Proposal extends Model {
      */
     const insightPowerAndSourcesAmount = 0.40
     const insightPowerAndSourcesScore = await this.calculateInsightPowerAndSourcesScore()
+    const potentialPowerAndSourcesScore = await this.calculatePotentialPowerAndSourcesScore()
     console.log(chalk.blue(`insightPowerAndSourcesScore: ${insightPowerAndSourcesScore}`))
 
     /**
@@ -80,7 +81,7 @@ class Proposal extends Model {
     return calculatedInsightScore
   }
 
-  /**
+  /** ==================================
    * Calculate score for business window
    */
   async calculateInsightOverallBusinessWindowScore() {
@@ -101,8 +102,8 @@ class Proposal extends Model {
     return score
   }
 
-  /**
-   * Calculate score for business window
+  /** ============================================
+   * Calculate insight score for power and sources
    */
   async calculateInsightPowerAndSourcesScore() {
     let score = 0
@@ -113,15 +114,15 @@ class Proposal extends Model {
     const contactsInfluences = await Promise.all(contacts.rows.map(async contact => contact.influences().fetch()))
     const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
 
-    score += await this.calculateInsightRoles(contactsRoles)
-    score += await this.calculateInsightNeedForChanges(contactsNeedForChanges)
-    score += await this.calculateInsightInfluence(contactsInfluences)
+    score += await this.calculateInsightRoles(contactsRoles, 100)
+    score += await this.calculateInsightNeedForChanges(contactsNeedForChanges, 200)
+    score += await this.calculateInsightInfluence(contactsInfluences, 400)
     score += await this.calculateInsightFeeling(contactsFeelings, 300)
 
     return score
   }
 
-  /**
+  /** ==================================
    * Calculate score for business window
    * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
    * score  our proposal  their proposal
@@ -143,7 +144,7 @@ class Proposal extends Model {
     }
   }
 
-  /**
+  /** ==================================
    * Calculate score for business window
    */
   async calculateInsightEffectsOfTheChangesScore() {
@@ -152,12 +153,29 @@ class Proposal extends Model {
     const proposalGrow = await proposal.grow().fetch()
     const contacts = await proposal.contacts().fetch()
     const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
+
     score += await this.calculateInsightFeeling(contactsFeelings, 500)
-    score += await this.calculateInsightGrow(proposalGrow)
+    score += await this.calculateInsightGrow(proposalGrow, 500)
     return score
   }
 
-  async calculateInsightRoles(contactsRoles) {
+  /** ==============================================
+   * Calculate potential score for power and sources
+   */
+  async calculatePotentialPowerAndSourcesScore() {
+    let score = 0
+    const proposal = this
+    const contacts = await proposal.contacts().fetch()
+    const contactsRoles = await Promise.all(contacts.rows.map(async contact => contact.roles().fetch()))
+    const contactsNeedForChanges = await Promise.all(contacts.rows.map(async contact => contact.needforchanges().fetch()))
+    const contactsInfluences = await Promise.all(contacts.rows.map(async contact => contact.influences().fetch()))
+    const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
+
+    score += await this.calculatePotentialRoles(contactsRoles, 100)
+    return score
+  }
+
+  async calculateInsightRoles(contactsRoles, points) {
     const rolesPresent = new Set()
     // goes through every contactRoles in contactsRoles
     contactsRoles.forEach(contactRoles => {
@@ -172,12 +190,12 @@ class Proposal extends Model {
       rolesPresent.has('user') &&
       rolesPresent.has('expert')
     ) {
-      return 100
+      return points
     }
     return 0
   }
 
-  async calculateInsightNeedForChanges(contactsNeedForChanges) {
+  async calculateInsightNeedForChanges(contactsNeedForChanges, points) {
     contactsNeedForChanges.forEach(contactNeedForChanges => {
       contactNeedForChanges.rows.forEach(needforchange => {
         if(needforchange == null) {
@@ -186,10 +204,10 @@ class Proposal extends Model {
       })
     })
 
-    return 200
+    return points
   }
 
-  async calculateInsightInfluence(contactsInfluences) {
+  async calculateInsightInfluence(contactsInfluences, points) {
     contactsInfluences.forEach(contactInfluences => {
       contactInfluences.rows.forEach(influence => {
         if(influence == null) {
@@ -198,7 +216,7 @@ class Proposal extends Model {
       })
     })
 
-    return 400
+    return points
   }
 
   async calculateInsightFeeling(contactsFeelings, points) {
@@ -211,7 +229,7 @@ class Proposal extends Model {
     return points
   }
 
-  async calculateInsightGrow(proposalGrow) {
+  async calculateInsightGrow(proposalGrow, points) {
     if
     (
       proposalGrow.goal ||
@@ -222,7 +240,68 @@ class Proposal extends Model {
     {
       return 0
     }
-    return 500
+    return points
+  }
+
+  async calculatePotentialRoles(contactsRoles, points) {
+
+    const rolesPresent = new Set()
+    const rolesCount = {}
+    let contactsWithRoles = await Promise.all(contactsRoles.map(async contactRoles => {
+      let contactsWithRoles = {}
+    
+      await Promise.all(contactRoles.rows.map(async role => {        
+        const proposalcontact = await role.proposalcontact().fetch()
+        const contact = await proposalcontact.information().fetch()
+
+        rolesPresent.add(role.type)        
+        if (!(contact.id in contactsWithRoles)) { contactsWithRoles[contact.id] = [] }
+        if (!(role.type in rolesCount)) { rolesCount[role.type] = 1 } else { rolesCount[role.type]++ }
+        return contactsWithRoles[contact.id].push(role.type)
+      }))
+      return contactsWithRoles
+    }))
+
+
+    // remove empty contacts
+    contactsWithRoles = contactsWithRoles.filter((contactWithRoles) => !(Object.keys(contactWithRoles).length === 0 && contactWithRoles.constructor === Object))
+
+    // If all roles are defined in the optimal case, so there’s 1 chief who is also defined as an ambassador, two experts and two users the score is 40.
+    // If there's no chief defined, the possible score gets decreased by 25.
+    // If there’s a deviation from the previously optimal case on the roles of either a user or an expert 
+    // decrease the potential score for this section by 10 if there’s no expert defined, 
+    // decrease the score by a total of 5 if there’s no user defined. 
+    // A definition of two is needed to create more insight into the two individuals with the same role.
+    // If there’s no ambassador defined by the user, decrease the score for this section by 30.
+    // If the chief is defined as an ambassador, increase the score by 30.
+    // If a user is defined as an ambassador, increase the score by 1 
+    // (added to their potential increase of 5 if two are defined). 
+    // Increase the score by 3 if an expert is defined as an ambassador.
+    
+
+    let score = points
+
+    // if no chief             -62.5
+    if (!rolesPresent.has('chief')) { score -= 62.5 }
+    // if no ambassador        -75
+    if (!rolesPresent.has('ambassador')) { score -= 75 }    
+    // if no 2x expert         -25
+    if (!(rolesCount['expert'] >= 2)) { score -= 25  }     
+    // if no 2x user           -12.5
+    if (!(rolesCount['user'] >= 2)) { score -= 12.5  }
+    // if user == ambassador   +15
+    // if expert == ambassador +32.5
+    // if chief == ambassador  +75
+    contactsWithRoles.forEach(contactWithRoles => {
+      const contact_id = Object.keys(contactWithRoles)[0]
+      const roles = Object.values(contactWithRoles)[0]
+      if (roles.includes('user') && roles.includes('ambassador')) { score += 15 }
+      if (roles.includes('expert') && roles.includes('ambassador')) { score += 32.5 }
+      if (roles.includes('chief') && roles.includes('ambassador')) { score += 75 }
+    })
+
+    // cap score between 0 and 100
+    return (score > 100) ? 100 : (score < 0) ? 0 : score
   }
 
 }

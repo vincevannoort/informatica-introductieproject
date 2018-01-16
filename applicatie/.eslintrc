@@ -4,6 +4,7 @@
   },
   "extends": [ "plugin:vue/recommended" ],
   "rules": {
+    "no-undef": "error",
     "max-len": "off",
     "no-plusplus": "off",
     "vue/max-attributes-per-line": "off",
