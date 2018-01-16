@@ -133,10 +133,14 @@ class Proposal extends Model {
    */
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
     const competitions = await this.competitions().fetch()
-    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
-    const max_grading = 4
-    let score = Math.floor((average_grading / max_grading) * 1000)
-    return score
+    if (competitions) {
+      const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+      const max_grading = 4
+      let score = Math.floor((average_grading / max_grading) * 1000)
+      return score
+    } else {
+      return 0
+    }
   }
 
   /**
