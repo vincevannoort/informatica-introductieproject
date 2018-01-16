@@ -17,5 +17,5 @@
     "object-curly-newline": [ "warn", { "multiline": true } ],
     "space-before-blocks": [ "error", "always" ]
   },
-  "globals": { "use": false, "document": false }
+  "globals": { "use": false, "document": false, "axios": false, "module": false, "require": false, "Chart": false, "response": false }
 }
