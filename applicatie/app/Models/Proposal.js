@@ -212,7 +212,6 @@ class Proposal extends Model {
   }
 
   async calculateInsightGrow(proposalGrow) {
-    proposalGrow.goal = ""
     if
     (
       proposalGrow.goal ||
