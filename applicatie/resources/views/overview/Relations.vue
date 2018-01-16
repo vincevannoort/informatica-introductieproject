@@ -47,13 +47,13 @@
         return this.relations.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // eslint-disable-line vue/no-side-effects-in-computed-properties
       },
       firstCategoryRelations: function() {
-        return this.relations.filter((relation) => relation.insight_total > 75 && relation.insight_total <= 100).length
+        return this.relations.filter((relation) => relation.insight_total > 750 && relation.insight_total <= 1000).length
       },
       secondCategoryRelations: function() {
-        return this.relations.filter((relation) => relation.insight_total > 50 && relation.insight_total < 75).length
+        return this.relations.filter((relation) => relation.insight_total > 500 && relation.insight_total < 750).length
       },
       thirdCategoryRelations: function() {
-        return this.relations.filter((relation) => relation.insight_total >= 0 && relation.insight_total < 50).length
+        return this.relations.filter((relation) => relation.insight_total >= 0 && relation.insight_total < 500).length
       }
     },
     activated() {
