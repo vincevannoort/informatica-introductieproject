@@ -1,7 +1,7 @@
 <template>
   <div class="authentication-content-wrapper">
     <div class="authentication-logo">
-      <img src="../assets/images/canon.svg">
+      <img src="../assets/images/easy-link-keeper-side.svg">
     </div>
     <div class="box authentication-box">
       <div class="field">
@@ -69,7 +69,7 @@
   }
 
   .authentication-logo {
-    width: 225px;
+    width: 315px;
   }
 
   .authentication-box {
