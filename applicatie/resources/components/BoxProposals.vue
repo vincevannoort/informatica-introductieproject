@@ -1,7 +1,7 @@
 <template>
   <box :title="title" :action="action">
     <template v-if="proposals && proposals.length">
-      <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${$route.params.relation_id}/proposals/${proposal.id}`">
+      <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${proposal.relation.id}/proposals/${proposal.id}`">
         <div class="relation-proposal-header">
           <span>€{{ proposal.value }}</span>{{ proposal.name }}
         </div>

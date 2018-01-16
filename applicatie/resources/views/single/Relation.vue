@@ -194,13 +194,9 @@
         this.$router.push({ name: 'proposals-edit-from-relation', params: { relation_id: this.$route.params.relation_id, proposal_id: proposal.id } })
       },
       async removeProposal(proposal) {
-        try {
-          await Proposal.destroy({ proposal_id: proposal.id })
-          const index = this.relation.proposals.indexOf(proposal)
-          this.relation.proposals.splice(index, 1)
-        } catch(error) {
-          console.error(error)
-        }
+        await Proposal.destroy({ proposal_id: proposal.id })
+        const index = this.relation.proposals.indexOf(proposal)
+        this.relation.proposals.splice(index, 1)
       }
     }
   }

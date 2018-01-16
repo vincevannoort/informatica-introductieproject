@@ -18,7 +18,10 @@ class ProposalController {
    * @returns {object} - all proposals
    */
   async index() {
-    return Proposal.all()
+    return Proposal.query()
+    .with('relation')
+    .with('contacts')
+    .fetch()
   }
 
   /**
