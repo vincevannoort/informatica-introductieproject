@@ -1,6 +1,14 @@
 class Proposal {
 
   /*
+   * Get all proposals from api endpoint
+   */
+  static async index() {
+    return axios.get(`/api/proposals/`)
+      .then((response) => response.data)
+  }
+
+  /*
    * Get single proposal from api endpoint
    */
   static async show({ proposal_id }) {

@@ -13,6 +13,10 @@
           <icon-relation />
           <span>Relations</span>
         </router-link>
+        <router-link to="/proposals">
+          <icon-actions />
+          <span>Proposals</span>
+        </router-link>
         <router-link to="/users">
           <icon-relation />
           <span>Users</span>

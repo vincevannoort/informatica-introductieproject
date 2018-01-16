@@ -26,10 +26,12 @@ class RelationController {
       const relation = await Relation.find(params.id)
       await relation.loadMany([
         'contacts',
-        'proposals.contacts',
         'strengthandweaknesses',
         'businesswindow'
       ]) // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await relation.load('proposals', async (builder) => {
+        await builder.with('contacts').with('relation')
+      })
       return relation
     } catch (error) {
       return response.status(404).send('Relation not found')

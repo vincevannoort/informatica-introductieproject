@@ -59,7 +59,7 @@ class Proposal extends Model {
 
     /**
      * Calculate: Effects of the changes
-     * @amount - 15%
+     * @amount - 25%
      */
     const insightEffectsOfTheChangesAmount = 0.25
     const insightEffectsOfTheChangesScore = await this.calculateInsightEffectsOfTheChangesScore()
@@ -116,7 +116,7 @@ class Proposal extends Model {
     score += await this.calculateInsightRoles(contactsRoles)
     score += await this.calculateInsightNeedForChanges(contactsNeedForChanges)
     score += await this.calculateInsightInfluence(contactsInfluences)
-    score += await this.calculateInsightFeeling(contactsFeelings)
+    score += await this.calculateInsightFeeling(contactsFeelings, 300)
 
     return score
   }
@@ -147,7 +147,14 @@ class Proposal extends Model {
    * Calculate score for business window
    */
   async calculateInsightEffectsOfTheChangesScore() {
-    return 0
+    let score = 0
+    const proposal = this
+    const proposalGrow = await proposal.grow().fetch()
+    const contacts = await proposal.contacts().fetch()
+    const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
+    score += await this.calculateInsightFeeling(contactsFeelings, 500)
+    score += await this.calculateInsightGrow(proposalGrow)
+    return score
   }
 
   async calculateInsightRoles(contactsRoles) {
@@ -194,14 +201,28 @@ class Proposal extends Model {
     return 400
   }
 
-  async calculateInsightFeeling(contactsFeelings) {
+  async calculateInsightFeeling(contactsFeelings, points) {
     contactsFeelings.forEach(contactFeeling => {
       if(contactFeeling == null) {
         return 0
       }
     })
 
-    return 300
+    return points
+  }
+
+  async calculateInsightGrow(proposalGrow) {
+    if
+    (
+      proposalGrow.goal ||
+      proposalGrow.reality ||
+      proposalGrow.opportunity ||
+      proposalGrow.will
+    ) 
+    {
+      return 0
+    }
+    return 500
   }
 
 }

@@ -37,6 +37,7 @@ const routes = [
       // users
       { path: '/users', name: 'users-overview', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
       { path: '/users/:user_id', name: 'users-single', component: require('../../views/single/User'), meta: { requiresAuth: true, title: 'User Single' } },
+
       // relations
       {
         path: '/relations', name: 'relations-overview', component: require('../../views/overview/Relations'), meta: { requiresAuth: true, title: 'Relations Overview' },
@@ -56,6 +57,12 @@ const routes = [
       },
 
       // proposals
+      {
+        path: '/proposals', name: 'proposals-overview', component: require('../../views/overview/Proposals'), meta: { requiresAuth: true, title: 'Proposals Overview' },
+        children: [
+          { path: '/:relation_id/:proposal_id/edit', name: 'proposals-edit-from-proposals', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } }
+        ]
+      },
       {
         path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' },
         children: [

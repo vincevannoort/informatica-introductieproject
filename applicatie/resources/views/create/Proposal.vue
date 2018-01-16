@@ -88,7 +88,9 @@
         }
       },
       back() {
-        if (this.createView || this.$route.name === 'proposals-edit-from-relation') {
+        if (this.$route.name === 'proposals-edit-from-proposals') {
+          this.$router.push({ name: 'proposals-overview' })
+        } if (this.createView || this.$route.name === 'proposals-edit-from-relation') {
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
         } else if (this.editView) {
           this.$router.push({ name: 'proposals-single', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
