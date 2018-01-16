@@ -103,6 +103,7 @@
     font-size: 20px;
     opacity: 0;
     animation: fadeInLeft .65s cubic-bezier(0.19, 1, 0.30, 1) 0.4s forwards;
+    font-weight: 500;
   }
 
   .main-back-link {

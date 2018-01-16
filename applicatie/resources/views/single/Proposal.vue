@@ -28,7 +28,7 @@
           </div>
         </box>
       </div>
-      <div class="column is-2">
+      <div class="proposal-insight-sidebox column is-2">
         <insight-bar :insight="proposal.insight" />
       </div>
     </div>
@@ -150,10 +150,10 @@
         } else { return 'loading...' }
       },
       strengths() {
-        return this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength')
+        return (this.proposal.strengthandweaknesses) ? this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'strength') : []
       },
       weaknesses() {
-        return this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness')
+        return  (this.proposal.strengthandweaknesses) ? this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness') : []
       }
     },
     activated() {
@@ -271,6 +271,21 @@
     strong {
       display: inline-block;
       margin-bottom: 1rem;
+    }
+  }
+
+  .proposal-insight-sidebox {
+    max-height: 600px;
+    > .box {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        flex: 1 1 auto;
+      }
+      > .box-header-wrapper {
+        flex: 0 1 auto;
+      }
     }
   }
 
