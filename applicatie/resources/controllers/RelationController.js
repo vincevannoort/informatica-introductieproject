@@ -38,6 +38,14 @@ class Relation {
     return axios.delete(`/api/relations/${relation_id}`)
   }
 
+  static async calculate({ relation_id }) {
+    return axios.post(`/api/relations/${relation_id}/calculate`)
+  }
+
+  static async calculateAll() {
+    return axios.post(`/api/calculate`)
+  }
+
 }
 
 export default Relation

@@ -10,6 +10,11 @@ class UserController {
     return User.all()
   }
 
+  /**
+   * Login a user
+   * @param {object} credentials - credentials with email and password
+   * @returns {token} jwt token for stateless authentication
+   */
   async login({ request, response, auth }) {
     const { email, password } = request.all().credentials
     try {
@@ -20,6 +25,10 @@ class UserController {
     }
   }
 
+  /**
+   * Get profile information of authenticated user
+   * @returns {object} profile
+   */
   async profile({ response, auth }) {
     try {
       return await auth.getUser()

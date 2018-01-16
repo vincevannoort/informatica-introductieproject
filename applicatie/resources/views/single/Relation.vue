@@ -5,6 +5,7 @@
       :title="relation.name"
       :back="'back to relations'"
       @back="back"
+      @calculate="calculate"
       @edit="edit"
       @remove="remove" />
 
@@ -168,6 +169,9 @@
         } catch(error) {
           console.error(error)
         }
+      },
+      async calculate() {
+        await Relation.calculate({ relation_id: this.$route.params.relation_id })
       },
       updateRelation(relation) {
         this.relation = relation

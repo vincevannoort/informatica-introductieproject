@@ -124,6 +124,16 @@ class RelationController {
     }
   }
 
+  /**
+   * Calculate insight for every proposal
+   * @param {integer} id - the proposal id from api routes defined in routes.js
+   * @returns {integer} - calculated insight
+   */
+  async calculateInsightForEveryProposal({ params }) {
+    const relation = await Relation.find(params.relation_id)
+    return relation.calculateInsightForEveryProposal()
+  }
+
 }
 
 module.exports = RelationController

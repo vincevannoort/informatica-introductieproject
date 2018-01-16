@@ -83,7 +83,7 @@ class Proposal extends Model {
 
   /** ==================================
    * Calculate score for business window
-   */
+   */ // ===============================
   async calculateInsightOverallBusinessWindowScore() {
     const relation = await this.relation().fetch()
     const businessWindow = await relation.businesswindow().fetch()
@@ -104,7 +104,7 @@ class Proposal extends Model {
 
   /** ============================================
    * Calculate insight score for power and sources
-   */
+   */ // =========================================
   async calculateInsightPowerAndSourcesScore() {
     let score = 0
     const proposal = this
@@ -124,6 +124,7 @@ class Proposal extends Model {
 
   /** ==================================
    * Calculate score for business window
+   * ===================================
    * Score is based on our proposal versus their proposal, 1 means our proposal has no chance, 5 means we are in a very good shape
    * score  our proposal  their proposal
    * 0      much worse    much better
@@ -146,7 +147,7 @@ class Proposal extends Model {
 
   /** ==================================
    * Calculate score for business window
-   */
+   */ // ===============================
   async calculateInsightEffectsOfTheChangesScore() {
     let score = 0
     const proposal = this
@@ -161,7 +162,7 @@ class Proposal extends Model {
 
   /** ==============================================
    * Calculate potential score for power and sources
-   */
+   */ // ===========================================
   async calculatePotentialPowerAndSourcesScore() {
     let score = 0
     const proposal = this
@@ -230,31 +231,28 @@ class Proposal extends Model {
   }
 
   async calculateInsightGrow(proposalGrow, points) {
-    if
-    (
-      proposalGrow.goal ||
-      proposalGrow.reality ||
-      proposalGrow.opportunity ||
-      proposalGrow.will
-    ) 
-    {
+    if ( proposalGrow.goal ||
+         proposalGrow.reality ||
+         proposalGrow.opportunity ||
+         proposalGrow.will ) {
       return 0
     }
     return points
   }
 
   async calculatePotentialRoles(contactsRoles, points) {
-
+    let score = points
     const rolesPresent = new Set()
     const rolesCount = {}
+
     let contactsWithRoles = await Promise.all(contactsRoles.map(async contactRoles => {
       let contactsWithRoles = {}
-    
-      await Promise.all(contactRoles.rows.map(async role => {        
+
+      await Promise.all(contactRoles.rows.map(async role => {
         const proposalcontact = await role.proposalcontact().fetch()
         const contact = await proposalcontact.information().fetch()
 
-        rolesPresent.add(role.type)        
+        rolesPresent.add(role.type)
         if (!(contact.id in contactsWithRoles)) { contactsWithRoles[contact.id] = [] }
         if (!(role.type in rolesCount)) { rolesCount[role.type] = 1 } else { rolesCount[role.type]++ }
         return contactsWithRoles[contact.id].push(role.type)
@@ -262,42 +260,19 @@ class Proposal extends Model {
       return contactsWithRoles
     }))
 
-
     // remove empty contacts
     contactsWithRoles = contactsWithRoles.filter((contactWithRoles) => !(Object.keys(contactWithRoles).length === 0 && contactWithRoles.constructor === Object))
 
-    // If all roles are defined in the optimal case, so there’s 1 chief who is also defined as an ambassador, two experts and two users the score is 40.
-    // If there's no chief defined, the possible score gets decreased by 25.
-    // If there’s a deviation from the previously optimal case on the roles of either a user or an expert 
-    // decrease the potential score for this section by 10 if there’s no expert defined, 
-    // decrease the score by a total of 5 if there’s no user defined. 
-    // A definition of two is needed to create more insight into the two individuals with the same role.
-    // If there’s no ambassador defined by the user, decrease the score for this section by 30.
-    // If the chief is defined as an ambassador, increase the score by 30.
-    // If a user is defined as an ambassador, increase the score by 1 
-    // (added to their potential increase of 5 if two are defined). 
-    // Increase the score by 3 if an expert is defined as an ambassador.
-    
-
-    let score = points
-
-    // if no chief             -62.5
-    if (!rolesPresent.has('chief')) { score -= 62.5 }
-    // if no ambassador        -75
-    if (!rolesPresent.has('ambassador')) { score -= 75 }    
-    // if no 2x expert         -25
-    if (!(rolesCount['expert'] >= 2)) { score -= 25  }     
-    // if no 2x user           -12.5
-    if (!(rolesCount['user'] >= 2)) { score -= 12.5  }
-    // if user == ambassador   +15
-    // if expert == ambassador +32.5
-    // if chief == ambassador  +75
+    if (!rolesPresent.has('chief')) { score -= 62.5 } // if no chief
+    if (!rolesPresent.has('ambassador')) { score -= 75 } // if no ambassador
+    if (!(rolesCount['expert'] >= 2)) { score -= 25 } // if no 2x expert
+    if (!(rolesCount['user'] >= 2)) { score -= 12.5 } // if no 2x user
     contactsWithRoles.forEach(contactWithRoles => {
       const contact_id = Object.keys(contactWithRoles)[0]
       const roles = Object.values(contactWithRoles)[0]
-      if (roles.includes('user') && roles.includes('ambassador')) { score += 15 }
-      if (roles.includes('expert') && roles.includes('ambassador')) { score += 32.5 }
-      if (roles.includes('chief') && roles.includes('ambassador')) { score += 75 }
+      if (roles.includes('user') && roles.includes('ambassador')) { score += 15 } // if user == ambassador
+      if (roles.includes('expert') && roles.includes('ambassador')) { score += 32.5 } // if expert == ambassador
+      if (roles.includes('chief') && roles.includes('ambassador')) { score += 75 } // if chief == ambassador
     })
 
     // cap score between 0 and 100

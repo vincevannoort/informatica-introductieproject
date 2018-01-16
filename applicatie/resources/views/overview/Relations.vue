@@ -1,6 +1,8 @@
 <template>
   <div>
-    <main-view-title :title="'Relations'" />
+    <main-view-title
+      :title="'Relations'"
+      @calculate="calculateAll" />
     <div>
       <div class="columns">
         <div class="relations-boxes column is-one-third">
@@ -67,9 +69,10 @@
           console.log(error)
         }
       },
+      async calculateAll() {
+        await Relation.calculateAll()
+      },
       addRelation(relation) {
-        console.log('push the relation')
-        console.log(relation)
         this.relations.push(relation)
       }
     }

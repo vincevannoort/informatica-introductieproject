@@ -2,7 +2,7 @@
   <div class="main-title-inner-content" :class="{ 'with-main-back-link': $listeners.back }">
     <div class="main-back-link" v-if="$listeners.back" @click="backEntity">&lt; {{ back }}</div>
     <h1 class="main-title">{{ title }}</h1>
-    <div v-if="$listeners.edit || $listeners.remove" class="main-action-buttons field has-addons">
+    <div v-if="$listeners.calculate || $listeners.edit || $listeners.remove" class="main-action-buttons field has-addons">
       <p v-if="$listeners.calculate" class="control">
         <a @click="calculateEntity" class="button">
           <span class="icon is-small">

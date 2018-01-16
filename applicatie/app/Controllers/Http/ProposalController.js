@@ -102,6 +102,11 @@ class ProposalController {
     }
   }
 
+  /**
+   * Calculate insight
+   * @param {integer} id - the proposal id from api routes defined in routes.js
+   * @returns {integer} - calculated insight
+   */
   async calculateInsight({ params }) {
     const proposal = await Proposal.find(params.proposal_id)
     return proposal.calculateInsight()

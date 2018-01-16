@@ -87,6 +87,7 @@ class ContactController {
    * @param {object} contact - all contact data (id, profession, first_name, last_name, telephone, email)
    * @returns {response} - 422, if validation fails
    * @returns {object} - single contact
+   * * @returns {object} - single contact
    */
   async update({ request, response }) {
     try {
@@ -152,9 +153,11 @@ class ContactController {
     }
   }
 
-  /*
-  * Store a note attached to contact
-  */
+  /**
+   * Store a note attached to contact
+   * @param {integer} id - the contact id from api routes defined in routes.js
+   * @returns {object} - new created note
+   */
   async storeNote({ request, params }) {
     const contact = await Contact.find(params.contact_id)
     const noteData = request.all().note

@@ -12,6 +12,7 @@
 */
 
 const Route = use('Route')
+const Relation = use('App/Models/Relation')
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,18 @@ Route.group(() => {
 // with authentication
 // route resources, see: https://adonisjs.com/docs/4.0/routing#_route_resources
 Route.group(() => {
+  Route.post('calculate', async () => {
+    const relations = await Relation.all()
+    return Promise.all(relations.rows.map((relation) => relation.calculateInsightForEveryProposal()))
+  })
+
   // users
   Route.get('users/profile', 'UserController.profile')
   Route.resource('users', 'UserController').apiOnly()
 
   // relations
-  Route.get('relations/:relation_id/calculate', 'RelationController.calculateTotalInsight')
   Route.resource('relations', 'RelationController').apiOnly()
+  Route.post('relations/:relation_id/calculate', 'RelationController.calculateInsightForEveryProposal')
 
   // proposals
   Route.resource('proposals', 'ProposalController').apiOnly()

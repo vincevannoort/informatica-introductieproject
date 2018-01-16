@@ -40,7 +40,7 @@ class Relation extends Model {
    * Calculate insight for every proposals
    */
   async calculateInsightForEveryProposal() {
-    const proposals = await this.proposals().with('contacts').fetch()
+    const proposals = await this.proposals().fetch()
 
     // return if no proposals exist
     if (!proposals.rows.length > 0) {
