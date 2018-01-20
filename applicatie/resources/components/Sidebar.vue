@@ -5,10 +5,6 @@
         <img src="../assets/images/easy-link-keeper-side.svg">
       </div>
       <div class="sidebar-links">
-        <router-link to="/" exact>
-          <icon-dashboard />
-          <span>Dashboard</span>
-        </router-link>
         <router-link to="/relations">
           <icon-relation />
           <span>Relations</span>

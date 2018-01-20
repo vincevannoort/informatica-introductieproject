@@ -20,6 +20,7 @@ Vue.component('icon-actions', require('../../components/icons/actions'))
 Vue.component('icon-relation', require('../../components/icons/relation'))
 Vue.component('icon-profile', require('../../components/icons/profile'))
 Vue.component('icon-users', require('../../components/icons/users'))
+Vue.component('icon-logout', require('../../components/icons/logout'))
 Vue.component('buttons-edit-remove', require('../../components/ButtonsEditRemove'))
 
 /*
@@ -28,15 +29,14 @@ Vue.component('buttons-edit-remove', require('../../components/ButtonsEditRemove
 |--------------------------------------------------------------------------
 */
 const routes = [
-  { path: '/login', component: require('../../views/Authentication'), meta: { title: 'login' } },
+  { path: '/login', name: 'login', component: require('../../views/Authentication'), meta: { type: 'login', title: 'login' } },
+  { path: '/logout', name: 'logout', component: require('../../views/Authentication'), meta: { type: 'logout', title: 'login' } },
   {
     path: '/', component: require('../../views/Overview'), meta: { requiresAuth: true },
     children: [
-      { path: '/', component: require('../../views/Dashboard'), meta: { requiresAuth: true, title: 'Dashboard' } },
 
       // users
       { path: '/users', name: 'users-overview', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
-      { path: '/users/:user_id', name: 'users-single', component: require('../../views/single/User'), meta: { requiresAuth: true, title: 'User Single' } },
 
       // relations
       {
@@ -89,7 +89,7 @@ const routes = [
 
 
       // profile
-      { path: '/profile', component: require('../../views/Profile'), meta: { requiresAuth: true, title: 'Profile' } },
+      { path: '/profile', component: require('../../views/single/Profile'), meta: { requiresAuth: true, title: 'Profile' } },
       { path: '*', name: '404', component: require('../../views/NotFound'), meta: { title: 'Not Found (404)' } }
     ]
   }

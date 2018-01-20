@@ -9,7 +9,10 @@
         </div>
       </div>
     </router-link>
-    <router-link to="/profile"><icon-profile /></router-link>
+    <div class="sidebar-profile-icons">
+      <router-link to="/profile"><icon-profile /></router-link>
+      <router-link to="/logout"><icon-logout /></router-link>
+    </div>
   </div>
 </template>
 
@@ -27,3 +30,17 @@
     }
   }
 </script>
+
+<style lang="scss">
+.sidebar-profile-icons {
+  a {
+    margin: 0.5rem;
+    height: 20px;
+    width: 20px;
+    svg { height: 20px; width: 20px; }
+    &:first-of-type { margin-left: 0; }
+    &:last-of-type { margin-right: 0; }
+  }
+}
+</style>
+

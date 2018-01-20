@@ -6,17 +6,17 @@
     <div class="box authentication-box">
       <div class="field">
         <div class="control">
-          <input class="input" type="text" name="username" placeholder="Username" @keyup.enter="submit" v-model="credentials.username">
+          <input class="input" type="text" name="username" placeholder="Username" v-model="credentials.username">
         </div>
       </div>
       <div class="field">
         <div class="control">
-          <input class="input" type="password" name="password" placeholder="Password" @keyup.enter="submit" v-model="credentials.password">
+          <input class="input" type="password" name="password" placeholder="Password" @keyup.enter="login" v-model="credentials.password">
         </div>
       </div>
       <div class="field">
         <div class="control">
-          <button class="button is-link" @click="submit">Submit</button>
+          <button class="button is-link" @click="login">Submit</button>
         </div>
       </div>
     </div>
@@ -40,17 +40,32 @@
         }
       }
     },
+    computed: {
+      loginView() {
+        return this.$route.meta.type === 'login'
+      },
+      logoutView() {
+        return this.$route.meta.type === 'logout'
+      }
+    },
     mounted() {
       var createdChart = authenticationChart.generate('authentication-graph')
       authenticationChart.startRandomIntervalUpdating(createdChart)
+      if (this.logoutView) {
+        authentication.logout()
+        this.$router.push({ name: 'login' })
+      }
     },
     methods: {
-      submit() {
+      login() {
         let credentials = {
           email: this.credentials.username,
           password: this.credentials.password
         }
-        authentication.login(this, credentials, '/')
+        authentication.login(this, credentials, '/relations')
+      },
+      logout() {
+        console.log('attempt logout')
       }
     }
   }
