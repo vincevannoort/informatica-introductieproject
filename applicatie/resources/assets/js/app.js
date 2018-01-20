@@ -72,7 +72,8 @@ const routes = [
           { path: 'position-and-competition/create', name: 'position-and-competition-create', component: require('../../views/create/Competition'), meta: { requiresAuth: true, type: 'create', title: 'Position and competition Create' } },
           { path: 'smart-actions/create', name: 'smart-actions-create', component: require('../../views/create/Smart'), meta: { requiresAuth: true, type: 'create', title: 'Smart action Create' } },
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-proposal-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } },
-          { path: 'grow/create', name: 'grow-create', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'create', title: 'Grow Create' } }
+          { path: 'grow/create', name: 'grow-create', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'create', title: 'Grow Create' } },
+          { path: 'insight', name: 'proposals-insight', component: require('../../views/information/Insight'), meta: { requiresAuth: true, type: 'information', title: 'Proposal Insight' } }
         ]
       },
 

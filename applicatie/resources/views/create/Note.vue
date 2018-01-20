@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Contact from '../../controllers/ContactController'
+import Contact from '../../services/ContactService'
 
 export default {
   data() {

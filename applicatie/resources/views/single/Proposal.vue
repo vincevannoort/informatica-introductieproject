@@ -136,7 +136,7 @@
 
 <script>
   import InsightBarComponent from '../../components/InsightBar'
-  import Proposal from '../../controllers/ProposalController'
+  import Proposal from '../../services/ProposalService'
 
   export default {
     name: 'Proposal',
@@ -170,6 +170,7 @@
       },
       async calculate() {
         await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
+        this.$router.push({ name: 'proposals-insight', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
       },
       async edit() {
         this.$router.push({ name: 'proposals-edit', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })

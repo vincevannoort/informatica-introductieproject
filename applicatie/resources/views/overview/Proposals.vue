@@ -14,7 +14,7 @@
 
 <script>
 import BoxProposalsComponent from '../../components/BoxProposals'
-import Proposal from '../../controllers/ProposalController'
+import Proposal from '../../services/ProposalService'
 
 export default {
   components: { 'box-proposals': BoxProposalsComponent },

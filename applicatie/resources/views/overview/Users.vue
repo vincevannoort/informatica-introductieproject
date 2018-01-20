@@ -10,7 +10,7 @@
 
 <script>
 import BoxUsersComponent from '../../components/BoxUsers'
-import User from '../../controllers/UserController'
+import User from '../../services/UserService'
 
 export default {
   components: { 'box-users': BoxUsersComponent },

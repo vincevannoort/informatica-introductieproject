@@ -115,9 +115,9 @@
   import BoxContactsComponent from '../../components/BoxContacts'
   import BoxProposalsComponent from '../../components/BoxProposals'
   import InsightBarComponent from '../../components/InsightBar'
-  import Relation from '../../controllers/RelationController'
-  import Contact from '../../controllers/ContactController'
-  import Proposal from '../../controllers/ProposalController'
+  import Relation from '../../services/RelationService'
+  import Contact from '../../services/ContactService'
+  import Proposal from '../../services/ProposalService'
 
   export default {
     name: 'Relation',

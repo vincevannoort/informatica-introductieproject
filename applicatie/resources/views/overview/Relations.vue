@@ -33,7 +33,7 @@
   import BoxRelationsComponent from '../../components/BoxRelations'
   import BoxRelationComponent from '../../components/BoxRelation'
   import RelationsGraphComponent from '../../components/graphs/RelationsGraph'
-  import Relation from '../../controllers/RelationController'
+  import Relation from '../../services/RelationService'
 
   export default {
     components: {

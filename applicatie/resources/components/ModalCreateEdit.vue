@@ -16,7 +16,7 @@
               <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!validated">Update</button>
             </div>
             <div class="control">
-              <button class="button is-text" @click.prevent="back">Cancel</button>
+              <button class="button is-text is-light" @click.prevent="back">Cancel</button>
             </div>
           </div>
         </form>

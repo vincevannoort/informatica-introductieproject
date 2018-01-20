@@ -21,8 +21,8 @@
 </template>
 
 <script>
-  import Relation from '../../controllers/RelationController'
-  import Proposal from '../../controllers/ProposalController'
+  import Relation from '../../services/RelationService'
+  import Proposal from '../../services/ProposalService'
 
   export default {
     data() {

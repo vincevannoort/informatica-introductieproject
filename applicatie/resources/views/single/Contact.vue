@@ -97,7 +97,7 @@
 </template>
 
 <script>
-  import Contact from '../../controllers/ContactController'
+  import Contact from '../../services/ContactService'
   import SocialMediaComponent from '../../components/SocialMedia'
 
   export default {

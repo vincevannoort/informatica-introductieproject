@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Relation from '../../controllers/RelationController'
+  import Relation from '../../services/RelationService'
 
   export default {
     data() {
