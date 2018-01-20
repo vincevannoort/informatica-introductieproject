@@ -1,5 +1,19 @@
 <template>
   <modal-create-edit :entity="'Social media'">
-    <field v-model="example.name" :name="'Name'" :size="'full'" :validation="'required'" />
+    <field v-model="socialmedia.type" :name="'Type'" :size="'full'" :validation="'required'" />
+    <field v-model="socialmedia.url" :name="'Url'" :size="'full'" :validation="'required'" />
   </modal-create-edit>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      socialmedia: {
+        type: '',
+        url: ''
+      }
+    }
+  }
+}
+</script>

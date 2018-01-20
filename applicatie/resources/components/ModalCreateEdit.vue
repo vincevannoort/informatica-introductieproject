@@ -32,10 +32,6 @@ export default {
     entity: {
       default: 'type',
       type: String
-    },
-    validated: {
-      default: false,
-      type: Boolean
     }
   },
   computed: {
@@ -44,6 +40,13 @@ export default {
     },
     editView() {
       return this.$route.meta.type === 'edit'
+    },
+    validated() {
+      if (!this.fields) { return false }
+      for (let [name, attributes] of Object.entries(this.fields)) {
+        if (!attributes.valid) { return false }
+      }
+      return true
     }
   },
   created() {

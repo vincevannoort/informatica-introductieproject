@@ -12,6 +12,8 @@
         :name="`${name}`"
         :placeholder="`${name}`">
     </div>
+    <span v-show="errors.has(name)" class="help is-danger">{{ errors.first(name) }}</span>
+    <!-- <p class="help is-danger">This email is invalid</p> -->
   </div>
 </template>
 

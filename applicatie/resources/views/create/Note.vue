@@ -2,8 +2,7 @@
   <modal-create-edit
     :entity="'Note'"
     @store="store"
-    @update="update"
-    :validated="true">
+    @update="update">
     <field v-model="note.description" :name="'Description'" :size="'full'" :validation="'required'" />
     <field v-model="note.date" :name="'Date'" :size="'half'" :validation="'required'" :field-type="'date'" />
   </modal-create-edit>
