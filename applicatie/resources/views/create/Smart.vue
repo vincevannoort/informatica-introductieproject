@@ -1,6 +1,6 @@
 <template>
   <modal-create-edit :entity="'Smart'">
-    <field v-model="smart.action" :name="'action'" :size="'full'" :validation="'required'" />
+    <field v-model="smart.action" :name="'Action'" :size="'full'" :validation="'required'" />
   </modal-create-edit>
 </template>
 

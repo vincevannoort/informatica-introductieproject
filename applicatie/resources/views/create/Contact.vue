@@ -56,7 +56,6 @@
         this.back()
       },
       back() {
-        console.log(this.$route)
         const viewType = this.$route.meta.type
         if (viewType == 'create' || this.$route.name === 'contacts-edit-from-relation' ) {
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })

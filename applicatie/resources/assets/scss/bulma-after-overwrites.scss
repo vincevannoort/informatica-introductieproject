@@ -4,12 +4,27 @@
 |--------------------------------------------------------------------------
 */
 .control input {
-  padding: 0.8rem;
+  padding: 0.5rem 0.8rem;
   height: auto;
 }
 
 .control.has-icons-left .icon, .control.has-icons-right .icon {
   height: 100%;
+}
+
+.select {
+  height: auto !important;
+  width: 100%;
+  select {
+    height: auto !important;
+    padding: 0.5rem 0.8rem;
+    width: 100%;
+  }
+}
+
+.select:not(.is-multiple)::after {
+  margin-top: auto;
+  transform: rotate(-45deg) translateY(-80%);
 }
 
 /*

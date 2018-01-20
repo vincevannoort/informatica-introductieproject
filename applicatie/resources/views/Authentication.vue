@@ -63,9 +63,6 @@
           password: this.credentials.password
         }
         authentication.login(this, credentials, '/relations')
-      },
-      logout() {
-        console.log('attempt logout')
       }
     }
   }

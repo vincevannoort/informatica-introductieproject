@@ -24,7 +24,6 @@ export default {
   methods: {
     async store() {
       let self = this
-      console.log(self.note)
       await Contact.storeNote({
         note: self.note,
         relation_id: this.$route.params.relation_id,
