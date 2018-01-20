@@ -63,11 +63,7 @@
     },
     methods: {
       async index() {
-        try {
-          this.relations = await Relation.index()
-        } catch(error) {
-          console.log(error)
-        }
+        this.relations = await Relation.index()
       },
       async calculateAll() {
         await Relation.calculateAll()

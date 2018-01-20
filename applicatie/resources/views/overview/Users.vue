@@ -22,11 +22,7 @@ export default {
   },
   methods: {
     async index() {
-      try {
-        this.users = await User.index()
-      } catch(error) {
-        console.log(error)
-      }
+      this.users = await User.index()
     }
   }
 }

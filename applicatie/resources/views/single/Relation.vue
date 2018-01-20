@@ -157,22 +157,14 @@
         this.$router.push({ name: 'relations-overview' })
       },
       async show() {
-        try {
-          this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
-        } catch(error) {
-          console.error(error)
-        }
+        this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
       },
       async edit() {
         this.$router.push({ name: 'relations-edit', params: { relation_id: this.$route.params.relation_id } })
       },
       async remove() {
-        try {
-          await Relation.destroy({ relation_id: this.$route.params.relation_id })
-          this.$router.push({ name: 'relations-overview' })
-        } catch(error) {
-          console.error(error)
-        }
+        await Relation.destroy({ relation_id: this.$route.params.relation_id })
+        this.$router.push({ name: 'relations-overview' })
       },
       async calculate() {
         await Relation.calculate({ relation_id: this.$route.params.relation_id })
@@ -187,13 +179,9 @@
         this.$router.push({ name: 'contacts-edit-from-relation', params: { relation_id: this.$route.params.relation_id, contact_id: contact.id } })
       },
       async removeContact(contact) {
-        try {
-          await Contact.destroy({ contact_id: contact.id })
-          const index = this.relation.contacts.indexOf(contact)
-          this.relation.contacts.splice(index, 1)
-        } catch(error) {
-          console.error(error)
-        }
+        await Contact.destroy({ contact_id: contact.id })
+        const index = this.relation.contacts.indexOf(contact)
+        this.relation.contacts.splice(index, 1)
       },
       addProposal(proposal) {
         this.relation.proposals.push(proposal)

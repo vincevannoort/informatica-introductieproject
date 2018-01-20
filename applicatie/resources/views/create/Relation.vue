@@ -31,29 +31,17 @@
     },
     methods: {
       async show() {
-        try {
-          this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
-        } catch(error) {
-          console.error(error)
-        }
+        this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
       },
       async store() {
-        try {
-          const relation = await Relation.store({ relation: this.relation })
-          this.$emit('created-relation', relation)
-          this.back()
-        } catch(error) {
-          console.error(error)
-        }
+        const relation = await Relation.store({ relation: this.relation })
+        this.$emit('created-relation', relation)
+        this.back()
       },
       async update() {
-        try {
-          const relation = await Relation.update({ relation: this.relation })
-          this.$emit('updated-relation', relation.data)
-          this.back()
-        } catch(error) {
-          console.error(error)
-        }
+        const relation = await Relation.update({ relation: this.relation })
+        this.$emit('updated-relation', relation.data)
+        this.back()
       },
       back() {
         if (this.createView) {

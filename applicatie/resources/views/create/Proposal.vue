@@ -64,28 +64,16 @@
     },
     methods: {
       async getRelationFromContact() {
-        try {
-          this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
-        } catch(error) {
-          console.log(error)
-        }
+        this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
       },
       async show() {
-        try {
-          this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
-          this.proposal.contacts.map(contact => this.selectedContacts.push(contact.id))
-        } catch(error) {
-          console.error(error)
-        }
+        this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
+        this.proposal.contacts.map(contact => this.selectedContacts.push(contact.id))
       },
       async store() {
-        try {
-          const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id, contact_ids: this.selectedContacts })
-          this.$emit('created-proposal', proposal)
-          this.back()
-        } catch(error) {
-          console.error()
-        }
+        const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id, contact_ids: this.selectedContacts })
+        this.$emit('created-proposal', proposal)
+        this.back()
       },
       back() {
         if (this.$route.name === 'proposals-edit-from-proposals') {

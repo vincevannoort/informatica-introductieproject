@@ -166,11 +166,7 @@
         this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
       },
       async show() {
-        try {
-          this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
-        } catch(error) {
-          console.error(error)
-        }
+        this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
       },
       async calculate() {
         await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
@@ -179,12 +175,8 @@
         this.$router.push({ name: 'proposals-edit', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
       },
       async remove() {
-        try {
-          await Proposal.destroy({ proposal_id: this.$route.params.proposal_id })
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-        } catch(error) {
-          console.error(error)
-        }
+        await Proposal.destroy({ proposal_id: this.$route.params.proposal_id })
+        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
       },
       gradingAsText(grade) {
         switch(grade) {

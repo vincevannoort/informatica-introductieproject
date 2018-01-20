@@ -61,7 +61,7 @@
       }
     },
     async activated() {
-      this.profile = axios.get('/api/users/profile')
+      this.profile = await axios.get('/api/users/profile').then((response) => response.data)
     },
     methods: {
       async edit() {

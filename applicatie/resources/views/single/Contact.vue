@@ -122,22 +122,14 @@
         this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
       },
       async show() {
-        try {
-          this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
-        } catch(error) {
-          console.error(error)
-        }
+        this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
       },
       async edit() {
         this.$router.push({ name: 'contacts-edit', params: { relation_id: this.$route.params.relation_id, contact_id: this.$route.params.contact_id } })
       },
       async remove() {
-        try {
-          await Contact.destroy({ contact_id: this.$route.params.contact_id })
-          this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-        } catch(error) {
-          console.error(error)
-        }
+        await Contact.destroy({ contact_id: this.$route.params.contact_id })
+        this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
       },
       updateContact(contact) {
         this.contact = contact
