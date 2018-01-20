@@ -43,7 +43,11 @@
         </box>
       </div>
       <div class="column">
-        <box :title="'The customer business window'">
+        <box
+          :title="'The customer business window'"
+          :action="{
+            title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit extisting customer business window',
+            route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `TODO: to edit` }">
           <div class="relation-grow" v-if="relation.businesswindow">
             <div class="columns is-multiline">
               <div class="column is-6">
@@ -71,7 +75,7 @@
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
-          :action="{ title: 'Add new strength or weakness', route: `TODO` }" >
+          :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/strengths-and-weaknesses/create` }" >
           <div class="columns">
             <div class="column sow-overview">
               <div><strong>Strengths</strong></div>

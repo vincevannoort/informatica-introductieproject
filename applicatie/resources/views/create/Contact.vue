@@ -1,6 +1,6 @@
 <template>
   <modal-create-edit
-    :entity="'contact'"
+    :entity="'Contact'"
     :validated="validated"
     @init-create="clearFields"
     @init-edit="show"

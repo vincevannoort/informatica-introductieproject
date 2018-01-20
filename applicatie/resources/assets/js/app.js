@@ -52,7 +52,9 @@ const routes = [
           { path: 'contacts/create', name: 'contacts-create', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'create', title: 'Contacts Create/Update' } },
           { path: 'proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'create', title: 'Proposal Create/Update' } },
           { path: 'contacts/:contact_id/edit-from-relation', name: 'contacts-edit-from-relation', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
-          { path: 'proposals/:proposal_id/edit-from-relation', name: 'proposals-edit-from-relation', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } }
+          { path: 'proposals/:proposal_id/edit-from-relation', name: 'proposals-edit-from-relation', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } },
+          { path: 'customerbusinesswindow/create', name: 'customerbusinesswindow-create', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'edit', title: 'CustomerBusinessWindow Create' } },
+          { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-relation-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } }
         ]
       },
 
@@ -66,7 +68,11 @@ const routes = [
       {
         path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' },
         children: [
-          { path: 'edit', name: 'proposals-edit', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } }
+          { path: 'edit', name: 'proposals-edit', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } },
+          { path: 'position-and-competition/create', name: 'position-and-competition-create', component: require('../../views/create/Competition'), meta: { requiresAuth: true, type: 'create', title: 'Position and competition Create' } },
+          { path: 'smart-actions/create', name: 'smart-actions-create', component: require('../../views/create/Smart'), meta: { requiresAuth: true, type: 'create', title: 'Smart action Create' } },
+          { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-proposal-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } },
+          { path: 'grow/create', name: 'grow-create', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'create', title: 'Grow Create' } }
         ]
       },
 
@@ -75,7 +81,9 @@ const routes = [
         path: '/relations/:relation_id/contacts/:contact_id', name: 'contacts-single', component: require('../../views/single/Contact'), meta: { requiresAuth: true, title: 'Contact Single' },
         children: [
           { path: 'edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
-          { path: 'notes/create', name: 'contacts-notes-create', component: require('../../views/create/Note'), meta: { requiresAuth: true, type: 'create', title: 'Contact Note Create' } }
+          { path: 'notes/create', name: 'contacts-notes-create', component: require('../../views/create/Note'), meta: { requiresAuth: true, type: 'create', title: 'Contact Note Create' } },
+          { path: 'influence/create', name: 'influence-create', component: require('../../views/create/Influence'), meta: { requiresAuth: true, type: 'create', title: 'Contact Influence Create' } },
+          { path: 'needforchange/create', name: 'needforchange-create', component: require('../../views/create/NeedForChange'), meta: { requiresAuth: true, type: 'create', title: 'Contact Need for change Create' } }
         ]
       },
 

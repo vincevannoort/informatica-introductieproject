@@ -36,7 +36,7 @@
       <div class="column">
         <box
           :title="'Position and competition'"
-          :action="{ title: 'Add new counter proposal', route: `TODO` }" >
+          :action="{ title: 'Add new counter proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/position-and-competition/create` }" >
           <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
             <div class="proposal-competition-company"><span>{{ gradingAsText(competition.grading) }}</span>{{ competition.company }}</div>
             <div class="columns">
@@ -62,7 +62,7 @@
       <div class="column">
         <box
           :title="'SMART actions'"
-          :action="{ title: 'Add new SMART action', route: `TODO` }" >
+          :action="{ title: 'Add new smart action', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/smart-actions/create` }" >
           <div class="proposal-smart-action" v-for="action in proposal.actions" :key="action.id">
             <div class="columns">
               <div class="column">
@@ -80,7 +80,7 @@
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
-          :action="{ title: 'Add new strength or weakness', route: `TODO` }" >
+          :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/strengths-and-weaknesses/create` }" >
           <div class="columns">
             <div class="column sow-overview">
               <div><strong>Strengths</strong></div>
@@ -102,7 +102,9 @@
       <div class="column">
         <box
           :title="'GROW information'"
-          :action="{ title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow', route: (!proposal.grow) ? `TODO: to create` : `TODO: to edit` }" >
+          :action="{
+            title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow',
+            route: (!proposal.grow) ? `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/create` : `TODO: to edit` }">
           <div class="grow-information" v-if="proposal.grow">
             <div class="columns">
               <div class="column grow-information-goal">

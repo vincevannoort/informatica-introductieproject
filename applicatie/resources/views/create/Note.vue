@@ -1,6 +1,6 @@
 <template>
   <modal-create-edit
-    :entity="'note'"
+    :entity="'Note'"
     @store="store"
     @update="update"
     :validated="true">
