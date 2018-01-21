@@ -196,6 +196,8 @@ class Proposal extends Model {
   }
 
   async calculateInsightNeedForChanges(contactsNeedForChanges, points) {
+    if (!contactsNeedForChanges.length) { return 0}
+
     contactsNeedForChanges.forEach(contactNeedForChanges => {
       contactNeedForChanges.rows.forEach(needforchange => {
         if(needforchange == null) {
@@ -208,6 +210,8 @@ class Proposal extends Model {
   }
 
   async calculateInsightInfluence(contactsInfluences, points) {
+    if (!contactsInfluences.length) { return 0 }
+
     contactsInfluences.forEach(contactInfluences => {
       contactInfluences.rows.forEach(influence => {
         if(influence == null) {
@@ -220,6 +224,8 @@ class Proposal extends Model {
   }
 
   async calculateInsightFeeling(contactsFeelings, points) {
+    if (!contactsFeelings.length) { return 0 }
+
     contactsFeelings.forEach(contactFeeling => {
       if(contactFeeling == null) {
         return 0
@@ -231,6 +237,7 @@ class Proposal extends Model {
 
   async calculateInsightGrow(proposalGrow, points) {
     if (!proposalGrow) { return 0 }
+
     if ( proposalGrow.goal ||
          proposalGrow.reality ||
          proposalGrow.opportunity ||
