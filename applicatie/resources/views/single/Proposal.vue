@@ -10,22 +10,27 @@
     <div class="columns">
       <div class="column">
         <box :title="'Internal power and sources'">
-          <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
-            <table>
-              <tr>
-                <th>
-                  <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
-                  <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
-                  {{ contact.information.first_name }} {{ contact.information.last_name }}
-                </th>
-                <th>actions</th>
-              </tr>
-              <tr>
-                <td>information</td>
-                <td>lorem ipsum</td>
-              </tr>
-            </table>
-          </div>
+          <template v-if="proposal.contacts && proposal.contacts.length">
+            <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
+              <table>
+                <tr>
+                  <th>
+                    <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
+                    <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
+                    {{ contact.information.first_name }} {{ contact.information.last_name }}
+                  </th>
+                  <th>actions</th>
+                </tr>
+                <tr>
+                  <td>information</td>
+                  <td>lorem ipsum</td>
+                </tr>
+              </table>
+            </div>
+          </template>
+          <template v-else>
+            <p>No contacts added to this proposal yet, TODO: better information</p>
+          </template>
         </box>
       </div>
       <div class="proposal-insight-sidebox column is-2">
@@ -37,64 +42,74 @@
         <box
           :title="'Position and competition'"
           :action="{ title: 'Add new counter proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/position-and-competition/create` }" >
-          <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
-            <div class="proposal-competition-company"><span>{{ gradingAsText(competition.grading) }}</span>{{ competition.company }}</div>
-            <div class="columns">
-              <div class="column proposal-competition-company-counter">
-                <div><strong>Counter proposal</strong></div>
-                <div>{{ competition.counter_proposal }}</div>
-              </div>
-              <div class="column proposal-competition-company-position">
-                <div><strong>Position</strong></div>
-                <div>{{ competition.position }}</div>
+          <template v-if="proposal.competitions && proposal.competitions.length">
+            <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
+              <div class="proposal-competition-company"><span>{{ gradingAsText(competition.grading) }}</span>{{ competition.company }}</div>
+              <div class="columns">
+                <div class="column proposal-competition-company-counter">
+                  <div><strong>Counter proposal</strong></div>
+                  <div>{{ competition.counter_proposal }}</div>
+                </div>
+                <div class="column proposal-competition-company-position">
+                  <div><strong>Position</strong></div>
+                  <div>{{ competition.position }}</div>
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <p>No competition added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
       <div class="column">
-        <box :title="'Effects of the changes'">
-          Eventueel verwijderen
+        <box
+          :title="'SMART actions'"
+          :action="{ title: 'Add new smart action', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/smart-actions/create` }" >
+          <template v-if="proposal.actions && proposal.actions.length">
+            <div class="proposal-smart-action" v-for="action in proposal.actions" :key="action.id">
+              <div class="columns">
+                <div class="column">
+                  <div><strong>Action</strong></div>
+                  <div class="proposal-smart-action-text">{{ action.smart_action }}</div>
+                </div>
+                <div class="column is-3 has-text-right">
+                  <div><strong>Date added</strong></div>
+                  <div class="proposal-smart-action-date">{{ action.created_at | moment("from") }}</div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <p>No actions added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
     </div>
     <div class="columns">
       <div class="column">
         <box
-          :title="'SMART actions'"
-          :action="{ title: 'Add new smart action', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/smart-actions/create` }" >
-          <div class="proposal-smart-action" v-for="action in proposal.actions" :key="action.id">
-            <div class="columns">
-              <div class="column">
-                <div><strong>Action</strong></div>
-                <div class="proposal-smart-action-text">{{ action.smart_action }}</div>
-              </div>
-              <div class="column is-3 has-text-right">
-                <div><strong>Date added</strong></div>
-                <div class="proposal-smart-action-date">{{ action.created_at | moment("from") }}</div>
-              </div>
-            </div>
-          </div>
-        </box>
-      </div>
-      <div class="column">
-        <box
           :title="'Strengths and Weaknesses'"
           :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/strengths-and-weaknesses/create` }" >
-          <div class="columns">
-            <div class="column sow-overview">
-              <div><strong>Strengths</strong></div>
-              <div class="sow-item" v-for="strength in strengths" :key="strength.id">
-                <span class="sow-strength">+</span> {{ strength.description }}
+          <template v-if="strengths && strengths.length || weaknesses && weaknesses.length">
+            <div class="columns">
+              <div class="column sow-overview">
+                <div><strong>Strengths</strong></div>
+                <div class="sow-item" v-for="strength in strengths" :key="strength.id">
+                  <span class="sow-strength">+</span> {{ strength.description }}
+                </div>
+              </div>
+              <div class="column sow-overview">
+                <div><strong>Weaknesses</strong></div>
+                <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
+                  <span class="sow-weakness">-</span> {{ weakness.description }}
+                </div>
               </div>
             </div>
-            <div class="column sow-overview">
-              <div><strong>Weaknesses</strong></div>
-              <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
-                <span class="sow-weakness">-</span> {{ weakness.description }}
-              </div>
-            </div>
-          </div>
+          </template>
+          <template v-else>
+            <p>No strengths or weaknesses added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
     </div>
@@ -105,26 +120,31 @@
           :action="{
             title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow',
             route: (!proposal.grow) ? `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/create` : `TODO: to edit` }">
-          <div class="grow-information" v-if="proposal.grow">
-            <div class="columns">
-              <div class="column grow-information-goal">
-                <div><strong>Goal</strong></div>
-                {{ proposal.grow.goal }}
-              </div>
-              <div class="column grow-information-reality">
-                <div><strong>Reality</strong></div>
-                {{ proposal.grow.reality }}
-              </div>
-              <div class="column grow-information-opportunities">
-                <div><strong>Opportunity</strong></div>
-                {{ proposal.grow.opportunity }}
-              </div>
-              <div class="column grow-information-will">
-                <div><strong>Will</strong></div>
-                {{ proposal.grow.will }}
+          <template v-if="proposal.grow">
+            <div class="grow-information">
+              <div class="columns">
+                <div class="column grow-information-goal">
+                  <div><strong>Goal</strong></div>
+                  {{ proposal.grow.goal }}
+                </div>
+                <div class="column grow-information-reality">
+                  <div><strong>Reality</strong></div>
+                  {{ proposal.grow.reality }}
+                </div>
+                <div class="column grow-information-opportunities">
+                  <div><strong>Opportunity</strong></div>
+                  {{ proposal.grow.opportunity }}
+                </div>
+                <div class="column grow-information-will">
+                  <div><strong>Will</strong></div>
+                  {{ proposal.grow.will }}
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <p>No grow added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
     </div>

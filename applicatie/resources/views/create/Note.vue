@@ -4,7 +4,6 @@
     @store="store"
     @update="update">
     <field v-model="note.description" :name="'Description'" :size="'full'" :validation="'required'" />
-    <field v-model="note.date" :name="'Date'" :size="'half'" :validation="'required'" :field-type="'date'" />
   </modal-create-edit>
 </template>
 

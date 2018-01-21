@@ -12,6 +12,11 @@
     <field v-model="contact.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
     <field v-model="contact.telephone" :name="'Telephone'" :size="'half'" :validation="'required'" />
     <field v-model="contact.email" :name="'Email'" :size="'half'" :validation="'required|email'" />
+    <field v-model="needforchange.value" :name="'Need for change'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="needforchange.clarification" :name="'Clarification'" :size="'half'" />
+    <field v-model="influence.value" :name="'Influence'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="influence.clarification" :name="'Clarification'" :size="'half'" />
+
   </modal-create-edit>
 </template>
 
@@ -27,6 +32,14 @@
           last_name: '',
           telephone: '',
           email: ''
+        },
+        needforchange: {
+          value: '',
+          clarification: ''
+        },
+        influence: {
+          value: '',
+          clarification: ''
         }
       }
     },

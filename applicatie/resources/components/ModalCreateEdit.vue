@@ -43,8 +43,10 @@ export default {
     },
     validated() {
       if (!this.fields) { return false }
-      for (let [name, attributes] of Object.entries(this.fields)) {
-        if (!attributes.valid) { return false }
+      if (this.$route.meta.type === 'create') {
+        for (let [name, attributes] of Object.entries(this.fields)) {
+          if (!attributes.valid) { return false }
+        }
       }
       return true
     }

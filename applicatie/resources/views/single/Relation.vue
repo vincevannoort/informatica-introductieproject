@@ -26,20 +26,25 @@
     <div class="columns">
       <div class="column">
         <box :title="'Relation information'">
-          <table class="table-relation-information">
-            <tr>
-              <td>Total value: </td>
-              <td>&euro;{{ totalValue }}</td>
-            </tr>
-            <tr>
-              <td>Average value: </td>
-              <td>&euro;{{ averageValue }}</td>
-            </tr>
-            <tr>
-              <td>Average insight: </td>
-              <td>{{ averageInsight }}</td>
-            </tr>
-          </table>
+          <template v-if="relation.proposals && relation.proposals.length">
+            <table class="table-relation-information">
+              <tr>
+                <td>Total value: </td>
+                <td>&euro;{{ totalValue }}</td>
+              </tr>
+              <tr>
+                <td>Average value: </td>
+                <td>&euro;{{ averageValue }}</td>
+              </tr>
+              <tr>
+                <td>Average insight: </td>
+                <td>{{ averageInsight }}</td>
+              </tr>
+            </table>
+          </template>
+          <template v-else>
+            <p>Add proposal to show relation information, TODO: better information</p>
+          </template>
         </box>
       </div>
       <div class="column">
@@ -48,26 +53,31 @@
           :action="{
             title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit extisting customer business window',
             route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `TODO: to edit` }">
-          <div class="relation-grow" v-if="relation.businesswindow">
-            <div class="columns is-multiline">
-              <div class="column is-6">
-                <div><strong>Objectives</strong></div>
-                <div>{{ relation.businesswindow.objectives }}</div>
-              </div>
-              <div class="column is-6">
-                <div><strong>Organisation</strong></div>
-                <div>{{ relation.businesswindow.organisation }}</div>
-              </div>
-              <div class="column is-6">
-                <div><strong>Philosophy</strong></div>
-                <div>{{ relation.businesswindow.philosophy }}</div>
-              </div>
-              <div class="column is-6">
-                <div><strong>Products</strong></div>
-                <div>{{ relation.businesswindow.products }}</div>
+          <template v-if="relation.businesswindow">
+            <div class="relation-grow" >
+              <div class="columns is-multiline">
+                <div class="column is-6">
+                  <div><strong>Objectives</strong></div>
+                  <div>{{ relation.businesswindow.objectives }}</div>
+                </div>
+                <div class="column is-6">
+                  <div><strong>Organisation</strong></div>
+                  <div>{{ relation.businesswindow.organisation }}</div>
+                </div>
+                <div class="column is-6">
+                  <div><strong>Philosophy</strong></div>
+                  <div>{{ relation.businesswindow.philosophy }}</div>
+                </div>
+                <div class="column is-6">
+                  <div><strong>Products</strong></div>
+                  <div>{{ relation.businesswindow.products }}</div>
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <p>No customer business window added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
     </div>
@@ -76,20 +86,25 @@
         <box
           :title="'Strengths and Weaknesses'"
           :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/strengths-and-weaknesses/create` }" >
-          <div class="columns">
-            <div class="column sow-overview">
-              <div><strong>Strengths</strong></div>
-              <div class="sow-item" v-for="strength in strengths" :key="strength.id">
-                <span class="sow-strength">+</span> {{ strength.description }}
+          <template v-if="strengths && strengths.length || weaknesses && weaknesses.length">
+            <div class="columns">
+              <div class="column sow-overview">
+                <div><strong>Strengths</strong></div>
+                <div class="sow-item" v-for="strength in strengths" :key="strength.id">
+                  <span class="sow-strength">+</span> {{ strength.description }}
+                </div>
+              </div>
+              <div class="column sow-overview">
+                <div><strong>Weaknesses</strong></div>
+                <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
+                  <span class="sow-weakness">-</span> {{ weakness.description }}
+                </div>
               </div>
             </div>
-            <div class="column sow-overview">
-              <div><strong>Weaknesses</strong></div>
-              <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
-                <span class="sow-weakness">-</span> {{ weakness.description }}
-              </div>
-            </div>
-          </div>
+          </template>
+          <template v-else>
+            <p>No strengths or weaknesses added yet, TODO: better information</p>
+          </template>
         </box>
       </div>
     </div>
