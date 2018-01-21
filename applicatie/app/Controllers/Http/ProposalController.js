@@ -67,16 +67,13 @@ class ProposalController {
     }
 
     const proposal = await Proposal.create({
-      relation_id: relation.id,
+      relation_id: params.relation_id,
       name: proposalData.name,
       value: proposalData.value,
       start: proposalData.start,
       close: proposalData.close,
-      insight: Math.floor(Math.random() * 100)
+      insight: 0
     })
-
-    // Todo: fix attaching contacts when storing
-    // proposal.contacts().attach(params.contact_ids)
 
     // calculate insight for the relation attached to the contact
     await Relation.calculateInsightForEveryProposalByRelations(relation)

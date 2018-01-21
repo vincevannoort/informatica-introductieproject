@@ -7,16 +7,8 @@
     @back="back">
     <field v-model="proposal.name" :name="'Name'" :size="'full'" :validation="'required'" />
     <field v-model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" />
-    <field v-model="proposal.start" :name="'Start'" :size="'half'" :validation="'required|date'" :field-type="'date'" />
+    <field v-model="proposal.start" :name="'Start'" :size="'half'" :validation="'required'" :field-type="'date'" />
     <field v-model="proposal.close" :name="'Close'" :size="'half'" :validation="'required'" :field-type="'date'"/>
-    <div class="proposal-responsible-contacts field column is-full">
-      <label class="label">Responsible contacts</label>
-      <div class="columns is-multiline">
-        <div class="proposal-responsible-contact column is-half control" v-for="contact in relation.contacts" :key="contact.id">
-          <label class="checkbox"><input type="checkbox" v-model="selectedContacts" :value="contact.id"><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</label>
-        </div>
-      </div>
-    </div>
   </modal-create-edit>
 </template>
 
@@ -32,55 +24,29 @@
           value: '',
           start: '',
           close: ''
-        },
-        relation: {},
-        selectedContacts: []
-      }
-    },
-    computed: {
-      fieldsHaveValuesCreate() {
-        for (var field in this.fields) {
-          if (!this.fields[field].touched) {
-            return false
-          }
         }
-        return true
-      },
-      fieldsValidatedCreate() {
-        return this.fieldsHaveValuesCreate && this.errors.items.length == 0
-      },
-      createView() {
-        return this.$route.meta.type === 'create'
-      },
-      editView() {
-        return this.$route.meta.type === 'edit'
-      }
-    },
-    mounted() {
-      this.getRelationFromContact()
-      if (this.editView) {
-        this.show()
       }
     },
     methods: {
-      async getRelationFromContact() {
-        this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
-      },
       async show() {
         this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
         this.proposal.contacts.map(contact => this.selectedContacts.push(contact.id))
       },
       async store() {
-        const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id, contact_ids: this.selectedContacts })
+        const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id })
         this.$emit('created-proposal', proposal)
         this.back()
       },
+      async update() {
+        console.log('hello?')
+      },
       back() {
+        const viewType = this.$route.meta.type
         if (this.$route.name === 'proposals-edit-from-proposals') {
           this.$router.push({ name: 'proposals-overview' })
-        } if (this.createView || this.$route.name === 'proposals-edit-from-relation') {
+        } if (viewType == 'create'|| this.$route.name === 'proposals-edit-from-relation') {
           this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-        } else if (this.editView) {
+        } else if (viewType == 'edit') {
           this.$router.push({ name: 'proposals-single', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
         }
       }

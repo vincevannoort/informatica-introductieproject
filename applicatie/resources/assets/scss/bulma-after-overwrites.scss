@@ -18,7 +18,10 @@
   select {
     height: auto !important;
     padding: 0.5rem 0.8rem;
-    width: 100%;
+    width: auto;
+    .modal-content & {
+      width: 100%;
+    }
   }
 }
 

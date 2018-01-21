@@ -87,6 +87,7 @@ class Proposal extends Model {
   async calculateInsightOverallBusinessWindowScore() {
     const relation = await this.relation().fetch()
     const businessWindow = await relation.businesswindow().fetch()
+    if (!businessWindow) { return 0 }
 
     const objectives = businessWindow.objectives
     const philosophy = businessWindow.philosophy
@@ -135,14 +136,13 @@ class Proposal extends Model {
    */
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
     const competitions = await this.competitions().fetch()
-    if (competitions) {
-      const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
-      const max_grading = 4
-      let score = Math.floor((average_grading / max_grading) * 1000)
-      return score
-    } else {
-      return 0
-    }
+    console.log(competitions)
+    if (!competitions.rows.length) { return 0 }
+
+    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+    const max_grading = 4
+    let score = Math.floor((average_grading / max_grading) * 1000)
+    return score
   }
 
   /** ==================================
@@ -231,6 +231,7 @@ class Proposal extends Model {
   }
 
   async calculateInsightGrow(proposalGrow, points) {
+    if (!proposalGrow) { return 0 }
     if ( proposalGrow.goal ||
          proposalGrow.reality ||
          proposalGrow.opportunity ||
