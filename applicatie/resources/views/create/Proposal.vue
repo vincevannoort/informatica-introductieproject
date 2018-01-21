@@ -30,7 +30,6 @@
     methods: {
       async show() {
         this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
-        this.proposal.contacts.map(contact => this.selectedContacts.push(contact.id))
       },
       async store() {
         const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id })
