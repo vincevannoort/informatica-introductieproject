@@ -136,7 +136,6 @@ class Proposal extends Model {
    */
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
     const competitions = await this.competitions().fetch()
-    console.log(competitions)
     if (!competitions.rows.length) { return 0 }
 
     const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
