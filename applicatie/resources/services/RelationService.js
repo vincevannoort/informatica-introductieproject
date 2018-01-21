@@ -46,6 +46,14 @@ class Relation {
     return axios.post(`/api/calculate`)
   }
 
+  static async storeCustomerBusinessWindow({ relation_id, customerbusinesswindow }) {
+    return axios.post(`/api/relations/${relation_id}/businesswindow`, { relation_id, customerbusinesswindow })
+  }
+
+  static async storeStrengthOrWeakness({ relation_id, strengthorweakness }) {
+    return axios.post(`/api/relations/${relation_id}/strengthorweakness`, { relation_id, strengthorweakness })
+  }
+
 }
 
 export default Relation

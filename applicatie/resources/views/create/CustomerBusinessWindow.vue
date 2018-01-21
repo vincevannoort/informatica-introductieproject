@@ -1,5 +1,7 @@
 <template>
-  <modal-create-edit :entity="'Customer business window'">
+  <modal-create-edit
+    :entity="'Customer business window'"
+    @store="store">
     <field v-model="customerbusinesswindow.objectives" :name="'Objectives'" :size="'full'" />
     <field v-model="customerbusinesswindow.organisation" :name="'Organisation'" :size="'full'" />
     <field v-model="customerbusinesswindow.philosophy" :name="'Philosophy'" :size="'full'" />
@@ -8,6 +10,8 @@
 </template>
 
 <script>
+import Relation from '../../services/RelationService'
+
 export default {
   data() {
     return {
@@ -17,6 +21,16 @@ export default {
         philosophy: '',
         products: ''
       }
+    }
+  },
+  methods: {
+    async store() {
+      await Relation.storeCustomerBusinessWindow({
+        relation_id: this.$route.params.relation_id,
+        customerbusinesswindow: this.customerbusinesswindow
+      })
+      this.$emit('refetch')
+      this.$router.go(-1)
     }
   }
 }

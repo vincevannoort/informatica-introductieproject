@@ -36,11 +36,11 @@
                     <td>{{ note.description }}</td>
                   </tr>
                   <tr>
-                    <td>Date: </td>
-                    <td>{{ note.date }}</td>
+                    <td>Time: </td>
+                    <td>{{ note.created_at | moment('from') }}</td>
                   </tr>
                   <tr>
-                    <td>Name: </td>
+                    <td>Noted by: </td>
                     <td>{{ note.user.first_name }} {{ note.user.last_name }}</td>
                   </tr>
                 </table>
@@ -83,15 +83,13 @@
             <icon-relation />
           </div>
           <div class="social-media">
-            <social-media />
+            <social-media :social-medias="contact.socialmedias" />
           </div>
         </box>
       </div>
     </div>
     <transition name="fade-up" mode="out-in">
-      <router-view
-        @updated-contact="updateContact"
-      />
+      <router-view @refetch="show" />
     </transition>
   </div>
 </template>
@@ -130,9 +128,6 @@
       async remove() {
         await Contact.destroy({ contact_id: this.$route.params.contact_id })
         this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
-      },
-      updateContact(contact) {
-        this.contact = contact
       }
     }
   }

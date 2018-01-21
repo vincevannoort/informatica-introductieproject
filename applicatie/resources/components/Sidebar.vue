@@ -23,7 +23,7 @@
         </router-link>
       </div>
     </div>
-    <profile />
+    <profile ref="profile" />
   </div>
 </template>
 

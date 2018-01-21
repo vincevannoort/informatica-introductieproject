@@ -70,7 +70,7 @@
           <router-link tag="tr" v-for="relation in sortedRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
             <td>{{ relation.name }}</td>
             <td>€{{ relation.value_total }}</td>
-            <td>{{ relation.created_at | moment("from") }}</td>
+            <td>{{ relation.created_at | moment('from') }}</td>
             <td>
               <div class="relations-insight">
                 <div class="relations-insight-bar" :style="{ width: (relation.insight_total/10) + '%' }" />

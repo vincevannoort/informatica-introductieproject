@@ -149,7 +149,7 @@
       </div>
     </div>
     <transition name="fade-up" mode="out-in">
-      <router-view />
+      <router-view @refetch="show" />
     </transition>
   </div>
 </template>

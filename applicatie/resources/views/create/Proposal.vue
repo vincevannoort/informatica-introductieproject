@@ -34,7 +34,7 @@
       },
       async store() {
         const proposal = await Proposal.store({ proposal: this.proposal, relation_id: this.$route.params.relation_id })
-        this.$emit('created-proposal', proposal)
+        this.$emit('refetch')
         this.back()
       },
       async update() {

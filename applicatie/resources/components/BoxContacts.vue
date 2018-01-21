@@ -24,10 +24,10 @@
                   </tr>
                 </table>
               </td>
-              <td>low</td>
-              <td>medium</td>
+              <td class="td-align-center">{{ contact.needforchanges[0].value }}</td>
+              <td class="td-align-center">{{ contact.influences[0].value }}</td>
               <td>
-                <social-media />
+                <social-media :social-medias="contact.socialmedias" />
               </td>
               <td>
                 <buttons-edit-remove

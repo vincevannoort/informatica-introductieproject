@@ -1,7 +1,6 @@
 <template>
   <modal-create-edit
     :entity="'Contact'"
-    :validated="validated"
     @init-create="clearFields"
     @init-edit="show"
     @store="store"
@@ -60,12 +59,12 @@
       },
       async store() {
         const contact = await Contact.store({ contact: this.contact, relation_id: this.$route.params.relation_id })
-        this.$emit('created-contact', contact)
+        this.$emit('refetch')
         this.back()
       },
       async update() {
         const contact = await Contact.update({ contact: this.contact })
-        this.$emit('updated-contact', contact.data)
+        this.$emit('refetch')
         this.back()
       },
       back() {

@@ -41,6 +41,8 @@ Route.group(() => {
   // relations
   Route.resource('relations', 'RelationController').apiOnly()
   Route.post('relations/:relation_id/calculate', 'RelationController.calculateInsightForEveryProposal')
+  Route.post('relations/:relation_id/businesswindow', 'RelationController.storeCustomerBusinessWindow')
+  Route.post('relations/:relation_id/strengthorweakness', 'RelationController.storeStrengthOrWeakness')
 
   // proposals
   Route.resource('proposals', 'ProposalController').apiOnly()

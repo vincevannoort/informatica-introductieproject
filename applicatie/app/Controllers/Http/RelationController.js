@@ -25,10 +25,12 @@ class RelationController {
     try {
       const relation = await Relation.find(params.id)
       await relation.loadMany([
-        'contacts',
         'strengthandweaknesses',
         'businesswindow'
       ]) // lazy eager load: http://adonisjs.com/docs/4.0/relationships#_lazy_eager_loading
+      await relation.load('contacts', async (builder) => {
+        await builder.with('influences').with('needforchanges').with('socialmedias')
+      })
       await relation.load('proposals', async (builder) => {
         await builder.with('contacts').with('relation')
       })
@@ -132,6 +134,18 @@ class RelationController {
   async calculateInsightForEveryProposal({ params }) {
     const relation = await Relation.find(params.relation_id)
     return relation.calculateInsightForEveryProposal()
+  }
+
+  async storeCustomerBusinessWindow({ request, params }) {
+    const relation = await Relation.find(params.relation_id)
+    const customerBusinessWindowData = request.all().customerbusinesswindow
+    return relation.businesswindow().create(customerBusinessWindowData)
+  }
+
+  async storeStrengthOrWeakness({ request, params }) {
+    const relation = await Relation.find(params.relation_id)
+    const strengthOrWeaknessData = request.all().strengthorweakness
+    return relation.strengthandweaknesses().withTimestamps().create(strengthOrWeaknessData)
   }
 
 }

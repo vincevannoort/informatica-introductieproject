@@ -117,11 +117,7 @@
       @remove-proposal="removeProposal" />
 
     <transition name="fade-up" mode="out-in">
-      <router-view
-        @created-contact="addContact"
-        @created-proposal="addProposal"
-        @updated-relation="updateRelation"
-      />
+      <router-view @refetch="show" />
     </transition>
   </div>
 </template>

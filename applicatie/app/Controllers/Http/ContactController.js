@@ -159,8 +159,10 @@ class ContactController {
    * @returns {object} - new created note
    */
   async storeNote({ request, params }) {
+    console.log('storing note')
     const contact = await Contact.find(params.contact_id)
     const noteData = request.all().note
+    console.log(noteData)
     return contact.notes().withTimestamps().create(noteData)
   }
 

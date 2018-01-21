@@ -40,7 +40,7 @@
       },
       async update() {
         const relation = await Relation.update({ relation: this.relation })
-        this.$emit('updated-relation', relation.data)
+        this.$emit('refetch')
         this.back()
       },
       back() {

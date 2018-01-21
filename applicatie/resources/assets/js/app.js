@@ -53,7 +53,7 @@ const routes = [
           { path: 'proposals/create', name: 'proposals-create', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'create', title: 'Proposal Create/Update' } },
           { path: 'contacts/:contact_id/edit-from-relation', name: 'contacts-edit-from-relation', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
           { path: 'proposals/:proposal_id/edit-from-relation', name: 'proposals-edit-from-relation', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } },
-          { path: 'customerbusinesswindow/create', name: 'customerbusinesswindow-create', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'edit', title: 'CustomerBusinessWindow Create' } },
+          { path: 'customerbusinesswindow/create', name: 'customerbusinesswindow-create', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'create', title: 'CustomerBusinessWindow Create' } },
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-relation-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } }
         ]
       },

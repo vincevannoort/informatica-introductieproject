@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import Authentication from '../../assets/js/authentication'
 import Contact from '../../services/ContactService'
 
 export default {
@@ -15,19 +16,23 @@ export default {
     return {
       note: {
         description: '',
-        date: '',
         user_id: 1
       }
     }
   },
+  async created() {
+    const user = await Authentication.profile()
+    this.note.user_id = user.id
+  },
   methods: {
     async store() {
-      let self = this
       await Contact.storeNote({
-        note: self.note,
+        note: this.note,
         relation_id: this.$route.params.relation_id,
         contact_id: this.$route.params.contact_id
       })
+      this.$emit('refetch')
+      this.$router.go(-1)
     },
     update() {
       console.log('updating')
