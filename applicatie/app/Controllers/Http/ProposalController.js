@@ -122,6 +122,14 @@ class ProposalController {
     return proposal.competitions().create(competitionData)
   }
 
+  async storeAction({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    let actionData = request.all().smart
+    actionData.proposal_id = proposal.id
+    console.log(actionData)
+    return proposal.actions().create(actionData)
+  }
+
 }
 
 module.exports = ProposalController
