@@ -37,7 +37,9 @@
         this.back()
       },
       async update() {
-        console.log('hello?')
+        const proposal = await Proposal.update({ proposal: this.proposal })
+        this.$emit('refetch')
+        this.back()
       },
       back() {
         const viewType = this.$route.meta.type

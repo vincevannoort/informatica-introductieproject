@@ -85,6 +85,35 @@ class ProposalController {
     return proposal
   }
 
+  async update({ request, response }) {
+    try {
+      // get proposal data from request
+      const proposalData = request.all().proposal
+
+      // validate given request parameters
+      const validation = await validateAll(proposalData, rules)
+
+      // if validation fails, return a unprocessable entity proces code with the validation messages
+      if (validation.fails()) {
+        return response.status(422).send(validation.messages())
+      }
+
+      // merge passed data to proposal object
+      const proposal = await Proposal.find(proposalData.id)
+      proposal.merge({
+        name: proposalData.name,
+        value: proposalData.value,
+        start: proposalData.start,
+        close: proposalData.close
+      })
+      // save the merged data to database
+      await proposal.save()
+      return proposal
+    } catch (error) {
+      return response.status(404).send(error)
+    }
+  }
+
   /**
    * Destroy an existing proposal
    * @param {integer} id - the proposal id from api routes defined in routes.js
