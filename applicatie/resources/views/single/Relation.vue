@@ -85,6 +85,7 @@
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
+          :information="'Information for the box'"
           :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/strengths-and-weaknesses/create` }" >
           <template v-if="strengths && strengths.length || weaknesses && weaknesses.length">
             <div class="columns">
