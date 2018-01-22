@@ -2,6 +2,7 @@ const { validateAll } = use('Validator')
 const Proposal = use('App/Models/Proposal')
 const Relation = use('App/Models/Relation')
 const ProposalContact = use('App/Models/Connections/ProposalContact')
+const Grow = use('App/Models/Informations/Grow')
 
 // set rules which must be validated before storing/updating a proposal
 const rules = {
@@ -142,6 +143,24 @@ class ProposalController {
     let growData = request.all().grow
     growData.proposal_id = proposal.id
     return proposal.grow().create(growData)
+  }
+
+  async updateGrow ({ request, params }) {
+    const growData = request.all().grow
+    const grow = await Grow.find(growData.id)
+    grow.merge({
+      goal: growData.goal,
+      reality: growData.reality,
+      opportunity: growData.opportunity,
+      will: growData.will
+    })
+    await grow.save()
+    return grow
+  }
+
+  async getGrow({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    return proposal.grow().fetch()
   }
 
 }

@@ -65,6 +65,17 @@ class Proposal {
     return axios.post(`/api/proposals/${proposal_id}/grow`, { proposal_id, grow })
   }
 
+  static async updateGrow({ proposal_id, grow }) {
+    console.log('updating grow!')
+    return axios.patch(`/api/proposals/${proposal_id}/grow/${grow.id}`, { grow })
+    .then((response) => response.data)
+  }
+
+  static async getGrow({ proposal_id }) {
+    return axios.get(`/api/proposals/${proposal_id}/grow`, { proposal_id })
+    .then((response) => response.data)
+  }
+
 }
 
 export default Proposal

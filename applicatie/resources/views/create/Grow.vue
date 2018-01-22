@@ -1,7 +1,9 @@
 <template>
   <modal-create-edit 
     :entity="'Grow'"
-    @store = "store">
+    @init-edit="show"
+    @store="store"
+    @update="update">
     <field v-model="grow.goal" :name="'Goal'" :size="'half'" />
     <field v-model="grow.reality" :name="'Reality'" :size="'half'" />
     <field v-model="grow.opportunity" :name="'Opportunity'" :size="'half'" />
@@ -24,8 +26,19 @@ export default {
     }
   },
   methods: {
+    async show() {
+      this.grow = await Proposal.getGrow({ proposal_id: this.$route.params.proposal_id })
+    },
     async store() {
       await Proposal.storeGrow({
+        proposal_id: this.$route.params.proposal_id,
+        grow: this.grow
+      })
+      this.$emit('refetch')
+      this.$router.go(-1)
+    },
+    async update() {
+      await Proposal.updateGrow({
         proposal_id: this.$route.params.proposal_id,
         grow: this.grow
       })

@@ -54,6 +54,8 @@ Route.group(() => {
   Route.post('proposals/:proposal_id/competition', 'ProposalController.storeCompetition')
   Route.post('proposals/:proposal_id/action', 'ProposalController.storeAction')
   Route.post('proposals/:proposal_id/grow', 'ProposalController.storeGrow')
+  Route.get('proposals/:proposal_id/grow', 'ProposalController.getGrow')
+  Route.patch('proposals/:proposal_id/grow/:grow_id/', 'ProposalController.updateGrow')
 
   // contacts
   Route.resource('contacts', 'ContactController').apiOnly()

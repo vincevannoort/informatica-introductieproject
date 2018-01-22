@@ -122,7 +122,7 @@
           :title="'GROW information'"
           :action="{
             title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow',
-            route: (!proposal.grow) ? `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/create` : `TODO: to edit` }">
+            route: (!proposal.grow) ? `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/create` : `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/edit` }">
           <template v-if="proposal.grow">
             <div class="grow-information">
               <div class="columns">

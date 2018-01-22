@@ -54,7 +54,7 @@ const routes = [
           { path: 'contacts/:contact_id/edit-from-relation', name: 'contacts-edit-from-relation', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
           { path: 'proposals/:proposal_id/edit-from-relation', name: 'proposals-edit-from-relation', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } },
           { path: 'customerbusinesswindow/create', name: 'customerbusinesswindow-create', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'create', title: 'CustomerBusinessWindow Create' } },
-          { path: 'customerbusinesswindow/edit', name: 'customerbusinesswindow-edit', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'edit', title: 'CustomerBusinessWindow Create' } },
+          { path: 'customerbusinesswindow/edit', name: 'customerbusinesswindow-edit', component: require('../../views/create/CustomerBusinessWindow'), meta: { requiresAuth: true, type: 'edit', title: 'CustomerBusinessWindow Edit' } },
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-relation-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } }
         ]
       },
@@ -74,6 +74,7 @@ const routes = [
           { path: 'smart-actions/create', name: 'smart-actions-create', component: require('../../views/create/Smart'), meta: { requiresAuth: true, type: 'create', title: 'Smart action Create' } },
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-proposal-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } },
           { path: 'grow/create', name: 'grow-create', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'create', title: 'Grow Create' } },
+          { path: 'grow/edit', name: 'grow-edit', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'edit', title: 'Grow Edit' } },
           { path: 'insight', name: 'proposals-insight', component: require('../../views/information/Insight'), meta: { requiresAuth: true, type: 'information', title: 'Proposal Insight' } },
           { path: 'contacts/create', name: 'proposalcontact-create', component: require('../../views/create/InternalPower'), meta: { requiresAuth: true, type: 'create', title: 'Internal Power' } },
           { path: 'contacts/:contact_id/roles/create', name: 'proposalcontact-role-create', component: require('../../views/create/Role'), meta: { requiresAuth: true, type: 'create', title: 'Role' } }
