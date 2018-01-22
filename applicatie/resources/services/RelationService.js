@@ -50,6 +50,10 @@ class Relation {
     return axios.post(`/api/relations/${relation_id}/businesswindow`, { relation_id, customerbusinesswindow })
   }
 
+  static async updateCustomerBusinessWindow({ relation_id, customerbusinesswindow }) {
+    return axios.patch(`/api/relations/${relation_id}/businesswindow/${customerbusinesswindow.id}`, { customerbusinesswindow })
+  }
+
   static async getCustomerBusinessWindow({ relation_id }) {
     return axios.get(`/api/relations/${relation_id}/businesswindow`, { relation_id })
     .then((response) => response.data)

@@ -51,7 +51,7 @@ export default {
       return true
     }
   },
-  activated() {
+  mounted() {
     if(this.createView) {
       this.$emit('init-create')
     }

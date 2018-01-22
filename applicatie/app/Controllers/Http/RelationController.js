@@ -1,5 +1,6 @@
 const { validateAll } = use('Validator')
 const Relation = use('App/Models/Relation')
+const BusinessWindow = use('App/Models/Informations/BusinessWindow')
 
 // set rules which must be validated before storing/updating a relation
 const rules = { name: 'required' }
@@ -140,6 +141,19 @@ class RelationController {
     const relation = await Relation.find(params.relation_id)
     const customerBusinessWindowData = request.all().customerbusinesswindow
     return relation.businesswindow().create(customerBusinessWindowData)
+  }
+
+  async updateCustomerBusinessWindow({ request, params }) {
+    const customerBusinessWindowData = request.all().customerbusinesswindow
+    const customerbusinesswindow = await BusinessWindow.find(customerBusinessWindowData.id)
+    customerbusinesswindow.merge({
+      objectives: customerBusinessWindowData.objectives,
+      products: customerBusinessWindowData.products,
+      philosophy: customerBusinessWindowData.philosophy,
+      organisation: customerBusinessWindowData.organisation
+    })
+    await customerbusinesswindow.save()
+    return customerbusinesswindow
   }
 
   async getCustomerBusinessWindow({ request, params }) {

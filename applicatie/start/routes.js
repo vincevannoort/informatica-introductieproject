@@ -43,6 +43,7 @@ Route.group(() => {
   Route.post('relations/:relation_id/calculate', 'RelationController.calculateInsightForEveryProposal')
   Route.get('relations/:relation_id/businesswindow', 'RelationController.getCustomerBusinessWindow')
   Route.post('relations/:relation_id/businesswindow', 'RelationController.storeCustomerBusinessWindow')
+  Route.patch('relations/:relation_id/businesswindow/:businesswindow_id/', 'RelationController.updateCustomerBusinessWindow')
   Route.post('relations/:relation_id/strengthorweakness', 'RelationController.storeStrengthOrWeakness')
 
   // proposals
