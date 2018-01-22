@@ -152,7 +152,11 @@
       </div>
     </div>
     <transition name="fade-up" mode="out-in">
-      <router-view @refetch="show" />
+      <router-view
+        :proposal="proposal"
+        :relation="proposal.relation"
+        :contacts="proposal.contacts"
+        @refetch="show" />
     </transition>
   </div>
 </template>

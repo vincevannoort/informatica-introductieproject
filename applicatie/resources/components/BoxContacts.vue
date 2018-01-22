@@ -24,8 +24,8 @@
                   </tr>
                 </table>
               </td>
-              <td class="td-align-center">{{ contact.needforchanges[0].value }}</td>
-              <td class="td-align-center">{{ contact.influences[0].value }}</td>
+              <td class="td-align-center">{{ (contact.needforchanges[0]) ? contact.needforchanges[0].value : 'not set' }}</td>
+              <td class="td-align-center">{{ (contact.influences[0]) ? contact.influences[0].value : 'not set' }}</td>
               <td>
                 <social-media :social-medias="contact.socialmedias" />
               </td>

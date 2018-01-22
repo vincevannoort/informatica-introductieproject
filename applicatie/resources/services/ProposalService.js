@@ -76,6 +76,10 @@ class Proposal {
     .then((response) => response.data)
   }
 
+  static async storeContact({ proposal_id, contact_id }) {
+    return axios.post(`/api/proposals/${proposal_id}/contacts`, { contact_id })
+  }
+
 }
 
 export default Proposal

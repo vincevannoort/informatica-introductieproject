@@ -10,10 +10,10 @@
     <field v-model="contact.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
     <field v-model="contact.telephone" :name="'Telephone'" :size="'half'" :validation="'required'" />
     <field v-model="contact.email" :name="'Email'" :size="'half'" :validation="'required|email'" />
-    <field v-model="contact.needforchanges[0].value" :name="'Need for change'" :size="'half'" :validation="'required'" :field-type="'select'" :options="['low', 'medium', 'high']" />
-    <field v-model="contact.needforchanges[0].clarification" :name="'Clarification'" :size="'half'" :validation="'required'" />
-    <field v-model="contact.influences[0].value" :name="'Influence'" :size="'half'" :validation="'required'" :field-type="'select'" :options="['low', 'medium', 'high']" />
-    <field v-model="contact.influences[0].clarification" :name="'Clarification'" :size="'half'" :validation="'required'" />
+    <field v-model="contact.needforchanges[0].value" :name="'Need for change'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="contact.needforchanges[0].clarification" :name="'Clarification'" :size="'half'" />
+    <field v-model="contact.influences[0].value" :name="'Influence'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="contact.influences[0].clarification" :name="'Clarification'" :size="'half'" />
 
   </modal-create-edit>
 </template>

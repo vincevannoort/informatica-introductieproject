@@ -1,6 +1,7 @@
 const { validateAll } = use('Validator')
 const Proposal = use('App/Models/Proposal')
 const Relation = use('App/Models/Relation')
+const Contact = use('App/Models/Contact')
 const ProposalContact = use('App/Models/Connections/ProposalContact')
 const Grow = use('App/Models/Informations/Grow')
 
@@ -36,7 +37,7 @@ class ProposalController {
     try {
       const proposal = await Proposal.find(params.id)
       await proposal.loadMany([
-        'relation',
+        'relation.contacts',
         'contacts',
         'competitions',
         'actions',
@@ -161,6 +162,12 @@ class ProposalController {
   async getGrow({ request, params }) {
     const proposal = await Proposal.find(params.proposal_id)
     return proposal.grow().fetch()
+  }
+
+  async storeContact({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    const contact = await Contact.find(request.all().contact_id)
+    return contact.proposals().attach(proposal.id)
   }
 
 }
