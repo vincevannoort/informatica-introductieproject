@@ -45,6 +45,11 @@ class Proposal {
     return axios.post(`/api/proposals/${proposal_id}/calculate`)
   }
 
+  static async storeStrengthOrWeakness({ proposal_id, strengthorweakness }) {
+    console.log('storing')
+    return axios.post(`/api/proposals/${proposal_id}/strengthorweakness`, { proposal_id, strengthorweakness })
+  }
+
 }
 
 export default Proposal

@@ -1,6 +1,7 @@
 <template>
   <modal-create-edit
     :entity="'Customer business window'"
+    @init-edit="show"
     @store="store">
     <field v-model="customerbusinesswindow.objectives" :name="'Objectives'" :size="'full'" />
     <field v-model="customerbusinesswindow.organisation" :name="'Organisation'" :size="'full'" />
@@ -24,6 +25,9 @@ export default {
     }
   },
   methods: {
+    async show() {
+      this.customerbusinesswindow = await Relation.getCustomerBusinessWindow({ relation_id: this.$route.params.relation_id })
+    },
     async store() {
       await Relation.storeCustomerBusinessWindow({
         relation_id: this.$route.params.relation_id,

@@ -1,7 +1,6 @@
 <template>
   <modal-create-edit
     :entity="'Contact'"
-    @init-create="clearFields"
     @init-edit="show"
     @store="store"
     @update="update"
@@ -11,10 +10,10 @@
     <field v-model="contact.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
     <field v-model="contact.telephone" :name="'Telephone'" :size="'half'" :validation="'required'" />
     <field v-model="contact.email" :name="'Email'" :size="'half'" :validation="'required|email'" />
-    <field v-model="needforchange.value" :name="'Need for change'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
-    <field v-model="needforchange.clarification" :name="'Clarification'" :size="'half'" />
-    <field v-model="influence.value" :name="'Influence'" :size="'half'" :field-type="'select'" :options="['low', 'medium', 'high']" />
-    <field v-model="influence.clarification" :name="'Clarification'" :size="'half'" />
+    <field v-model="contact.needforchanges[0].value" :name="'Need for change'" :size="'half'" :validation="'required'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="contact.needforchanges[0].clarification" :name="'Clarification'" :size="'half'" :validation="'required'" />
+    <field v-model="contact.influences[0].value" :name="'Influence'" :size="'half'" :validation="'required'" :field-type="'select'" :options="['low', 'medium', 'high']" />
+    <field v-model="contact.influences[0].clarification" :name="'Clarification'" :size="'half'" :validation="'required'" />
 
   </modal-create-edit>
 </template>
@@ -30,15 +29,15 @@
           first_name: '',
           last_name: '',
           telephone: '',
-          email: ''
-        },
-        needforchange: {
-          value: '',
-          clarification: ''
-        },
-        influence: {
-          value: '',
-          clarification: ''
+          email: '',
+          needforchanges: [{
+            value: '',
+            clarification: ''
+          }],
+          influences: [{
+            value: '',
+            clarification: ''
+          }]
         }
       }
     },
@@ -48,12 +47,6 @@
       }
     },
     methods: {
-      clearFields() {
-        for (var field in this.contact) {
-          this.contact[field] = ''
-        }
-        this.$nextTick().then(() => { this.$validator.reset()})
-      },
       async show() {
         this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })
       },

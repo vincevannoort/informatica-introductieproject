@@ -109,6 +109,12 @@ class ProposalController {
     return proposal.calculateInsight()
   }
 
+  async storeStrengthOrWeakness({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    const strengthOrWeaknessData = request.all().strengthorweakness
+    return proposal.strengthandweaknesses().withTimestamps().create(strengthOrWeaknessData)
+  }
+
 }
 
 module.exports = ProposalController

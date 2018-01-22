@@ -50,6 +50,11 @@ class Relation {
     return axios.post(`/api/relations/${relation_id}/businesswindow`, { relation_id, customerbusinesswindow })
   }
 
+  static async getCustomerBusinessWindow({ relation_id }) {
+    return axios.get(`/api/relations/${relation_id}/businesswindow`, { relation_id })
+    .then((response) => response.data)
+  }
+
   static async storeStrengthOrWeakness({ relation_id, strengthorweakness }) {
     return axios.post(`/api/relations/${relation_id}/strengthorweakness`, { relation_id, strengthorweakness })
   }

@@ -142,6 +142,11 @@ class RelationController {
     return relation.businesswindow().create(customerBusinessWindowData)
   }
 
+  async getCustomerBusinessWindow({ request, params }) {
+    const relation = await Relation.find(params.relation_id)
+    return relation.businesswindow().fetch()
+  }
+
   async storeStrengthOrWeakness({ request, params }) {
     const relation = await Relation.find(params.relation_id)
     const strengthOrWeaknessData = request.all().strengthorweakness

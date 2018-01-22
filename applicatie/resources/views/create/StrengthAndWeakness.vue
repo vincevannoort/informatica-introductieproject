@@ -9,6 +9,7 @@
 
 <script>
 import Relation from '../../services/RelationService'
+import Proposal from '../../services/ProposalService'
 
 export default {
   data() {
@@ -21,10 +22,18 @@ export default {
   },
   methods: {
     async store() {
-      await Relation.storeStrengthOrWeakness({
-        relation_id: this.$route.params.relation_id,
-        strengthorweakness: this.strengthandweakness
-      })
+      if( this.$route.name == 'strengths-and-weaknesses-relation-create' ) {
+        await Relation.storeStrengthOrWeakness({
+          relation_id: this.$route.params.relation_id,
+          strengthorweakness: this.strengthandweakness
+        })
+      }
+      else if( this.$route.name == 'strengths-and-weaknesses-proposal-create' ) {
+        await Proposal.storeStrengthOrWeakness({
+          proposal_id: this.$route.params.proposal_id,
+          strengthorweakness: this.strengthandweakness
+        })
+      }
       this.$emit('refetch')
       this.$router.go(-1)
     }

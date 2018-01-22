@@ -52,7 +52,7 @@
           :title="'The customer business window'"
           :action="{
             title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit extisting customer business window',
-            route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `TODO: to edit` }">
+            route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `/relations/${this.$route.params.relation_id}/customerbusinesswindow/edit` }">
           <template v-if="relation.businesswindow">
             <div class="relation-grow" >
               <div class="columns is-multiline">
