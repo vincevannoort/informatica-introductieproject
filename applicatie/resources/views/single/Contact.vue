@@ -8,7 +8,7 @@
       @remove="remove" />
     <div class="columns">
       <div class="column is-9">
-        <box :title="'Contact information'" class="contact-information">
+        <box :title="'Contact information'" class="contact-information" :action="{ title: 'Edit contact', route: `/relations/${this.$route.params.relation_id}/contacts/${this.$route.params.contact_id}/edit` }">
           <table class="table-contact-information">
             <tr>
               <td>Profession: </td>
