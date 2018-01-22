@@ -115,6 +115,13 @@ class ProposalController {
     return proposal.strengthandweaknesses().withTimestamps().create(strengthOrWeaknessData)
   }
 
+  async storeCompetition({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id) 
+    let competitionData = request.all().competition
+    competitionData.proposal_id = proposal.id
+    return proposal.competitions().create(competitionData)
+  }
+
 }
 
 module.exports = ProposalController

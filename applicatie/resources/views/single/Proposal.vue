@@ -44,7 +44,7 @@
           :action="{ title: 'Add new counter proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/position-and-competition/create` }" >
           <template v-if="proposal.competitions && proposal.competitions.length">
             <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
-              <div class="proposal-competition-company"><span>{{ gradingAsText(competition.grading) }}</span>{{ competition.company }}</div>
+              <div class="proposal-competition-company"><span>{{ competition.grading }}</span>{{ competition.company }}</div>
               <div class="columns">
                 <div class="column proposal-competition-company-counter">
                   <div><strong>Counter proposal</strong></div>
