@@ -54,6 +54,10 @@
       if (this.logoutView) {
         authentication.logout()
         this.$router.push({ name: 'login' })
+      } else {
+        if (authentication.authenticated()) {
+          this.$router.push({ name: 'relations-overview' })
+        }
       }
     },
     methods: {

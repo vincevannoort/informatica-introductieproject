@@ -34,24 +34,6 @@ export default {
     })
   },
 
-  // Send a request to the singup URL and save the returned JWT
-  signup(context, credentials, redirect) {
-    let self = this
-    axios.post(SIGNUP_URL, { credentials })
-    .then(function (response) {
-      localStorage.setItem('token', response.data.token)
-      localStorage.setItem('refresh_token', response.data.refreshToken)
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
-      self.user.authenticated = true
-      if (redirect) {
-        context.$router.push(redirect)
-      }
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  },
-
   // To log out, we just need to remove the token
   logout() {
     localStorage.removeItem('token')
