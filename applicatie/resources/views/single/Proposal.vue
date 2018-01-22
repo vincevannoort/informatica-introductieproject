@@ -9,12 +9,15 @@
       @remove="remove" />
     <div class="columns">
       <div class="column">
-        <box :title="'Internal power and sources'">
+        <box
+          :title="'Internal power and sources'"
+          :action="{ title: 'Add new contact to proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/contacts/create` }" >
           <template v-if="proposal.contacts && proposal.contacts.length">
             <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
               <table>
                 <tr>
                   <th>
+                    <router-link :to="`/relations/${$route.params.relation_id}/proposals/${$route.params.proposal_id}/contacts/${contact.id}/roles/create`" class="add-proposal-contact-type">+ add role</router-link>
                     <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
                     <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
                     {{ contact.information.first_name }} {{ contact.information.last_name }}
@@ -176,6 +179,9 @@
       },
       weaknesses() {
         return  (this.proposal.strengthandweaknesses) ? this.proposal.strengthandweaknesses.filter((strengthandweakness) => strengthandweakness.type == 'weakness') : []
+      },
+      route() {
+        return this.$route
       }
     },
     activated() {
@@ -225,13 +231,26 @@
 <style lang="scss">
   @import "../../assets/scss/variables/colors";
 
-  .proposal-contact-type {
+  .proposal-contact-type, .add-proposal-contact-type {
     color: $red;
     padding: 0.1rem 0.5rem;
     border-radius: 3px;
     margin-right: 0.5rem;
     font-size: 12px;
     border: 1px solid $red;
+  }
+
+  .add-proposal-contact-type {
+    display: none;
+    color: darken($border-grey, 25%);
+    border: 1px solid darken($border-grey, 25%);
+    max-width: 0;
+  }
+
+  .relation-contact:hover {
+    .add-proposal-contact-type {
+      display: inline;
+    }
   }
 
   .proposal-contact-profession {

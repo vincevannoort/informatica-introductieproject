@@ -46,8 +46,11 @@ class Proposal {
   }
 
   static async storeStrengthOrWeakness({ proposal_id, strengthorweakness }) {
-    console.log('storing')
     return axios.post(`/api/proposals/${proposal_id}/strengthorweakness`, { proposal_id, strengthorweakness })
+  }
+
+  static async storeRole({ proposal_id, contact_id, role }) {
+    return axios.post(`/api/proposals/${proposal_id}/contacts/${contact_id}/roles`, { contact_id, role })
   }
 
 }

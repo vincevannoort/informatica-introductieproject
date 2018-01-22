@@ -74,7 +74,9 @@ const routes = [
           { path: 'smart-actions/create', name: 'smart-actions-create', component: require('../../views/create/Smart'), meta: { requiresAuth: true, type: 'create', title: 'Smart action Create' } },
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-proposal-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } },
           { path: 'grow/create', name: 'grow-create', component: require('../../views/create/Grow'), meta: { requiresAuth: true, type: 'create', title: 'Grow Create' } },
-          { path: 'insight', name: 'proposals-insight', component: require('../../views/information/Insight'), meta: { requiresAuth: true, type: 'information', title: 'Proposal Insight' } }
+          { path: 'insight', name: 'proposals-insight', component: require('../../views/information/Insight'), meta: { requiresAuth: true, type: 'information', title: 'Proposal Insight' } },
+          { path: 'contacts/create', name: 'proposalcontact-create', component: require('../../views/create/InternalPower'), meta: { requiresAuth: true, type: 'create', title: 'Internal Power' } },
+          { path: 'contacts/:contact_id/roles/create', name: 'proposalcontact-role-create', component: require('../../views/create/Role'), meta: { requiresAuth: true, type: 'create', title: 'Role' } }
         ]
       },
 

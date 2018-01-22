@@ -1,6 +1,7 @@
 const { validateAll } = use('Validator')
 const Proposal = use('App/Models/Proposal')
 const Relation = use('App/Models/Relation')
+const ProposalContact = use('App/Models/Connections/ProposalContact')
 
 // set rules which must be validated before storing/updating a proposal
 const rules = {
@@ -113,6 +114,12 @@ class ProposalController {
     const proposal = await Proposal.find(params.proposal_id)
     const strengthOrWeaknessData = request.all().strengthorweakness
     return proposal.strengthandweaknesses().withTimestamps().create(strengthOrWeaknessData)
+  }
+
+  async storeRole({ request, params }) {
+    const contact = await ProposalContact.find(params.contact_id)
+    const roleData = request.all().role
+    return contact.roles().create(roleData)
   }
 
 }
