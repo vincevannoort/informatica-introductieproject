@@ -130,6 +130,13 @@ class ProposalController {
     return proposal.actions().create(actionData)
   }
 
+  async storeGrow({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id) 
+    let growData = request.all().grow
+    growData.proposal_id = proposal.id
+    return proposal.grow().create(growData)
+  }
+
 }
 
 module.exports = ProposalController
