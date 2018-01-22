@@ -126,6 +126,16 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+// Add a response interceptor
+axios.interceptors.response.use(
+(response) => response,
+(error) => {
+  if (error.response.status === 401) {
+    window.app.$router.push({ name: 'login' })
+  }
+  return Promise.reject(error)
+})
+
 /*
 |--------------------------------------------------------------------------
 | Vue
