@@ -134,11 +134,31 @@ class Proposal extends Model {
    * 3      better        worse
    * 4      much better   much worse
    */
+  gradingToNumber(grading) {
+    switch(grading) {
+      case 'much better':
+        return 0
+        break
+      case 'better':
+        return 1
+        break
+      case 'equal':
+        return 2
+        break
+      case 'worse':
+        return 3
+        break
+      case 'much worse':
+        return 4
+        break
+    }
+  }
+
   async calculateInsightOfferingAndCompetitorAnalysisScore() {
     const competitions = await this.competitions().fetch()
     if (!competitions.rows.length) { return 0 }
 
-    const average_grading = competitions.rows.reduce((total, competition) => total += competition.grading, 0) / competitions.rows.length
+    const average_grading = competitions.rows.reduce((total, competition) => total += this.gradingToNumber(competition.grading), 0) / competitions.rows.length
     const max_grading = 4
     let score = Math.floor((average_grading / max_grading) * 1000)
     return score

@@ -122,6 +122,28 @@ class ProposalController {
     return contact.roles().create(roleData)
   }
 
+  async storeCompetition({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    let competitionData = request.all().competition
+    competitionData.proposal_id = proposal.id
+    return proposal.competitions().create(competitionData)
+  }
+
+  async storeAction({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    let actionData = request.all().smart
+    actionData.proposal_id = proposal.id
+    console.log(actionData)
+    return proposal.actions().create(actionData)
+  }
+
+  async storeGrow({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    let growData = request.all().grow
+    growData.proposal_id = proposal.id
+    return proposal.grow().create(growData)
+  }
+
 }
 
 module.exports = ProposalController

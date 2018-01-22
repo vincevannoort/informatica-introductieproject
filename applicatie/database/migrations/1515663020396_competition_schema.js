@@ -11,7 +11,7 @@ class CompetitionSchema extends Schema {
       table.string('company').notNullable()
       table.string('counter_proposal').notNullable()
       table.string('position').notNullable()
-      table.integer('grading').notNullable()
+      table.enu('grading', ['much better', 'better', 'equal', 'worse', 'much worse']).notNullable()
       table.timestamps()
     })
   }

@@ -41,11 +41,6 @@
         }
       }
     },
-    computed: {
-      validated() {
-        return false
-      }
-    },
     methods: {
       async show() {
         this.contact = await Contact.show({ contact_id: this.$route.params.contact_id })

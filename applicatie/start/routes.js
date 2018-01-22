@@ -50,6 +50,9 @@ Route.group(() => {
   Route.post('proposals/:proposal_id/calculate', 'ProposalController.calculateInsight')
   Route.post('proposals/:proposal_id/strengthorweakness', 'ProposalController.storeStrengthOrWeakness')
   Route.post('proposals/:proposal_id/contacts/:contact_id/roles', 'ProposalController.storeRole')
+  Route.post('proposals/:proposal_id/competition', 'ProposalController.storeCompetition')
+  Route.post('proposals/:proposal_id/action', 'ProposalController.storeAction')
+  Route.post('proposals/:proposal_id/grow', 'ProposalController.storeGrow')
 
   // contacts
   Route.resource('contacts', 'ContactController').apiOnly()

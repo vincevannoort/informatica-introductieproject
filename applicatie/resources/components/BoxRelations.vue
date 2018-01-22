@@ -32,7 +32,7 @@
                   <div class="control">
                     <div class="select">
                       <select v-model="sortedFilter">
-                        <option v-for="filter in sortedFilterData" :key="`${filter.min}-${filter.max}`" :value="filter">insight: {{ filter.min }}% - {{ filter.max }}%</option>
+                        <option v-for="filter in sortedFilterData" :key="`${filter.min}-${filter.max}`" :value="filter">insight: {{ filter.min }} - {{ filter.max }}</option>
                       </select>
                     </div>
                   </div>

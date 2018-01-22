@@ -53,6 +53,18 @@ class Proposal {
     return axios.post(`/api/proposals/${proposal_id}/contacts/${contact_id}/roles`, { contact_id, role })
   }
 
+  static async storeCompetition({ proposal_id, competition }) {
+    return axios.post(`/api/proposals/${proposal_id}/competition`, { proposal_id, competition })
+  }
+
+  static async storeAction({ proposal_id, smart }) {
+    return axios.post(`/api/proposals/${proposal_id}/action`, { proposal_id, smart })
+  }
+
+  static async storeGrow({ proposal_id, grow }) {
+    return axios.post(`/api/proposals/${proposal_id}/grow`, { proposal_id, grow })
+  }
+
 }
 
 export default Proposal
