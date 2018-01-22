@@ -3,7 +3,7 @@
     <label class="label">{{ name }}</label>
     <div class="control">
       <input
-        v-if="fieldType != 'select'"
+        v-if="fieldType != 'select' && fieldType != 'textarea'"
         v-validate="validation"
         :value="value"
         @input="$emit('input', $event.target.value)"
@@ -12,7 +12,7 @@
         :type="`${fieldType}`"
         :name="`${name}`"
         :placeholder="`${name}`">
-      <div v-else class="select">
+      <div v-else-if="fieldType == 'select'" class="select">
         <select
           v-validate="validation"
           :value="value"
@@ -22,6 +22,13 @@
           <option v-for="option in options" :key="option">{{ option }}</option>
         </select>
       </div>
+      <textarea
+        v-else-if="fieldType == 'textarea'"
+        class="textarea"
+        v-validate="validation"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+        :name="`${name}`" />
     </div>
     <span v-show="errors.has(name)" class="help is-danger">{{ errors.first(name) }}</span>
   </div>

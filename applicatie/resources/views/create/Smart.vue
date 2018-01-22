@@ -1,8 +1,8 @@
 <template>
-  <modal-create-edit 
+  <modal-create-edit
     :entity="'Smart'"
     @store = "store">
-    <field v-model="smart.smart_action" :name="'Action'" :size="'full'" :validation="'required'" />
+    <field v-model="smart.smart_action" :name="'Action'" :size="'full'" :validation="'required'" :field-type="'textarea'" />
   </modal-create-edit>
 </template>
 

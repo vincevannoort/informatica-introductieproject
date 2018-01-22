@@ -1,11 +1,11 @@
 <template>
-  <modal-create-edit 
+  <modal-create-edit
     :entity="'Competition'"
     @store="store">
     <field v-model="competition.company" :name="'Company name'" :size="'half'" :validation="'required'" />
     <field v-model="competition.grading" :name="'Grading'" :size="'half'" :validation="'required'" :field-type="'select'" :options="['much better', 'better', 'equal', 'worse', 'much worse']" />
-    <field v-model="competition.counter_proposal" :name="'Counter proposal'" :size="'half'" :validation="'required'" />
-    <field v-model="competition.position" :name="'Position'" :size="'half'" :validation="'required'" />
+    <field v-model="competition.counter_proposal" :name="'Counter proposal'" :size="'full'" :field-type="'textarea'" :validation="'required'" />
+    <field v-model="competition.position" :name="'Position'" :size="'full'" :field-type="'textarea'" :validation="'required'" />
   </modal-create-edit>
 </template>
 

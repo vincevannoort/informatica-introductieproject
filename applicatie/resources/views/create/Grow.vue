@@ -1,13 +1,13 @@
 <template>
-  <modal-create-edit 
+  <modal-create-edit
     :entity="'Grow'"
     @init-edit="show"
     @store="store"
     @update="update">
-    <field v-model="grow.goal" :name="'Goal'" :size="'half'" />
-    <field v-model="grow.reality" :name="'Reality'" :size="'half'" />
-    <field v-model="grow.opportunity" :name="'Opportunity'" :size="'half'" />
-    <field v-model="grow.will" :name="'Will'" :size="'half'" />
+    <field v-model="grow.goal" :name="'Goal'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="grow.reality" :name="'Reality'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="grow.opportunity" :name="'Opportunity'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="grow.will" :name="'Will'" :size="'half'" :field-type="'textarea'" />
   </modal-create-edit>
 </template>
 
