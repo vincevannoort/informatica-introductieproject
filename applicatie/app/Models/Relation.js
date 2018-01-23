@@ -44,7 +44,9 @@ class Relation extends Model {
 
     // return if no proposals exist
     if (!proposals.rows.length > 0) {
-      return 'no proposals found'
+      this.merge({ insight_total: 0 })
+      await this.save()
+      return 0
     }
 
     // start calculating insight for each proposal

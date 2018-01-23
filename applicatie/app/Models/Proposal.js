@@ -48,7 +48,7 @@ class Proposal extends Model {
     const insightPowerAndSourcesAmount = 0.40
     const insightPowerAndSourcesScore = await this.calculateInsightPowerAndSourcesScore()
     const potentialPowerAndSourcesScore = await this.calculatePotentialPowerAndSourcesScore()
-    console.log(chalk.blue(`insightPowerAndSourcesScore: ${insightPowerAndSourcesScore}`))
+    console.log(chalk.blue(`insightPowerAndSourcesScore: ${((insightPowerAndSourcesScore * 0.25) + (potentialPowerAndSourcesScore * 0.75))}`))
 
     /**
      * Calculate: Offering and Competitor analysis score
@@ -68,7 +68,7 @@ class Proposal extends Model {
 
     const calculatedInsightScore =
     (insightOverallBusinessWindowAmount * insightOverallBusinessWindowScore) +
-    (insightPowerAndSourcesAmount * insightPowerAndSourcesScore) +
+    (insightPowerAndSourcesAmount * ((insightPowerAndSourcesScore * 0.25) + (potentialPowerAndSourcesScore * 0.75))) +
     (insightOfferingAndCompetitorAnalysisAmount * insightOfferingAndCompetitorAnalysisScore) +
     (insightEffectsOfTheChangesAmount * insightEffectsOfTheChangesScore)
 
@@ -191,7 +191,7 @@ class Proposal extends Model {
     const contactsInfluences = await Promise.all(contacts.rows.map(async contact => contact.influences().fetch()))
     const contactsFeelings = await Promise.all(contacts.rows.map(async contact => contact.feeling().fetch()))
 
-    score += await this.calculatePotentialRoles(contactsRoles, 100)
+    score += await this.calculatePotentialRoles(contactsRoles, 1000)
     return score
   }
 
@@ -258,10 +258,10 @@ class Proposal extends Model {
   async calculateInsightGrow(proposalGrow, points) {
     if (!proposalGrow) { return 0 }
 
-    if ( proposalGrow.goal ||
-         proposalGrow.reality ||
-         proposalGrow.opportunity ||
-         proposalGrow.will ) {
+    if ( !proposalGrow.goal ||
+         !proposalGrow.reality ||
+         !proposalGrow.opportunity ||
+         !proposalGrow.will ) {
       return 0
     }
     return points
@@ -290,20 +290,20 @@ class Proposal extends Model {
     // remove empty contacts
     contactsWithRoles = contactsWithRoles.filter((contactWithRoles) => !(Object.keys(contactWithRoles).length === 0 && contactWithRoles.constructor === Object))
 
-    if (!rolesPresent.has('chief')) { score -= 62.5 } // if no chief
-    if (!rolesPresent.has('ambassador')) { score -= 75 } // if no ambassador
-    if (!(rolesCount['expert'] >= 2)) { score -= 25 } // if no 2x expert
-    if (!(rolesCount['user'] >= 2)) { score -= 12.5 } // if no 2x user
+    if (!rolesPresent.has('chief')) { score -= 625 } // if no chief
+    if (!rolesPresent.has('ambassador')) { score -= 750 } // if no ambassador
+    if (!(rolesCount['expert'] >= 2)) { score -= 250 } // if no 2x expert
+    if (!(rolesCount['user'] >= 2)) { score -= 125 } // if no 2x user
     contactsWithRoles.forEach(contactWithRoles => {
       const contact_id = Object.keys(contactWithRoles)[0]
       const roles = Object.values(contactWithRoles)[0]
-      if (roles.includes('user') && roles.includes('ambassador')) { score += 15 } // if user == ambassador
-      if (roles.includes('expert') && roles.includes('ambassador')) { score += 32.5 } // if expert == ambassador
-      if (roles.includes('chief') && roles.includes('ambassador')) { score += 75 } // if chief == ambassador
+      if (roles.includes('user') && roles.includes('ambassador')) { score += 150 } // if user == ambassador
+      if (roles.includes('expert') && roles.includes('ambassador')) { score += 325 } // if expert == ambassador
+      if (roles.includes('chief') && roles.includes('ambassador')) { score += 750 } // if chief == ambassador
     })
 
     // cap score between 0 and 100
-    return (score > 100) ? 100 : (score < 0) ? 0 : score
+    return (score > 1000) ? 1000 : (score < 0) ? 0 : score
   }
 
 }
