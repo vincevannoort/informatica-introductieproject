@@ -69,7 +69,7 @@ Route.group(() => {
 | Promotion website
 |--------------------------------------------------------------------------
 */
-Route.any('promotion', ({ view }) => view.render('promotion'))
+Route.any('/', ({ view }) => view.render('promotion'))
 
 /*
 |--------------------------------------------------------------------------

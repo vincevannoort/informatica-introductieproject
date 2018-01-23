@@ -36,7 +36,12 @@ const routes = [
     children: [
 
       // users
-      { path: '/users', name: 'users-overview', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' } },
+      {
+        path: '/users', name: 'users-overview', component: require('../../views/overview/Users'), meta: { requiresAuth: true, title: 'Users' },
+        children: [
+          { path: 'create', name: 'users-create', component: require('../../views/create/User'), meta: { requiresAuth: true, type: 'create', title: 'Users Create/Update' } }
+        ]
+      },
 
       // relations
       {
