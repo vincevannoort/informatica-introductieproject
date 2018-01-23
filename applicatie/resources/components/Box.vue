@@ -42,7 +42,7 @@
   .box {
     position: relative;
     .box-header-info {
-      // opacity: 0;
+      opacity: 0;
       transition: all 0.15s ease-in-out;
     }
     &:hover {

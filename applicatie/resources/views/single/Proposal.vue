@@ -102,15 +102,25 @@
             <div class="columns">
               <div class="column sow-overview">
                 <div><strong>Strengths</strong></div>
-                <div class="sow-item" v-for="strength in strengths" :key="strength.id">
-                  <span class="sow-strength">+</span> {{ strength.description }}
-                </div>
+                <template v-if="strengths && strengths.length">
+                  <div class="sow-item" v-for="strength in strengths" :key="strength.id">
+                    <span class="sow-strength">+</span> {{ strength.description }}
+                  </div>
+                </template>
+                <template v-else>
+                  <p>No strengths added yet.</p>
+                </template>
               </div>
               <div class="column sow-overview">
                 <div><strong>Weaknesses</strong></div>
-                <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
-                  <span class="sow-weakness">-</span> {{ weakness.description }}
-                </div>
+                <template v-if="weaknesses && weaknesses.length">
+                  <div class="sow-item" v-for="weakness in weaknesses" :key="weakness.id">
+                    <span class="sow-weakness">-</span> {{ weakness.description }}
+                  </div>
+                </template>
+                <template v-else>
+                  <p>No weaknesses added yet.</p>
+                </template>
               </div>
             </div>
           </template>
