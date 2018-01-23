@@ -72,6 +72,9 @@ class ContactController {
       email: contactData.email
     })
 
+    await contact.influences().create(contactData.influences[0])
+    await contact.needforchanges().create(contactData.needforchanges[0])
+
     // attach relation to created contact
     await contact.relations().attach([relationId])
 

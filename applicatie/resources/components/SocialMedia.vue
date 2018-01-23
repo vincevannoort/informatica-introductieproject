@@ -1,12 +1,17 @@
 <template>
   <div class="social-media-buttons field has-addons">
-    <p class="control" v-for="socialmedia in socialMedias" :key="socialmedia.id">
-      <a @click.prevent="navigate(socialmedia)" class="button" target="_blank" :href="socialmedia.url">
-        <span class="icon is-small">
-          <i :class="`fa fa-${socialmedia.type}`" />
-        </span>
-      </a>
-    </p>
+    <template v-if="socialMedias && socialMedias.length">
+      <p class="control" v-for="socialmedia in socialMedias" :key="socialmedia.id">
+        <a @click.prevent="navigate(socialmedia)" class="button" target="_blank" :href="socialmedia.url">
+          <span class="icon is-small">
+            <i :class="`fa fa-${socialmedia.type}`" />
+          </span>
+        </a>
+      </p>
+    </template>
+    <template v-else>
+      <p>No socials yet</p>
+    </template>
   </div>
 </template>
 
