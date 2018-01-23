@@ -5,7 +5,9 @@ class ProposalContact extends Model {
   static boot() {
     super.boot()
     this.addGlobalScope(builder => {
-      builder.with('information')
+      builder.with('information', async (builder) => {
+        await builder.with('influences').with('needforchanges').with('socialmedias')
+      })
       builder.with('roles')
       builder.with('influences')
       builder.with('needforchanges')

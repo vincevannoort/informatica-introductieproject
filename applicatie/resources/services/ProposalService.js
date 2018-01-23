@@ -80,6 +80,10 @@ class Proposal {
     return axios.post(`/api/proposals/${proposal_id}/contacts`, { contact_id })
   }
 
+  static async removeContact({ proposal_id, contact_id }) {
+    return axios.delete(`/api/proposals/${proposal_id}/contacts/${contact_id}`)
+  }
+
 }
 
 export default Proposal

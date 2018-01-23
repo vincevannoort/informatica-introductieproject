@@ -17,17 +17,25 @@
             <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
               <table>
                 <tr>
-                  <th>
+                  <th class="proposal-contact-roles">
                     <router-link :to="`/relations/${$route.params.relation_id}/proposals/${$route.params.proposal_id}/contacts/${contact.id}/roles/create`" class="add-proposal-contact-type">+ add role</router-link>
                     <i class="proposal-contact-type" v-for="role in contact.roles" :key="role.id">{{ role.type }}</i>
                     <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
                     {{ contact.information.first_name }} {{ contact.information.last_name }}
                   </th>
+                  <th>Need for change</th>
+                  <th>Invidual influence</th>
                   <th>actions</th>
                 </tr>
                 <tr>
                   <td>information</td>
-                  <td>lorem ipsum</td>
+                  <td class="td-align-center">{{ (contact.information.needforchanges[0]) ? contact.information.needforchanges[0].value : 'not set' }}</td>
+                  <td class="td-align-center">{{ (contact.information.influences[0]) ? contact.information.influences[0].value : 'not set' }}</td>
+                  <td>
+                    <buttons-edit-remove
+                      @remove-button-pressed="removeContact(contact)"
+                    />
+                  </td>
                 </tr>
               </table>
             </div>
@@ -215,7 +223,7 @@
       },
       async calculate() {
         await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
-        this.$router.push({ name: 'proposals-insight', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
+        // this.$router.push({ name: 'proposals-insight', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
       },
       async edit() {
         this.$router.push({ name: 'proposals-edit', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
@@ -223,6 +231,17 @@
       async remove() {
         await Proposal.destroy({ proposal_id: this.$route.params.proposal_id })
         this.$router.push({ name: 'relations-single', params: { relation_id: this.$route.params.relation_id } })
+      },
+      async editContact() {
+
+      },
+      async removeContact(contact) {
+        await Proposal.removeContact({
+          proposal_id: this.$route.params.proposal_id,
+          contact_id: contact.information.id
+        })
+        const index = this.proposal.contacts.indexOf(contact)
+        this.proposal.contacts.splice(index, 1)
       },
       gradingAsText(grade) {
         switch(grade) {
@@ -340,6 +359,10 @@
         flex: 0 1 auto;
       }
     }
+  }
+
+  th.proposal-contact-roles {
+    width: 45% !important;
   }
 
 </style>

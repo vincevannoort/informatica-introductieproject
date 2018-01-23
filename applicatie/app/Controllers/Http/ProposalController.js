@@ -199,6 +199,12 @@ class ProposalController {
     return contact.proposals().attach(proposal.id)
   }
 
+  async removeContact({ request, params }) {
+    const proposal = await Proposal.find(params.proposal_id)
+    const contact = await Contact.find(params.contact_id)
+    return contact.proposals().detach(proposal.id)
+  }
+
 }
 
 module.exports = ProposalController
