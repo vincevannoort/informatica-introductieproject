@@ -10,6 +10,14 @@ class User {
     .then((response) => response.data)
   }
 
+  static async store({ user }) {
+    return axios.post(`/api/users`, { user })
+  }
+
+  static async destroy({ user_id }) {
+    return axios.delete(`/api/users/${user_id}`, { user_id })
+  }
+
 }
 
 export default User

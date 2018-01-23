@@ -1,5 +1,7 @@
 <template>
-  <modal-create-edit :entity="'User'">
+  <modal-create-edit 
+    :entity="'User'"
+    @store="store">
     <field v-model="user.profession" :name="'Profession'" :size="'full'" :validation="'required'" />
     <field v-model="user.first_name" :name="'First name'" :size="'half'" :validation="'required'" />
     <field v-model="user.last_name" :name="'Last name'" :size="'half'" :validation="'required'" />
@@ -9,6 +11,8 @@
 </template>
 
 <script>
+import User from '../../services/UserService'
+
 export default {
   data() {
     return {
@@ -20,6 +24,13 @@ export default {
         email: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    async store() {
+      await User.store({ user: this.user })
+      this.$emit('refetch')
+      this.$router.go(-1)
     }
   }
 }

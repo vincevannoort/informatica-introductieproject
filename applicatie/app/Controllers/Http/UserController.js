@@ -1,4 +1,14 @@
+const { validateAll } = use('Validator')
 const User = use('App/Models/User')
+
+// set rules which must be validated before storing/updating a proposal
+const rules = {
+  profession: 'required',
+  first_name: 'required',
+  last_name: 'required',
+  email: 'required',
+  password: 'required'
+}
 
 class UserController {
 
@@ -44,6 +54,38 @@ class UserController {
       return user
     } catch (error) {
       return response.status(404).send('User not found')
+    }
+  }
+
+  async store({ response, request }) {
+    const userData = await request.all().user
+    console.log(userData)
+    const validation = await validateAll(userData, rules)
+    if (validation.fails()) {
+      return response.status(422).send(validation.messages())
+    }
+
+    return User.create({
+      profession: userData.profession,
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+      username: userData.first_name.toLowerCase(),
+      email: userData.email,
+      password: userData.password
+    })
+  }
+
+  async destroy({ params, response }) {
+    // try to delete the user with user id from the request
+    try {
+      const user = await User.find(params.id)
+
+      // delete the user
+      await user.delete()
+
+      return response.status(200).send('User deleted')
+    } catch (error) {
+      return response.status(404).send(error)
     }
   }
 
