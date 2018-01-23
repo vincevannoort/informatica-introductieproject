@@ -17,15 +17,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted() {
-    console.log(this.$listeners)
-  }
-}
-</script>
-
-
 <style lang="scss">
   @import "../assets/scss/variables/colors";
   .edit-delete-buttons {
