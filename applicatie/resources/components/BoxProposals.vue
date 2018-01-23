@@ -45,8 +45,8 @@
                 </td>
                 <td>
                   <buttons-edit-remove
-                    @edit-button-pressed="editProposal(proposal)"
-                    @remove-button-pressed="removeProposal(proposal)"
+                    @editButtonPressed="editProposal(proposal)"
+                    @removeButtonPressed="removeProposal(proposal)"
                   />
                 </td>
               </tr>

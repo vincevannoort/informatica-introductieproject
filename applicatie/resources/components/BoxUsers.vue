@@ -18,8 +18,8 @@
           <td>{{ user.created_at | moment("from") }}</td>
           <td>
             <buttons-edit-remove
-              @edit-button-pressed="editUser(user)"
-              @remove-button-pressed="removeUser(user)"
+              @editButtonPressed="editUser(user)"
+              @removeButtonPressed="removeUser(user)"
             />
           </td>
         </router-link>

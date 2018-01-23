@@ -1,14 +1,14 @@
 <template>
   <div class="edit-delete-buttons field has-addons">
-    <p class="control">
-      <a class="button" @click.prevent="$emit('edit-button-pressed')">
+    <p v-if="$listeners.editButtonPressed" class="control">
+      <a class="button" @click.prevent="$emit('editButtonPressed')">
         <span class="icon is-small">
           <i class="fa fa-pencil-square-o" />
         </span>
       </a>
     </p>
-    <p class="control">
-      <a class="button" @click.prevent="$emit('remove-button-pressed')">
+    <p v-if="$listeners.removeButtonPressed" class="control">
+      <a class="button" @click.prevent="$emit('removeButtonPressed')">
         <span class="icon is-small">
           <i class="fa fa-trash-o" />
         </span>
@@ -16,6 +16,15 @@
     </p>
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    console.log(this.$listeners)
+  }
+}
+</script>
+
 
 <style lang="scss">
   @import "../assets/scss/variables/colors";

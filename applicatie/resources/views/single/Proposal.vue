@@ -33,7 +33,7 @@
                   <td class="td-align-center">{{ (contact.information.influences[0]) ? contact.information.influences[0].value : 'not set' }}</td>
                   <td>
                     <buttons-edit-remove
-                      @remove-button-pressed="removeContact(contact)"
+                      @removeButtonPressed="removeContact(contact)"
                     />
                   </td>
                 </tr>

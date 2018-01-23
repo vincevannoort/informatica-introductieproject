@@ -30,8 +30,8 @@
             </td>
             <td>
               <buttons-edit-remove
-                @edit-button-pressed="editContact(contact)"
-                @remove-button-pressed="removeContact(contact)"
+                @editButtonPressed="editContact(contact)"
+                @removeButtonPressed="removeContact(contact)"
               />
             </td>
           </tr>
