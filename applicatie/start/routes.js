@@ -62,6 +62,7 @@ Route.group(() => {
   // contacts
   Route.resource('contacts', 'ContactController').apiOnly()
   Route.post('relations/:relation_id/contacts/:contact_id/notes', 'ContactController.storeNote')
+  Route.post('relations/:relation_id/contacts/:contact_id/socialmedias', 'ContactController.storeSocialMedia')
 
 }).prefix('api').middleware((process.env.NODE_ENV !== 'development') ? ['auth'] : [])
 

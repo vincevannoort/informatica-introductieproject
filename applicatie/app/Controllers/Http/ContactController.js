@@ -159,11 +159,24 @@ class ContactController {
    * @returns {object} - new created note
    */
   async storeNote({ request, params }) {
-    console.log('storing note')
     const contact = await Contact.find(params.contact_id)
     const noteData = request.all().note
-    console.log(noteData)
     return contact.notes().withTimestamps().create(noteData)
+  }
+
+  /**
+   * Store a social media attached to contact
+   * @param {integer} id - the contact id from api routes defined in routes.js
+   * @returns {object} - new social media
+   */
+  async storeSocialMedia({ request, params }) {
+    const contact = await Contact.find(params.contact_id)
+    const socialMediaData = request.all().socialmedia
+    // prepend http if not present
+    if (!/^(f|ht)tps?:\/\//i.test(socialMediaData.url)) {
+      socialMediaData.url = `http://${socialMediaData.url}`
+    }
+    return contact.socialmedias().create(socialMediaData)
   }
 
 }

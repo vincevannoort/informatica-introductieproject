@@ -57,6 +57,7 @@
     justify-content: space-between;
     align-items: flex-start;
     align-self: flex-start;
+    width: 100%;
   }
 
   .box-header {

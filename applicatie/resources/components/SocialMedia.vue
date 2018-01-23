@@ -1,7 +1,7 @@
 <template>
   <div class="social-media-buttons field has-addons">
     <p class="control" v-for="socialmedia in socialMedias" :key="socialmedia.id">
-      <a class="button">
+      <a @click.prevent="navigate(socialmedia)" class="button" target="_blank" :href="socialmedia.url">
         <span class="icon is-small">
           <i :class="`fa fa-${socialmedia.type}`" />
         </span>
@@ -16,6 +16,11 @@ export default {
     socialMedias: {
       default: () => [],
       type: Array
+    }
+  },
+  methods: {
+    navigate(socialmedia) {
+      window.open(socialmedia.url, '_blank')
     }
   }
 }

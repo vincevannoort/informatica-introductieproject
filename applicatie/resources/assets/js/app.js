@@ -85,7 +85,8 @@ const routes = [
           { path: 'edit', name: 'contacts-edit', component: require('../../views/create/Contact'), meta: { requiresAuth: true, type: 'edit', title: 'Contact Edit' } },
           { path: 'notes/create', name: 'contacts-notes-create', component: require('../../views/create/Note'), meta: { requiresAuth: true, type: 'create', title: 'Contact Note Create' } },
           { path: 'influence/create', name: 'influence-create', component: require('../../views/create/Influence'), meta: { requiresAuth: true, type: 'create', title: 'Contact Influence Create' } },
-          { path: 'needforchange/create', name: 'needforchange-create', component: require('../../views/create/NeedForChange'), meta: { requiresAuth: true, type: 'create', title: 'Contact Need for change Create' } }
+          { path: 'needforchange/create', name: 'needforchange-create', component: require('../../views/create/NeedForChange'), meta: { requiresAuth: true, type: 'create', title: 'Contact Need for change Create' } },
+          { path: 'socialmedias/create', name: 'socialmedia-create', component: require('../../views/create/SocialMedia'), meta: { requiresAuth: true, type: 'create', title: 'Contact Social Media Create' } }
         ]
       },
 

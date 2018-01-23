@@ -78,7 +78,10 @@
         </div>
       </div>
       <div class="column is-3">
-        <box :title="'Social profile'" class="social-profile">
+        <box
+          class="social-profile"
+          :title="'Social profile'"
+          :action="{ title: 'Add new', route: `/relations/${$route.params.relation_id}/contacts/${contact.id}/socialmedias/create` }">
           <div class="profile-picture">
             <icon-relation />
           </div>

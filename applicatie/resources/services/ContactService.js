@@ -38,6 +38,11 @@ class Contact {
     .then((response) => response.data)
   }
 
+  static async storeSocialMedia({ socialmedia, relation_id, contact_id}) {
+    return axios.post(`/api/relations/${relation_id}/contacts/${contact_id}/socialmedias`, { socialmedia })
+      .then((response) => response.data)
+  }
+
 }
 
 export default Contact
