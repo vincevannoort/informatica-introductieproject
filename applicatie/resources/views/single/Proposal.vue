@@ -28,7 +28,18 @@
                   <th>actions</th>
                 </tr>
                 <tr>
-                  <td>information</td>
+                  <td>
+                    <table>
+                      <tr v-if="contact.information.telephone">
+                        <td>Telefoon:</td>
+                        <td>{{ contact.information.telephone }}</td>
+                      </tr>
+                      <tr v-if="contact.information.email">
+                        <td>Emailadres:</td>
+                        <td>{{ contact.information.email }}</td>
+                      </tr>
+                    </table>
+                  </td>
                   <td class="td-align-center">{{ (contact.information.needforchanges[0]) ? contact.information.needforchanges[0].value : 'not set' }}</td>
                   <td class="td-align-center">{{ (contact.information.influences[0]) ? contact.information.influences[0].value : 'not set' }}</td>
                   <td>
