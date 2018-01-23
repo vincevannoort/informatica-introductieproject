@@ -135,7 +135,15 @@ class DummydataSeeder {
       { profession: 'Software Engineer', first_name: 'Jort', last_name: 'van Gorkum', username: 'jort', password: 'jort', email: 'jort@canon.nl' },
       { profession: 'Software Engineer', first_name: 'Tijmen', last_name: 'van der Spijk', username: 'tijmen', password: 'tijmen', email: 'tijmen@canon.nl' },
       { profession: 'Software Engineer', first_name: 'Madio', last_name: 'Seck', username: 'madio', password: 'madio', email: 'madio@canon.nl' },
-      { profession: 'Software Engineer', first_name: 'Niek', last_name: 'Geijtenbeek', username: 'niek', password: 'niek', email: 'niek@canon.nl' }
+      { profession: 'Software Engineer', first_name: 'Niek', last_name: 'Geijtenbeek', username: 'niek', password: 'niek', email: 'niek@canon.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Lennart', last_name: 'Herlaar', username: 'lennart', password: 'lennart', email: 'l.herlaar@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Georg', last_name: 'Krempl', username: 'georg', password: 'georg', email: 'g.m.krempl@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Paul', last_name: 'Bergervoet', username: 'paul', password: 'paul', email: 'p.m.a.bergervoet@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Wouter', last_name: 'van Toll', username: 'wouter', password: 'wouter', email: 'w.g.vantoll@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Dirk', last_name: 'Thierens', username: 'dirk', password: 'dirk', email: 'd.thierens@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Nico', last_name: 'Naus', username: 'nico', password: 'nico', email: 'n.naus@uu.nl' },
+      { profession: 'Master of Computer Sciences', first_name: 'Linda', last_name: 'van der Gaag', username: 'linda', password: 'linda', email: 'l.c.vandergaag@uu.nl' },
+      { profession: 'Tester', first_name: 'Dummy', last_name: 'Tester', username: 'dummy', password: 'dummy', email: 'dummy@dummy.test' }
     ]
     const createUserPromises = newUsers.map((newUser) => User.create({ profession: newUser.profession, first_name: newUser.first_name, last_name: newUser.last_name, username: newUser.username, password: newUser.password, email: newUser.email }))
     await Promise.all(createUserPromises)
