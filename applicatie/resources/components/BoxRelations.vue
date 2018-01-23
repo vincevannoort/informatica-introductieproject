@@ -67,7 +67,7 @@
           <th>Insight</th>
         </tr>
         <template v-if="sortedRelations && sortedRelations.length">
-          <router-link tag="tr" v-for="relation in sortedRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
+          <router-link tag="tr" :data-name="`${relation.name}`" v-for="relation in sortedRelations" :key="relation.id" :to="`/relations/${ relation.id }`">
             <td>{{ relation.name }}</td>
             <td>€{{ relation.value_total }}</td>
             <td>{{ relation.created_at | moment('from') }}</td>

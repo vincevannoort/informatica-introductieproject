@@ -18,7 +18,6 @@
           <td>{{ user.created_at | moment("from") }}</td>
           <td>
             <buttons-edit-remove
-              @editButtonPressed="editUser(user)"
               @removeButtonPressed="removeUser(user)"
             />
           </td>
@@ -48,9 +47,6 @@ export default {
     }
   },
   methods: {
-    editUser() {
-      console.log('editing user')
-    },
     removeUser(user) {
       this.$emit('remove', user)
     }

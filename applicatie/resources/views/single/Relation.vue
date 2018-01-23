@@ -57,7 +57,7 @@
           :title="'The customer business window'"
           :information="'Short overview of the business. In this overview you will find the objectives, the organisation, the philosophy and the product.'"
           :action="{
-            title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit extisting customer business window',
+            title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit existing customer business window',
             route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `/relations/${this.$route.params.relation_id}/customerbusinesswindow/edit` }">
           <template v-if="relation.businesswindow">
             <div class="relation-grow" >

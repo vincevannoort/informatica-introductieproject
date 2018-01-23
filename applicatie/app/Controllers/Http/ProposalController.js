@@ -164,7 +164,6 @@ class ProposalController {
     const proposal = await Proposal.find(params.proposal_id)
     let actionData = request.all().smart
     actionData.proposal_id = proposal.id
-    console.log(actionData)
     return proposal.actions().create(actionData)
   }
 

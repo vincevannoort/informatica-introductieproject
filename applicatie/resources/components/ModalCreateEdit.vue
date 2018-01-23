@@ -12,8 +12,8 @@
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <button v-if="createView" class="button is-link" @click.prevent="store" :disabled="!validated">Create</button>
-              <button v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!validated">Update</button>
+              <button title="create" v-if="createView" class="button is-link" @click.prevent="store" :disabled="!validated">Create</button>
+              <button title="update" v-else-if="editView" class="button is-link" @click.prevent="update" :disabled="!validated">Update</button>
             </div>
             <div class="control">
               <button class="button is-text is-light" @click.prevent="back">Cancel</button>

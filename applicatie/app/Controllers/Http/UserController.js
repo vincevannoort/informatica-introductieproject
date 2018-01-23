@@ -59,7 +59,6 @@ class UserController {
 
   async store({ response, request }) {
     const userData = await request.all().user
-    console.log(userData)
     const validation = await validateAll(userData, rules)
     if (validation.fails()) {
       return response.status(422).send(validation.messages())

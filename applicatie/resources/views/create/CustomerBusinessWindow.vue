@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     async show() {
-      console.log('show')
       this.customerbusinesswindow = await Relation.getCustomerBusinessWindow({ relation_id: this.$route.params.relation_id })
     },
     async store() {

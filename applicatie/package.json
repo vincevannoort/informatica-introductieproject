@@ -11,7 +11,8 @@
     "development": "cross-env NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "history": "git --no-pager log --pretty=format:\"%h | %an - %ad - %s\" --date=local",
-    "seed": "(adonis migration:refresh; adonis seed)"
+    "seed": "(adonis migration:refresh; adonis seed)",
+    "presentation": "adonis test -f flow.spec.js"
   },
   "keywords": [
     "adonisjs",
@@ -53,6 +54,7 @@
     "moment": "^2.19.4",
     "node-schedule": "^1.2.5",
     "noty": "^3.1.4",
+    "puppeteer": "https://github.com/GoogleChrome/puppeteer/",
     "sqlite3": "^3.1.13",
     "vee-validate": "^2.0.0-rc.27",
     "vue": "^2.5.9",
