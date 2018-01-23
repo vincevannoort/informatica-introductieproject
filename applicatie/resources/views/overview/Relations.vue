@@ -2,6 +2,7 @@
   <div>
     <main-view-title
       :title="'Relations'"
+      :information="'List of relations with a short summary containing some basic information about the relation.'"
       @calculate="calculateAll" />
     <div>
       <div class="columns">
@@ -16,10 +17,11 @@
           </box>
         </div>
       </div>
-      <box-relations
+      <box
         :title="'Relations'"
-        :action="{ title: 'Add new relation', route: '/relations/create' }"
-        :relations="sortedRelations" />
+        :action="{ title: 'Add new relation', route: '/relations/create' }">
+        <relations :relations="sortedRelations" />
+      </box>
     </div>
     <transition name="fade-up" mode="out-in">
       <router-view
@@ -38,7 +40,7 @@
   export default {
     components: {
       'relations-graph': RelationsGraphComponent,
-      'box-relations': BoxRelationsComponent,
+      'relations': BoxRelationsComponent,
       'box-relation': BoxRelationComponent
     },
     data() {

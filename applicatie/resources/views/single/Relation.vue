@@ -11,12 +11,15 @@
 
     <div class="columns">
       <div class="column is-10">
-        <box-contacts
+        <box
           :title="'Contacts'"
-          :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }"
-          :contacts="relation.contacts"
-          @edit-contact="editContact"
-          @remove-contact="removeContact" />
+          :information="'List of persons within the company. These persons can be linked to a proposal and can also be found there.'"
+          :action="{ title: 'Add new contact', route: `/relations/${relation.id}/contacts/create` }">
+          <contacts
+            :contacts="relation.contacts"
+            @edit-contact="editContact"
+            @remove-contact="removeContact" />
+        </box>
       </div>
       <div class="relation-insight-sidebox column is-2">
         <insight-bar :insight="relation.insight_total" />
@@ -25,7 +28,9 @@
 
     <div class="columns">
       <div class="column">
-        <box :title="'Relation information'">
+        <box
+          :title="'Relation information'"
+          :information="'Short overview of the relation/proposal insight and value'">
           <template v-if="relation.proposals && relation.proposals.length">
             <table class="table-relation-information">
               <tr>
@@ -43,13 +48,14 @@
             </table>
           </template>
           <template v-else>
-            <p>Add proposal to show relation information, TODO: better information</p>
+            <p>No proposal has been added yet. Add a proposal below to see information about proposals here.</p>
           </template>
         </box>
       </div>
       <div class="column">
         <box
           :title="'The customer business window'"
+          :information="'Short overview of the business. In this overview you will find the objectives, the organisation, the philosophy and the product.'"
           :action="{
             title: (!relation.businesswindow) ? 'Add new customer business window' : 'Edit extisting customer business window',
             route: (!relation.businesswindow) ? `/relations/${this.$route.params.relation_id}/customerbusinesswindow/create` : `/relations/${this.$route.params.relation_id}/customerbusinesswindow/edit` }">
@@ -76,7 +82,7 @@
             </div>
           </template>
           <template v-else>
-            <p>No customer business window added yet, TODO: better information</p>
+            <p>No customer business window information is added yet, add a customer business window information by clicking the 'Add new customer business window' button.</p>
           </template>
         </box>
       </div>
@@ -85,7 +91,7 @@
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
-          :information="'Information for the box'"
+          :information="'This is where you put in the strengths and weaknesses of the company in question. Please fill in the strong and weak points of the company in question.'"
           :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/strengths-and-weaknesses/create` }" >
           <template v-if="strengths && strengths.length || weaknesses && weaknesses.length">
             <div class="columns">
@@ -104,18 +110,21 @@
             </div>
           </template>
           <template v-else>
-            <p>No strengths or weaknesses added yet, TODO: better information</p>
+            <p>No strengths or weaknesses are added yet, add a strength or weakness by clicking the 'Add new strength or weakness' button.</p>
           </template>
         </box>
       </div>
     </div>
 
-    <box-proposals
+    <box
       :title="'Proposals'"
-      :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }"
-      :proposals="relation.proposals"
-      @edit-proposal="editProposal"
-      @remove-proposal="removeProposal" />
+      :information="'List of the active proposals. Each proposal has a short summary containing information about the proposal such as the roles and the value.'"
+      :action="{ title: 'Add new proposal', route: `/relations/${relation.id}/proposals/create` }">
+      <proposals
+        :proposals="relation.proposals"
+        @edit-proposal="editProposal"
+        @remove-proposal="removeProposal" />
+    </box>
 
     <transition name="fade-up" mode="out-in">
       <router-view @refetch="show" />
@@ -134,8 +143,8 @@
   export default {
     name: 'Relation',
     components: {
-      'box-contacts': BoxContactsComponent,
-      'box-proposals': BoxProposalsComponent,
+      'contacts': BoxContactsComponent,
+      'proposals': BoxProposalsComponent,
       'insight-bar': InsightBarComponent
     },
     data() {

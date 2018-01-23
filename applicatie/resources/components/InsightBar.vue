@@ -1,5 +1,7 @@
 <template>
-  <box :title="'Insight'">
+  <box
+    :title="'Insight'"
+    :information="'Score based on if you have given enough information in the proposal or relation'">
     <div class="columns">
       <div class="relation-insight-sidebox-list column">
         <ul>

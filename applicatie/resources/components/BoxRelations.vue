@@ -1,5 +1,5 @@
 <template>
-  <box :title="title" :action="action">
+  <div>
     <div class="relations-table-filter">
       <div class="columns">
         <div class="column">
@@ -98,7 +98,7 @@
         </template>
       </table>
     </div>
-  </box>
+  </div>
 </template>
 
 <script>
@@ -106,15 +106,6 @@
 
   export default {
     props: {
-      title: {
-        type: String,
-        default: ''
-      },
-      action: {
-        type: Object,
-        required: false,
-        default: () => ({ title: '', route: '' })
-      },
       relations: {
         type: Array,
         default: () => {}

@@ -6,7 +6,7 @@
     @update="update"
     @back="back">
     <field v-model="proposal.name" :name="'Name'" :size="'full'" :validation="'required'" />
-    <field v-model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" />
+    <field v-model="proposal.value" :name="'Value'" :size="'full'" :validation="'required'" :field-type="'number'" />
     <field v-model="proposal.start" :name="'Start'" :size="'half'" :validation="'required'" :field-type="'date'" />
     <field v-model="proposal.close" :name="'Close'" :size="'half'" :validation="'required'" :field-type="'date'"/>
   </modal-create-edit>

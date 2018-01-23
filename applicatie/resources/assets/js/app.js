@@ -58,14 +58,6 @@ const routes = [
           { path: 'strengths-and-weaknesses/create', name: 'strengths-and-weaknesses-relation-create', component: require('../../views/create/StrengthAndWeakness'), meta: { requiresAuth: true, type: 'create', title: 'Strength and Weakness Create' } }
         ]
       },
-
-      // proposals
-      {
-        path: '/proposals', name: 'proposals-overview', component: require('../../views/overview/Proposals'), meta: { requiresAuth: true, title: 'Proposals Overview' },
-        children: [
-          { path: '/:relation_id/:proposal_id/edit', name: 'proposals-edit-from-proposals', component: require('../../views/create/Proposal'), meta: { requiresAuth: true, type: 'edit', title: 'Proposal Edit' } }
-        ]
-      },
       {
         path: '/relations/:relation_id/proposals/:proposal_id', name: 'proposals-single', component: require('../../views/single/Proposal'), meta: { requiresAuth: true, title: 'Proposal Single' },
         children: [

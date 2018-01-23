@@ -41,6 +41,15 @@
 
   .box {
     position: relative;
+    .box-header-info {
+      // opacity: 0;
+      transition: all 0.15s ease-in-out;
+    }
+    &:hover {
+      .box-header-info {
+        opacity: 1;
+      }
+    }
   }
 
   .box-header-wrapper {

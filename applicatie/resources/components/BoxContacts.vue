@@ -1,49 +1,47 @@
 <template>
-  <box :title="title" :action="action">
-    <div class="relation-contacts">
-      <div v-if="contacts && contacts.length">
-        <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/relations/${$route.params.relation_id}/contacts/${contact.id}`">
-          <table>
-            <tr>
-              <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
-              <th>Need for change</th>
-              <th>Invidual influence</th>
-              <th>Social media</th>
-              <th>Actions</th>
-            </tr>
-            <tr>
-              <td>
-                <table>
-                  <tr v-if="contact.telephone">
-                    <td>Telefoon:</td>
-                    <td>{{ contact.telephone }}</td>
-                  </tr>
-                  <tr v-if="contact.email">
-                    <td>Emailadres:</td>
-                    <td>{{ contact.email }}</td>
-                  </tr>
-                </table>
-              </td>
-              <td class="td-align-center">{{ (contact.needforchanges[0]) ? contact.needforchanges[0].value : 'not set' }}</td>
-              <td class="td-align-center">{{ (contact.influences[0]) ? contact.influences[0].value : 'not set' }}</td>
-              <td>
-                <social-media :social-medias="contact.socialmedias" />
-              </td>
-              <td>
-                <buttons-edit-remove
-                  @edit-button-pressed="editContact(contact)"
-                  @remove-button-pressed="removeContact(contact)"
-                />
-              </td>
-            </tr>
-          </table>
-        </router-link>
-      </div>
-      <div v-else>
-        No contacts added yet
-      </div>
+  <div class="relation-contacts">
+    <div v-if="contacts && contacts.length">
+      <router-link class="relation-contact" tag="div" v-for="contact in contacts" :key="contact.id" :to="`/relations/${$route.params.relation_id}/contacts/${contact.id}`">
+        <table>
+          <tr>
+            <th><span>{{ contact.profession }}</span>{{ contact.first_name }} {{ contact.last_name }}</th>
+            <th>Need for change</th>
+            <th>Invidual influence</th>
+            <th>Social media</th>
+            <th>Actions</th>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr v-if="contact.telephone">
+                  <td>Telefoon:</td>
+                  <td>{{ contact.telephone }}</td>
+                </tr>
+                <tr v-if="contact.email">
+                  <td>Emailadres:</td>
+                  <td>{{ contact.email }}</td>
+                </tr>
+              </table>
+            </td>
+            <td class="td-align-center">{{ (contact.needforchanges[0]) ? contact.needforchanges[0].value : 'not set' }}</td>
+            <td class="td-align-center">{{ (contact.influences[0]) ? contact.influences[0].value : 'not set' }}</td>
+            <td>
+              <social-media :social-medias="contact.socialmedias" />
+            </td>
+            <td>
+              <buttons-edit-remove
+                @edit-button-pressed="editContact(contact)"
+                @remove-button-pressed="removeContact(contact)"
+              />
+            </td>
+          </tr>
+        </table>
+      </router-link>
     </div>
-  </box>
+    <div v-else>
+      No contacts are added yet, add a contact by clicking the 'Add new contact' button.
+    </div>
+  </div>
 </template>
 
 <script>
@@ -52,15 +50,6 @@
   export default {
     components: { 'social-media': SocialMediaComponent },
     props: {
-      title: {
-        type: String,
-        default: ''
-      },
-      action: {
-        type: Object,
-        required: false,
-        default: () => ({ title: '', route: '' })
-      },
       contacts: {
         type: Array,
         default: () => {}

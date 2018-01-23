@@ -11,6 +11,7 @@
       <div class="column">
         <box
           :title="'Internal power and sources'"
+          :information="'List of contacts within the company. It includes their position in the company and some other information about them.'"
           :action="{ title: 'Add new contact to proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/contacts/create` }" >
           <template v-if="proposal.contacts && proposal.contacts.length">
             <div class="relation-contact" v-for="contact in proposal.contacts" :key="contact.id">
@@ -32,7 +33,7 @@
             </div>
           </template>
           <template v-else>
-            <p>No contacts added to this proposal yet, TODO: better information</p>
+            <p>No contacts are added to this proposal yet, add a contact to this proposal by clicking the 'Add new contact to proposal' button.</p>
           </template>
         </box>
       </div>
@@ -44,6 +45,7 @@
       <div class="column">
         <box
           :title="'Position and competition'"
+          :information="'List of counter proposals with some information which includes a grading, comparing their proposal to yours, the name of the company, the company’s position and their counterproposal summarised.'"
           :action="{ title: 'Add new counter proposal', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/position-and-competition/create` }" >
           <template v-if="proposal.competitions && proposal.competitions.length">
             <div class="proposal-competition" v-for="competition in proposal.competitions" :key="competition.id">
@@ -61,13 +63,14 @@
             </div>
           </template>
           <template v-else>
-            <p>No competition added yet, TODO: better information</p>
+            <p>No competitor is added to this proposal yet, add a competitor to this proposal by clicking the 'Add new counter proposal' button.</p>
           </template>
         </box>
       </div>
       <div class="column">
         <box
           :title="'SMART actions'"
+          :information="'This is where you put possible actions to ensure that you would win the proposal.'"
           :action="{ title: 'Add new smart action', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/smart-actions/create` }" >
           <template v-if="proposal.actions && proposal.actions.length">
             <div class="proposal-smart-action" v-for="action in proposal.actions" :key="action.id">
@@ -84,7 +87,7 @@
             </div>
           </template>
           <template v-else>
-            <p>No actions added yet, TODO: better information</p>
+            <p>No action is added to this proposal yet, add a action to this proposal by clicking the 'Add new smart action' button.</p>
           </template>
         </box>
       </div>
@@ -93,6 +96,7 @@
       <div class="column">
         <box
           :title="'Strengths and Weaknesses'"
+          :information="'This is where you put in the strengths and weaknesses of the proposal in question. Please fill in the strong and weak points of the proposal in question.'"
           :action="{ title: 'Add new strength or weakness', route: `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/strengths-and-weaknesses/create` }" >
           <template v-if="strengths && strengths.length || weaknesses && weaknesses.length">
             <div class="columns">
@@ -111,7 +115,7 @@
             </div>
           </template>
           <template v-else>
-            <p>No strengths or weaknesses added yet, TODO: better information</p>
+            <p>No strengths or weaknesses are added yet, add a strength or weakness by clicking the 'Add new strength or weakness' button.</p>
           </template>
         </box>
       </div>
@@ -120,6 +124,7 @@
       <div class="column">
         <box
           :title="'GROW information'"
+          :information="'This is where you put in the Goal, Reality, Opportunity and Will of the company in question. With this information you will have a better view of the company which makes negotiations easier. The goal is where you put information on what the aim of the company is in general.'"
           :action="{
             title: (!proposal.grow) ? 'Add new grow' : 'Edit extisting grow',
             route: (!proposal.grow) ? `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/create` : `/relations/${this.$route.params.relation_id}/proposals/${this.$route.params.proposal_id}/grow/edit` }">
@@ -146,7 +151,7 @@
             </div>
           </template>
           <template v-else>
-            <p>No grow added yet, TODO: better information</p>
+            <p>No grow information is added yet, add grow information by clicking the 'Add new grow' button.</p>
           </template>
         </box>
       </div>

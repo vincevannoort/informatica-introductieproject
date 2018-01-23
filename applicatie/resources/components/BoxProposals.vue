@@ -1,5 +1,5 @@
 <template>
-  <box :title="title" :action="action">
+  <div>
     <template v-if="proposals && proposals.length">
       <router-link class="relation-proposal" tag="div" v-for="proposal in proposals" :key="proposal.id" :to="`/relations/${proposal.relation.id}/proposals/${proposal.id}`">
         <div class="relation-proposal-header">
@@ -56,23 +56,14 @@
       </router-link>
     </template>
     <template v-else>
-      No proposals added yet
+      No proposals are added yet, add a proposal by clicking the 'Add new proposal' button.
     </template>
-  </box>
+  </div>
 </template>
 
 <script>
   export default{
     props: {
-      title: {
-        type: String,
-        default: 'Define a title for this box'
-      },
-      action: {
-        type: Object,
-        required: false,
-        default: () => ({ title: 'Define a title for this box', route: 'Define a route for this action' })
-      },
       proposals: {
         type: Array,
         default: () => {}

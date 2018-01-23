@@ -4,10 +4,10 @@
     @init-edit="show"
     @store="store"
     @update="update">
-    <field v-model="customerbusinesswindow.objectives" :name="'Objectives'" :size="'full'" />
-    <field v-model="customerbusinesswindow.organisation" :name="'Organisation'" :size="'full'" />
-    <field v-model="customerbusinesswindow.philosophy" :name="'Philosophy'" :size="'full'" />
-    <field v-model="customerbusinesswindow.products" :name="'Products'" :size="'full'" />
+    <field v-model="customerbusinesswindow.objectives" :name="'Objectives'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="customerbusinesswindow.organisation" :name="'Organisation'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="customerbusinesswindow.philosophy" :name="'Philosophy'" :size="'half'" :field-type="'textarea'" />
+    <field v-model="customerbusinesswindow.products" :name="'Products'" :size="'half'" :field-type="'textarea'" />
   </modal-create-edit>
 </template>
 
