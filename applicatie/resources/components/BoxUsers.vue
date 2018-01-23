@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import User from '../services/UserService'
+
 export default {
   props: {
     title: {
@@ -49,8 +51,8 @@ export default {
     editUser() {
       console.log('editing user')
     },
-    removeUser() {
-      console.log('removing user')
+    removeUser(user) {
+      this.$emit('remove', user)
     }
   }
 }
