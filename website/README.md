@@ -1,0 +1,3 @@
+Link to our website hosted on DigitalOcean: [promotion page](https://easylinkkeeper.nl)
+Link to our website source code hosted on DigitalOcean: [promotion page source](https://github.com/vincevannoort/informatica-introductieproject/blob/develop/applicatie/resources/views/promotion.edge)
+Link to our application hosted on DigitalOcean: [https://easylinkkeeper.nl/login](https://easylinkkeeper.nl/login) (login: dummy@dummy.test, password: dummy)
