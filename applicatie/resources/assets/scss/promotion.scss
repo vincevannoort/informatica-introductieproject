@@ -24,6 +24,19 @@ html, body {
   font-family: 'Cabin', sans-serif;
 }
 
+h2 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: $red;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Promotion header
@@ -33,7 +46,7 @@ html, body {
   padding: 60px  0;
   > .columns {
     justify-content: space-between;
-    
+
   }
   .promotion-header-logo {
     // max-width: 250px;
@@ -63,7 +76,7 @@ html, body {
 
 /*
 |--------------------------------------------------------------------------
-| Promotion content
+| Promotion features
 |--------------------------------------------------------------------------
 */
 .promotion-call-to-action {
@@ -106,5 +119,60 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .promotion-feature {
+    margin-bottom: 3rem;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Promotion team
+|--------------------------------------------------------------------------
+*/
+.promotion-team {
+  margin: 4rem 0;
+  margin-bottom: 8.5rem;
+  .promotion-team-header {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .promotion-team-member {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  .promotion-team-member-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #eeeeee;
+    align-self: center;
+    margin-bottom: 1rem;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Promotion contact
+|--------------------------------------------------------------------------
+*/
+.promotion-contact {
+  background: #eeeeee;
+  margin: 4rem 0;
+  margin-bottom: 0;
+  padding-bottom: 6rem;
+  .promotion-contact-header {
+    text-align: center;
+    margin-top: 5rem;
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+  .promotion-contact-text {
+    text-align: center;
   }
 }
