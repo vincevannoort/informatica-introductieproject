@@ -1,10 +1,10 @@
 const { before, test, skip, failing } = use('Test/Suite')('Flow')
 const puppeteer = require('puppeteer')
 const screenshotsEnabled = false
-const slow = false
-const waitTime = (slow) ? 1000 : 500
-const waitTimeBeforeSubmit = (slow) ? 500 : 100
-const typeSpeed = (slow) ? 20 : 0
+const slow = true
+const waitTime = (slow) ? 1200 : 500
+const waitTimeBeforeSubmit = (slow) ? 520 : 100
+const typeSpeed = (slow) ? 30 : 0
 let count = 0
 let browser
 let tab
