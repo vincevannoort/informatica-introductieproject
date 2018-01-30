@@ -43,6 +43,7 @@ class Proposal {
 
   static async calculate({ proposal_id }) {
     return axios.post(`/api/proposals/${proposal_id}/calculate`)
+    .then(response => response.data)
   }
 
   static async storeStrengthOrWeakness({ proposal_id, strengthorweakness }) {

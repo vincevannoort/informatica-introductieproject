@@ -137,7 +137,7 @@
     </box>
 
     <transition name="fade-up" mode="out-in">
-      <router-view @refetch="show" />
+      <router-view @refetch="refetch" />
     </transition>
   </div>
 </template>
@@ -190,6 +190,10 @@
       async show() {
         this.relation = await Relation.show({ relation_id: this.$route.params.relation_id })
       },
+      async refetch() {
+        this.show()
+        this.calculate()
+      },
       async edit() {
         this.$router.push({ name: 'relations-edit', params: { relation_id: this.$route.params.relation_id } })
       },
@@ -198,7 +202,7 @@
         this.$router.push({ name: 'relations-overview' })
       },
       async calculate() {
-        await Relation.calculate({ relation_id: this.$route.params.relation_id })
+        this.relation.insight_total = await Relation.calculate({ relation_id: this.$route.params.relation_id })
       },
       updateRelation(relation) {
         this.relation = relation
@@ -247,7 +251,8 @@
     float: left;
     width: 12px;
     border-radius: 10px;
-    background: linear-gradient(to top, lighten($red, 20%) 0%, $red 100%)
+    background: linear-gradient(to top, lighten($red, 20%) 0%, $red 100%);
+    transition: all 0.65s 0.25s ease-in-out;
   }
 
   .relation-insight-sidebox {

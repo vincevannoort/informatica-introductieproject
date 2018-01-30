@@ -23,6 +23,7 @@
                     <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
                     {{ contact.information.first_name }} {{ contact.information.last_name }}
                   </th>
+                  <th>Feeling</th>
                   <th>Need for change</th>
                   <th>Invidual influence</th>
                   <th>actions</th>
@@ -40,6 +41,7 @@
                       </tr>
                     </table>
                   </td>
+                  <td class="td-align-center">{{ (contact.feeling) ? contact.feeling.feeling : 'not set' }}</td>
                   <td class="td-align-center">{{ (contact.information.needforchanges[0]) ? contact.information.needforchanges[0].value : 'not set' }}</td>
                   <td class="td-align-center">{{ (contact.information.influences[0]) ? contact.information.influences[0].value : 'not set' }}</td>
                   <td>
@@ -190,7 +192,7 @@
         :proposal="proposal"
         :relation="proposal.relation"
         :contacts="proposal.contacts"
-        @refetch="show" />
+        @refetch="refetch" />
     </transition>
   </div>
 </template>
@@ -232,9 +234,12 @@
       async show() {
         this.proposal = await Proposal.show({ proposal_id: this.$route.params.proposal_id })
       },
+      async refetch() {
+        this.show()
+        this.calculate()
+      },
       async calculate() {
-        await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
-        // this.$router.push({ name: 'proposals-insight', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })
+        this.proposal.insight = await Proposal.calculate({ proposal_id: this.$route.params.proposal_id })
       },
       async edit() {
         this.$router.push({ name: 'proposals-edit', params: { relation_id: this.$route.params.relation_id, proposal_id: this.$route.params.proposal_id } })

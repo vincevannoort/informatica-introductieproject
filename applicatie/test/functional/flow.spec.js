@@ -2,9 +2,9 @@ const { before, test, skip, failing } = use('Test/Suite')('Flow')
 const puppeteer = require('puppeteer')
 const screenshotsEnabled = false
 const slow = true
-const waitTime = (slow) ? 1200 : 500
-const waitTimeBeforeSubmit = (slow) ? 520 : 100
-const typeSpeed = (slow) ? 30 : 0
+const waitTime = (slow) ? 1400 : 500
+const waitTimeBeforeSubmit = (slow) ? 700 : 100
+const typeSpeed = (slow) ? 55 : 0
 let count = 0
 let browser
 let tab
@@ -23,8 +23,7 @@ test('login with test user', async () => {
   browser = await puppeteer.launch({ headless: false, slowMo: typeSpeed })
   tab = (await browser.pages())[0]
   await tab.setViewport({ width: 1920, height: 1060 })
-  // TODO: TURN ON FOR PRESENTATION
-  // await tab.waitFor(5000)
+  await tab.waitFor(5000)
   await tab.goto('localhost:4000/login')
   await tab.waitFor('div.authentication-box')
   await tab.type('[name="username"]', 'test@tester.nl')

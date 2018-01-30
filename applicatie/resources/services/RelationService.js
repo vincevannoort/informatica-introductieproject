@@ -40,6 +40,7 @@ class Relation {
 
   static async calculate({ relation_id }) {
     return axios.post(`/api/relations/${relation_id}/calculate`)
+    .then((response) => response.data)
   }
 
   static async calculateAll() {
