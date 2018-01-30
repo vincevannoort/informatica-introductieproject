@@ -152,6 +152,8 @@ h4 {
     background: #eeeeee;
     align-self: center;
     margin-bottom: 1rem;
+    background-size: cover;
+    background-position: center;
   }
 }
 
@@ -174,5 +176,8 @@ h4 {
   }
   .promotion-contact-text {
     text-align: center;
+    a {
+      color: $red;
+    }
   }
 }

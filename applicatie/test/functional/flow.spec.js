@@ -23,9 +23,9 @@ test('login with test user', async () => {
   browser = await puppeteer.launch({ headless: false, slowMo: typeSpeed })
   tab = (await browser.pages())[0]
   await tab.setViewport({ width: 1920, height: 1060 })
-  await tab.waitFor(5000)
   await tab.goto('localhost:4000/login')
   await tab.waitFor('div.authentication-box')
+  await tab.waitFor(5000)
   await tab.type('[name="username"]', 'test@tester.nl')
   await tab.type('[name="password"]', 'test')
   if (screenshotsEnabled) await tab.screenshot({ path: `./screenshots/${count++}-before-login.png` })
@@ -344,5 +344,5 @@ test('add grow information to the proposal', async () => {
 }).timeout(0)
 
 test('timeout for presentation', async () => {
-  await tab.waitFor(waitTime * 200)
+  await tab.waitFor(waitTime * 80)
 }).timeout(0)
