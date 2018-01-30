@@ -23,7 +23,7 @@
                     <span class="proposal-contact-profession">{{ contact.information.profession }}</span>
                     {{ contact.information.first_name }} {{ contact.information.last_name }}
                   </th>
-                  <th>Feeling</th>
+                  <!-- <th>Feeling</th> -->
                   <th>Need for change</th>
                   <th>Invidual influence</th>
                   <th>actions</th>
@@ -41,7 +41,7 @@
                       </tr>
                     </table>
                   </td>
-                  <td class="td-align-center">{{ (contact.feeling) ? contact.feeling.feeling : 'not set' }}</td>
+                  <!-- <td class="td-align-center">{{ (contact.feeling) ? contact.feeling.feeling : 'not set' }}</td> -->
                   <td class="td-align-center">{{ (contact.information.needforchanges[0]) ? contact.information.needforchanges[0].value : 'not set' }}</td>
                   <td class="td-align-center">{{ (contact.information.influences[0]) ? contact.information.influences[0].value : 'not set' }}</td>
                   <td>

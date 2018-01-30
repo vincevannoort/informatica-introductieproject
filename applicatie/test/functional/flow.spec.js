@@ -4,7 +4,7 @@ const screenshotsEnabled = false
 const slow = true
 const waitTime = (slow) ? 1400 : 500
 const waitTimeBeforeSubmit = (slow) ? 700 : 100
-const typeSpeed = (slow) ? 55 : 0
+const typeSpeed = (slow) ? 45 : 0
 let count = 0
 let browser
 let tab
